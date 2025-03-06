@@ -5,6 +5,8 @@
     impermanence.enable = true;
     secureboot.enable = true;
 
+    games.enable = true;
+
     nvidia = {
       enable = true;
       tuning = {

@@ -20,14 +20,14 @@ in {
       tuning = {
         enable = lib.mkEnableOption "tuning for NVIDIA GPUs";
 
-        gpuClock = {
+        gpuClock = lib.mkOption {
           type = lib.types.int;
           description = ''
             Maximum GPU clock in megahertz.
           '';
         };
 
-        memoryClock = {
+        memoryClock = lib.mkOption {
           type = lib.types.int;
           description = ''
             Maximum memory clock in megahertz.
