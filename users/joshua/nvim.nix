@@ -21,6 +21,7 @@ in {
         tabstop = 2;
         softtabstop = 2;
         shiftwidth = 2;
+        wrap = false;
 
         cursorline = true;
         number = true;
