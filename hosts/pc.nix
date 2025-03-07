@@ -9,6 +9,10 @@
     games.enable = true;
     virt.enable = true;
 
+    remote = {
+      server.enable = true;
+    };
+
     nvidia = {
       enable = true;
       tuning = {
