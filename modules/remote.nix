@@ -17,7 +17,7 @@ in {
     };
   };
 
-  config = [
+  config = lib.mkMerge [
     (lib.mkIf cfg.server.enable {
       services.openssh = {
         enable = true;
