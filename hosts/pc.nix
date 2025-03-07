@@ -1,6 +1,7 @@
 {...}: {
   settings = {
     profiles.desktop = true;
+    fixes.mouseWakeup = true;
 
     impermanence.enable = true;
     secureboot.enable = true;
