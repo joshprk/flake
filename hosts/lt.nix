@@ -6,8 +6,6 @@
     impermanence.enable = true;
     secureboot.enable = true;
 
-    virt.enable = true;
-
     nvidia = {
       enable = true;
       prime = {

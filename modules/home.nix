@@ -29,40 +29,42 @@ in {
     };
   };
 
-  config = let
-  in
-    lib.mkIf cfg.enable {
-      home-manager = {
-        useUserPackages = true;
-        useGlobalPkgs = true;
-        sharedModules = homeManagerModules;
-
-        extraSpecialArgs = {};
-
-        users = let
-          getDir = dir: builtins.toPath "${cfg.directory}/${dir}";
-          mkEntry = user: {
-            name = user;
-            value = import (getDir user);
-          };
-          names = builtins.attrNames cfg.users;
-          filtered =
-            builtins.filter (name: builtins.pathExists (getDir name)) names;
-          entries = map mkEntry filtered;
-        in
-          builtins.listToAttrs entries;
-      };
-
-      # TODO: make automatic
-      programs.zsh.enable = true;
-
-      users = {
-        inherit (cfg) users;
-        mutableUsers = false;
-      };
-
-      nix.settings = {
-        use-xdg-base-directories = true;
-      };
+  config = lib.mkIf cfg.enable {
+    environment.sessionVariables = {
+      CUDA_CACHE_PATH = "$XDG_CACHE_HOME/nv";
     };
+
+    home-manager = {
+      useUserPackages = true;
+      useGlobalPkgs = true;
+      sharedModules = homeManagerModules;
+
+      extraSpecialArgs = {};
+
+      users = let
+        getDir = dir: builtins.toPath "${cfg.directory}/${dir}";
+        mkEntry = user: {
+          name = user;
+          value = import (getDir user);
+        };
+        names = builtins.attrNames cfg.users;
+        filtered =
+          builtins.filter (name: builtins.pathExists (getDir name)) names;
+        entries = map mkEntry filtered;
+      in
+        builtins.listToAttrs entries;
+    };
+
+    # TODO: make automatic
+    programs.zsh.enable = true;
+
+    users = {
+      inherit (cfg) users;
+      mutableUsers = false;
+    };
+
+    nix.settings = {
+      use-xdg-base-directories = true;
+    };
+  };
 }

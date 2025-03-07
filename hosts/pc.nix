@@ -6,6 +6,7 @@
     secureboot.enable = true;
 
     games.enable = true;
+    virt.enable = true;
 
     nvidia = {
       enable = true;
