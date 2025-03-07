@@ -5,7 +5,7 @@
 }: let
   cfg = config.settings.remote;
 in {
-  options.setttings = {
+  options.settings = {
     remote = {
       server = {
         enable = lib.mkEnableOption "the remote server module";
