@@ -68,8 +68,6 @@
               nixvim.homeManagerModules.nixvim
               stylix.homeManagerModules.stylix
             ];
-            # TODO: Consider if this is necessary
-            # ++ lib.filesystem.listFilesRecursive ./home;
         };
 
         modules = with self.inputs; let
