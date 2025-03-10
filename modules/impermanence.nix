@@ -18,7 +18,7 @@ in {
       };
 
       extraDirectories = lib.mkOption {
-        type = lib.types.anything;
+        type = lib.types.listOf lib.types.anything;
         default = [];
         description = ''
           Extra directories to persist.
