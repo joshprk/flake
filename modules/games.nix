@@ -39,8 +39,8 @@ in {
         dieWithParent = true;
 
         extraBwrapArgs = [
+          ''--chdir $(RESOLVED=$(echo "$PWD" | sed "s|$HOME/.local/share/games|$HOME|"); if [[ "$RESOLVED" != $HOME* ]]; then echo "$HOME"; else echo "$RESOLVED"; fi)''
           "--bind $XDG_DATA_HOME/games $HOME"
-          "--chdir $HOME"
           "--dir $HOME"
           "--dir XDG_CACHE_HOME"
           "--dir XDG_CONFIG_HOME"
@@ -54,6 +54,10 @@ in {
         {
           name = "protonup";
           package = pkgs.protonup;
+        }
+        {
+          name = "steam-run";
+          package = pkgs.steam-run;
         }
       ]
       ++ cfg.extraPackages;

@@ -23,6 +23,10 @@ in {
         enable = true;
         startWhenNeeded = true;
       };
+
+      settings.impermanence.extraDirectories = [
+        "/etc/ssh"
+      ];
     })
     (lib.mkIf cfg.client.enable {
       services.tailscale = {
