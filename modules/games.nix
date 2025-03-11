@@ -39,7 +39,7 @@ in {
         dieWithParent = true;
 
         extraBwrapArgs = [
-          ''--chdir $(RESOLVED=$(echo "$PWD" | sed "s|$HOME/.local/share/games|$HOME|"); if [[ "$RESOLVED" != $HOME* ]]; then echo "$HOME"; else echo "$RESOLVED"; fi)''
+          ''--chdir $(if [[ "$PWD" != $HOME* ]]; then echo "$HOME"; else echo "$(echo "$PWD" | sed "s|$HOME/.local/share/games|$HOME|")"; fi)''
           "--bind $XDG_DATA_HOME/games $HOME"
           "--dir $HOME"
           "--dir XDG_CACHE_HOME"
