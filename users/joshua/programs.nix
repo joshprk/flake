@@ -20,6 +20,10 @@ in {
       wl-clipboard-rs
     ];
 
+    programs.btop = {
+      enable = true;
+    };
+
     programs.direnv = {
       enable = true;
       enableZshIntegration = true;
