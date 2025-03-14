@@ -59,6 +59,7 @@ in {
           action = "<Cmd>FzfLua live_grep<CR>";
           key = "<leader><Space>";
           mode = ["n"];
+          options.desc = "Open live grep";
         }
         {
           action = ''<Cmd>lua require("flash").jump()<CR>'';
@@ -69,6 +70,23 @@ in {
           action = ''<Cmd>lua require("flash").treesitter()<CR>'';
           key = "F";
           mode = ["n" "x" "o"];
+        }
+        {
+          action = "<Cmd>bnext<CR>";
+          key = "<Tab>";
+          mode = ["n"];
+        }
+        {
+          action = ''<Cmd>lua vim.ui.input({prompt="Filename",completion="file"},function(input) if input == nil then return end vim.cmd("tabnew "..input) end)<CR>'';
+          key = "<leader>n";
+          mode = ["n"];
+          options.desc = "Open buffer";
+        }
+        {
+          action = "<Cmd>bwipeout<CR>";
+          key = "<leader>q";
+          mode = ["n"];
+          options.desc = "Close buffer";
         }
       ];
 
