@@ -22,7 +22,7 @@ in {
   nixosConfigurations =
     builtins.listToAttrs
     (
-      map 
+      map
       (file: let
         host = import (lib.path.append hostPath file);
         hardware = import (lib.path.append hardwarePath file);
@@ -33,7 +33,10 @@ in {
           (
             builtins.filter
             (
-              {name, value}:
+              {
+                name,
+                value,
+              }:
                 lib.lists.any
                 (g: builtins.elem g (host.hostGroups or ["default"]))
                 (value.hostGroups or ["default"])
@@ -64,9 +67,11 @@ in {
           sharedModules = homeModules;
           users =
             builtins.mapAttrs
-            (userName: attrs: inputs: (attrs.config inputs) // {
-              home.stateVersion = attrs.stateVersion;
-            })
+            (userName: attrs: inputs:
+              (attrs.config inputs)
+              // {
+                home.stateVersion = attrs.stateVersion;
+              })
             (lib.filterAttrs (_: attrs: attrs.isNormalUser or false) users);
         };
 
@@ -82,15 +87,17 @@ in {
             systemModules
             ++ modules
             ++ (hostModules inputs)
-            ++ [{
-              imports = [hardware];
-              home-manager = homeManagerConfig;
-              nix = nixConfig;
-              networking.hostName = host.hostName;
-              system.stateVersion = host.stateVersion;
-              users.mutableUsers = true;
-              users.users = systemUsers;
-            }];
+            ++ [
+              {
+                imports = [hardware];
+                home-manager = homeManagerConfig;
+                nix = nixConfig;
+                networking.hostName = host.hostName;
+                system.stateVersion = host.stateVersion;
+                users.mutableUsers = true;
+                users.users = systemUsers;
+              }
+            ];
         };
       })
       hostFiles

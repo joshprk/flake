@@ -10,13 +10,14 @@
     };
   };
 
-  outputs = inputs: import ./default.nix {
-    inherit inputs;
+  outputs = inputs:
+    import ./default.nix {
+      inherit inputs;
 
-    systemModules = with inputs; [
-      home-manager.nixosModules.home-manager
-    ];
+      systemModules = with inputs; [
+        home-manager.nixosModules.home-manager
+      ];
 
-    homeModules = with inputs; [];
-  };
+      homeModules = with inputs; [];
+    };
 }
