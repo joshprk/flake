@@ -28,6 +28,10 @@ in {
         hardware = import (lib.path.append hardwarePath file);
         hostModules = host.modules or (inputs: []);
 
+        aliases = {
+          update = "sudo nixos-rebuild switch --recreate-lock-file";
+        };
+
         users =
           builtins.listToAttrs
           (
@@ -92,6 +96,7 @@ in {
                 imports = [hardware];
                 home-manager = homeManagerConfig;
                 nix = nixConfig;
+                environment.shellAliases = aliases;
                 networking.hostName = host.hostName;
                 system.stateVersion = host.stateVersion;
                 users.mutableUsers = true;
