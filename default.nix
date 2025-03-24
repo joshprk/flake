@@ -1,0 +1,101 @@
+{
+  inputs,
+  systemModules,
+  homeModules,
+  ...
+}: let
+  nixpkgs = inputs.nixpkgs;
+  lib = inputs.nixpkgs.lib;
+  forAllSystems = lib.genAttrs lib.systems.flakeExposed;
+  hostPath = ./hosts;
+  hardwarePath = ./hardware;
+  homePath = ./users;
+  modulePath = ./modules;
+  hostFiles =
+    builtins.attrNames
+    (lib.filterAttrs (_: type: type == "regular") (builtins.readDir hostPath));
+  userFiles =
+    builtins.attrNames
+    (lib.filterAttrs (_: type: type == "directory") (builtins.readDir homePath));
+  modules = map (file: import file) (lib.filesystem.listFilesRecursive modulePath);
+in {
+  nixosConfigurations =
+    builtins.listToAttrs
+    (
+      map 
+      (file: let
+        host = import (lib.path.append hostPath file);
+        hardware = import (lib.path.append hardwarePath file);
+        hostModules = host.modules or (inputs: []);
+
+        users =
+          builtins.listToAttrs
+          (
+            builtins.filter
+            (
+              {name, value}:
+                lib.lists.any
+                (g: builtins.elem g (host.hostGroups or ["default"]))
+                (value.hostGroups or ["default"])
+            )
+            (
+              map
+              (file: {
+                name = file;
+                value = import (lib.path.append homePath file);
+              })
+              userFiles
+            )
+          );
+
+        systemUsers =
+          builtins.mapAttrs
+          (
+            _: attrs:
+              builtins.removeAttrs
+              attrs
+              ["config" "stateVersion" "hostGroups"]
+          )
+          users;
+
+        homeManagerConfig = {
+          useGlobalPkgs = true;
+          useUserPackages = true;
+          sharedModules = homeModules;
+          users =
+            builtins.mapAttrs
+            (userName: attrs: inputs: (attrs.config inputs) // {
+              home.stateVersion = attrs.stateVersion;
+            })
+            (lib.filterAttrs (_: attrs: attrs.isNormalUser or false) users);
+        };
+
+        nixConfig = {
+          settings.experimental-features = ["nix-command" "flakes"];
+          registry.nixpkgs.flake = nixpkgs;
+        };
+      in {
+        name = host.hostName;
+        value = lib.nixosSystem {
+          inherit (host) system;
+          modules =
+            systemModules
+            ++ modules
+            ++ (hostModules inputs)
+            ++ [{
+              imports = [hardware];
+              home-manager = homeManagerConfig;
+              nix = nixConfig;
+              networking.hostName = host.hostName;
+              system.stateVersion = host.stateVersion;
+              users.mutableUsers = true;
+              users.users = systemUsers;
+            }];
+        };
+      })
+      hostFiles
+    );
+
+  formatter =
+    forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
+}
