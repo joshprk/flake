@@ -7,10 +7,12 @@
   nixpkgs = inputs.nixpkgs;
   lib = inputs.nixpkgs.lib;
   forAllSystems = lib.genAttrs lib.systems.flakeExposed;
+
   hostPath = ./hosts;
   hardwarePath = ./hardware;
   homePath = ./users;
   modulePath = ./modules;
+
   hostFiles =
     builtins.attrNames
     (lib.filterAttrs (_: type: type == "regular") (builtins.readDir hostPath));
@@ -28,44 +30,27 @@ in {
         hardware = import (lib.path.append hardwarePath file);
         hostModules = host.modules or (inputs: []);
 
-        aliases = {
-          update = "sudo nixos-rebuild switch --recreate-lock-file";
-        };
-
-        users =
+        getUsers = moduleInputs: let
+          filterByHostGroup = {name, value}:
+            lib.lists.any
+            (g: builtins.elem g (host.hostGroups or ["default"]))
+            (value.hostGroups or ["default"]);
+          readUserConfig = file: {
+            name = file;
+            value = import (lib.path.append homePath file) moduleInputs;
+          };
+        in
           builtins.listToAttrs
-          (
-            builtins.filter
-            (
-              {
-                name,
-                value,
-              }:
-                lib.lists.any
-                (g: builtins.elem g (host.hostGroups or ["default"]))
-                (value.hostGroups or ["default"])
-            )
-            (
-              map
-              (file: {
-                name = file;
-                value = import (lib.path.append homePath file);
-              })
-              userFiles
-            )
-          );
+          (builtins.filter filterByHostGroup (map readUserConfig userFiles));
 
-        systemUsers =
+        getSystemUsers = users: let
+          attrsToRemove = ["config" "stateVersion" "hostGroups"];
+        in
           builtins.mapAttrs
-          (
-            _: attrs:
-              builtins.removeAttrs
-              attrs
-              ["config" "stateVersion" "hostGroups"]
-          )
+          (_: attrs: builtins.removeAttrs attrs attrsToRemove)
           users;
 
-        homeManagerConfig = {
+        getHomeManagerConfig = users: {
           useGlobalPkgs = true;
           useUserPackages = true;
           sharedModules = homeModules;
@@ -80,8 +65,11 @@ in {
         };
 
         nixConfig = {
-          settings.experimental-features = ["nix-command" "flakes"];
           registry.nixpkgs.flake = nixpkgs;
+          settings = {
+            experimental-features = lib.mkDefault ["nix-command" "flakes"];
+            use-xdg-base-directories = lib.mkDefault true;
+          };
         };
       in {
         name = host.hostName;
@@ -92,16 +80,16 @@ in {
             ++ modules
             ++ (hostModules inputs)
             ++ [
-              {
+              (moduleInputs: let
+                users = getUsers moduleInputs;
+              in {
                 imports = [hardware];
-                home-manager = homeManagerConfig;
+                home-manager = getHomeManagerConfig users;
                 nix = nixConfig;
-                environment.shellAliases = aliases;
                 networking.hostName = host.hostName;
                 system.stateVersion = host.stateVersion;
-                users.mutableUsers = true;
-                users.users = systemUsers;
-              }
+                users.users = getSystemUsers users;
+              })
             ];
         };
       })
