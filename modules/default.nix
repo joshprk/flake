@@ -21,7 +21,7 @@ in {
       update =
         lib.mkIf
         cfg.updateCommand
-        "nixos-rebuild switch --recreate-lock-file --use-remote-sudo";
+        "nixos-rebuild switch github:joshprk/flake";
     };
   };
 }
