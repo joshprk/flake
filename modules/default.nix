@@ -15,7 +15,7 @@ in {
       };
     };
   };
-  
+
   config = {
     environment.shellAliases = {
       update =
