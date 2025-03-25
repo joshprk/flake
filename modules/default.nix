@@ -21,7 +21,7 @@ in {
       update =
         lib.mkIf
         cfg.updateCommand
-        "nixos-rebuild switch github:joshprk/flake";
+        "nixos-rebuild switch --use-remote-sudo --flake github:joshprk/flake";
     };
   };
 }
