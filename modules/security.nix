@@ -7,7 +7,7 @@
 in {
   options.settings = {
     security = {
-      secureBoot = lib.mkEnableOption "Lanzaboote secure boot";
+      secureboot = lib.mkEnableOption "Lanzaboote secure boot";
     };
   };
 
