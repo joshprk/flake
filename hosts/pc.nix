@@ -10,5 +10,6 @@
     pkgs,
     ...
   }: {
+    settings.linux.enable = true;
   };
 }
