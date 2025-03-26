@@ -41,6 +41,7 @@
       ];
 
       homeModules = with inputs; [
+        nixvim.homeManagerModules.nixvim
         sops.homeManagerModules.sops
       ];
     };
