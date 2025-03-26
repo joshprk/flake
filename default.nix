@@ -59,6 +59,10 @@ in {
             (userName: attrs: inputs:
               (attrs.config inputs)
               // {
+                imports =
+                  builtins.filter
+                  (f: f != lib.makePath [homePath userName "default.nix"])
+                  (lib.listFilesRecursive (lib.path.append homePath userName));
                 home.stateVersion = attrs.stateVersion;
               })
             (lib.filterAttrs (_: attrs: attrs.isNormalUser or false) users);
