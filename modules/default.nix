@@ -35,7 +35,7 @@ in {
       update =
         lib.mkIf
         cfg.updateCommand
-        "nixos-rebuild switch --use-remote-sudo --flake github:joshprk/flake";
+        "nixos-rebuild switch --no-write-lock-file --use-remote-sudo --flake github:joshprk/flake";
     };
 
     programs.dconf.enable =
@@ -43,7 +43,7 @@ in {
       ((builtins.length (builtins.attrNames config.home-manager.users)) > 0)
       true;
 
-    programs.zsh = lib.mkif cfg.zshDefaultShell {
+    programs.zsh = lib.mkIf cfg.zshDefaultShell {
       enable = true;
     };
 
