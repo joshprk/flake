@@ -20,7 +20,7 @@ in {
 
       image = pkgs.fetchurl {
         url = "https://zebreus.github.io/all-gnome-backgrounds/images/adwaita-d-268b3cb44725594f86f17515786945d88bc1a1e7.webp";
-        sha256 = "sha256-D0P9pTc5LVheYuhzTg1w9cUdK2TjsJf+tKn6Diwdxss=";
+        sha256 = "sha256-yl/2o1/0YkxrH8MKSWAx1EzUvGhP1GCW0dfJj8Bco0E=";
       };
 
       cursor = {
