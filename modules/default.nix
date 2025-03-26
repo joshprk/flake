@@ -30,6 +30,11 @@ in {
         "nixos-rebuild switch --use-remote-sudo --flake github:joshprk/flake";
     };
 
+    programs.dconf.enable =
+      lib.mkIf
+      ((builtins.length (builtins.attrNames config.home-manager.users)) > 0)
+      true;
+
     time.timeZone = config.settings.builtins.timeZone;
   };
 }
