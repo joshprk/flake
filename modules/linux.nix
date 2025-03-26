@@ -28,7 +28,7 @@ in {
     };
   };
 
-  config = {
+  config = lib.mkIf cfg.enable {
     boot = {
       consoleLogLevel = lib.mkIf (!cfg.verbose) 3;
       kernelPackages = cfg.package;
