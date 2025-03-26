@@ -19,7 +19,7 @@ in {
       base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
 
       image = pkgs.fetchurl {
-        url = "https://zebreus.github.io/all-gnome-backgrounds/images/adwaita-d-268b3cb44725594f86f17515786945d88bc1a1e7.webp";
+        url = "https://moewalls.com/wp-content/uploads/2021/11/2b-sword-flowers-nier-automata-thumb.jpg";
         sha256 = "sha256-yl/2o1/0YkxrH8MKSWAx1EzUvGhP1GCW0dfJj8Bco0E=";
       };
 
