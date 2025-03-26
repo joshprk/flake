@@ -20,7 +20,7 @@ in {
 
       image = pkgs.fetchurl {
         url = "https://moewalls.com/wp-content/uploads/2021/11/2b-sword-flowers-nier-automata-thumb.jpg";
-        sha256 = "sha256-yl/2o1/0YkxrH8MKSWAx1EzUvGhP1GCW0dfJj8Bco0E=";
+        sha256 = "sha256-8i/3ZAuTXCRwEZsT7eTlU4UYTT5E2rULmX2hDBjEk7Y=";
       };
 
       cursor = {
