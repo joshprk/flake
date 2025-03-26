@@ -94,7 +94,7 @@ in {
               (moduleInputs: let
                 users = getUsers moduleInputs;
               in {
-                imports = [hardware];
+                imports = [hardware host.config];
                 home-manager = getHomeManagerConfig users;
                 nix = nixConfig;
                 networking.hostName = host.hostName;
