@@ -40,6 +40,8 @@ in {
 
         layerrule = [
           "noanim, selection"
+          "blur, waybar"
+          "ignorezero, waybar"
         ];
 
         general = {
