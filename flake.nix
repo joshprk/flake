@@ -9,6 +9,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    impermanence = {
+      url = "github:nix-community/impermanence";
+    };
+
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     sops = {
       url = "github:mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -21,6 +30,8 @@
 
       systemModules = with inputs; [
         home-manager.nixosModules.home-manager
+        impermanence.nixosModules.impermanence
+        lanzaboote.nixosModules.lanzaboote
         sops.nixosModules.sops
       ];
 
