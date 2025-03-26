@@ -27,6 +27,11 @@
       url = "github:mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs:
@@ -43,6 +48,7 @@
       homeModules = with inputs; [
         nixvim.homeManagerModules.nixvim
         sops.homeManagerModules.sops
+        stylix.homeManagerModules.stylix
       ];
     };
 }
