@@ -98,8 +98,8 @@ in {
                 home-manager = getHomeManagerConfig users;
                 nix = nixConfig;
                 networking.hostName = host.hostName;
-                nixpkgs.overlays = overlays host.system;
-                nixpkgs.allowUnfree = true;
+                nixpkgs.config.overlays = overlays host.system;
+                nixpkgs.config.allowUnfree = true;
                 system.stateVersion = host.stateVersion;
                 users.users = getSystemUsers users;
               })
