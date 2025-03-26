@@ -82,6 +82,11 @@ in {
             use-xdg-base-directories = lib.mkDefault true;
           };
         };
+
+        nixpkgsConfig = {
+          overlays = overlays host.system;
+          allowUnfree = true;
+        };
       in {
         name = host.hostName;
         value = lib.nixosSystem {
@@ -98,8 +103,7 @@ in {
                 home-manager = getHomeManagerConfig users;
                 nix = nixConfig;
                 networking.hostName = host.hostName;
-                nixpkgs.config.overlays = overlays host.system;
-                nixpkgs.config.allowUnfree = true;
+                nixpkgs.config = nixpkgsConfig;
                 system.stateVersion = host.stateVersion;
                 users.users = getSystemUsers users;
               })
