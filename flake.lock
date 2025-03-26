@@ -342,11 +342,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1742825959,
-        "narHash": "sha256-wgnQZMrLLQJlZ+htTXzoQtoz9EzL15Z2crH3+OnRmMk=",
+        "lastModified": 1742957044,
+        "narHash": "sha256-gwW0tBIA77g6qq45y220drTy0DmThF3fJMwVFUtYV9c=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "908e055e157a0b35466faf4125d7e7410ff56160",
+        "rev": "ce287a5cd3ef78203bc78021447f937a988d9f6f",
         "type": "github"
       },
       "original": {
@@ -562,7 +562,8 @@
         "nixpkgs": "nixpkgs",
         "nixvim": "nixvim",
         "sops": "sops",
-        "stylix": "stylix"
+        "stylix": "stylix",
+        "zen-browser": "zen-browser"
       }
     },
     "rust-overlay": {
@@ -774,6 +775,26 @@
       "original": {
         "owner": "numtide",
         "repo": "treefmt-nix",
+        "type": "github"
+      }
+    },
+    "zen-browser": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1742957876,
+        "narHash": "sha256-gMW/S6xEpzfPkFt/pE6bi3wd4/eVPOYKZGDUz9vVML4=",
+        "owner": "0xc000022070",
+        "repo": "zen-browser-flake",
+        "rev": "1e40a8e9fa79991940c17a2e6d354346c73ad002",
+        "type": "github"
+      },
+      "original": {
+        "owner": "0xc000022070",
+        "repo": "zen-browser-flake",
         "type": "github"
       }
     }
