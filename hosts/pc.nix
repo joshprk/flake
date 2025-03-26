@@ -12,7 +12,11 @@
   }: {
     settings.linux.enable = true;
     settings.impermanence.enable = true;
-    settings.desktop.enable = true;
+
+    settings.desktop = {
+      enable = true;
+      hyprland = true;
+    };
 
     settings.security = {
       secureboot = true;
