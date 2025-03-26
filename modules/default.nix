@@ -35,7 +35,7 @@ in {
       update =
         lib.mkIf
         cfg.updateCommand
-        "nixos-rebuild switch --no-write-lock-file --use-remote-sudo --flake github:joshprk/flake";
+        "nixos-rebuild switch --refresh --use-remote-sudo --flake github:joshprk/flake";
     };
 
     programs.dconf.enable =
