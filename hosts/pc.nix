@@ -11,5 +11,22 @@
     ...
   }: {
     settings.linux.enable = true;
+    settings.impermanence.enable = true;
+    settings.desktop.enable = true;
+
+    settings.security = {
+      secureboot = true;
+    };
+
+    settings.nvidia = {
+      enable = true;
+      tuning = {
+        enable = true;
+        gpuClock = 1700;
+        memoryClock = 10001;
+      };
+    };
+
+    zramSwap.enable = true;
   };
 }
