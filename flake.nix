@@ -32,6 +32,11 @@
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs:
@@ -49,6 +54,12 @@
         nixvim.homeManagerModules.nixvim
         sops.homeManagerModules.sops
         stylix.homeManagerModules.stylix
+      ];
+
+      overlays = system: [
+        (final: prev: {
+          zen-browser = inputs.zen-browser.packages.${system}.twilight-official;
+        })
       ];
     };
 }

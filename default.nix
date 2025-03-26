@@ -2,6 +2,7 @@
   inputs,
   systemModules,
   homeModules,
+  overlays,
   ...
 }: let
   nixpkgs = inputs.nixpkgs;
@@ -97,6 +98,7 @@ in {
                 home-manager = getHomeManagerConfig users;
                 nix = nixConfig;
                 networking.hostName = host.hostName;
+                nixpkgs.overlays = overlays host.system;
                 system.stateVersion = host.stateVersion;
                 users.users = getSystemUsers users;
               })
