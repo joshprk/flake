@@ -104,6 +104,7 @@ in {
                 nix = nixConfig;
                 networking.hostName = host.hostName;
                 nixpkgs.config = nixpkgsConfig;
+                nixpkgs.overlays = moduleInputs.config.nixpkgs.config.overlays;
                 system.stateVersion = host.stateVersion;
                 users.users = getSystemUsers users;
               })
