@@ -16,8 +16,7 @@ in {
     stylix = {
       enable = true;
       polarity = "dark";
-      base16Scheme =
-        "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+      base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
 
       image = pkgs.fetchurl {
         url = "https://w.wallhaven.cc/full/kx/wallhaven-kx9ql7.jpg";
@@ -36,7 +35,7 @@ in {
           name = "Inter";
         };
 
-        sansSerif = config.stylix.fonts.serif; 
+        sansSerif = config.stylix.fonts.serif;
         emoji = config.stylix.fonts.serif;
 
         monospace = {

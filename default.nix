@@ -31,7 +31,10 @@ in {
         hostModules = host.modules or (inputs: []);
 
         getUsers = moduleInputs: let
-          filterByHostGroup = {name, value}:
+          filterByHostGroup = {
+            name,
+            value,
+          }:
             lib.lists.any
             (g: builtins.elem g (host.hostGroups or ["default"]))
             (value.hostGroups or ["default"]);
@@ -62,7 +65,10 @@ in {
                 imports =
                   builtins.filter
                   (f: f != lib.makePath [homePath userName "default.nix"])
-                  (lib.listFilesRecursive (lib.path.append homePath userName));
+                  (
+                    lib.filesystem.listFilesRecursive
+                    (lib.path.append homePath userName)
+                  );
                 home.stateVersion = attrs.stateVersion;
               })
             (lib.filterAttrs (_: attrs: attrs.isNormalUser or false) users);

@@ -5,7 +5,15 @@
   extraGroups = ["wheel"];
   stateVersion = "24.11";
 
-  config = {config, ...}: {
+  config = {
+    config,
+    lib,
+    ...
+  }: {
+    user.hypr.enable = true;
     user.nvim.enable = true;
+    user.programs.enable = true;
+    user.stylix.enable = true;
+    user.xdg.enable = true;
   };
 }

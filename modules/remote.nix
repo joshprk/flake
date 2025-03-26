@@ -39,8 +39,9 @@ in {
         "/var/lib/tailscale"
       ];
     };
-  in lib.mkMerge [
-    (lib.mkIf cfg.server.enable server)
-    (lib.mkIf cfg.client.enable client)
-  ];
+  in
+    lib.mkMerge [
+      (lib.mkIf cfg.server.enable server)
+      (lib.mkIf cfg.client.enable client)
+    ];
 }

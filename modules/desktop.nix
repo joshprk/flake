@@ -53,8 +53,9 @@ in {
 
       security.rtkit.enable = true;
     };
-  in lib.mkIf cfg.enable (lib.mkMerge [
-    general
-    (lib.mkIf cfg.hyprland hyprland)
-  ]);
+  in
+    lib.mkIf cfg.enable (lib.mkMerge [
+      general
+      (lib.mkIf cfg.hyprland hyprland)
+    ]);
 }

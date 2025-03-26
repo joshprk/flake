@@ -30,7 +30,6 @@
       mimeApps = {
         enable = true;
         defaultApplications = {
-
           "application/pdf" = ["zen.desktop"];
           "application/octet-stream" = ["nvim.desktop"];
           "application/x-zerosize" = ["nvim.desktop"];
