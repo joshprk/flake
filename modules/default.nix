@@ -43,8 +43,13 @@ in {
       ((builtins.length (builtins.attrNames config.home-manager.users)) > 0)
       true;
 
-    programs.zsh.enable = lib.mkIf cfg.zshDefaultShell;
-    users.defaultUserShell = lib.mkIf cfg.zshDefaultShell pkgs.zsh;
+    programs.zsh = lib.mkif cfg.zshDefaultShell {
+      enable = true;
+    };
+
+    users = lib.mkIf cfg.zshDefaultShell {
+      defaultUserShell = pkgs.zsh;
+    };
 
     time.timeZone = config.settings.builtins.timeZone;
   };
