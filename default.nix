@@ -103,7 +103,7 @@ in {
                 home-manager = getHomeManagerConfig users;
                 nix = nixConfig;
                 networking.hostName = host.hostName;
-                nixpkgs.config = nixpkgsConfig;
+                nixpkgs = nixpkgsConfig;
                 system.stateVersion = host.stateVersion;
                 users.users = getSystemUsers users;
               })
