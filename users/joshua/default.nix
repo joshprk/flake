@@ -14,6 +14,7 @@
     user.nvim.enable = true;
     user.programs.enable = true;
     user.stylix.enable = true;
+    user.waybar.enable = true;
     user.xdg.enable = true;
   };
 }
