@@ -11,7 +11,7 @@ in {
     };
   };
 
-  config = lib.mkIf cfg.secureBoot {
+  config = lib.mkIf cfg.secureboot {
     boot = {
       initrd.systemd.enable = lib.mkForce true;
       bootspec.enable = lib.mkForce true;
