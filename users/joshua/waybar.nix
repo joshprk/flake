@@ -27,7 +27,7 @@ in {
 
       style = ''
         window#waybar {
-          font-family: "Inter",
+          font-family: "Inter";
           font-size: 12px;
           background: transparent;
           border: none;
