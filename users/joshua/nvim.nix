@@ -3,7 +3,7 @@
   lib,
   ...
 }: let
-  cfg = config.users.nvim;
+  cfg = config.user.nvim;
 in {
   options.user = {
     nvim = {

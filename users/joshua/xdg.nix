@@ -3,14 +3,16 @@
   lib,
   pkgs,
   ...
-}: {
+}: let
+  cfg = config.user.xdg;
+in {
   options.user = {
     xdg = {
       enable = lib.mkEnableOption "the XDG configuration";
     };
   };
 
-  config = {
+  config = lib.mkIf cfg.enable {
     xdg = {
       enable = true;
       mime.enable = true;
