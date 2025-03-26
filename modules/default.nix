@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: let
   cfg = config.settings.builtins;
@@ -19,6 +20,13 @@ in {
         description = "Whether to enable the update command.";
         type = lib.types.bool;
       };
+
+      zshDefaultShell = lib.mkOption {
+        default = true;
+        example = false;
+        description = "Whether to enable Zsh shell by default.";
+        type = lib.types.bool;
+      };
     };
   };
 
@@ -34,6 +42,9 @@ in {
       lib.mkIf
       ((builtins.length (builtins.attrNames config.home-manager.users)) > 0)
       true;
+
+    programs.zsh.enable = lib.mkIf cfg.zshDefaultShell;
+    users.defaultUserShell = lib.mkIf cfg.zshDefaultShell pkgs.zsh;
 
     time.timeZone = config.settings.builtins.timeZone;
   };
