@@ -6,6 +6,6 @@
   stateVersion = "24.11";
 
   config = {config, ...}: {
-    
+    user.nvim.enable = true;
   };
 }
