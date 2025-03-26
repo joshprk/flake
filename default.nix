@@ -64,7 +64,7 @@ in {
               // {
                 imports =
                   builtins.filter
-                  (f: f != lib.makePath [homePath userName "default.nix"])
+                  (f: f != lib.path.append homePath "${userName}/default.nix")
                   (
                     lib.filesystem.listFilesRecursive
                     (lib.path.append homePath userName)
