@@ -41,17 +41,11 @@ in {
       hideMounts = true;
 
       directories =
-        [
-          "/etc/nixos"
-          "/var/log"
-          "/var/lib/nixos"
-        ]
+        ["/var/log" "/var/lib/nixos"]
         ++ cfg.extraDirectories;
 
       files =
-        [
-          "/etc/machine-id"
-        ]
+        ["/etc/machine-id"]
         ++ cfg.extraFiles;
     };
   };
