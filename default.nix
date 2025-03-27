@@ -22,7 +22,7 @@
     builtins.attrNames
     (lib.filterAttrs (_: type: type == "directory") (builtins.readDir userPath));
   modules = map (file: import file) (lib.filesystem.listFilesRecursive modulePath);
-  homeModules = map (file: import file) (lib.filesystem.listFilesRecursive homePath);
+  userModules = map (file: import file) (lib.filesystem.listFilesRecursive homePath);
 in {
   nixosConfigurations =
     builtins.listToAttrs
@@ -59,7 +59,7 @@ in {
         getHomeManagerConfig = users: {
           useGlobalPkgs = true;
           useUserPackages = true;
-          sharedModules = homeModules;
+          sharedModules = homeModules ++ userModules;
           users =
             builtins.mapAttrs
             (userName: attrs: inputs:
@@ -71,8 +71,7 @@ in {
                   (
                     lib.filesystem.listFilesRecursive
                     (lib.path.append userPath userName)
-                  )
-                  ++ homeModules;
+                  );
                 home.stateVersion = attrs.stateVersion;
               })
             (lib.filterAttrs (_: attrs: attrs.isNormalUser or false) users);
