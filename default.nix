@@ -11,16 +11,18 @@
 
   hostPath = ./hosts;
   hardwarePath = ./hardware;
-  homePath = ./users;
+  userPath = ./users;
   modulePath = ./modules;
+  homePath = ./home;
 
   hostFiles =
     builtins.attrNames
     (lib.filterAttrs (_: type: type == "regular") (builtins.readDir hostPath));
   userFiles =
     builtins.attrNames
-    (lib.filterAttrs (_: type: type == "directory") (builtins.readDir homePath));
+    (lib.filterAttrs (_: type: type == "directory") (builtins.readDir userPath));
   modules = map (file: import file) (lib.filesystem.listFilesRecursive modulePath);
+  homeModules = map (file: import file) (lib.filesystem.listFilesRecursive homePath);
 in {
   nixosConfigurations =
     builtins.listToAttrs
@@ -41,7 +43,7 @@ in {
             (value.hostGroups or ["default"]);
           readUserConfig = file: {
             name = file;
-            value = import (lib.path.append homePath file) moduleInputs;
+            value = import (lib.path.append userPath file) moduleInputs;
           };
         in
           builtins.listToAttrs
@@ -65,11 +67,12 @@ in {
               // {
                 imports =
                   builtins.filter
-                  (f: f != lib.path.append homePath "${userName}/default.nix")
+                  (f: f != lib.path.append userPath "${userName}/default.nix")
                   (
                     lib.filesystem.listFilesRecursive
-                    (lib.path.append homePath userName)
-                  );
+                    (lib.path.append userPath userName)
+                  )
+                  ++ homeModules;
                 home.stateVersion = attrs.stateVersion;
               })
             (lib.filterAttrs (_: attrs: attrs.isNormalUser or false) users);
