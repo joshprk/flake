@@ -25,6 +25,10 @@ in {
         "/share/applications"
       ];
 
+      programs.niri = {
+        enable = true;
+      };
+
       programs.hyprland = {
         enable = true;
       };
@@ -32,6 +36,10 @@ in {
       services.pipewire = {
         enable = true;
         pulse.enable = true;
+      };
+
+      services.displayManager = {
+        ly.enable = true;
       };
 
       services.xserver = {
@@ -53,7 +61,6 @@ in {
 
       security.rtkit.enable = true;
 
-      services.displayManager.ly.enable = true;
     };
   in
     lib.mkIf cfg.enable (lib.mkMerge [
