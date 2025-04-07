@@ -52,6 +52,8 @@ in {
       };
 
       security.rtkit.enable = true;
+
+      services.displayManager.ly.enable = true;
     };
   in
     lib.mkIf cfg.enable (lib.mkMerge [
