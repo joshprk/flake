@@ -56,7 +56,18 @@ in {
             inherit overlays;
             nixosModules = defaultNixosModules;
             homeManagerModules = defaultHomeManagerModules;
-            users = {};
+            users = lib.pipe "users" [
+              (lib.path.append src)
+              self.readModulesDir
+              (map
+                (homeModule: {
+                  name = (homeModule (builtins.functionArgs homeModule)).home.username;
+                  value = homeModule;
+                })
+              )
+              builtins.listToAttrs
+            ];
+            srcPath = src;
           })
         )
         builtins.listToAttrs

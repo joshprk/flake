@@ -30,11 +30,12 @@
     homeManagerModules ? [],
     overlays ? [],
     users ? {},
+    srcPath ? ../.,
   } @ metaModules:
   config: rec {
     name = value.config.networking.hostName;
     value = lib.nixosSystem {
-      specialArgs = {inherit inputs users;};
+      specialArgs = {inherit inputs users srcPath;};
       modules =
         nixosModules
         ++ [(self.hosts.metaConfig metaModules)]

@@ -2,6 +2,7 @@
   config,
   lib,
   users ? {},
+  srcPath,
   ...
 }: let
   cfg = config.settings.home;
@@ -10,23 +11,44 @@ in {
     home = {
       enable = lib.mkEnableOption "the home module";
 
-      categories = lib.mkOption {
-        type = lib.types.listOf lib.types.str;
-        default = ["default"];
-        description = "The user categories which the host is subscribed to.";
-      };
-
-      userCategories = lib.mkOption {
+      wheel = lib.mkOption {
         readOnly = true;
-        type = lib.attrsOf (lib.types.listOf lib.types.str);
-        default = {}; # TODO
-        description = ''
-          A read-only mapping which pairs users to hosts indirectly.
-        '';
+        type = lib.types.listOf lib.types.str;
+        default = ["joshua"];
+        description = "A list of usernames which are given superuser access.";
       };
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf (cfg.enable || true) {
+    home-manager = {inherit users;};
+
+    sops = {
+      defaultSopsFile = lib.path.append srcPath "secrets/default.yaml";
+      age.keyFile = "/home/joshua/sops/age/keys.txt";
+    };
+
+    users.users = let
+      mkUser = name: {
+        inherit name;
+        value = {
+          inherit name;
+          isNormalUser = true;
+          initialPassword = "";
+          hashedPasswordFile =
+            lib.mkIf
+            (builtins.hasAttr "users/${name}" config.sops.secrets)
+            config.sops.secrets."users/${name}".path;
+          extraGroups = lib.optional (builtins.elem name cfg.wheel) "wheel";
+        };
+      };
+
+      regularUsers = lib.pipe users [
+        (builtins.attrNames)
+        (map mkUser)
+        builtins.listToAttrs
+      ];
+    in
+      regularUsers;
   };
 }
