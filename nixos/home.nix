@@ -20,7 +20,7 @@ in {
     };
   };
 
-  config = lib.mkIf (cfg.enable || true) {
+  config = lib.mkIf cfg.enable {
     home-manager = {inherit users;};
 
     sops = {
