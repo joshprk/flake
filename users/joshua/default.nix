@@ -12,6 +12,10 @@
     enable = true;
   };
 
+  programs.git = {
+    enable = true;
+  };
+
   programs.niri = {
     package = pkgs.niri-unstable;
     settings.binds = {
