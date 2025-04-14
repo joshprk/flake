@@ -19,16 +19,43 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    programs.niri = {
-      inherit (osConfig.programs.niri) package;
-      settings.binds = with config.lib.niri.actions; {
-        "Mod+H" = {
-          action = focus-column-left;
-        };
-        "Mod+L" = {
-          action = focus-column-right;
-        };
+    programs.niri.settings = {
+      binds = with config.lib.niri.actions; {
+        "Mod+H".action = focus-column-left;
+        "Mod+L".action = focus-column-right;
+        "Mod+J".action = focus-window-down;
+        "Mod+K".action = focus-window-up;
+        "Mod+Shift+H".action = move-column-left;
+        "Mod+Shift+L".action = move-column-right;
+        "Mod+Shift+J".action = move-window-down;
+        "Mod+Shift+K".action = move-window-up;
+
+        "Mod+1".action = focus-workspace 1;
+        "Mod+2".action = focus-workspace 2;
+        "Mod+3".action = focus-workspace 3;
+        "Mod+4".action = focus-workspace 4;
+        "Mod+5".action = focus-workspace 5;
+        "Mod+6".action = focus-workspace 6;
+        "Mod+7".action = focus-workspace 7;
+        "Mod+8".action = focus-workspace 8;
+        "Mod+9".action = focus-workspace 9;
       } // cfg.binds;
+
+      prefer-no-csd = true;
+
+      window-rules = [
+        {
+          geometry-corner-radius = let
+            corners = ["bottom-left" "bottom-right" "top-left" "top-right"];
+            radius = 4.0;
+          in
+            lib.genAttrs corners radius;
+          clip-to-geometry = true;
+          draw-border-with-background = true;
+        }
+      ];
     };
+
+    programs.niri.package = osConfig.programs.niri.package;
   };
 }
