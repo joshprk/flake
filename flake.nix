@@ -13,8 +13,8 @@
         sops.nixosModules.sops
       ];
 
+      /* sodiboo/niri-flake auto-imports a hm module */
       homeManagerModules = with inputs; [
-        niri.homeModules.niri
         nixvim.homeManagerModules.nixvim
       ];
 
