@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   users ? {},
   srcPath,
   ...
@@ -10,6 +11,7 @@ in {
   options.settings = {
     home = {
       enable = lib.mkEnableOption "the home module";
+      enableZsh = lib.mkEnable "Zsh as the default user shell";
 
       wheel = lib.mkOption {
         readOnly = true;
@@ -27,6 +29,9 @@ in {
       defaultSopsFile = lib.path.append srcPath "secrets/default.yaml";
       age.keyFile = "/home/joshua/sops/age/keys.txt";
     };
+
+    users.defaultUserShell = lib.mkIf cfg.enableZsh pkgs.zsh;
+    programs.zsh.enable = lib.mkIf cfg.enableZsh true;
 
     users.users = let
       mkUser = name: {
