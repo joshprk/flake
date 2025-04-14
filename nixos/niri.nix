@@ -13,7 +13,10 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    settings.home.enable = lib.mkForce true;
+    settings = {
+      home.enable = lib.mkForce true;
+      networking.enable = lib.mkDefault true;
+    };
 
     programs.niri = {
       enable = true;
