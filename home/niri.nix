@@ -49,7 +49,7 @@ in {
             corners = ["bottom-left" "bottom-right" "top-left" "top-right"];
             radius = 4.0;
           in
-            lib.genAttrs corners radius;
+            lib.genAttrs corners (lib.const radius);
           clip-to-geometry = true;
           draw-border-with-background = true;
         }
