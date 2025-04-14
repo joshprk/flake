@@ -26,6 +26,13 @@ in {
       package = pkgs.niri-unstable;
     };
 
+    services.displayManager.ly = {
+      enable = true;
+      settings = {
+        asterisk = "0x2022";
+      };
+    };
+
     services.pipewire = {
       enable = true;
       pulse.enable = true;
