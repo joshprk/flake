@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: let
-  cfg = config.settings.kernel;
+  cfg = config.settings.linux;
 in {
   options.settings = {
     linux = {
