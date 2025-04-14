@@ -14,7 +14,6 @@
       ];
 
       homeManagerModules = with inputs; [
-        niri.homeModules.niri
         nixvim.homeManagerModules.nixvim
       ];
 
