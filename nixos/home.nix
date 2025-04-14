@@ -42,7 +42,6 @@ in {
         value = {
           inherit name;
           isNormalUser = true;
-          initialPassword = "";
           hashedPasswordFile =
             lib.mkIf
             (builtins.hasAttr "users/${name}" config.sops.secrets)
