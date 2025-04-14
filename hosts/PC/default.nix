@@ -9,6 +9,7 @@
 
   settings = {
     niri.enable = true;
+    impermanence.enable = true;
   };
 
   networking.hostName = "PC";
