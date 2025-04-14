@@ -28,6 +28,9 @@ in {
     sops = {
       defaultSopsFile = lib.path.append srcPath "secrets/default.yaml";
       age.keyFile = "/nix/keys";
+      secrets = {
+        "users/joshua".neededForUsers = true;
+      };
     };
 
     users.defaultUserShell = lib.mkIf cfg.enableZsh pkgs.zsh;
