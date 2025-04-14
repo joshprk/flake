@@ -2,11 +2,17 @@
   config,
   lib,
   pkgs,
-  osConfig,
   ...
 }: {
   home.username = "joshua";
   home.stateVersion = "25.05";
+
+  settings.niri = {
+    enable = true;
+    binds = {
+      "Mod+Q".action.spawn = "ghostty";
+    };
+  };
 
   /* temporary configuration until modules */
   programs.firefox = {
@@ -48,13 +54,6 @@
 
   programs.git = {
     enable = true;
-  };
-
-  programs.niri = {
-    inherit (osConfig.programs.niri) package;
-    settings.binds = {
-      "Mod+Q".action.spawn = "ghostty";
-    };
   };
 
   programs.zsh = {
