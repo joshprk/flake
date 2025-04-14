@@ -42,7 +42,6 @@ in {
 
       directories =
         [
-          "/etc/nixos"
           "/var/log"
           "/var/lib/nixos"
         ]
