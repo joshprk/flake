@@ -13,8 +13,8 @@
   };
 
   programs.niri = {
-    enable = true;
-    package = pkgs.niri-unstable;
+    #enable = true;
+    #package = pkgs.niri-unstable;
     settings.binds = {
       "Mod+Q".action.spawn = "ghostty";
     };
