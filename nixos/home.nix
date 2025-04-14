@@ -11,7 +11,7 @@ in {
   options.settings = {
     home = {
       enable = lib.mkEnableOption "the home module";
-      enableZsh = lib.mkEnable "Zsh as the default user shell";
+      enableZsh = lib.mkEnableOption "Zsh as the default user shell";
 
       wheel = lib.mkOption {
         readOnly = true;
