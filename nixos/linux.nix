@@ -18,7 +18,7 @@ in {
         '';
       };
 
-      quiet = lib.mkEnableOption "quiet kernel output";
+      verbose = lib.mkEnableOption "verbose kernel output";
 
       extraParams = lib.mkOption {
         type = lib.types.listOf lib.types.str;
@@ -32,11 +32,11 @@ in {
 
   config = lib.mkIf cfg.enable {
     boot = {
-      consoleLogLevel = lib.mkIf (cfg.quiet) 3;
+      consoleLogLevel = lib.mkIf (!cfg.verbose) 3;
       kernelPackages = cfg.package;
       kernelParams =
         []
-        ++ lib.optionals (cfg.quiet) ["quiet" "splash"]
+        ++ lib.optionals (!cfg.verbose) ["quiet" "splash"]
         ++ cfg.extraParams;
 
       loader = {
