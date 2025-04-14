@@ -1,7 +1,7 @@
 {
   config,
   lib,
-  pkgs,
+  osConfig,
   ...
 }: {
   home.username = "joshua";
@@ -17,7 +17,7 @@
   };
 
   programs.niri = {
-    package = pkgs.niri-unstable;
+    inherit (osConfig.programs.niri) package;
     settings.binds = {
       "Mod+Q".action.spawn = "ghostty";
     };
