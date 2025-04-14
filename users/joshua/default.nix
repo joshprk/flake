@@ -54,6 +54,8 @@
 
   programs.git = {
     enable = true;
+    userEmail = "joshuprk@gmail.com";
+    userName = "Joshua Park";
   };
 
   programs.zsh = {
