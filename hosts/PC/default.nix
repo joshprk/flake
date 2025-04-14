@@ -8,6 +8,7 @@
   ];
 
   settings = {
+    linux.enable = true;
     niri.enable = true;
     impermanence.enable = true;
   };
