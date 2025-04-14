@@ -14,6 +14,8 @@
     };
   };
 
+  settings.nvim.enable = true;
+
   /* temporary configuration until modules */
   programs.firefox = {
     enable = true;
