@@ -28,9 +28,6 @@ in {
 
     services.displayManager.ly = {
       enable = true;
-      settings = {
-        asterisk = "0x2022";
-      };
     };
 
     services.pipewire = {
