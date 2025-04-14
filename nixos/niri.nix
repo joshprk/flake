@@ -22,5 +22,10 @@ in {
       enable = true;
       package = pkgs.niri-unstable;
     };
+
+    services.pipewire = {
+      enable = true;
+      pulse.enable = true;
+    };
   };
 }
