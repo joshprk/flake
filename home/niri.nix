@@ -29,6 +29,8 @@ in {
         "Mod+Shift+L".action = move-column-right;
         "Mod+Shift+J".action = move-window-down;
         "Mod+Shift+K".action = move-window-up;
+        "Mod+Ctrl+H".action = consume-or-expel-window-left;
+        "Mod+Ctrl+L".action = consume-or-expel-window-right;
 
         "Mod+1".action = focus-workspace 1;
         "Mod+2".action = focus-workspace 2;
