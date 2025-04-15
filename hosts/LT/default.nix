@@ -9,6 +9,7 @@
 
   settings = {
     linux.enable = true;
+    games.enable = true;
     niri.enable = true;
     impermanence.enable = true;
 
