@@ -7,7 +7,7 @@
   cfg = config.settings.games;
 
   sandbox = pkgs.buildFHSEnv {
-    name = "sandbox";
+    name = "games";
 
     targetPkgs = pkgs: with pkgs; [
       steam-unwrapped
@@ -17,8 +17,9 @@
     dieWithParent = true;
 
     extraBwrapArgs = [
-      ''--chdir $(if [[ "$PWD" != $HOME* ]]; then echo "$HOME"; else echo "$(echo "$PWD" | sed "s|$HOME/.local/share/games|$HOME|")"; fi)''
+      "--chdir $HOME/.local/share/games"
       "--bind $XDG_DATA_HOME/games $HOME"
+      "--dir $HOME/.local/share/games"
       "--dir $HOME"
     ];
   };
@@ -34,6 +35,9 @@ in {
 
     programs.steam = {
       enable = true;
+      package = pkgs.runCommand "steam" {nativeBuildInputs = [sandbox]} ''
+        steam
+      '';
     };
   };
 }
