@@ -22,6 +22,10 @@ in {
     programs.niri.settings = {
       prefer-no-csd = true;
 
+      environment = {
+        DRI_PRIME = 0;
+      };
+
       layout = {
         gaps = 8;
 
