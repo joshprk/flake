@@ -29,7 +29,6 @@
 
   services.openssh = {
     enable = true;
-    startWhenNeeded = true;
   };
 
   zramSwap.enable = true;
