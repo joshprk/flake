@@ -39,7 +39,7 @@ in {
         args:
           lib.makeOverridable
           (_: pkgs.runCommand "steam" {nativeBuildInputs = [sandbox];} "steam")
-          args
+          args;
     };
   };
 }
