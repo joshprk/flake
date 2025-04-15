@@ -16,6 +16,7 @@
   };
 
   settings.firefox.enable = true;
+  settings.games.enable = true;
   settings.nvim.enable = true;
   settings.zsh.enable = true;
 
