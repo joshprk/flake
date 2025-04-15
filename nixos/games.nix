@@ -35,7 +35,7 @@ in {
 
     programs.steam = {
       enable = true;
-      package = pkgs.runCommand "steam" {nativeBuildInputs = [sandbox]} ''
+      package = pkgs.runCommand "steam" {nativeBuildInputs = [sandbox];} ''
         steam
       '';
     };
