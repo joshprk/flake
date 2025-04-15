@@ -84,7 +84,6 @@ in {
           "signon.rememberSignons" = lock-false;
 
           "sidebar.verticalTabs" = lock-true;
-          "sidebar.visibility" = { Value = "hide-sidebar"; Status = "locked"; };
         };
       };
     };
