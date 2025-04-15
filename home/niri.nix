@@ -47,6 +47,7 @@ in {
 
       input = {
         focus-follows-mouse.enable = true;
+        warp-mouse-to-focus = true;
       };
 
       window-rules = [
@@ -66,12 +67,12 @@ in {
         "Mod+L".action = focus-column-right;
         "Mod+J".action = focus-window-down;
         "Mod+K".action = focus-window-up;
-        "Mod+Shift+H".action = move-column-left;
-        "Mod+Shift+L".action = move-column-right;
+        "Mod+Shift+H".action = consume-or-expel-window-left;
+        "Mod+Shift+L".action = consume-or-expel-window-right;
         "Mod+Shift+J".action = move-window-down-or-to-workspace-down;
         "Mod+Shift+K".action = move-window-up-or-to-workspace-up;
-        "Mod+Comma".action = consume-or-expel-window-left;
-        "Mod+Period".action = consume-or-expel-window-right;
+        "Mod+Comma".action = move-column-left;
+        "Mod+Period".action = move-column-right;
         "Mod+Home".action = focus-column-first;
 
         "Mod+1".action = focus-workspace 1;
