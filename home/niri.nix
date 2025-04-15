@@ -41,6 +41,7 @@ in {
 
         tab-indicator = {
           hide-when-single-tab = true;
+          place-within-column = true;
         };
       };
 
