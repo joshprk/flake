@@ -19,13 +19,33 @@
   settings.nvim.enable = true;
   settings.zsh.enable = true;
 
+  programs.direnv = {
+    enable = true;
+    enableZshIntegration = true;
+    nix-direnv.enable = true;
+    config = {
+      global = {
+        warn_timeout = "0";
+        hide_env_diff = true;
+      };
+    };
+  };
+
   programs.ghostty = {
     enable = true;
+    enableZshIntegration = true;
+    settings = {
+      gtk-single-instance = true;
+    };
   };
 
   programs.git = {
     enable = true;
     userEmail = "joshuprk@gmail.com";
     userName = "Joshua Park";
+  };
+
+  programs.ripgrep = {
+    enable = true;
   };
 }
