@@ -6,7 +6,7 @@
 }: let
   cfg = config.settings.games;
 
-  mkSandbox = lib.mkOverridable (package:
+  mkSandbox = lib.makeOverridable (package:
     pkgs.buildFHSEnv {
       inherit (package) name passthru;
 
