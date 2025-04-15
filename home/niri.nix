@@ -23,7 +23,7 @@ in {
       prefer-no-csd = true;
 
       environment = {
-        DRI_PRIME = 0;
+        DRI_PRIME = "0";
       };
 
       layout = {
