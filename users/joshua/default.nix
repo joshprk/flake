@@ -24,10 +24,8 @@
     enableZshIntegration = true;
     nix-direnv.enable = true;
     config = {
-      global = {
-        warn_timeout = "0";
-        hide_env_diff = true;
-      };
+      global.warn_timeout = "0";
+      global.hide_env_diff = true;
     };
   };
 
@@ -43,6 +41,9 @@
     enable = true;
     userEmail = "joshuprk@gmail.com";
     userName = "Joshua Park";
+    extraConfig = {
+      init.defaultBranch = "main";
+    };
   };
 
   programs.ripgrep = {
