@@ -32,7 +32,9 @@ in {
   config = lib.mkIf cfg.enable {
     programs.steam = {
       enable = true;
-      package = pkgs.runCommand "steam" {nativeBuildInputs = [sandbox];} "steam";
+      package = 
+        lib.makeOverridable
+        (pkgs.runCommand "steam" {nativeBuildInputs = [sandbox];} "steam");
     };
   };
 }
