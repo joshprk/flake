@@ -11,6 +11,7 @@
     enable = true;
     binds = {
       "Mod+Q".action.spawn = "ghostty";
+      "Mod+W".action.spawn = "firefox";
     };
   };
 
