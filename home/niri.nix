@@ -20,6 +20,46 @@ in {
 
   config = lib.mkIf cfg.enable {
     programs.niri.settings = {
+      prefer-no-csd = true;
+
+      layout = {
+        gaps = 8;
+
+        border = {
+          enable = true;
+          width = 1;
+        };
+
+        focus-ring = {
+          enable = true;
+          width = 1;
+        };
+
+        shadow = {
+          enable = false;
+        };
+
+        tab-indicator = {
+          hide-when-single-tab = true;
+        };
+      };
+
+      input = {
+        focus-follows-mouse.enable = true;
+      };
+
+      window-rules = [
+        {
+          geometry-corner-radius = let
+            corners = ["bottom-left" "bottom-right" "top-left" "top-right"];
+            radius = 8.0;
+          in
+            lib.genAttrs corners (lib.const radius);
+          clip-to-geometry = true;
+          draw-border-with-background = true;
+        }
+      ];
+
       binds = with config.lib.niri.actions; {
         "Mod+H".action = focus-column-left;
         "Mod+L".action = focus-column-right;
@@ -27,10 +67,11 @@ in {
         "Mod+K".action = focus-window-up;
         "Mod+Shift+H".action = move-column-left;
         "Mod+Shift+L".action = move-column-right;
-        "Mod+Shift+J".action = move-window-down;
-        "Mod+Shift+K".action = move-window-up;
-        "Mod+Ctrl+H".action = consume-or-expel-window-left;
-        "Mod+Ctrl+L".action = consume-or-expel-window-right;
+        "Mod+Shift+J".action = move-window-down-or-to-workspace-down;
+        "Mod+Shift+K".action = move-window-up-or-to-workspace-up;
+        "Mod+Comma".action = consume-or-expel-window-left;
+        "Mod+Period".action = consume-or-expel-window-right;
+        "Mod+Home".action = focus-column-first;
 
         "Mod+1".action = focus-workspace 1;
         "Mod+2".action = focus-workspace 2;
@@ -43,21 +84,16 @@ in {
         "Mod+9".action = focus-workspace 9;
 
         "Mod+Tab".action = toggle-column-tabbed-display;
+        "Mod+R".action = switch-preset-column-width;
+        "Mod+Shift+R".action = switch-preset-window-height;
+        "Mod+Ctrl+R".action = reset-window-height;
+        "Mod+F".action = maximize-column;
+        "Mod+Shift+F".action = fullscreen-window;
+        "Mod+Ctrl+F".action = expand-column-to-available-width;
+        "Mod+C".action = center-column;
+
+        "Print".action = screenshot;
       } // cfg.binds;
-
-      prefer-no-csd = true;
-
-      window-rules = [
-        {
-          geometry-corner-radius = let
-            corners = ["bottom-left" "bottom-right" "top-left" "top-right"];
-            radius = 4.0;
-          in
-            lib.genAttrs corners (lib.const radius);
-          clip-to-geometry = true;
-          draw-border-with-background = true;
-        }
-      ];
     };
 
     programs.niri.package = osConfig.programs.niri.package;
