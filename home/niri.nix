@@ -27,7 +27,7 @@ in {
       prefer-no-csd = true;
 
       spawn-at-startup = [
-        {command = ["${lib.getExe pkgs.xwayland-satellite}"];};
+        {command = ["${lib.getExe pkgs.xwayland-satellite}"];}
       ];
 
       environment = {
