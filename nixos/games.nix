@@ -30,11 +30,14 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    environment.systemPackages = [sandbox];
+
     programs.steam = {
       enable = true;
-      package = 
+      package = args:
         lib.makeOverridable
-        (pkgs.runCommand "steam" {nativeBuildInputs = [sandbox];} "steam");
+        (pkgs.runCommand "steam" {nativeBuildInputs = [sandbox];} "steam")
+        args;
     };
   };
 }
