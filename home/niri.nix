@@ -19,11 +19,19 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    home.packages = with pkgs; [
+      xwayland-satellite
+    ];
+
     programs.niri.settings = {
       prefer-no-csd = true;
 
+      spawn-at-startup = [
+        {command = ["${lib.getExe pkgs.xwayland-satellite}"]};
+      ];
+
       environment = {
-        DRI_PRIME = "0";
+        DISPLAY = ":0";
       };
 
       layout = {
