@@ -35,9 +35,8 @@ in {
     programs.steam = {
       enable = true;
       package = args:
-        lib.makeOverridable
         (pkgs.runCommand "steam" {nativeBuildInputs = [sandbox];} "steam")
-        args;
+        // { override = mergedSet: (pkgs.runCommand "steam" {nativeBuildInputs = [sandbox];} "steam") // mergedSet; };
     };
   };
 }
