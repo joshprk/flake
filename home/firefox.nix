@@ -59,6 +59,7 @@ in {
         in {
           "browser.contentblocking.category" = { Value = "strict"; Status = "locked"; };
           "browser.topsites.contile.enabled" = lock-false;
+          "browser.toolbars.bookmarks.visibility" = { Value = "never"; Status = "locked"; };
           "browser.formfill.enable" = lock-false;
           "browser.search.suggest.enabled" = lock-false;
           "browser.search.suggest.enabled.private" = lock-false;
@@ -78,6 +79,9 @@ in {
           "extensions.formautofill.addresses.enabled" = lock-false;
           "extensions.formautofill.creditCards.enabled" = lock-false;
           "signon.rememberSignons" = lock-false;
+
+          "sidebar.verticalTabs" = lock-true;
+          "sidebar.visibility" = { Value = "hide-sidebar"; Status = "locked"; };
         };
       };
     };
