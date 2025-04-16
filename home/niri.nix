@@ -112,10 +112,5 @@ in {
         "Print".action = screenshot;
       } // cfg.binds;
     };
-
-    programs.waybar = {
-      enable = true;
-      systemd.enable = true;
-    };
   };
 }
