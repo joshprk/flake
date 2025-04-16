@@ -109,10 +109,6 @@ in {
 
         "Print".action = screenshot;
       } // cfg.binds;
-
-      debug = {
-        render-drm-device = "/dev/dri/renderD129";
-      };
     };
 
     programs.niri.package = osConfig.programs.niri.package;
