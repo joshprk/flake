@@ -77,7 +77,7 @@ in {
       plugins.bufferline = {
         enable = true;
 
-        lazy.settings.event = [
+        lazyLoad.settings.event = [
           "DeferredUIEnter"
         ];
 
