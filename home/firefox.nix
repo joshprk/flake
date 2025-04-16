@@ -74,6 +74,7 @@ in {
           "browser.newtabpage.activity-stream.showSponsored" = lock-false;
           "browser.newtabpage.activity-stream.system.showSponsored" = lock-false;
           "browser.newtabpage.activity-stream.showSponsoredTopSites" = lock-false;
+          "browser.tabs.closeWindowWithLastTab" = lock-false;
           "browser.ml.chat.provider" = { Value = "https://chatgpt.com"; Status = "locked"; };
           "browser.ml.chat.shortcuts" = lock-false;
 

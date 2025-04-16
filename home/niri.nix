@@ -112,6 +112,7 @@ in {
         "Mod+Shift+F".action = fullscreen-window;
         "Mod+Ctrl+F".action = expand-column-to-available-width;
         "Mod+C".action = center-column;
+        "Mod+W".action = close-window;
 
         "Print".action = screenshot;
         "Mod+Ctrl+L".action.spawn = ["loginctl" "lock-session"];
