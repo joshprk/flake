@@ -121,32 +121,44 @@ in {
       enable = true;
       
       settings = {
-         general = {
-           disable_loading_bar = true;
-           hide_cursor = true;
-           no_fade_in = false;
-         };
+        general = {
+          disable_loading_bar = true;
+          hide_cursor = true;
+          no_fade_in = false;
+        };
 
-         background = [
-           {color = "rgb(0, 0, 0)";}
-         ];
+        background = [
+          {color = "rgb(0, 0, 0)";}
+        ];
 
-         input-field = [
-           {
-             size = "200, 50";
-             position = "0, -80";
-             monitor = "";
-             dots_center = true;
-             fade_on_empty = false;
-             font_color = "rgb(255, 255, 255)";
-             inner_color = "rgb(0, 0, 0)";
-             outer_color = "rgb(255, 255, 255)";
-             rounding = 8;
-             outline_thickness = 2;
-             placeholder_text = "";
-           }
-         ];
-       };
+        input-field = [
+          {
+            monitor = "";
+            size = "200, 50";
+            position = "0, -80";
+            dots_center = true;
+            fade_on_empty = false;
+            font_color = "rgb(255, 255, 255)";
+            inner_color = "rgb(0, 0, 0)";
+            outer_color = "rgb(255, 255, 255)";
+            rounding = 8;
+            outline_thickness = 2;
+            placeholder_text = "";
+          }
+        ];
+
+        label = [
+          {
+            monitor = "";
+            text = ''cmd[update:30000] echo "$TIME12"'';
+            color = "rgb(255, 255, 255)";
+            size = "200, 50";
+            position = "0, 80";
+            halign = "center";
+            valign = "center";
+          }
+        ];
+      };
     };
 
     services.hypridle = {
