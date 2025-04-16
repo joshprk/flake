@@ -116,5 +116,15 @@ in {
         "Print".action = screenshot;
       } // cfg.binds;
     };
+
+    services.swayidle = {
+      enable = true;
+      timeouts = [
+        {
+          timeout = 500;
+          command = "${pkgs.niri}/bin/niri msg action power-off-monitors";
+        }
+      ];
+    };
   };
 }
