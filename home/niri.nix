@@ -142,7 +142,7 @@ in {
             font_color = "rgb(255, 255, 255)";
             inner_color = "rgb(0, 0, 0)";
             outer_color = "rgb(255, 255, 255)";
-            rounding = 8;
+            rounding = 4;
             outline_thickness = 2;
             placeholder_text = "";
           }
@@ -153,7 +153,7 @@ in {
             monitor = "";
             text = ''cmd[update:30000] echo "$TIME12"'';
             color = "rgb(255, 255, 255)";
-            size = "200, 50";
+            size = "300, 100";
             position = "0, 40";
             font-size = 26;
             halign = "center";
