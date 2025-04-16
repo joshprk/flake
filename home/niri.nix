@@ -24,6 +24,8 @@ in {
       xwayland-satellite
     ];
 
+    programs.niri.package = osConfig.programs.niri.package;
+
     programs.niri.settings = {
       prefer-no-csd = true;
 
@@ -111,6 +113,9 @@ in {
       } // cfg.binds;
     };
 
-    programs.niri.package = osConfig.programs.niri.package;
+    programs.waybar.enable = {
+      enable = true;
+      systemd.enable = true;
+    };
   };
 }
