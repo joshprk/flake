@@ -32,7 +32,10 @@
   services.tailscale = {
     enable = true;
     authKeyFile = config.sops.secrets.tailscale.path;
-    useRoutingFeatures = "client";
+
+    extraUpFlags = [
+      "--accept-routes"
+    ];
   };
 
   sops.secrets.tailscale = {};
