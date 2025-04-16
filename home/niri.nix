@@ -142,7 +142,7 @@ in {
             font_color = "rgb(255, 255, 255)";
             inner_color = "rgb(0, 0, 0)";
             outer_color = "rgb(255, 255, 255)";
-            rounding = 4;
+            rounding = 8;
             outline_thickness = 2;
             placeholder_text = "";
           }
@@ -155,7 +155,7 @@ in {
             color = "rgb(255, 255, 255)";
             size = "300, 100";
             position = "0, 40";
-            font-size = 26;
+            font-size = 48;
             halign = "center";
             valign = "center";
           }
