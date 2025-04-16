@@ -164,16 +164,18 @@ in {
       };
     };
 
-    services.swayidle = {
+    services.swayidle = let
+      lock-cmd = "pidof hyprlock || ${pkgs.hyprlock}/bin/hyprlock";
+    in {
       enable = true;
     
       events = [
-        {event = "before-sleep"; command = "loginctl lock-session";}
-        {event = "lock"; command = "pidof hyprlock || ${pkgs.hyprlock}/bin/hyprlock";}
+        {event = "before-sleep"; command = lock-cmd;}
+        {event = "lock"; command = lock-cmd;}
       ];
 
       timeouts = [
-        {timeout = 300; command = "loginctl lock-session";}
+        {timeout = 300; command = lock-cmd;} 
         {timeout = 300; command = "${pkgs.niri}/bin/niri msg action power-off-monitors";}
       ];
     };
