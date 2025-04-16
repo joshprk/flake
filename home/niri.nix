@@ -153,7 +153,8 @@ in {
             text = ''cmd[update:30000] echo "$TIME12"'';
             color = "rgb(255, 255, 255)";
             size = "200, 50";
-            position = "0, 80";
+            position = "0, 40";
+            font-size = 26;
             halign = "center";
             valign = "center";
           }
