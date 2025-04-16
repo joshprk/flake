@@ -114,6 +114,7 @@ in {
         "Mod+C".action = center-column;
 
         "Print".action = screenshot;
+        "Mod+Ctrl+L".action.spawn = ["loginctl" "lock-session"];
       } // cfg.binds;
     };
 
