@@ -167,7 +167,7 @@ in {
     
       events = [
         {event = "before-sleep"; command = "loginctl lock-session";}
-        {event = "lock"; command = "pidof hyprlock || hyprlock";}
+        {event = "lock"; command = "pidof hyprlock || ${pkgs.hyprlock}/bin/hyprlock";}
       ];
 
       timeouts = [
