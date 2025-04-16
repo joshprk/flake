@@ -113,7 +113,7 @@ in {
       } // cfg.binds;
     };
 
-    programs.waybar.enable = {
+    programs.waybar = {
       enable = true;
       systemd.enable = true;
     };
