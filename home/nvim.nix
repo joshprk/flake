@@ -89,8 +89,17 @@ in {
         enable = true;
 
         servers = {
-          nil_ls.enable = true;
-          pyright.enable = true;
+          nil_ls = {
+            enable = true;
+
+            settings = {
+              nix.flake.autoArchive = true;
+            };
+          };
+
+          pyright = {
+            enable = true;
+          };
         };
       };
 
