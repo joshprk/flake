@@ -67,19 +67,10 @@ in {
 
       plugins.blink-cmp = {
         enable = true;
-
-        lazyLoad.settings.event = [
-          "InsertEnter"
-          "CmdlineEnter"
-        ];
       };
 
       plugins.bufferline = {
         enable = true;
-
-        lazyLoad.settings.event = [
-          "DeferredUIEnter"
-        ];
 
         settings = {
           options = {
@@ -100,24 +91,10 @@ in {
 
       plugins.lualine = {
         enable = true;
-
-        lazyLoad.settings.event = [
-          "VimEnter"
-          "BufReadPost"
-          "BufNewFile"
-        ];
-      };
-
-      plugins.lz-n = {
-        enable = true;
       };
 
       plugins.noice = {
         enable = true;
-
-        lazyLoad.settings.event = [
-          "DeferredUIEnter"
-        ];
 
         settings.presets = {
           bottom_search = false;
