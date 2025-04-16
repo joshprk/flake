@@ -25,8 +25,9 @@ in {
         cursorline = true;
         number = true;
         relativenumber = true;
-        wrap = false;
+        signcolumn = "number";
 
+        wrap = false;
         hidden = false;
         splitright = true;
         splitbelow = true;
@@ -65,18 +66,22 @@ in {
         }
       ];
 
-      plugins.blink-cmp = {
-        enable = true;
+      colorschemes = {
+        catppuccin = {
+          enable = true;
+          settings = {
+            no_italic = true;
+            transparent_background = true;
+            custom_highlights = config.programs.nixvim.highlight;
+          };
+        };
       };
 
-      plugins.bufferline = {
+      plugins.blink-cmp = {
         enable = true;
 
         settings = {
-          options = {
-            mode = "buffers";
-            always_show_bufferline = true;
-          };
+          keymap.preset = "super-tab";
         };
       };
 
@@ -107,8 +112,22 @@ in {
         mockDevIcons = true;
 
         modules = {
+          tabline = {};
           icons = {};
         };
+
+        luaConfig.post = ''
+          local signs = {
+            DiagnosticSignError = { text = "󰅙", },
+            DiagnosticSignWarn = { text = "", },
+            DiagnosticSignHint = { text = "", },
+            DiagnosticSignInfo = { text = "", },
+          }
+
+          for i, v in pairs(signs) do
+            vim.fn.sign_define(i, v)
+          end
+        '';
       };
 
       performance.byteCompileLua = {
