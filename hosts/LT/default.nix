@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: {
   imports = [
@@ -39,6 +40,13 @@
   };
 
   sops.secrets.tailscale = {};
+
+  environment.systemPackages = with pkgs; [lenovo-legion];
+
+  boot = {
+    extraModulePackages = [config.boot.kernelPackages.lenovo-legion-module];
+    kernelModules = ["lenovo-laptop"];
+  };
 
   zramSwap.enable = true;
 }
