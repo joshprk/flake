@@ -141,8 +141,8 @@ in {
              font_color = "rgb(255, 255, 255)";
              inner_color = "rgb(0, 0, 0)";
              outer_color = "rgb(255, 255, 255)";
-             rounding = 4;
-             outline_thickness = 5;
+             rounding = 8;
+             outline_thickness = 2;
              placeholder_text = "";
            }
          ];
