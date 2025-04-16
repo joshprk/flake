@@ -111,7 +111,7 @@ in {
       } // cfg.binds;
 
       debug = {
-        render-drm-device = "/dev/dri/renderD128";
+        render-drm-device = "/dev/dri/renderD129";
       };
     };
 
