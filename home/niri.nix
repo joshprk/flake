@@ -171,7 +171,7 @@ in {
       ];
 
       timeouts = [
-        {timeout = 300; command = "loginctl lock-session";}
+        #{timeout = 300; command = "loginctl lock-session";}
         {timeout = 300; command = "${pkgs.niri}/bin/niri msg action power-off-monitors";}
       ];
     };
