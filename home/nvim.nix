@@ -116,6 +116,11 @@ in {
         };
       };
 
+      plugins.mini = {
+        enable = true;
+        mockDevIcons = true;
+      };
+
       performance.byteCompileLua = {
         enable = true;
         nvimRuntime = true;
