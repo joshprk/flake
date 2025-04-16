@@ -77,7 +77,7 @@ in {
         }
         {
           matches = [{app-id = "com.mitchellh.ghostty";}];
-          default-column-width = 0.5;
+          default-column-width.proportion = 0.5;
         }
       ];
 
