@@ -31,5 +31,9 @@
     enable = true;
   };
 
+  networking.interfaces.eno1.wakeOnLan = {
+    enable = true;
+  };
+
   zramSwap.enable = true;
 }
