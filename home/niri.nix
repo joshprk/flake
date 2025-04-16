@@ -76,7 +76,7 @@ in {
           draw-border-with-background = true;
         }
         {
-          matches.app-id = "com.mitchellh.ghostty";
+          matches = [{app-id = "com.mitchellh.ghostty";}];
           default-column-width = 0.5;
         }
       ];
