@@ -112,7 +112,7 @@ in {
         };
       };
 
-      performance = {
+      performance.byteCompileLua = {
         enable = true;
         nvimRuntime = true;
       };
