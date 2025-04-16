@@ -119,6 +119,10 @@ in {
       plugins.mini = {
         enable = true;
         mockDevIcons = true;
+
+        modules = {
+          icons = {};
+        };
       };
 
       performance.byteCompileLua = {
