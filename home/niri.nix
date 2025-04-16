@@ -128,11 +128,7 @@ in {
          };
 
          background = [
-           {
-             path = "screenshot";
-             blur_passes = 3;
-             blur_size = 8;
-           }
+           {color = "rgb(0, 0, 0)";}
          ];
 
          input-field = [
@@ -142,12 +138,12 @@ in {
              monitor = "";
              dots_center = true;
              fade_on_empty = false;
-             font_color = "rgb(202, 211, 245)";
-             inner_color = "rgb(91, 96, 120)";
-             outer_color = "rgb(24, 25, 38)";
+             font_color = "rgb(255, 255, 255)";
+             inner_color = "rgb(0, 0, 0)";
+             outer_color = "rgb(255, 255, 255)";
+             rounding = 4;
              outline_thickness = 5;
-             placeholder_text = ''<span foreground="##cad3f5">Password...</span>'';
-             shadow_passes = 2;
+             placeholder_text = "";
            }
          ];
        };
