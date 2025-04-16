@@ -99,6 +99,10 @@ in {
         ];
       };
 
+      plugins.lz-n = {
+        enable = true;
+      };
+
       plugins.noice = {
         enable = true;
 
