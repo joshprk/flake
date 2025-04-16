@@ -117,70 +117,67 @@ in {
       } // cfg.binds;
     };
 
-    programs.swaylock = {
+    programs.hyprlock = {
       enable = true;
-
+      
       settings = {
-        color = "000000";
-        font-size = 18;
+         general = {
+           disable_loading_bar = true;
+           grace = 300;
+           hide_cursor = true;
+           no_fade_in = false;
+         };
 
-        clock = true;
-        timestr = "%R";
-        datestr = "%a, %e of %B";
+         background = [
+           {
+             path = "screenshot";
+             blur_passes = 3;
+             blur_size = 8;
+           }
+         ];
 
-        fade-in = 0.2;
-
-        indicator = true;
-        indicator-radius = 240;
-        indicator-thickness = 20;
-        indicator-idle-visible = false;
-
-        separator-color = "00000000";
-
-        inside-color = "00000099";
-        inside-clear-color = "ffd20400";
-        inside-caps-lock-color = "009ddc00";
-        inside-ver-color = "d9d8d800";
-        inside-wrong-color = "ee2e2400";
-
-        ring-color = "231f20D9";
-        ring-clear-color = "231f20D9";
-        ring-ver-color = "231f20D9";
-        ring-wrong-color = "231f20D9";
-
-        line-color = "00000000";
-        line-clear-color = "ffd204FF";
-        line-caps-lock-color = "009ddcFF";
-        line-ver-color = "d9d8d8FF";
-        line-wrong-color = "ee2e24FF";
-
-        text-clear-color = "ffd20400";
-        text-ver-color = "d9d8d800";
-        text-wrong-color = "ee2e2400";
-
-        bs-hl-color = "ee2e24FF";
-        caps-lock-key-hl-color = "ffd204FF";
-        caps-lock-bs-hl-color = "ee2e24FF";
-        text-caps-lock-color = "009ddc";
-      };
+         input-field = [
+           {
+             size = "200, 50";
+             position = "0, -80";
+             monitor = "";
+             dots_center = true;
+             fade_on_empty = false;
+             font_color = "rgb(202, 211, 245)";
+             inner_color = "rgb(91, 96, 120)";
+             outer_color = "rgb(24, 25, 38)";
+             outline_thickness = 5;
+             placeholder_text = ''<span foreground="##cad3f5">Password...</span>'';
+             shadow_passes = 2;
+           }
+         ];
+       };
     };
 
-    services.swayidle = {
+    services.hypridle = {
       enable = true;
+      
+      settings = {
+        general = {
+          lock_cmd = "pidof hyprlock || hyprlock";
+          before_sleep_cmd = "loginctl lock-session";
+        };
 
-      events = [
-        {
-          event = "before-sleep";
-          command = "${pkgs.swaylock}/bin/swaylock -fF";
-        }
-      ];
-
-      timeouts = [
-        {
-          timeout = 500;
-          command = "${pkgs.niri}/bin/niri msg action power-off-monitors";
-        }
-      ];
+        listener = [
+          {
+            timeout = 300;
+            on-timeout = "${pkgs.niri}/bin/niri msg action power-off-monitors";
+          }
+          {
+            timeout = 300;
+            on-timeout = "loginctl lock-session";
+          }
+          {
+            timeout = 480;
+            on-timeout = "systemctl suspend";
+          }
+        ];
+      };
     };
   };
 }
