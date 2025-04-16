@@ -117,8 +117,28 @@ in {
       } // cfg.binds;
     };
 
+    programs.swaylock = {
+      enable = true;
+
+      settings = {
+        color = "808080";
+        font-size = 18;
+        indicator-idle-visible = false;
+        indicator-radius = 100;
+        line-color = "ffffff";
+      };
+    };
+
     services.swayidle = {
       enable = true;
+
+      events = [
+        {
+          event = "before-sleep";
+          command = "${pkgs.swaylock}/bin/swaylock -fF";
+        }
+      ];
+
       timeouts = [
         {
           timeout = 500;
