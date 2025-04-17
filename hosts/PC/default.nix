@@ -36,6 +36,8 @@
   };
 
   virtualisation.oci-containers.containers = {
+    backend = "podman";
+
     steam-headless = {
       image = "docker.io/josh5/steam-headless:latest";
       autoStart = false;
