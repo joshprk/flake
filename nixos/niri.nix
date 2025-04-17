@@ -18,6 +18,7 @@ in {
         enable = lib.mkForce true;
         enableZsh = lib.mkDefault true;
       };
+
       networking.enable = lib.mkDefault true;
     };
 

@@ -35,5 +35,30 @@
     enable = true;
   };
 
+  virtualisation.oci-containers.containers = {
+    steam-headless = {
+      image = "docker.io/josh5/steam-headless:latest";
+      autoStart = false;
+
+      ports = [
+        "8080:8080"
+        "27036:27036"
+        "27037:27037"
+        "27031:27031/udp"
+        "27036:27036/udp"
+      ];
+
+      volumes =  [
+        "$USER/.local/share/games/.local/share/Steam/steamapps:/mnt/games"
+      ];
+
+      extraOptions = [
+        "--network=host"
+        "--device=/dev/dri"
+        "--device=/dev/input"
+      ];
+    };
+  };
+
   zramSwap.enable = true;
 }
