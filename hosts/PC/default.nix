@@ -35,10 +35,10 @@
     enable = true;
   };
 
-  virtualisation.oci-containers.containers = {
+  virtualisation.oci-containers = {
     backend = "podman";
 
-    steam-headless = {
+    containers.steam-headless = {
       image = "docker.io/josh5/steam-headless:latest";
       autoStart = false;
 
