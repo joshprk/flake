@@ -48,6 +48,9 @@ in {
         loaded_netrwFileHandlers = true;
         loaded_netrw_gitignore = true;
         loaded_netrw = 1;
+
+        mapleadeer = " ";
+        maplocalleader = ",";
       };
 
       highlight = {
@@ -121,8 +124,8 @@ in {
         mockDevIcons = true;
 
         modules = {
-          tabline = {};
           icons = {};
+          tabline = {tabpage_section="none";};
         };
 
         luaConfig.post = ''
@@ -137,6 +140,11 @@ in {
             vim.fn.sign_define(i, v)
           end
         '';
+      };
+
+      plugins.which-key = {
+        enable = true;
+        settings.preset = "helix";
       };
 
       performance.byteCompileLua = {
