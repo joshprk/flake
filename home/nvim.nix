@@ -67,6 +67,16 @@ in {
           key = "<C-c>";
           mode = ["v"];
         }
+        {
+          action = "<Cmd>tabnext<CR>";
+          key = "s";
+          mode = ["n"];
+        }
+        {
+          action = "<Cmd>tabprev<CR>";
+          key = "S";
+          mode = ["n"];
+        }
       ];
 
       colorschemes = {
