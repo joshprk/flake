@@ -15,10 +15,17 @@
 
     nvidia = {
       enable = true;
+
       tuning = {
         enable = true;
         gpuClock = 1700;
         memoryClock = 10001;
+      };
+
+      prime = {
+        offload.enable = true;
+        nvidiaBusId = "PCI:1:0:0";
+        amdgpuBusId = "PCI:13:0:0";
       };
     };
   };
