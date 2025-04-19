@@ -171,7 +171,7 @@ in {
       enable = true;
     
       events = [
-        {event = "before-sleep"; command = lock-cmd;}
+        {event = "after-resume"; command = lock-cmd;}
         {event = "lock"; command = lock-cmd;}
       ];
 
