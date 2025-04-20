@@ -167,7 +167,9 @@ in {
 
     services.hypridle = {
       enable = true;
-      settings = {
+      settings = let
+        _rm_later = "https://raw.githubusercontent.com/KDE/plasma-workspace-wallpapers/refs/heads/master/DarkestHour/contents/images/2560x1600.jpg";
+      in {
         general = {
           after_sleep_command = "loginctl lock-session";
           lock_cmd = "pidof hyprlock || ${pkgs.hyprlock}/bin/hyprlock";
@@ -182,22 +184,15 @@ in {
       };
     };
 
-    /*
-    services.swayidle = let
-      lock-cmd = "pidof hyprlock || ${pkgs.hyprlock}/bin/hyprlock";
-    in {
+    stylix = {
       enable = true;
-    
-      events = [
-        {event = "after-resume"; command = lock-cmd;}
-        {event = "lock"; command = lock-cmd;}
-      ];
+      base16Scheme = "${pkgs.base16-schemes}/share/themes/tomorrow-night.yaml";
 
-      timeouts = [
-        {timeout = 300; command = lock-cmd;} 
-        {timeout = 300; command = "${pkgs.niri}/bin/niri msg action power-off-monitors";}
-      ];
+      targets = {
+        firefox.profileNames = ["default"];
+        hyprlock.enable = false;
+        nixvim.enable = false;
+      };
     };
-    */
   };
 }
