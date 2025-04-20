@@ -184,6 +184,10 @@ in {
       };
     };
 
+    # FIX: systemd[8928]: hypridle was skipped because of an unmet condition
+    # check (ConditionEnvironment=WAYLAND_DISPLAY).
+    systemd.user.services.hypridle.Unit.ConditionEnvironment = lib.mkForce "";
+
     stylix = {
       enable = true;
       base16Scheme = "${pkgs.base16-schemes}/share/themes/tomorrow-night.yaml";
