@@ -167,9 +167,7 @@ in {
 
     services.hypridle = {
       enable = true;
-      settings = let
-        _rm_later = "https://raw.githubusercontent.com/KDE/plasma-workspace-wallpapers/refs/heads/master/DarkestHour/contents/images/2560x1600.jpg";
-      in {
+      settings = {
         general = {
           after_sleep_command = "loginctl lock-session";
           lock_cmd = "pidof hyprlock || ${pkgs.hyprlock}/bin/hyprlock";
@@ -188,6 +186,7 @@ in {
     # check (ConditionEnvironment=WAYLAND_DISPLAY).
     systemd.user.services.hypridle.Unit.ConditionEnvironment = lib.mkForce "";
 
+    # WALLPAPER: KDE Darkest Hour
     stylix = {
       enable = true;
       base16Scheme = "${pkgs.base16-schemes}/share/themes/tomorrow-night.yaml";
