@@ -165,6 +165,24 @@ in {
       };
     };
 
+    services.hypridle = {
+      enable = true;
+      settings = {
+        general = {
+          after_sleep_command = "loginctl lock-session";
+          lock_cmd = "pidof hyprlock || ${pkgs.hyprlock}/bin/hyprlock";
+        };
+
+        listener = [
+          {
+            timeout = 300;
+            on-timeout = "${pkgs.niri}/bin/niri msg action power-off-monitors";
+          }
+        ];
+      };
+    };
+
+    /*
     services.swayidle = let
       lock-cmd = "pidof hyprlock || ${pkgs.hyprlock}/bin/hyprlock";
     in {
@@ -180,5 +198,6 @@ in {
         {timeout = 300; command = "${pkgs.niri}/bin/niri msg action power-off-monitors";}
       ];
     };
+    */
   };
 }
