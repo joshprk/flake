@@ -91,8 +91,8 @@ in {
         "Mod+Shift+L".action = consume-or-expel-window-right;
         "Mod+Shift+J".action = move-window-down-or-to-workspace-down;
         "Mod+Shift+K".action = move-window-up-or-to-workspace-up;
-        "Mod+Comma".action = move-column-left;
-        "Mod+Period".action = move-column-right;
+        "Mod+Ctrl+H".action = move-column-left;
+        "Mod+Ctrl+L".action = move-column-right;
         "Mod+Home".action = focus-column-first;
 
         "Mod+1".action = focus-workspace 1;
@@ -116,7 +116,7 @@ in {
         "Mod+W".action = close-window;
 
         "Print".action = screenshot;
-        "Mod+Ctrl+L".action.spawn = ["loginctl" "lock-session"];
+        "Ctrl+Alt+L".action.spawn = ["loginctl" "lock-session"];
       } // cfg.binds;
     };
 
