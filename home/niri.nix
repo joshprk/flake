@@ -180,7 +180,7 @@ in {
       enable = true;
       settings = {
         general = {
-          after_sleep_command = "loginctl lock-session";
+          before_sleep_command = "loginctl lock-session";
           lock_cmd = "pidof hyprlock || ${pkgs.hyprlock}/bin/hyprlock";
         };
 
@@ -188,6 +188,14 @@ in {
           {
             timeout = 300;
             on-timeout = "${pkgs.niri}/bin/niri msg action power-off-monitors";
+          }
+          {
+            timeout = 300;
+            on-timeout = "loginctl lock-session";
+          }
+          {
+            timeout = 480;
+            on-timeout = "systemctl suspend";
           }
         ];
       };
