@@ -80,6 +80,11 @@ in {
           matches = [{app-id = "com.mitchellh.ghostty";}];
           default-column-width.proportion = 0.5;
         }
+        {
+          matches = [{app-id = "org.kde.polkit-kde-authentication-agent-1";}];
+          open-floating = true;
+          open-focused = true;
+        }
       ];
 
       binds = with config.lib.niri.actions; let
@@ -119,6 +124,8 @@ in {
         "Mod+Ctrl+F".action = expand-column-to-available-width;
         "Mod+C".action = center-column;
         "Mod+W".action = close-window;
+        "Mod+T".action = toggle-window-floating;
+        "Mod+Shift+T".action = switch-focus-between-floating-and-tiling;
 
         "Print".action = screenshot;
         "Ctrl+Alt+L".action.spawn = ["loginctl" "lock-session"];
