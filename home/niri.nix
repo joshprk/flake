@@ -87,11 +87,6 @@ in {
           "${pkgs.swayosd}/bin/swayosd-client"
           arg
         ];
-
-        swaync = arg: [
-          "${pkgs.swaynotificationcenter}/bin/swaync-client"
-          arg
-        ];
       in {
         "Mod+H".action = focus-column-left;
         "Mod+L".action = focus-column-right;
@@ -127,7 +122,6 @@ in {
 
         "Print".action = screenshot;
         "Ctrl+Alt+L".action.spawn = ["loginctl" "lock-session"];
-        "Win".action.spawn = swaync "-t";
 
         "XF86MonBrightnessUp".action.spawn = swayosd "--brightness=raise";
         "XF86MonBrightnessDown".action.spawn = swayosd "--brightness=lower";
