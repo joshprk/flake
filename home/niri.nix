@@ -223,7 +223,7 @@ in {
       image = pkgs.fetchurl {
         url = "https://github.com/KDE/plasma-workspace-wallpapers/blob/master" +
               "/DarkestHour/contents/images/2560x1600.jpg?raw=true";
-        sha256 = lib.fakeHash;
+        sha256 = "sha256-jjcD+uOjwhex/Cs5m3Bs03IFhCaNBxuhU+SAnapV8c4=";
       };
 
       targets = {
