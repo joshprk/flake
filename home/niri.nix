@@ -123,11 +123,13 @@ in {
         "Print".action = screenshot;
         "Ctrl+Alt+L".action.spawn = ["loginctl" "lock-session"];
 
+        /*
         "XF86MonBrightnessUp".action.spawn = swayosd "--brightness=raise";
         "XF86MonBrightnessDown".action.spawn = swayosd "--brightness=lower";
         "XF86AudioLowerVolume".action.spawn = swayosd "--output-volume=lower";
         "XF86AudioRaiseVolume".action.spawn = swayosd "--output-volume=raise";
         "XF86AudioMute".action.spawn = swayosd "--output-volume=mute-toggle";
+        */
       } // cfg.binds;
     };
 
@@ -176,6 +178,10 @@ in {
       };
     };
 
+    programs.rofi = {
+      enable = true;
+    };
+
     services.hypridle = {
       enable = true;
       settings = {
@@ -205,11 +211,7 @@ in {
     # check (ConditionEnvironment=WAYLAND_DISPLAY).
     systemd.user.services.hypridle.Unit.ConditionEnvironment = lib.mkForce "";
 
-    services.swaync = {
-      enable = true;
-    };
-
-    services.swayosd = {
+    services.dunst = {
       enable = true;
     };
 
@@ -217,6 +219,12 @@ in {
     stylix = {
       enable = true;
       base16Scheme = "${pkgs.base16-schemes}/share/themes/tomorrow-night.yaml";
+
+      image = pkgs.fetchurl {
+        url = "https://github.com/KDE/plasma-workspace-wallpapers/blob/master" +
+              "/DarkestHour/contents/images/2560x1600.jpg?raw=true";
+        sha256 = lib.fakeHash;
+      };
 
       targets = {
         firefox.profileNames = ["default"];
