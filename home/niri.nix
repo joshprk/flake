@@ -186,6 +186,14 @@ in {
     # check (ConditionEnvironment=WAYLAND_DISPLAY).
     systemd.user.services.hypridle.Unit.ConditionEnvironment = lib.mkForce "";
 
+    services.swaync = {
+      enable = true;
+    };
+
+    services.swayosd = {
+      enable = true;
+    };
+
     # WALLPAPER: KDE Darkest Hour
     stylix = {
       enable = true;
