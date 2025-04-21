@@ -52,7 +52,7 @@ in {
         };
 
         shadow = {
-          enable = false;
+          enable = true;
         };
 
         tab-indicator = {
@@ -121,7 +121,7 @@ in {
         "Mod+W".action = close-window;
 
         "Print".action = screenshot;
-        "Mod".action.spawn = ["${pkgs.swaynotificationcenter}/bin/swaync-client" "-t"];
+        "Mod".action.spawn = ["swaync-client" "-t"];
         "Ctrl+Alt+L".action.spawn = ["loginctl" "lock-session"];
 
         "XF86MonBrightnessUp".action.spawn = swayosd-client "--brightness=raise";
