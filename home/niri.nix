@@ -83,8 +83,13 @@ in {
       ];
 
       binds = with config.lib.niri.actions; let
-        swayosd-client = arg: [
+        swayosd = arg: [
           "${pkgs.swayosd}/bin/swayosd-client"
+          arg
+        ];
+
+        swaync = arg: [
+          "${pkgs.swaynotificationcenter}/bin/swaync-client"
           arg
         ];
       in {
@@ -121,14 +126,14 @@ in {
         "Mod+W".action = close-window;
 
         "Print".action = screenshot;
-        "Super".action.spawn = ["${pkgs.swaynotificationcenter}/bin/swaync-client" "-t"];
         "Ctrl+Alt+L".action.spawn = ["loginctl" "lock-session"];
+        "Win".action.spawn = swaync "-t";
 
-        "XF86MonBrightnessUp".action.spawn = swayosd-client "--brightness=raise";
-        "XF86MonBrightnessDown".action.spawn = swayosd-client "--brightness=lower";
-        "XF86AudioLowerVolume".action.spawn = swayosd-client "--output-volume=lower";
-        "XF86AudioRaiseVolume".action.spawn = swayosd-client "--output-volume=raise";
-        "XF86AudioMute".action.spawn = swayosd-client "--output-volume=mute-toggle";
+        "XF86MonBrightnessUp".action.spawn = swayosd "--brightness=raise";
+        "XF86MonBrightnessDown".action.spawn = swayosd "--brightness=lower";
+        "XF86AudioLowerVolume".action.spawn = swayosd "--output-volume=lower";
+        "XF86AudioRaiseVolume".action.spawn = swayosd "--output-volume=raise";
+        "XF86AudioMute".action.spawn = swayosd "--output-volume=mute-toggle";
       } // cfg.binds;
     };
 
