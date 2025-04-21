@@ -82,7 +82,12 @@ in {
         }
       ];
 
-      binds = with config.lib.niri.actions; {
+      binds = with config.lib.niri.actions; let
+        swayosd-client = arg: [
+          "${pkgs.swayosd}/bin/swayosd-client"
+          arg
+        ];
+      in {
         "Mod+H".action = focus-column-left;
         "Mod+L".action = focus-column-right;
         "Mod+J".action = focus-window-down;
@@ -117,6 +122,12 @@ in {
 
         "Print".action = screenshot;
         "Ctrl+Alt+L".action.spawn = ["loginctl" "lock-session"];
+
+        "XF86MonBrightnessUp".action.spawn = swayosd-client "--brightness=raise";
+        "XF86MonBrightnessDown".action.spawn = swayosd-client "--brightness=lower";
+        "XF86AudioLowerVolume".action.spawn = swayosd-client "--output-volume=lower";
+        "XF86AudioRaiseVolume".action.spawn = swayosd-client "--output-volume=raise";
+        "XF86AudioMute".action.spawn = swayosd-client "--output-volume=mute-toggle";
       } // cfg.binds;
     };
 
