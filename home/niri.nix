@@ -246,7 +246,19 @@ in {
 
         serif = config.stylix.fonts.sansSerif;
         emoji = config.stylix.fonts.sansSerif;
+      };
 
+      cursor = {
+        name = "catppuccin-mocha-dark-cursors";
+        package = pkgs.catppuccin-cursors;
+        size = 16;
+      };
+
+      iconTheme = {
+        enable = true;
+        package = pkgs.candy-icons;
+        light = "candy-icons";
+        dark = "candy-icons";
       };
 
       targets = {
