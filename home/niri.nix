@@ -251,7 +251,7 @@ in {
       cursor = {
         name = "catppuccin-mocha-dark-cursors";
         package = pkgs.catppuccin-cursors.mochaDark;
-        size = 32;
+        size = 24;
       };
 
       iconTheme = {
