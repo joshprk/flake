@@ -37,7 +37,9 @@ in {
     };
 
     systemd.user.services.niri-flake-polkit = {
-      serviceConfig.ExecStart = lib.mkForce "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/.polkit-kde-authentication-agent-1-wrapped";
+      serviceConfig.ExecStart =
+        lib.mkForce
+        (pkgs.writeShellScript "niri-flake-polkit" "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1");
     };
 
     security.pam.services.hyprlock = {};
