@@ -200,16 +200,6 @@ in {
         '';
       };
 
-      plugins.toggleterm = {
-        enable = true;
-        
-        settings = {
-          direction = "float";
-          open_mapping = "[[<Leader>q]]";
-          persist_mode = true;
-        };
-      };
-
       plugins.which-key = {
         enable = true;
         settings.preset = "helix";
