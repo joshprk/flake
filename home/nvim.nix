@@ -77,6 +77,11 @@ in {
           key = "S";
           mode = ["n"];
         }
+        {
+          action = "<Cmd>FzfLua<CR>";
+          key = "<Leader><Space>";
+          mode = ["n" "x" "o"];
+        }
       ];
 
       colorschemes = {
@@ -155,9 +160,8 @@ in {
             };
           };
 
-          pyright = {
-            enable = true;
-          };
+          clangd.enable = true;
+          pyright.enable = true;
         };
       };
 
