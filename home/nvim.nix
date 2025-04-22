@@ -82,11 +82,22 @@ in {
           key = "<Leader><Space>";
           mode = ["n" "x" "o"];
         }
+        {
+          action = ''<Cmd>lua require("flash").jump()<CR>'';
+          key = "f";
+          mode = ["n" "x" "o"];
+        }
+        {
+          action = ''<Cmd>lua require("flash").jump({ forward = false })<CR>'';
+          key = "F";
+          mode = ["n" "x" "o"];
+        }
       ];
 
       colorschemes = {
         catppuccin = {
           enable = true;
+
           settings = {
             no_italic = true;
             transparent_background = true;
@@ -144,6 +155,10 @@ in {
         };
       };
 
+      plugins.flash = {
+        enable = true;
+      };
+
       plugins.fzf-lua = {
         enable = true;
       };
@@ -167,6 +182,12 @@ in {
 
       plugins.lualine = {
         enable = true;
+
+        settings = {
+          options = {
+            globalstatus = true;
+          };
+        };
       };
 
       plugins.noice = {
@@ -207,7 +228,10 @@ in {
 
       performance.byteCompileLua = {
         enable = true;
+        configs = true;
+        initLua = true;
         nvimRuntime = true;
+        plugins = true;
       };
     };
   };
