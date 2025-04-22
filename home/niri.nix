@@ -87,12 +87,7 @@ in {
         }
       ];
 
-      binds = with config.lib.niri.actions; let
-        swayosd = arg: [
-          "${pkgs.swayosd}/bin/swayosd-client"
-          arg
-        ];
-      in {
+      binds = with config.lib.niri.actions; {
         "Mod+H".action = focus-column-left;
         "Mod+L".action = focus-column-right;
         "Mod+J".action = focus-window-down;
@@ -186,6 +181,10 @@ in {
     };
 
     programs.rofi = {
+      enable = true;
+    };
+
+    services.hyprpaper = {
       enable = true;
     };
 
