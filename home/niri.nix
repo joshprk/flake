@@ -268,8 +268,13 @@ in {
       };
     };
 
+    home.file = {
+      ".themes/adw-gtk3".enable = false;
+      ".icons/${config.stylix.cursor.name}".enable = false;
+      ".icons/default/index.theme".enable = false;
+    };
+
     gtk.gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
     xresources.path = "${config.xdg.configHome}/X11/xresources";
-    home.file.".themes/adw-gtk3".enable = false;
   };
 }
