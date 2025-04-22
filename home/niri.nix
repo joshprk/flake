@@ -81,9 +81,11 @@ in {
           default-column-width.proportion = 0.5;
         }
         {
-          matches = [{app-id = "org.kde.polkit-kde-authentication-agent-1";}];
+          matches = [{app-id = "polkit-mate-authentication-agent-1";}];
           open-floating = true;
           open-focused = true;
+          is-floating = true;
+          is-focused = true;
         }
       ];
 
