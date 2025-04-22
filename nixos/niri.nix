@@ -22,10 +22,6 @@ in {
       networking.enable = lib.mkDefault true;
     };
 
-    environment.systemPackages = with pkgs; [
-      kdePackages.kirigami # required for kde polkit agent
-    ];
-
     programs.niri = {
       enable = true;
       package = pkgs.niri-unstable;
@@ -41,8 +37,10 @@ in {
     };
 
     systemd.user.services.niri-flake-polkit = {
+      #enable = false;
       serviceConfig.ExecStart =
-        lib.mkForce "${pkgs.mate.mate-polkit}/libexec/polkit-mate-authentication-agent-1";
+        lib.mkForce
+        "${pkgs.mate.mate-polkit}/libexec/polkit-mate-authentication-agent-1";
     };
 
     security.pam.services.hyprlock = {};

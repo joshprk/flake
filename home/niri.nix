@@ -263,6 +263,7 @@ in {
 
       targets = {
         firefox.profileNames = ["default"];
+
         hyprlock.enable = false;
         nixvim.enable = false;
       };
