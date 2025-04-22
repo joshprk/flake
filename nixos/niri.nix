@@ -22,6 +22,10 @@ in {
       networking.enable = lib.mkDefault true;
     };
 
+    environment.systemPackages = with pkgs; [
+      kdePackages.kirigami # required for kde polkit agent
+    ];
+
     programs.niri = {
       enable = true;
       package = pkgs.niri-unstable;
