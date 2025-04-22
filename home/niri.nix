@@ -233,6 +233,22 @@ in {
         sha256 = "sha256-jjcD+uOjwhex/Cs5m3Bs03IFhCaNBxuhU+SAnapV8c4=";
       };
 
+      fonts = {
+        sansSerif = {
+          package = pkgs.inter;
+          name = "Inter";
+        };
+
+        monospace = {
+          package = pkgs.nerd-fonts.jetbrains-mono;
+          name = "JetBrainsMono Nerd Font";
+        };
+
+        serif = config.stylix.fonts.sansSerif;
+        emoji = config.stylix.fonts.sansSerif;
+
+      };
+
       targets = {
         firefox.profileNames = ["default"];
         hyprlock.enable = false;
