@@ -38,6 +38,8 @@
           direnv allow
           direnv reload
         }
+
+        bindkey -v '^?' backward-delete-char
       '';
 
       completionInit = ''

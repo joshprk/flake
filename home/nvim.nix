@@ -49,7 +49,7 @@ in {
         loaded_netrw_gitignore = true;
         loaded_netrw = 1;
 
-        mapleadeer = " ";
+        mapleader = " ";
         maplocalleader = ",";
       };
 
@@ -98,6 +98,51 @@ in {
         };
       };
 
+      plugins.bufferline = {
+        enable = true;
+
+        settings = let
+          style_preset = preset: {
+            __raw = ''require("bufferline").style_preset.${preset}'';
+          };
+        in {
+          options = {
+            mode = "tabs";
+
+            style_preset = [
+              (style_preset "minimal")
+              (style_preset "no_bold")
+              (style_preset "no_italic")
+            ];
+
+            get_element_icon = {
+              __raw = ''
+                function(element)
+                  local provider = require("nvim-web-devicons")
+                  local icon, hl = provider.get_icon_by_filetype(
+                    element.filetype,
+                    { default = true }
+                  )
+                  return " " .. icon, hl
+                end
+              '';
+            };
+
+            indicator.style = "underline";
+            show_buffer_close_icons = false;
+            show_close_icon = false;
+            separator_style = ["" ""];
+            tab_size = 6;
+            enforce_regular_tabs = false;
+            always_show_bufferline = true;
+          };
+        };
+      };
+
+      plugins.fzf-lua = {
+        enable = true;
+      };
+
       plugins.lsp = {
         enable = true;
 
@@ -135,7 +180,6 @@ in {
 
         modules = {
           icons = {};
-          tabline = {tabpage_section="none";};
         };
 
         luaConfig.post = ''
