@@ -84,8 +84,6 @@ in {
           matches = [{app-id = "polkit-mate-authentication-agent-1";}];
           open-floating = true;
           open-focused = true;
-          is-floating = true;
-          is-focused = true;
         }
       ];
 
