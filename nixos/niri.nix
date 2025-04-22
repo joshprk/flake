@@ -36,6 +36,10 @@ in {
       pulse.enable = true;
     };
 
+    systemd.user.services.niri-flake-polkit = {
+      serviceConfig.ExecStart = lib.mkForce "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/.polkit-kde-authentication-agent-1-wrapped";
+    };
+
     security.pam.services.hyprlock = {};
     security.rtkit.enable = true;
   };
