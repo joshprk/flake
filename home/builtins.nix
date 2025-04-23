@@ -6,6 +6,7 @@
   config = {
     home.sessionVariables = {
       CARGO_HOME = "${config.xdg.dataHome}/cargo";
+      NODE_REPL_HISTORY = "${config.xdg.dataHome}/node_repl_history";
       NPM_CONFIG_USERCONFIG = "${config.xdg.configHome}/npm/npmrc";
       XCOMPOSECACHE = "${config.xdg.cacheHome}/X11/xcompose";
     };
