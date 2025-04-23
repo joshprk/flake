@@ -16,6 +16,11 @@ in {
       enable = true;
       defaultEditor = true;
 
+      withNodeJs = false;
+      withPerl = false;
+      withPython3 = false;
+      withRuby = false;
+
       luaLoader = {
         enable = true;
       };
