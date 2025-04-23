@@ -48,6 +48,14 @@ in {
         loaded_netrwFileHandlers = true;
         loaded_netrw_gitignore = true;
         loaded_netrw = 1;
+        loaded_tutor = 1;
+        loaded_tutor_mode_plugin = 1;
+        loaded_2html_plugin = 1;
+        loaded_gzip = 1;
+        loaded_tar = 1;
+        loaded_tarPlugin = 1;
+        loaded_zip = 1;
+        loaded_zipPlugin = 1;
 
         mapleader = " ";
         maplocalleader = ",";
@@ -97,6 +105,7 @@ in {
       colorschemes = {
         catppuccin = {
           enable = true;
+          lazyLoad.enable = true;
 
           settings = {
             no_italic = true;
@@ -116,6 +125,8 @@ in {
 
       plugins.bufferline = {
         enable = true;
+
+        lazyLoad.settings.event = "BufWinEnter";
 
         settings = let
           style_preset = preset: {
@@ -157,31 +168,39 @@ in {
 
       plugins.flash = {
         enable = true;
+
+        lazyLoad.settings.event = "DeferredUIEnter";
       };
 
       plugins.fzf-lua = {
         enable = true;
+
+        lazyLoad.settings.cmd =
+          ["FzfLua"]
+          ++ (
+            lib.optionals
+            config.programs.nixvim.plugins.noice.enable [ "Noice fzf" ]
+          );
       };
 
       plugins.lsp = {
         enable = true;
 
         servers = {
-          nil_ls = {
-            enable = true;
-
-            settings = {
-              nix.flake.autoArchive = true;
-            };
-          };
-
           clangd.enable = true;
           pyright.enable = true;
+          nixd.enable = true;
         };
       };
 
       plugins.lualine = {
         enable = true;
+
+        lazyLoad.settings.event = [
+          "VimEnter"
+          "BufReadPost"
+          "BufNewFile"
+        ];
 
         settings = {
           options = {
@@ -190,8 +209,14 @@ in {
         };
       };
 
+      plugins.lz-n = {
+        enable = true;
+      };
+
       plugins.noice = {
         enable = true;
+
+        lazyLoad.settings.event = "DeferredUIEnter";
 
         settings.presets = {
           bottom_search = false;
@@ -221,8 +246,26 @@ in {
         '';
       };
 
+      plugins.treesitter = {
+        enable = true;
+
+        lazyLoad.settings.event = "BufReadPre";
+        
+        settings = {
+          folding = true;
+          highlight.enable = true;
+          indent.enable = true;
+        };
+      };
+
+      plugins.snacks = {
+        enable = true;
+      };
+
       plugins.which-key = {
         enable = true;
+
+        lazyLoad.settings.event = "DeferredUIEnter";
         settings.preset = "helix";
       };
 

@@ -215,7 +215,10 @@ in {
 
     # FIX: systemd[8928]: hypridle was skipped because of an unmet condition
     # check (ConditionEnvironment=WAYLAND_DISPLAY).
-    systemd.user.services.hypridle.Unit.ConditionEnvironment = lib.mkForce "";
+    systemd.user.services = {
+      hyprpaper.Unit.ConditionEnvironment = lib.mkForce "";
+      hypridle.Unit.ConditionEnvironment = lib.mkForce "";
+    };
 
     services.dunst = {
       enable = true;
