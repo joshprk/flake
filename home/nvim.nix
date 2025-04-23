@@ -91,18 +91,21 @@ in {
         }
         {
           action = "<Cmd>FzfLua<CR>";
-          key = "<Leader><Space>";
+          key = "<Leader><Tab>";
           mode = ["n" "x" "o"];
+          options.desc = " Open FzfLua";
         }
         {
           action.__raw = ''function() require("flash").jump() end'';
-          key = "f";
+          key = "<Leader>f";
           mode = ["n" "x" "o"];
+          options.desc = " Flash";
         }
         {
           action.__raw = ''function() require("flash").treesitter() end'';
-          key = "F";
+          key = "<Leader>F";
           mode = ["n" "x" "o"];
+          options.desc = " Flash Treesitter";
         }
       ];
 
@@ -172,12 +175,6 @@ in {
       plugins.flash = {
         enable = true;
         lazyLoad.settings.event = "DeferredUIEnter";
-
-        settings = {
-          modes = {
-            char.enabled = false;
-          };
-        };
       };
 
       plugins.fzf-lua = {
@@ -193,6 +190,20 @@ in {
 
       plugins.lsp = {
         enable = true;
+
+        luaConfig.post = ''
+          vim.diagnostic.config({
+            signs = {
+              text = {
+                [vim.diagnostic.severity.ERROR] = "󰅙",
+                [vim.diagnostic.severity.WARN] = "",
+                [vim.diagnostic.severity.HINT] = "",
+                [vim.diagnostic.severity.INFO] = "",
+              }
+            },
+            virtual_text = true,
+          })
+        '';
   
         servers = {
           clangd.enable = true;
@@ -234,19 +245,6 @@ in {
         modules = {
           icons = {};
         };
-
-        luaConfig.post = ''
-          local signs = {
-            DiagnosticSignError = { text = "󰅙", },
-            DiagnosticSignWarn = { text = "", },
-            DiagnosticSignHint = { text = "", },
-            DiagnosticSignInfo = { text = "", },
-          }
-
-          for i, v in pairs(signs) do
-            vim.fn.sign_define(i, v)
-          end
-        '';
       };
 
       plugins.treesitter = {
