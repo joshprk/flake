@@ -16,6 +16,10 @@ in {
       enable = true;
       defaultEditor = true;
 
+      luaLoader = {
+        enable = true;
+      };
+
       opts = {
         expandtab = true;
         tabstop = 2;
@@ -125,8 +129,7 @@ in {
 
       plugins.bufferline = {
         enable = true;
-
-        lazyLoad.settings.event = "BufWinEnter";
+        lazyLoad.settings.event = "VimEnter";
 
         settings = let
           style_preset = preset: {
@@ -168,7 +171,6 @@ in {
 
       plugins.flash = {
         enable = true;
-
         lazyLoad.settings.event = "DeferredUIEnter";
       };
 
@@ -185,7 +187,8 @@ in {
 
       plugins.lsp = {
         enable = true;
-
+        lazyLoad.settings.event = "DeferredUIEnter";
+        
         servers = {
           clangd.enable = true;
           pyright.enable = true;
@@ -196,11 +199,7 @@ in {
       plugins.lualine = {
         enable = true;
 
-        lazyLoad.settings.event = [
-          "VimEnter"
-          "BufReadPost"
-          "BufNewFile"
-        ];
+        lazyLoad.settings.event = "VimEnter";
 
         settings = {
           options = {
@@ -215,7 +214,6 @@ in {
 
       plugins.noice = {
         enable = true;
-
         lazyLoad.settings.event = "DeferredUIEnter";
 
         settings.presets = {
@@ -248,8 +246,7 @@ in {
 
       plugins.treesitter = {
         enable = true;
-
-        lazyLoad.settings.event = "BufReadPre";
+        lazyLoad.settings.event = "DeferredUIEnter";
         
         settings = {
           folding = true;
@@ -258,23 +255,22 @@ in {
         };
       };
 
-      plugins.snacks = {
-        enable = true;
-      };
-
       plugins.which-key = {
         enable = true;
-
         lazyLoad.settings.event = "DeferredUIEnter";
         settings.preset = "helix";
       };
 
-      performance.byteCompileLua = {
-        enable = true;
-        configs = true;
-        initLua = true;
-        nvimRuntime = true;
-        plugins = true;
+      performance = {
+        byteCompileLua = {
+          enable = true;
+          configs = true;
+          initLua = true;
+          nvimRuntime = true;
+          plugins = true;
+        };
+
+        combinePlugins.enable = true;
       };
     };
   };
