@@ -95,12 +95,12 @@ in {
           mode = ["n" "x" "o"];
         }
         {
-          action = ''<Cmd>lua require("flash").jump()<CR>'';
+          action.__raw = ''function() require("flash").jump() end'';
           key = "f";
           mode = ["n" "x" "o"];
         }
         {
-          action = ''<Cmd>lua require("flash").jump({ forward = false })<CR>'';
+          action.__raw = ''function() require("flash").treesitter() end'';
           key = "F";
           mode = ["n" "x" "o"];
         }
@@ -172,6 +172,12 @@ in {
       plugins.flash = {
         enable = true;
         lazyLoad.settings.event = "DeferredUIEnter";
+
+        settings = {
+          modes = {
+            char.enabled = false;
+          };
+        };
       };
 
       plugins.fzf-lua = {
@@ -187,8 +193,7 @@ in {
 
       plugins.lsp = {
         enable = true;
-        lazyLoad.settings.event = "DeferredUIEnter";
-        
+  
         servers = {
           clangd.enable = true;
           pyright.enable = true;
