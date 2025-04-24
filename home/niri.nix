@@ -33,6 +33,10 @@ in {
         {command = ["${lib.getExe pkgs.xwayland-satellite}"];}
       ];
 
+      hotkey-overlay = {
+        skip-at-startup = true;
+      };
+
       environment = {
         DISPLAY = ":0";
         NIXOS_OZONE_WL = "1";
@@ -40,6 +44,7 @@ in {
 
       layout = {
         gaps = 8;
+        always-center-single-column = true;
 
         border = {
           enable = true;
