@@ -48,10 +48,6 @@ in {
       };
 
       globals = {
-        loaded_ruby_provider = 0;
-        loaded_perl_provider = 0;
-        loaded_python_provider = 0;
-
         loaded_netrwPlugin = 1;
         loaded_netrwSettings = 1;
         loaded_netrwFileHandlers = true;
