@@ -36,10 +36,6 @@
 
   services.openssh = {
     enable = true;
-
-    settings = {
-      X11Forwarding = true;
-    };
   };
 
   networking.interfaces.eno1.wakeOnLan = {
