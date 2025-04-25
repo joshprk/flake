@@ -1,7 +1,5 @@
 A modular NixOS configuration.
 
----
-
 ## Structure
 
 This configuration is structured as a directed acyclic graph minimizes
