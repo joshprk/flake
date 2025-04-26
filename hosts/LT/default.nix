@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }: {
   imports = [
@@ -29,6 +28,11 @@
         amdgpuBusId = "PCI:53:0:0";
       };
     };
+
+    remote = {
+      enable = true;
+      addToTailnet = true;
+    };
   };
 
   networking.hostName = "LT";
@@ -36,17 +40,6 @@
   nixpkgs.hostPlatform = "x86_64-linux";
 
   services.tlp.enable = true;
-
-  services.tailscale = {
-    enable = true;
-    authKeyFile = config.sops.secrets.tailscale.path;
-
-    extraUpFlags = [
-      "--accept-routes"
-    ];
-  };
-
-  sops.secrets.tailscale = {};
 
   zramSwap.enable = true;
 }

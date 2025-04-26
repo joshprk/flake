@@ -28,15 +28,16 @@
         amdgpuBusId = "PCI:13:0:0";
       };
     };
+
+    remote = {
+      enable = true;
+      sshAccess = true;
+    };
   };
 
   networking.hostName = "PC";
   system.stateVersion = "25.05";
   nixpkgs.hostPlatform = "x86_64-linux";
-
-  services.openssh = {
-    enable = true;
-  };
 
   networking.interfaces.eno1.wakeOnLan = {
     enable = true;
