@@ -32,7 +32,7 @@ in {
       enable = true;
     };
 
-    services.ssh = lib.mkIf cfg.sshAccess {
+    services.openssh = lib.mkIf cfg.sshAccess {
       enable = true;
     };
 
