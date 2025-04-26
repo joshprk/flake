@@ -210,6 +210,8 @@ in {
           clangd.enable = true;
           pyright.enable = true;
           nixd.enable = true;
+          ts_ls.enable = true;
+          svelte.enable = true;
         };
       };
 
