@@ -131,7 +131,8 @@ in {
         "Mod+8".action = focus-workspace 8;
         "Mod+9".action = focus-workspace 9;
 
-        "Mod+Tab".action = toggle-column-tabbed-display;
+        "Mod+Tab".action = toggle-overview;
+        "Mod+`".action = toggle-column-tabbed-display;
         "Mod+R".action = switch-preset-column-width;
         "Mod+Shift+R".action = switch-preset-window-height;
         "Mod+Ctrl+R".action = reset-window-height;
