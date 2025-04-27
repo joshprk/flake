@@ -33,6 +33,7 @@
     enable = true;
     enableZshIntegration = true;
     settings = {
+      focus-follows-mouse = true;
       gtk-single-instance = true;
     };
   };
