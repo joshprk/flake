@@ -78,15 +78,23 @@ in {
             radius = 8.0;
           in
             lib.genAttrs corners (lib.const radius);
+
           clip-to-geometry = true;
           draw-border-with-background = true;
         }
         {
-          matches = [{app-id = "com.mitchellh.ghostty";}];
+          matches = [
+            {app-id = "com.mitchellh.ghostty";}
+          ];
+
           default-column-width.proportion = 0.5;
         }
         {
-          matches = [{app-id = "polkit-mate-authentication-agent-1";}];
+          matches = [
+            {app-id = "polkit-mate-authentication-agent-1";}
+            {app-id = "Rofi";}
+          ];
+
           open-floating = true;
           open-focused = true;
         }
@@ -94,7 +102,7 @@ in {
           matches = [
             {
               app-id = "firefox$";
-              title = "^Picture-in-picture$";
+              title = "^Picture-in-Picture$";
             }
           ];
 
@@ -132,7 +140,7 @@ in {
         "Mod+9".action = focus-workspace 9;
 
         "Mod+Tab".action = toggle-overview;
-        "Mod+`".action = toggle-column-tabbed-display;
+        "Mod+Grave".action = toggle-column-tabbed-display;
         "Mod+R".action = switch-preset-column-width;
         "Mod+Shift+R".action = switch-preset-window-height;
         "Mod+Ctrl+R".action = reset-window-height;
@@ -146,6 +154,7 @@ in {
 
         "Print".action = screenshot;
         "Ctrl+Alt+L".action.spawn = ["loginctl" "lock-session"];
+        "Super_L".action.spawn = ["rofi" "-show" "drun"];
 
         /*
         "XF86MonBrightnessUp".action.spawn = swayosd "--brightness=raise";
@@ -233,16 +242,6 @@ in {
         ];
       };
     };
-
-    # FIX: systemd[8928]: hypridle was skipped because of an unmet condition
-    # check (ConditionEnvironment=WAYLAND_DISPLAY).
-    /*
-    systemd.user.services = {
-      niri-flake-polkit.Unit.After = ["graphical-session.target"];
-      hyprpaper.Unit.After = ["graphical-session.target"];
-      hypridle.Unit.After = ["graphical-session.target"];
-    };
-    */
 
     services.dunst = {
       enable = true;
