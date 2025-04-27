@@ -1,28 +1,31 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }: {
   home.username = "joshua";
   home.stateVersion = "25.05";
 
-  settings.niri = {
-    enable = true;
-    binds = {
-      "Mod+Q".action.spawn = "ghostty";
-      "Mod+E".action.spawn = "firefox";
-    };
-  };
+  settings = {
+    niri = {
+      enable = true;
 
-  settings.firefox.enable = true;
-  settings.nvim.enable = true;
-  settings.zsh.enable = true;
+      binds = {
+        "Mod+Q".action.spawn = "ghostty";
+        "Mod+E".action.spawn = "firefox";
+      };
+    };
+
+    firefox.enable = true;
+    nvim.enable = true;
+    zsh.enable = true;
+  };
 
   programs.direnv = {
     enable = true;
     enableZshIntegration = true;
     nix-direnv.enable = true;
+
     config = {
       global.warn_timeout = "0";
       global.hide_env_diff = true;
@@ -32,9 +35,12 @@
   programs.ghostty = {
     enable = true;
     enableZshIntegration = true;
+
     settings = {
+      auto-update = "off";
       focus-follows-mouse = true;
       gtk-single-instance = true;
+      shell-integration-features = "sudo";
     };
   };
 
@@ -42,6 +48,7 @@
     enable = true;
     userEmail = "joshuprk@gmail.com";
     userName = "Joshua Park";
+
     extraConfig = {
       init.defaultBranch = "main";
     };
