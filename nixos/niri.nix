@@ -37,7 +37,6 @@ in {
     };
 
     systemd.user.services.niri-flake-polkit = {
-      #enable = false;
       serviceConfig.ExecStart =
         lib.mkForce
         "${pkgs.mate.mate-polkit}/libexec/polkit-mate-authentication-agent-1";
