@@ -175,7 +175,7 @@ in {
             text = ''cmd[update:30000] echo "$TIME12"'';
             color = "rgb(255, 255, 255)";
             position = "0, 40";
-            font_size = 48;
+            font_size = 32;
             font_family = "Inter";
             halign = "center";
             valign = "center";
@@ -219,10 +219,13 @@ in {
 
     # FIX: systemd[8928]: hypridle was skipped because of an unmet condition
     # check (ConditionEnvironment=WAYLAND_DISPLAY).
+    /*
     systemd.user.services = {
-      hyprpaper.Unit.ConditionEnvironment = lib.mkForce "";
-      hypridle.Unit.ConditionEnvironment = lib.mkForce "";
+      niri-flake-polkit.Unit.After = ["graphical-session.target"];
+      hyprpaper.Unit.After = ["graphical-session.target"];
+      hypridle.Unit.After = ["graphical-session.target"];
     };
+    */
 
     services.dunst = {
       enable = true;
@@ -234,8 +237,7 @@ in {
       base16Scheme = "${pkgs.base16-schemes}/share/themes/tomorrow-night.yaml";
 
       image = pkgs.fetchurl {
-        url = "https://github.com/KDE/plasma-workspace-wallpapers/blob/master" +
-              "/DarkestHour/contents/images/2560x1600.jpg?raw=true";
+        url = "https://github.com/KDE/plasma-workspace-wallpapers/blob/master/DarkestHour/contents/images/2560x1600.jpg?raw=true";
         sha256 = "sha256-jjcD+uOjwhex/Cs5m3Bs03IFhCaNBxuhU+SAnapV8c4=";
       };
 
