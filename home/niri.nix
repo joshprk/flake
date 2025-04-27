@@ -145,9 +145,7 @@ in {
       
       settings = {
         general = {
-          disable_loading_bar = true;
           hide_cursor = true;
-          no_fade_in = false;
         };
 
         background = [
@@ -162,6 +160,7 @@ in {
             dots_center = true;
             fade_on_empty = false;
             font_color = "rgb(255, 255, 255)";
+            font_family = "Inter";
             inner_color = "rgb(0, 0, 0)";
             outer_color = "rgb(255, 255, 255)";
             rounding = 8;
@@ -175,9 +174,9 @@ in {
             monitor = "";
             text = ''cmd[update:30000] echo "$TIME12"'';
             color = "rgb(255, 255, 255)";
-            size = "300, 100";
             position = "0, 40";
-            font-size = 48;
+            font_size = 48;
+            font_family = "Inter";
             halign = "center";
             valign = "center";
           }
