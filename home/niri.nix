@@ -90,6 +90,22 @@ in {
           open-floating = true;
           open-focused = true;
         }
+        {
+          matches = [
+            {
+              app-id = "firefox$";
+              title = "^Picture-in-picture$";
+            }
+          ];
+
+          open-floating = true;
+
+          default-floating-position = {
+            x = 32;
+            y = 32;
+            relative-to = "top-right";
+          };
+        }
       ];
 
       binds = with config.lib.niri.actions; {
