@@ -140,7 +140,7 @@ in {
         "Mod+9".action = focus-workspace 9;
 
         "Mod+Tab".action = toggle-overview;
-        "Mod+Shift+Tab".action = toggle-column-tabbed-display;
+        "Mod+Space".action = toggle-column-tabbed-display;
         "Mod+R".action = switch-preset-column-width;
         "Mod+Shift+R".action = switch-preset-window-height;
         "Mod+Ctrl+R".action = reset-window-height;
@@ -154,7 +154,7 @@ in {
 
         "Print".action = screenshot;
         "Ctrl+Alt+L".action.spawn = ["loginctl" "lock-session"];
-        "Mod+Super_L".action.spawn = ["sh" "-c" "pkill rofi || rofi -show drun"];
+        #"Mod+Q".action.spawn = ["sh" "-c" "pkill rofi || rofi -show drun"];
 
         /*
         "XF86MonBrightnessUp".action.spawn = swayosd "--brightness=raise";
