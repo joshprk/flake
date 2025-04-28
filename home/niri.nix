@@ -287,7 +287,11 @@ in {
       };
 
       targets = {
-        firefox.profileNames = ["default"];
+        firefox = {
+          colorTheme.enable = true;
+          firefoxGnomeTheme.enable = true;
+          profileNames = ["default"];
+        };
 
         hyprlock.enable = false;
         nixvim.enable = false;
