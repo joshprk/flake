@@ -154,7 +154,7 @@ in {
 
         "Print".action = screenshot;
         "Ctrl+Alt+L".action.spawn = ["loginctl" "lock-session"];
-        "Mod+Super".action.spawn = ["rofi" "-show" "drun"];
+        "Mod+Super_L".action.spawn = ["rofi" "-show" "drun"];
 
         /*
         "XF86MonBrightnessUp".action.spawn = swayosd "--brightness=raise";
