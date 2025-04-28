@@ -140,7 +140,7 @@ in {
         "Mod+9".action = focus-workspace 9;
 
         "Mod+Tab".action = toggle-overview;
-        "Mod+Grave".action = toggle-column-tabbed-display;
+        "Mod+Shift+Tab".action = toggle-column-tabbed-display;
         "Mod+R".action = switch-preset-column-width;
         "Mod+Shift+R".action = switch-preset-window-height;
         "Mod+Ctrl+R".action = reset-window-height;
@@ -154,16 +154,7 @@ in {
 
         "Print".action = screenshot;
         "Ctrl+Alt+L".action.spawn = ["loginctl" "lock-session"];
-        "Mod+Super_L".action.spawn = [''
-          ${pkgs.writeShellScript "toggle-rofi" ''
-            #!/bin/sh
-            if pgrep -x rofi; then
-              killall rofi
-            else
-              rofi -show drun
-            fi
-          ''}
-        ''];
+        "Mod+Super_L".action.spawn = ["sh" "-c" "pkill rofi || rofi -show drun"];
 
         /*
         "XF86MonBrightnessUp".action.spawn = swayosd "--brightness=raise";
