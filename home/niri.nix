@@ -154,7 +154,7 @@ in {
 
         "Print".action = screenshot;
         "Ctrl+Alt+L".action.spawn = ["loginctl" "lock-session"];
-        "Super_L".action.spawn = ["rofi" "-show" "drun"];
+        "Mod+Super".action.spawn = ["rofi" "-show" "drun"];
 
         /*
         "XF86MonBrightnessUp".action.spawn = swayosd "--brightness=raise";
@@ -220,6 +220,7 @@ in {
 
     services.hypridle = {
       enable = true;
+
       settings = {
         general = {
           before_sleep_command = "loginctl lock-session";
