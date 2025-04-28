@@ -154,7 +154,16 @@ in {
 
         "Print".action = screenshot;
         "Ctrl+Alt+L".action.spawn = ["loginctl" "lock-session"];
-        "Mod+Super_L".action.spawn = ["pkill" "rofi" "||" "rofi" "-show" "drun"];
+        "Mod+Super_L".action.spawn = [''
+          ${pkgs.writeShellScript "toggle-rofi" ''
+            #!/bin/sh
+            if pgrep -x rofi; then
+              killall rofi
+            else
+              rofi -show drun
+            fi
+          ''}
+        ''];
 
         /*
         "XF86MonBrightnessUp".action.spawn = swayosd "--brightness=raise";
