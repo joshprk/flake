@@ -281,9 +281,9 @@ in {
 
       iconTheme = {
         enable = true;
-        package = pkgs.candy-icons;
-        light = "candy-icons";
-        dark = "candy-icons";
+        package = pkgs.adwaita-icon-theme;
+        light = "Adwaita";
+        dark = "Adwaita";
       };
 
       targets = {
