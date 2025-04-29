@@ -16,8 +16,6 @@ in {
       enable = true;
       languagePacks = ["en-US"];
 
-      profiles.default.extensions.force = true;
-
       policies = {
         DisableTelemetry = true;
         DisableFirefoxStudies = true;
