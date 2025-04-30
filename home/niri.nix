@@ -154,7 +154,7 @@ in {
 
         "Print".action = screenshot;
         "Ctrl+Alt+L".action.spawn = ["loginctl" "lock-session"];
-        #"Mod+Q".action.spawn = ["sh" "-c" "pkill rofi || rofi -show drun"];
+        "Shift+Tab".action.spawn = ["sh" "-c" "pkill rofi || rofi -show drun"];
 
         /*
         "XF86MonBrightnessUp".action.spawn = swayosd "--brightness=raise";
