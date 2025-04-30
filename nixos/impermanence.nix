@@ -44,6 +44,7 @@ in {
         [
           "/var/log"
           "/var/lib/nixos"
+          "/var/lib/systemd"
         ]
         ++ cfg.extraDirectories;
 
