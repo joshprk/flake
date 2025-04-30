@@ -27,10 +27,6 @@ in {
       package = pkgs.niri-unstable;
     };
 
-    services.displayManager.ly = {
-      enable = true;
-    };
-
     services.pipewire = {
       enable = true;
       pulse.enable = true;
