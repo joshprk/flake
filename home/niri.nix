@@ -116,7 +116,11 @@ in {
         }
       ];
 
-      binds = with config.lib.niri.actions; {
+      binds = with config.lib.niri.actions; let
+        move-window-to-workspace = idx: {
+          spawn = ["niri" "msg" "action" "move-window-to-workspace" "${idx}"];
+        };
+      in {
         "Mod+H".action = focus-column-left;
         "Mod+L".action = focus-column-right;
         "Mod+J".action = focus-window-down;
