@@ -71,6 +71,10 @@ in {
         warp-mouse-to-focus = true;
       };
 
+      gestures = {
+        hot-corners = true;
+      };
+
       window-rules = [
         {
           geometry-corner-radius = let
