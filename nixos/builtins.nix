@@ -17,17 +17,19 @@
     environment.shellAliases = {
       update = "${pkgs.writeShellScript "update-command" ''
         FLAKE="github:joshprk/flake"
-        LAST_DRV="$(readlink /nix/var/nix/profiles/system)"
+        LAST_DRV="$(readlink /nix/var/nix/profiles/system --canonicalize)"
 
         nixos-rebuild switch --refresh --use-remote-sudo --flake $FLAKE
 
-        NEW_DRV="$(readlink /nix/var/nix/profiles/system)"
+        NEW_DRV="$(readlink /nix/var/nix/profiles/system --canonicalize)"
 
         if [[ "$LAST_DRV" != "$NEW_DRV" ]]; then
-          echo "---"
-          nix store diff-closures \
-            "/nix/var/nix/profiles/$LAST_DRV" \
-            "/nix/var/nix/profiles/$NEW_DRV"
+          DIFF=$(nix store diff-closures "$LAST_DRV" "$NEW_DRV")
+
+          if [[ "$DIFF" != "" ]]; then
+            echo "---"
+            echo "$DIFF"
+          fi
         fi
       ''}";
     };
