@@ -71,6 +71,16 @@ in {
         warp-mouse-to-focus = true;
       };
 
+      animations = {
+        window-open = {
+          duration-ms = 50;
+        };
+
+        window-close = {
+          duration-ms = 50;
+        };
+      };
+
       window-rules = [
         {
           geometry-corner-radius = let
