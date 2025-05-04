@@ -16,7 +16,20 @@ in {
       enable = true;
       languagePacks = ["en-US"];
 
-      profiles.default.extensions.force = true;
+      profiles.default = {
+        extensions.force = true;
+
+        userChrome = ''
+          :root:not([chromehidden~="toolbar"]) {
+            min-width: 250px !important;
+          }
+
+          #sidebar-box, #sidebar-header, #sidebar {
+            background-color: var(--gnome-headerbar_bg_color) !important;
+            color: var(--gnome-headerbar_fg_color) !important;
+          }
+        '';
+      };
 
       policies = {
         DisableTelemetry = true;
