@@ -19,6 +19,7 @@ in {
       profiles.default = {
         extensions.force = true;
 
+        /*
         userChrome = ''
           :root:not([chromehidden~="toolbar"]) {
             min-width: 250px !important;
@@ -29,6 +30,7 @@ in {
             color: var(--gnome-headerbar_fg_color) !important;
           }
         '';
+        */
       };
 
       policies = {
