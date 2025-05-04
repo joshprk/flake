@@ -67,18 +67,22 @@ in {
       };
 
       input = {
-        focus-follows-mouse.enable = true;
+        focus-follows-mouse = {
+          enable = true;
+          max-scroll-amount = "0%";
+        };
+
         warp-mouse-to-focus = true;
       };
 
       animations = {
         window-open.easing = {
-          duration-ms = 50;
+          duration-ms = 100;
           curve = "ease-out-expo";
         };
 
         window-close.easing = {
-          duration-ms = 50;
+          duration-ms = 100;
           curve = "ease-out-quad";
         };
       };
