@@ -27,7 +27,7 @@ in {
     programs.niri.package = osConfig.programs.niri.package;
 
     programs.niri.settings = {
-      prefer-no-csd = true;
+      prefer-no-csd = false;
 
       spawn-at-startup = [
         {command = ["${lib.getExe pkgs.xwayland-satellite}"];}
@@ -324,6 +324,8 @@ in {
 
       targets = {
         firefox = {
+          colorTheme.enable = true;
+          firefoxGnomeTheme.enable = true;
           profileNames = ["default"];
         };
 
