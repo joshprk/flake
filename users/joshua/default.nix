@@ -11,8 +11,7 @@
       enable = true;
 
       binds = {
-        "Mod+Q".action.spawn = "ghostty";
-        "Mod+E".action.spawn = "firefox";
+        "Mod+Q".action.spawn = "rofi";
       };
     };
 
