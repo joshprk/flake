@@ -72,11 +72,11 @@ in {
       };
 
       animations = {
-        window-open = {
+        window-open.easing = {
           duration-ms = 50;
         };
 
-        window-close = {
+        window-close.easing = {
           duration-ms = 50;
         };
       };
