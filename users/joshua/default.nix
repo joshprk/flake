@@ -7,14 +7,7 @@
   home.stateVersion = "25.05";
 
   settings = {
-    niri = {
-      enable = true;
-
-      binds = {
-        "Mod+Q".action.spawn = "rofi";
-      };
-    };
-
+    niri.enable = true;
     firefox.enable = true;
     nvim.enable = true;
     zsh.enable = true;
