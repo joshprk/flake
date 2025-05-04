@@ -74,10 +74,12 @@ in {
       animations = {
         window-open.easing = {
           duration-ms = 50;
+          curve = "ease-out-expo";
         };
 
         window-close.easing = {
           duration-ms = 50;
+          curve = "ease-out-quad";
         };
       };
 
