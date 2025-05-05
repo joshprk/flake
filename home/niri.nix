@@ -44,6 +44,14 @@ in {
 
       layout = {
         gaps = 8;
+
+        struts = {
+          bottom = 2;
+          left = 2;
+          right = 2;
+          top = 2;
+        };
+
         always-center-single-column = true;
 
         border = {
