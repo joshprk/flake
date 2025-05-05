@@ -24,7 +24,7 @@ in {
             min-width: 250px !important;
           }
         */
-        userChrome = ''
+        userChrome = lib.mkOrder 1500 ''
           #sidebar-box, #sidebar-header, #sidebar {
             background-color: var(--gnome-headerbar_bg_color) !important;
             color: var(--gnome-headerbar_fg_color) !important;
