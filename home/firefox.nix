@@ -19,15 +19,28 @@ in {
       profiles.default = {
         extensions.force = true;
 
-        /*
+        userChrome = lib.mkOrder 1500 ''
+          @namespace xul "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
+
           :root:not([chromehidden~="toolbar"]) {
             min-width: 250px !important;
           }
-        */
-        userChrome = lib.mkOrder 1500 ''
-          #sidebar-box, #sidebar-header, #sidebar {
-            background-color: var(--gnome-headerbar_bg_color) !important;
-            color: var(--gnome-headerbar_fg_color) !important;
+
+          #sidebar-main,
+          #sidebar-box,
+          #sidebar {
+            /* use exactly the same background as the headerbar */
+            background-color: var(--gnome-headerbar-background) !important;
+            /* match text colour too */
+            color: var(--gnome-headerbar-foreground) !important;
+          }
+
+          /* if you want the same separator style as the headerbar’s edge */
+          #sidebar-main[positionend] {
+            border-inline-start: 1px solid var(--gnome-headerbar-border) !important;
+          }
+          #sidebar-main:not([positionend]) {
+            border-inline-end:   1px solid var(--gnome-headerbar-border) !important;
           }
         '';
       };
