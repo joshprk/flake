@@ -43,7 +43,7 @@ in {
       };
 
       layout = {
-        gaps = 8;
+        gaps = 10;
 
         struts = {
           bottom = 2;
