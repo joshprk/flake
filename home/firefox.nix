@@ -20,17 +20,16 @@ in {
         extensions.force = true;
 
         /*
-        userChrome = ''
           :root:not([chromehidden~="toolbar"]) {
             min-width: 250px !important;
           }
-
+        */
+        userChrome = ''
           #sidebar-box, #sidebar-header, #sidebar {
             background-color: var(--gnome-headerbar_bg_color) !important;
             color: var(--gnome-headerbar_fg_color) !important;
           }
         '';
-        */
       };
 
       policies = {
