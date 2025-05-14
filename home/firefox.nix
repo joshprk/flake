@@ -20,15 +20,11 @@ in {
         extensions.force = true;
 
         userChrome = lib.mkOrder 1500 ''
-          @namespace xul "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
-
           :root:not([chromehidden~="toolbar"]) {
             min-width: 250px !important;
           }
 
-          #sidebar-main,
-          #sidebar-box,
-          #sidebar {
+          #sidebar-main, #sidebar-box, #sidebar {
             /* use exactly the same background as the headerbar */
             background-color: var(--gnome-headerbar-background) !important;
             /* match text colour too */
@@ -39,6 +35,7 @@ in {
           #sidebar-main[positionend] {
             border-inline-start: 1px solid var(--gnome-headerbar-border) !important;
           }
+
           #sidebar-main:not([positionend]) {
             border-inline-end:   1px solid var(--gnome-headerbar-border) !important;
           }
@@ -65,7 +62,9 @@ in {
         DontCheckDefaultBrowser = true;
 
         ExtensionSettings = {
-          "*".installation_mode = "blocked";
+          "*" = {
+            installation_mode = "blocked";
+          };
           "uBlock0@raymondhill.net" = {
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
             installation_mode = "force_installed";

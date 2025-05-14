@@ -27,7 +27,7 @@ in {
     programs.niri.package = osConfig.programs.niri.package;
 
     programs.niri.settings = {
-      prefer-no-csd = false;
+      prefer-no-csd = true;
 
       spawn-at-startup = [
         {command = ["${lib.getExe pkgs.xwayland-satellite}"];}
@@ -43,14 +43,7 @@ in {
       };
 
       layout = {
-        gaps = 10;
-
-        struts = {
-          bottom = 2;
-          left = 2;
-          right = 2;
-          top = 2;
-        };
+        gaps = 12;
 
         always-center-single-column = true;
 
@@ -66,9 +59,16 @@ in {
 
         shadow = {
           enable = true;
+          draw-behind-window = true;
         };
 
         tab-indicator = {
+          position = "left";
+          corner-radius = 20.0;
+          width = 4.0;
+          gap = -9.0;
+          gaps-between-tabs = 8.0;
+          length.total-proportion = 0.15;
           hide-when-single-tab = true;
           place-within-column = true;
         };
@@ -116,7 +116,6 @@ in {
         {
           matches = [
             {app-id = "polkit-mate-authentication-agent-1";}
-            {app-id = "Rofi";}
           ];
 
           open-floating = true;
@@ -155,13 +154,12 @@ in {
         "Mod+L".action = focus-column-right;
         "Mod+J".action = focus-window-down;
         "Mod+K".action = focus-window-up;
-        "Mod+Shift+H".action = consume-or-expel-window-left;
-        "Mod+Shift+L".action = consume-or-expel-window-right;
-        "Mod+Shift+J".action = move-window-down-or-to-workspace-down;
-        "Mod+Shift+K".action = move-window-up-or-to-workspace-up;
-        "Mod+Ctrl+H".action = move-column-left;
-        "Mod+Ctrl+L".action = move-column-right;
-        "Mod+Home".action = focus-column-first;
+        "Mod+Shift+H".action = move-column-left;
+        "Mod+Shift+L".action = move-column-right;
+        "Mod+Shift+J".action = move-window-down;
+        "Mod+Shift+K".action = move-window-up;
+        "Mod+Ctrl+H".action = consume-or-expel-window-left;
+        "Mod+Ctrl+L".action = consume-or-expel-window-right;
 
         "Mod+1".action = focus-workspace 1;
         "Mod+2".action = focus-workspace 2;
@@ -196,17 +194,8 @@ in {
         "Mod+T".action = toggle-window-floating;
         "Mod+Shift+T".action = switch-focus-between-floating-and-tiling;
 
-        "Print".action = screenshot;
         "Ctrl+Alt+L".action.spawn = ["loginctl" "lock-session"];
-        "Mod+Q".action.spawn = ["sh" "-c" "pkill rofi || rofi -show drun"];
-
-        /*
-        "XF86MonBrightnessUp".action.spawn = swayosd "--brightness=raise";
-        "XF86MonBrightnessDown".action.spawn = swayosd "--brightness=lower";
-        "XF86AudioLowerVolume".action.spawn = swayosd "--output-volume=lower";
-        "XF86AudioRaiseVolume".action.spawn = swayosd "--output-volume=raise";
-        "XF86AudioMute".action.spawn = swayosd "--output-volume=mute-toggle";
-        */
+        "Print".action = screenshot;
       } // cfg.binds;
     };
 
@@ -254,10 +243,6 @@ in {
       };
     };
 
-    programs.rofi = {
-      enable = true;
-    };
-
     services.hyprpaper = {
       enable = true;
     };
@@ -292,7 +277,6 @@ in {
       enable = true;
     };
 
-    # WALLPAPER: KDE Darkest Hour
     stylix = {
       enable = true;
       base16Scheme = "${pkgs.base16-schemes}/share/themes/tomorrow-night.yaml";
@@ -332,7 +316,6 @@ in {
 
       targets = {
         firefox = {
-          colorTheme.enable = true;
           firefoxGnomeTheme.enable = true;
           profileNames = ["default"];
         };

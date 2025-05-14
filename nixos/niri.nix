@@ -32,6 +32,8 @@ in {
       pulse.enable = true;
     };
 
+    services.upower.enable = true;
+
     systemd.user.services.niri-flake-polkit = {
       serviceConfig.ExecStart =
         lib.mkForce

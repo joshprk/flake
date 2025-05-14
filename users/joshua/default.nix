@@ -7,7 +7,13 @@
   home.stateVersion = "25.05";
 
   settings = {
-    niri.enable = true;
+    niri = {
+      enable = true;
+      binds = {
+        "Mod+Q".action.spawn = ["ghostty"];
+      };
+    };
+
     firefox.enable = true;
     nvim.enable = true;
     zsh.enable = true;
