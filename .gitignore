@@ -1,0 +1,6 @@
+.direnv/
+.envrc
+
+*.qcow2
+result
+result-*
