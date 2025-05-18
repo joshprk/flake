@@ -25,7 +25,7 @@
     };
 
     home-manager = {
-      url = "github:joshprk/home-manager?ref=patch-1";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
