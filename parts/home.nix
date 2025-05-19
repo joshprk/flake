@@ -25,7 +25,11 @@
         home.stateVersion = "25.11";
       };
 
-      home-manager.sharedModules = lib.singleton self.homeModules.default;
+      home-manager = {
+        useGlobalPkgs = true;
+        useUserPackages = true;
+        sharedModules = lib.singleton self.homeModules.default;
+      };
     });
   };
 }
