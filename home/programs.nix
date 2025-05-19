@@ -1,4 +1,4 @@
-{...}: {
+{config, ...}: {
   programs.fish = {
     enable = true;
   };
@@ -11,6 +11,11 @@
     extraConfig = {
       init.defaultBranch = "main";
     };
+  };
+
+  programs.nix-index = {
+    enable = true;
+    enableFishIntegration = config.programs.fish.enable;
   };
 
   programs.nixvim = {

@@ -7,6 +7,7 @@
     devShells.flake = pkgs.mkShellNoCC {
       packages = with pkgs; [
         alejandra
+        git
         statix
       ];
     };
