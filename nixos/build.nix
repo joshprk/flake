@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   config = {
     environment.shellAliases = {
-      update = "${pkgs.writeShellScript ''
+      update = "${pkgs.writeShellScript "update-command" ''
         LAST_DRV="$(readlink /nix/var/nix/profiles/system --canonicalize)"
 
         nixos-rebuild switch --refresh --use-remote-sudo --flake $FLAKE
