@@ -18,7 +18,6 @@
       };
 
       programs.fish.enable = true;
-      programs.man.generateCaches = false;
 
       home-manager.users.joshua = {
         home.username = "joshua";

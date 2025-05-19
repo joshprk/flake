@@ -22,4 +22,6 @@
     enable = true;
     defaultEditor = true;
   };
+
+  programs.man.generateCaches = false;
 }
