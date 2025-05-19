@@ -3,7 +3,6 @@
     device = "/dev/sda";
     type = "disk";
     content.type = "gpt";
-
     content.partitions.boot = {
       name = "boot";
       size = "512M";
@@ -14,6 +13,7 @@
 	mountpoint = "/boot";
 	mountOptions = ["umask=0077"];
       };
+    };
 
     content.partitions.nix = {
       name = "nix";
