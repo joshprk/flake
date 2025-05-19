@@ -13,11 +13,6 @@
     };
   };
 
-  programs.nix-index = {
-    enable = true;
-    enableFishIntegration = config.programs.fish.enable;
-  };
-
   programs.nixvim = {
     enable = true;
     defaultEditor = true;
