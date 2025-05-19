@@ -1,4 +1,4 @@
-{lib, ...}: let
+{config, lib, ...}: let
   cfg = config.modules.kernel;
 in {
   options.modules.kernel = {
