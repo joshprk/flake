@@ -3,7 +3,7 @@
 in {
   options.modules.kernel = {
     package = lib.mkOption {
-      type = lib.types.package;
+      type = lib.types.raw;
       description = "Which package to use for the Linux kernel.";
       default = pkgs.linuxPackages_latest;
     };
