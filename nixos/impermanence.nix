@@ -1,5 +1,5 @@
 {config, lib, ...}: let
-  cfg = config.settings.impermanence;
+  cfg = config.modules.impermanence;
 in {
   options.modules.impermanence = {
     enable = lib.mkOption {
