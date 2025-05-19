@@ -2,7 +2,7 @@
   cfg = config.modules.build;
 in {
   options.modules.build = {
-    flakePath = {
+    flakePath = lib.mkOption {
       type = lib.types.str;
       description = "Defines where the updated flake should be fetched from.";
       default = "github:joshprk/flake";
