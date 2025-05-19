@@ -11,7 +11,7 @@
         isNormalUser = true;
 	extraGroups = ["wheel"];
 	shell = pkgs.fish;
-	hashedPassword = "$2b$05$M9xLkvyYzxt1C0.dFV2dTedSW21sJ8mD2RSajI5ac2Bw8UfmgsRK2";
+	hashedPassword = "$y$j9T$U5SE4t9DYmwelV9Lv4cM2.$6c9GIjBWUFVS2cQ2PNFS7lvuSbVlX/W8d9zZkRI.XcB";
 	openssh.authorizedKeys.keys = [
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBYMjdyYJfwjRqHuyePy0xNRKYxeSuJ6e9I1g9F0eHsD"
 	];
