@@ -2,6 +2,7 @@
   config = {
     environment.shellAliases = {
       update = "${pkgs.writeShellScript "update-command" ''
+        FLAKE="github:joshprk/flake"
         LAST_DRV="$(readlink /nix/var/nix/profiles/system --canonicalize)"
 
         nixos-rebuild switch --refresh --use-remote-sudo --flake $FLAKE
