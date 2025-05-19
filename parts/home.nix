@@ -10,14 +10,14 @@
       users.users.joshua = {
         isNormalUser = true;
 	extraGroups = ["wheel"];
-	shell = pkgs.fish;
+	shell = pkgs.zsh;
 	hashedPassword = "$y$j9T$U5SE4t9DYmwelV9Lv4cM2.$6c9GIjBWUFVS2cQ2PNFS7lvuSbVlX/W8d9zZkRI.XcB";
 	openssh.authorizedKeys.keys = [
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBYMjdyYJfwjRqHuyePy0xNRKYxeSuJ6e9I1g9F0eHsD"
 	];
       };
 
-      programs.fish.enable = true;
+      programs.zsh.enable = true;
 
       home-manager.users.joshua = {
         home.username = "joshua";
