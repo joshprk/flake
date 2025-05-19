@@ -1,10 +1,15 @@
-{self, lib, ...}: {
+{inputs, self, lib, ...}: {
   /*
    * Single-user home setup.
    *
    * Easily extensible to a multi-user setup later, but flakes are more likely
    * to be stabilized than finding someone who'd want to use my systems.
    */
+
+  imports = with inputs; [
+    home-manager.flakeModules.home-manager
+  ];
+
   flake = {
     nixosModules.default.imports = lib.singleton ({pkgs, ...}: {
       users.users.joshua = {
