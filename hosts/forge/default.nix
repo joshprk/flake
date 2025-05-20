@@ -10,6 +10,8 @@
   modules = {
     impermanence.enable = true;
     home.enable = true;
+    openssh.enable = true;
+    openssh.secure = true;
   };
 
   users.users.root = {
@@ -17,9 +19,6 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICOimZhc+sD7K1zHQgAX66KpB2L/daf6fxIix541Sb7I"
     ];
   };
-
-  services.fail2ban.enable = true;
-  services.openssh.enable = true;
 
   zramSwap.enable = true;
 }
