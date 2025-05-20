@@ -24,7 +24,8 @@ in {
         if [[ "$LAST_DRV" != "$NEW_DRV" ]]; then
           DIFF=$(nix store diff-closures "$LAST_DRV" "$NEW_DRV")
           if [[ "$DIFF" != "" ]]; then
-            printf "---\n$DIFF\n"
+            echo "---"
+            echo "$DIFF"
           fi
         fi
       ''}";
