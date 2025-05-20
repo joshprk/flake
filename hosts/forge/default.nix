@@ -7,8 +7,9 @@
   networking.hostName = "forge";
   system.stateVersion = "25.11";
 
-  modules.impermanence = {
-    enable = true;
+  modules = {
+    impermanence.enable = true;
+    home.enable = true;
   };
 
   users.users.root = {
