@@ -9,7 +9,6 @@
 
   modules = {
     impermanence.enable = true;
-    services.enable = true;
     home.enable = true;
   };
 
@@ -19,6 +18,8 @@
     ];
   };
 
+  services.fail2ban.enable = true;
   services.openssh.enable = true;
+
   zramSwap.enable = true;
 }
