@@ -18,5 +18,17 @@
   programs.nixvim = {
     enable = true;
     defaultEditor = true;
+
+    withNodeJs = false;
+    withPerl = false;
+    withPython3 = false;
+    withRuby = false;
+
+    opts = {
+      expandtab = true;
+      tabstop = 2;
+      softtabstop = 2;
+      shiftwidth = 2;
+    };
   };
 }
