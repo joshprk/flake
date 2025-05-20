@@ -9,6 +9,7 @@
 
   modules = {
     impermanence.enable = true;
+    services.enable = true;
     home.enable = true;
   };
 
