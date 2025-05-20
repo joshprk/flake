@@ -28,7 +28,6 @@ in {
   ];
 
   config = lib.mkIf cfg.enable {
-    modules.impermanence.extraDirectories = ["/var/lib/microvms"];
     containers = cfg.instances;
   };
 }

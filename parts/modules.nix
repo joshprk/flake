@@ -5,7 +5,6 @@
       home-manager.nixosModules.home-manager
       impermanence.nixosModules.impermanence
       lanzaboote.nixosModules.lanzaboote
-      microvm.nixosModules.host
     ];
 
     homeModules.default.imports = [
