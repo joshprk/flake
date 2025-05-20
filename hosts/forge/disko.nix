@@ -9,9 +9,9 @@
       type = "EF00";
       content = {
         type = "filesystem";
-	format = "vfat";
-	mountpoint = "/boot";
-	mountOptions = ["umask=0077"];
+        format = "vfat";
+        mountpoint = "/boot";
+        mountOptions = ["umask=0077"];
       };
     };
 
@@ -20,9 +20,9 @@
       size = "100%";
       content = {
         type = "filesystem";
-	format = "btrfs";
-	mountpoint = "/nix";
-	mountOptions = ["compress=zstd" "noatime"];
+        format = "btrfs";
+        mountpoint = "/nix";
+        mountOptions = ["compress=zstd" "noatime"];
       };
     };
   };
@@ -36,8 +36,8 @@
       name = "home";
       size = "100%";
       content = {
-	type = "filesystem";
-	format = "btrfs";
+        type = "filesystem";
+        format = "btrfs";
         mountpoint = "/home";
         mountOptions = ["compress=zstd" "noatime"];
       };

@@ -1,4 +1,8 @@
-{config, lib, ...}: let
+{
+  config,
+  lib,
+  ...
+}: let
   cfg = config.modules.impermanence;
 in {
   options.modules.impermanence = {
