@@ -14,9 +14,9 @@ in {
       default = false;
       apply = opt:
         lib.throwIfNot
-	(builtins.hasAttr "home-manager" config)
-	"the home module requires home-manager"
-	opt;
+	      (builtins.hasAttr "home-manager" config)
+	      "the home module requires home-manager"
+	      opt;
     };
 
     interactive = lib.mkOption {
@@ -49,17 +49,17 @@ in {
         function fish_command_not_found
           set p "command-not-found"
           if test -x $p -a -f "/nix/var/nix/profiles/per-user/root/channels/nixos/programs.sqlite"
-	    $p $argv
+	          $p $argv
             if test $status -eq 126
               $argv
             else
-	      return 127
-	    end
-	  else
-	    echo "$argv[1]: command not found" >&2
-	    return 127
-	  end
-	end
+	            return 127
+	          end
+	        else
+	          echo "$argv[1]: command not found" >&2
+	          return 127
+	        end
+	      end
       '';
     };
 
