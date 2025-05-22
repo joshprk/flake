@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  flake,
   ...
 }: let
   cfg = config.modules.build;
@@ -44,5 +45,7 @@ in {
       use-xdg-base-directories = true;
       trusted-users = ["@wheel"];
     };
+
+    system.configurationRevision = flake.rev or flake.dirtyRev or "unknown-dirty";
   };
 }
