@@ -15,8 +15,21 @@ in {
   };
 
   config = {
-    boot.loader.systemd-boot.enable = lib.mkDefault true;
-    boot.loader.efi.canTouchEfiVariables = lib.mkDefault true;
+    boot = {
+      loader = {
+        limine = {
+          enable = true;
+          enrollConfig = true;
+          maxGenerations = 10;
+        };
+        efi.canTouchEfiVariables = true;
+      };
+
+      consoleLogLevel = 0;
+      initrd.verbose = false;
+      plymouth.enable = true;
+      kernelParams = ["quiet" "plymouth.use-simpledrm"];
+    };
 
     boot.kernelPackages = cfg.package;
   };
