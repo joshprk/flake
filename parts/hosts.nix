@@ -13,7 +13,10 @@
       hostsDir = ../hosts;
       mkSystem = hostName:
         lib.nameValuePair hostName (lib.nixosSystem {
-          specialArgs = {inherit inputs; flake = self;};
+          specialArgs = {
+            inherit inputs;
+            flake = self;
+          };
           modules = [
             (lib.path.append hostsDir hostName)
             self.nixosModules.default

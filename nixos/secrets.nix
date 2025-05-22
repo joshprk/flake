@@ -1,4 +1,8 @@
-{config, lib, ...}: {
+{
+  config,
+  lib,
+  ...
+}: {
   options.modules.secrets = {
     pubkeyStore = lib.mkOption {
       type = with lib.types; attrsOf str;
@@ -21,7 +25,6 @@
       defaultSopsFile = ./secrets/default.yaml;
 
       secrets = {
-
       };
     };
 

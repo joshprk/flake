@@ -1,4 +1,8 @@
-{config, lib, ...}: let
+{
+  config,
+  lib,
+  ...
+}: let
   cfg = config.user.nvim;
 in {
   options.user.nvim = {

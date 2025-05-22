@@ -1,4 +1,9 @@
-{config, lib, pkgs, ...}: let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   cfg = config.user.git;
 in {
   options.user.git = {

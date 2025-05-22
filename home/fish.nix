@@ -1,4 +1,9 @@
-{config, lib, pkgs, ...}: let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   cfg = config.user.fish;
 in {
   options.user.fish = {
@@ -7,7 +12,7 @@ in {
       description = "Whether to enable the fish home module.";
       default = false;
     };
-    
+
     package = lib.mkOption {
       type = lib.types.package;
       description = "The fish package to use.";
