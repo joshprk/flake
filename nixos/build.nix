@@ -31,9 +31,18 @@ in {
       ''}";
     };
 
+    nixpkgs = {
+      config = {
+        allowUnfree = true;
+        cudaSupport = true;
+      };
+      flake.setNixPath = true;
+    };
+
     nix.settings = {
       experimental-features = ["nix-command" "flakes"];
       use-xdg-base-directories = true;
+      trusted-users = ["@wheel"];
     };
   };
 }
