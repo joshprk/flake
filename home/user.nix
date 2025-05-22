@@ -8,6 +8,7 @@
     fish.enable = true;
     git.enable = true;
     nvim.enable = true;
+    ripgrep.enable = true;
 
     git.config = {
       user.name = "Joshua Park";
