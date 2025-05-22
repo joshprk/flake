@@ -10,7 +10,6 @@
   modules = {
     impermanence.enable = true;
     home.enable = true;
-
     openssh = {
       enable = true;
       secure = true;
