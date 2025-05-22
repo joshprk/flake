@@ -18,7 +18,7 @@
   };
 
   users.users.root = {
-    openssh.authorizedKeys.keys = [config.modules.secrets.publicKeyTable.master];
+    openssh.authorizedKeys.keys = [config.modules.secrets.pubkeyStore.root];
   };
 
   zramSwap.enable = true;

@@ -38,7 +38,7 @@ in {
       extraGroups = ["wheel"];
       shell = pkgs.fish;
       hashedPassword = "$y$j9T$U5SE4t9DYmwelV9Lv4cM2.$6c9GIjBWUFVS2cQ2PNFS7lvuSbVlX/W8d9zZkRI.XcB";
-      openssh.authorizedKeys.keys = [config.modules.secrets.publicKeyTable.joshua];
+      openssh.authorizedKeys.keys = [config.modules.secrets.pubkeyStore.joshua];
     };
 
     home-manager.users.joshua = {
