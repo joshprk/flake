@@ -29,11 +29,11 @@
         content.extraArgs = ["-f"];
         content.subvolumes."/home" = {
           mountOptions = ["compress=zstd" "noatime"];
-          mountpoint = "/home"
+          mountpoint = "/home";
         };
         content.subvolumes."/nix" = {
           mountOptions = ["compress=zstd" "noatime"];
-          mountpoint = "/nix"
+          mountpoint = "/nix";
         };
       };
     };
