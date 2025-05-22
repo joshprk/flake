@@ -1,4 +1,4 @@
-{...}: {
+{config, ...}: {
   imports = [
     ./disko.nix
     ./hardware-configuration.nix
@@ -10,6 +10,7 @@
   modules = {
     impermanence.enable = true;
     home.enable = true;
+
     openssh = {
       enable = true;
       secure = true;
@@ -17,9 +18,7 @@
   };
 
   users.users.root = {
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICOimZhc+sD7K1zHQgAX66KpB2L/daf6fxIix541Sb7I"
-    ];
+    openssh.authorizedKeys.keys = [config.modules.secrets.publicKeyTable.master];
   };
 
   zramSwap.enable = true;
