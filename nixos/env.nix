@@ -3,6 +3,11 @@
   };
 
   config = {
-    environment.enableAllTerminfo = true;
+    environment = {
+      enableAllTerminfo = true;
+      variables = {
+        NIXOS_OZONE_WL = "1";
+      };
+    };
   };
 }
