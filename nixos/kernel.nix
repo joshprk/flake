@@ -24,13 +24,16 @@ in {
         };
         efi.canTouchEfiVariables = true;
       };
-
-      consoleLogLevel = 0;
-      initrd.verbose = false;
+      initrd = {
+        systemd.enable = true;
+        verbose = false;
+      };
       plymouth.enable = true;
+      consoleLogLevel = 0;
       kernelParams = ["quiet" "plymouth.use-simpledrm"];
+      kernelPackages = cfg.package;
     };
 
-    boot.kernelPackages = cfg.package;
+    services.irqbalance.enable = lib.mkDefault true;
   };
 }
