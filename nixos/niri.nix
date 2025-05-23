@@ -51,14 +51,14 @@ in {
       serviceConfig.ExecStart = lib.mkForce cfg.polkit.command;
     };
 
-    # Audio setup
-    security.rtkit.enable = true;
     services.pipewire = {
       enable = true;
       pulse.enable = true;
     };
 
-    # Enable networking by default to prevent lockout
+    services.upower.enable = lib.mkDefault true;
+
+    security.rtkit.enable = true;
     networking.networkmanager.enable = lib.mkDefault true;
   };
 }
