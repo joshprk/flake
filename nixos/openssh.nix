@@ -40,7 +40,7 @@ in {
 
       settings = lib.mkMerge [
         cfg.settings
-        (lib.mkIf (cfg.secure) {
+        (lib.mkIf cfg.secure {
           PasswordAuthentication = false;
         })
       ];

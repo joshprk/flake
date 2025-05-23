@@ -1,4 +1,9 @@
-{config, lib, nixosConfig, ...}: let
+{
+  config,
+  lib,
+  nixosConfig,
+  ...
+}: let
   cfg = config.user.niri;
 in {
   options.user.niri = {

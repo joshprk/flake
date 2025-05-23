@@ -14,8 +14,8 @@ in {
   };
 
   config = let
-    sessionVariables = config.home.sessionVariables;
-    xdg = config.xdg;
+    inherit (config.home) sessionVariables;
+    inherit (config) xdg;
   in
     lib.mkIf cfg.enable {
       home.sessionVariables = {
