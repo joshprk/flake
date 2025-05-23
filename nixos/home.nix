@@ -47,6 +47,12 @@ in {
       home.stateVersion = "25.11";
     };
 
+    home-manager = {
+      useGlobalPkgs = true;
+      useUserPackages = true;
+      sharedModules = [flake.homeModules.default];
+    };
+
     programs.fish = {
       enable = true;
       interactiveShellInit = ''
@@ -67,10 +73,15 @@ in {
       '';
     };
 
-    home-manager = {
-      useGlobalPkgs = true;
-      useUserPackages = true;
-      sharedModules = lib.singleton flake.homeModules.default;
+    systemd.user.services.niri-init = lib.mkIf config.modules.niri.enable {
+      description = "Initialize niri on user session";
+      after = ["default.target"];
+      wantedBy = ["default.target"];
+      serviceConfig.ExecStart = "${config.programs.niri.package}/bin/niri-session";
+      path = with pkgs; [bash];
     };
+
+    services.getty.autologinUser = lib.mkIf config.modules.niri.enable "joshua";
   };
 }
+
