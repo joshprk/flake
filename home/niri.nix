@@ -15,10 +15,13 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    programs.niri.enable = true;
-    programs.niri.settings = {
-      binds = with config.lib.niri.actions; {
-        "Mod+Q".action = spawn "ghostty";
+    programs.niri = {
+      inherit (nixosConfig.programs.niri) package;
+      enable = true;
+      settings = {
+        binds = with config.lib.niri.actions; {
+          "Mod+Q".action = spawn "ghostty";
+        };
       };
     };
 

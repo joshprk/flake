@@ -1,4 +1,4 @@
-{inputs, ...}: {
+{inputs, lib, ...}: {
   flake = with inputs; {
     nixosModules.default.imports = [
       disko.nixosModules.disko
@@ -13,5 +13,10 @@
       nixvim.homeManagerModules.nixvim
       sops.homeManagerModules.sops
     ];
+
+    overlays.default = final: prev:
+      with lib; foldl recursiveUpdate {} (map (fn: fn final prev) [
+        niri.overlays.niri
+      ]);
   };
 }

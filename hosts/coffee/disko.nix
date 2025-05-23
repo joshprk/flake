@@ -16,14 +16,13 @@
     };
 
     content.partitions.data = {
-      name = "data";
       size = "100%";
       content = {
-        type = "filesystem";
-        format = "luks";
+        name = "data";
+        type = "luks";
         settings = {
           allowDiscards = true;
-          #keyFile = "";
+          # keyFile = "."; # make declarative later through sops-nix
         };
         content.type = "btrfs";
         content.extraArgs = ["-f"];

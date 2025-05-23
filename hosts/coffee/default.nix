@@ -9,9 +9,14 @@
 
   modules = {
     impermanence.enable = true;
+    niri.enable = true;
     home = {
       enable = true;
       interactive = true;
+    };
+    openssh = {
+      enable = true;
+      secure = true;
     };
   };
 

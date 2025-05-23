@@ -38,6 +38,7 @@ in {
         cudaSupport = true;
       };
       flake.setNixPath = true;
+      overlays = [flake.overlays.default];
     };
 
     nix.settings = {

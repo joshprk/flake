@@ -13,6 +13,12 @@ in {
       default = false;
     };
 
+    package = lib.mkOption {
+      type = lib.types.package;
+      description = "The niri package to use.";
+      default = pkgs.niri-unstable;
+    };
+
     gnome-keyring = lib.mkOption {
       type = lib.types.bool;
       description = "Whether to enable the Gnome Keyring";
