@@ -4,6 +4,7 @@
   This is used to enable home modules for the single-user.
   */
   user = {
+    direnv.enable = true;
     env.enable = true;
     fish.enable = true;
     git.enable = true;
