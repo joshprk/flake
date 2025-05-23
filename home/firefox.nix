@@ -1,4 +1,10 @@
-{config, lib, pkgs, nixosConfig, ...}: let
+{
+  config,
+  lib,
+  pkgs,
+  nixosConfig,
+  ...
+}: let
   cfg = config.user.firefox;
 in {
   options.user.firefox = {
@@ -60,9 +66,15 @@ in {
             Status = "locked";
           };
         in {
-          "browser.contentblocking.category" = { Value = "strict"; Status = "locked"; };
+          "browser.contentblocking.category" = {
+            Value = "strict";
+            Status = "locked";
+          };
           "browser.topsites.contile.enabled" = lock-false;
-          "browser.toolbars.bookmarks.visibility" = { Value = "never"; Status = "locked"; };
+          "browser.toolbars.bookmarks.visibility" = {
+            Value = "never";
+            Status = "locked";
+          };
           "browser.formfill.enable" = lock-false;
           "browser.search.suggest.enabled" = lock-false;
           "browser.search.suggest.enabled.private" = lock-false;
@@ -78,7 +90,10 @@ in {
           "browser.newtabpage.activity-stream.system.showSponsored" = lock-false;
           "browser.newtabpage.activity-stream.showSponsoredTopSites" = lock-false;
           "browser.tabs.closeWindowWithLastTab" = lock-false;
-          "browser.ml.chat.provider" = { Value = "https://chatgpt.com"; Status = "locked"; };
+          "browser.ml.chat.provider" = {
+            Value = "https://chatgpt.com";
+            Status = "locked";
+          };
           "browser.ml.chat.shortcuts" = lock-false;
           "extensions.pocket.enabled" = lock-false;
           "extensions.screenshots.disabled" = lock-true;
