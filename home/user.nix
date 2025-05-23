@@ -8,6 +8,7 @@
     env.enable = true;
     fish.enable = true;
     git.enable = true;
+    ghostty.enable = true;
     nvim.enable = true;
     ripgrep.enable = true;
 

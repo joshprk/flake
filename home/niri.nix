@@ -20,12 +20,12 @@ in {
       enable = true;
       settings = {
         binds = with config.lib.niri.actions; {
-          "Mod+Q".action = spawn "ghostty";
+          "Mod+Q".action = spawn "$TERMINAL";
         };
       };
     };
 
     # set certain software to default to not get locked out
-    programs.ghostty.enable = lib.mkDefault true;
+    modules.ghostty.enable = lib.mkDefault true;
   };
 }
