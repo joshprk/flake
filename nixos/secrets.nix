@@ -35,9 +35,11 @@ in {
       localStorageDir = ./.. + "/secrets/rekeyed/${config.networking.hostName}";
     };
 
-    age.secrets = {
-      coffee-disk.rekeyFile = ../secrets/coffee-disk.age;
-      joshua-password.rekeyFile = ../secrets/joshua-password.age;
-    };
+    age.secrets = lib.pipe ../secrets [
+      builtins.readDir
+      (lib.filterAttrs (_: type: type == "regular"))
+      builtins.attrNames
+      (map (name: lib.nameValuePair name {rekeyFile = ../secrets + "/${name}";}))
+    ];
   };
 }
