@@ -22,10 +22,11 @@
       stylix.homeModules.stylix
     ];
 
-    overlays.default = with lib; final: prev:
-      foldl recursiveUpdate {} (map (fn: fn final prev) [
-        agenix-rekey.overlays.default
-        niri.overlays.niri
-      ]);
+    overlays.default = with lib;
+      final: prev:
+        foldl recursiveUpdate {} (map (fn: fn final prev) [
+          agenix-rekey.overlays.default
+          niri.overlays.niri
+        ]);
   };
 }

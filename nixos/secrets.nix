@@ -24,6 +24,13 @@ in {
       };
       readOnly = true;
     };
+
+    secretsPath = lib.mkOption {
+      type = lib.types.path;
+      description = "The secrets folder path.";
+      default = ../secrets;
+      readOnly = true;
+    };
   };
 
   config = {
@@ -35,11 +42,24 @@ in {
       localStorageDir = ./.. + "/secrets/rekeyed/${config.networking.hostName}";
     };
 
-    age.secrets = lib.pipe ../secrets [
-      builtins.readDir
-      (lib.filterAttrs (_: type: type == "regular"))
-      builtins.attrNames
-      (map (name: lib.nameValuePair name {rekeyFile = ../secrets + "/${name}";}))
+    age.secrets =
+      if builtins.pathExists cfg.secretsPath
+      then
+        lib.pipe cfg.secretsPath [
+          builtins.readDir
+          builtins.attrNames
+          (builtins.filter (lib.hasSuffix ".age"))
+          (map (lib.removeSuffix ".age"))
+          (map (name:
+            lib.nameValuePair name {
+              rekeyFile = lib.path.append cfg.secretsPath "${name}.age";
+            }))
+          builtins.listToAttrs
+        ]
+      else {};
+
+    age.identityPaths = lib.mkIf config.modules.impermanence.enable [
+      "/nix/persist/etc/ssh/ssh_host_ed25519_key"
     ];
   };
 }

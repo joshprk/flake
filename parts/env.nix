@@ -5,10 +5,11 @@
     system,
     ...
   }: {
-    _module.args.pkgs = with inputs; import nixpkgs {
-      inherit system;
-      overlays = [self.overlays.default];
-    };
+    _module.args.pkgs = with inputs;
+      import nixpkgs {
+        inherit system;
+        overlays = [self.overlays.default];
+      };
 
     devShells.flake = pkgs.mkShellNoCC {
       packages = with pkgs; [
