@@ -97,6 +97,7 @@ in {
     stylix = {
       inherit (cfg) enable image base16Scheme;
       targets = {
+        firefox.profileNames = [config.home.username];
         nixvim.enable = false;
       };
       fonts = {
