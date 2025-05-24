@@ -28,7 +28,7 @@ in {
     polkit.enable = lib.mkOption {
       type = lib.types.bool;
       description = "Whether to enable polkit in the niri module.";
-      default = false;
+      default = true;
     };
 
     polkit.command = lib.mkOption {
