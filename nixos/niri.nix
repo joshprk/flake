@@ -41,6 +41,7 @@ in {
   config = lib.mkIf cfg.enable {
     # Sensible and minimal defaults for sodiboo/niri-flake
     modules.home.interactive = lib.mkDefault true;
+    modules.networking.enable = lib.mkDefault true;
     programs.niri.enable = true;
 
     services.gnome.gnome-keyring.enable = lib.mkForce cfg.gnome-keyring;
