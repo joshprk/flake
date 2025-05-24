@@ -12,26 +12,35 @@ in {
       description = "Which package to use for the Linux kernel.";
       default = pkgs.linuxPackages_latest;
     };
+
+    secureBoot = lib.mkOption {
+      type = lib.types.bool;
+      description = "Whether to enable secure boot through Limine.";
+      default = false;
+    };
   };
 
   config = {
-    boot = {
-      loader = {
-        limine = {
-          enable = true;
-          enrollConfig = true;
-          maxGenerations = 10;
-        };
-        efi.canTouchEfiVariables = true;
+    modules.impermanence.extraDirectories = ["/var/lib/sbctl"];
+
+    boot.loader = {
+      limine = {
+        enable = true;
+        secureBoot.enable = cfg.secureBoot;
+        enrollConfig = true;
+        maxGenerations = 10;
       };
-      initrd = {
-        systemd.enable = true;
-        verbose = false;
-      };
-      plymouth.enable = true;
-      consoleLogLevel = 0;
-      kernelParams = ["quiet" "plymouth.use-simpledrm"];
-      kernelPackages = cfg.package;
+      efi.canTouchEfiVariables = true;
     };
+
+    boot.initrd = {
+      systemd.enable = true;
+      verbose = false;
+    };
+
+    boot.plymouth.enable = true;
+    boot.consoleLogLevel = 0;
+    boot.kernelParams = ["quiet" "plymouth.use-simpledrm"];
+    boot.kernelPackages = cfg.package;
   };
 }
