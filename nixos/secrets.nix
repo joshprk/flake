@@ -14,13 +14,6 @@ in {
       readOnly = true;
     };
 
-    localStorageDir = {
-      type = lib.types.path;
-      description = "The local storage directory for rekeyed secrets.";
-      default = ./. + "/secrets/rekeyed/${config.networking.hostName}";
-      readOnly = true;
-    };
-
     pubkeyStore = lib.mkOption {
       type = with lib.types; attrsOf str;
       description = "A read-only table of named public SSH keys.";
@@ -35,10 +28,16 @@ in {
 
   config = {
     age.rekey = {
-      inherit (cfg) hostPubkey localStorageDir;
+      inherit (cfg) hostPubkey;
       agePlugins = with pkgs; [age-plugin-fido2-hmac];
-      masterIdentities = [../secrets/id.pub];
+      masterIdentities = [../identity.pub];
       storageMode = "local";
+      localStorageDir = ./.. + "/secrets/rekeyed/${config.networking.hostName}";
+    };
+
+    age.secrets = {
+      coffee-disk.rekeyFile = ../secrets/coffee-disk.age;
+      joshua-password.rekeyFile = ../secrets/joshua-password.age;
     };
   };
 }

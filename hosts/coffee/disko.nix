@@ -1,4 +1,4 @@
-{...}: {
+{config, ...}: {
   disko.devices.disk.system = {
     device = "/dev/nvme0n1";
     type = "disk";
@@ -22,7 +22,7 @@
         type = "luks";
         settings = {
           allowDiscards = true;
-          # keyFile = "."; # make declarative later through sops-nix
+          keyFile = config.age.secrets.coffee-disk.path;
         };
         content.type = "btrfs";
         content.extraArgs = ["-f"];
