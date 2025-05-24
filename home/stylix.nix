@@ -109,6 +109,8 @@ in {
       iconTheme = cfg.iconTheme // {enable = true;};
     };
 
+    services.hyprpaper.enable = true;
+
     home.file = {
       ".themes/adw-gtk3".enable = false;
       ".icons/${config.stylix.cursor.name}".enable = false;
