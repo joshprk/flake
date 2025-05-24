@@ -145,6 +145,12 @@ in {
       };
     };
 
+    xdg = {
+      enable = true;
+      mime.enable = true;
+      portal.enable = true;
+    };
+
     # set certain software to default to not get locked out
     user.ghostty.enable = lib.mkDefault true;
   };

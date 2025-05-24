@@ -21,10 +21,7 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    programs.fish = {
-      inherit (cfg) enable package;
-    };
-
+    programs.fish = {inherit (cfg) enable package;};
     programs.man.generateCaches = false;
   };
 }

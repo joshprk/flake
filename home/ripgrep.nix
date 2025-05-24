@@ -21,7 +21,6 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    programs.ripgrep.enable = true;
-    programs.ripgrep.package = cfg.package;
+    programs.ripgrep = {inherit (cfg) enable package;};
   };
 }

@@ -1,4 +1,9 @@
-{config, lib, pkgs, ...}: let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   cfg = config.user.ghostty;
 in {
   options.user.ghostty = {
@@ -17,18 +22,20 @@ in {
 
   config = lib.mkIf cfg.enable {
     home.sessionVariables = {
-      TERMINAL = "${cfg.package}";
+      TERMINAL = "${cfg.package}/bin/ghostty";
     };
 
     programs.ghostty = {
       inherit (cfg) enable package;
-      enableFishIntegration = config.programs.fish.enable;
       settings = {
         auto-update = "off";
         focus-follows-mouse = true;
         gtk-single-instance = true;
         shell-integration-features = "sudo";
       };
+      enableBashIntegration = lib.mkDefault config.programs.bash.enable;
+      enableFishIntegration = lib.mkDefault config.programs.fish.enable;
+      enableZshIntegration = lib.mkDefault config.programs.zsh.enable;
     };
   };
 }

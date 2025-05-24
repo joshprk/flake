@@ -6,6 +6,20 @@
   ...
 }: let
   cfg = config.user.firefox;
+  utils = {
+    lock-false = {
+      Value = false;
+      Status = "locked";
+    };
+    lock-true = {
+      Value = true;
+      Status = "locked";
+    };
+    addon = id: {
+      install_url = "https://addons.mozilla.org/firefox/downloads/latest/${id}/latest.xpi";
+      installation_mode = "force_installed";
+    };
+  };
 in {
   options.user.firefox = {
     enable = lib.mkOption {
@@ -19,90 +33,83 @@ in {
       description = "The Firefox module to use.";
       default = pkgs.firefox;
     };
+
+    addons = lib.mkOption {
+      type = lib.types.attrs;
+      description = "Read-only attrset of Firefox addons.";
+      default = with utils; {
+        "*" = {installation_mode = "blocked";};
+        "uBlock0@raymondhill.net" = addon "ublock-origin";
+        "{446900e4-71c2-419f-a6a7-df9c091e268b}" =
+          addon "bitwarden-password-manager";
+      };
+      readOnly = true;
+    };
+
+    preferences = lib.mkOption {
+      type = lib.types.attrs;
+      description = "Read-only attrset of Firefox preferences.";
+      default = with utils; {
+        "browser.topsites.contile.enabled" = lock-false;
+        "browser.search.suggest.enabled" = lock-false;
+        "browser.search.suggest.enabled.private" = lock-false;
+        "browser.urlbar.suggest.searches" = lock-false;
+        "browser.urlbar.showSearchSuggestionsFirst" = lock-false;
+        "browser.newtabpage.activity-stream.feeds.section.topstories" = lock-false;
+        "browser.newtabpage.activity-stream.feeds.snippets" = lock-false;
+        "browser.newtabpage.activity-stream.section.highlights.includePocket" = lock-false;
+        "browser.newtabpage.activity-stream.section.highlights.includeBookmarks" = lock-false;
+        "browser.newtabpage.activity-stream.section.highlights.includeDownloads" = lock-false;
+        "browser.newtabpage.activity-stream.section.highlights.includeVisited" = lock-false;
+        "browser.newtabpage.activity-stream.showSponsored" = lock-false;
+        "browser.newtabpage.activity-stream.system.showSponsored" = lock-false;
+        "browser.newtabpage.activity-stream.showSponsoredTopSites" = lock-false;
+        "browser.tabs.closeWindowWithLastTab" = lock-false;
+        "sidebar.verticalTabs" = lock-true;
+      };
+      readOnly = true;
+    };
   };
 
   config = lib.mkIf cfg.enable {
-    # clean this up later
     programs.firefox = {
       inherit (cfg) enable package;
       languagePacks = ["en-US"];
       policies = {
-        DisableTelemetry = true;
-        DisableFirefoxStudies = true;
-        EnableTrackingProtection = {
-          Value = true;
-          Locked = true;
-          Cryptomining = true;
-          Fingerprinting = true;
-        };
-        DisablePocket = true;
-        DisableFirefoxAccounts = true;
-        DisableAccounts = true;
+        AutofillAddressEnabled = false;
+        AutofillCreditCardEnabled = false;
+        BlockAboutProfiles = true;
         DisableFirefoxScreenshots = true;
+        DisableFirefoxStudies = true;
+        DisablePocket = true;
+        DisableProfileImport = true;
+        DisableTelemetry = true;
+        DisplayBookmarksToolbar = "never";
+        DisplayMenuBar = "never";
+        DontCheckDefaultBrowser = true;
+        EnableTrackingProtection.Value = true;
+        EnableTrackingProtection.Locked = true;
+        EnableTrackingProtection.Cryptomining = true;
+        EnableTrackingProtection.Fingerprinting = true;
+        OfferToSaveLogins = false;
         OverrideFirstRunPage = "";
         OverridePostUpdatePage = "";
-        DontCheckDefaultBrowser = true;
-        ExtensionSettings = {
-          "*" = {
-            installation_mode = "blocked";
-          };
-          "uBlock0@raymondhill.net" = {
-            install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
-            installation_mode = "force_installed";
-          };
-          "{446900e4-71c2-419f-a6a7-df9c091e268b}" = {
-            install_url = "https://addons.mozilla.org/firefox/downloads/latest/bitwarden-password-manager/latest.xpi";
-            installation_mode = "force_installed";
-          };
-        };
-        Preferences = let
-          lock-false = {
-            Value = false;
-            Status = "locked";
-          };
-
-          lock-true = {
-            Value = true;
-            Status = "locked";
-          };
-        in {
-          "browser.contentblocking.category" = {
-            Value = "strict";
-            Status = "locked";
-          };
-          "browser.topsites.contile.enabled" = lock-false;
-          "browser.toolbars.bookmarks.visibility" = {
-            Value = "never";
-            Status = "locked";
-          };
-          "browser.formfill.enable" = lock-false;
-          "browser.search.suggest.enabled" = lock-false;
-          "browser.search.suggest.enabled.private" = lock-false;
-          "browser.urlbar.suggest.searches" = lock-false;
-          "browser.urlbar.showSearchSuggestionsFirst" = lock-false;
-          "browser.newtabpage.activity-stream.feeds.section.topstories" = lock-false;
-          "browser.newtabpage.activity-stream.feeds.snippets" = lock-false;
-          "browser.newtabpage.activity-stream.section.highlights.includePocket" = lock-false;
-          "browser.newtabpage.activity-stream.section.highlights.includeBookmarks" = lock-false;
-          "browser.newtabpage.activity-stream.section.highlights.includeDownloads" = lock-false;
-          "browser.newtabpage.activity-stream.section.highlights.includeVisited" = lock-false;
-          "browser.newtabpage.activity-stream.showSponsored" = lock-false;
-          "browser.newtabpage.activity-stream.system.showSponsored" = lock-false;
-          "browser.newtabpage.activity-stream.showSponsoredTopSites" = lock-false;
-          "browser.tabs.closeWindowWithLastTab" = lock-false;
-          "browser.ml.chat.provider" = {
-            Value = "https://chatgpt.com";
-            Status = "locked";
-          };
-          "browser.ml.chat.shortcuts" = lock-false;
-          "extensions.pocket.enabled" = lock-false;
-          "extensions.screenshots.disabled" = lock-true;
-          "extensions.formautofill.addresses.enabled" = lock-false;
-          "extensions.formautofill.creditCards.enabled" = lock-false;
-          "signon.rememberSignons" = lock-false;
-          "sidebar.verticalTabs" = lock-true;
-        };
+        PasswordManagerEnabled = false;
+        PromptForDownloadLocation = false;
+        SkipTermsOfUse = true;
+        ExtensionSettings = cfg.addons;
+        Preferences = cfg.preferences;
       };
+      profiles."${config.home.username}".isDefault = true;
     };
+
+    xdg.mimeApps.defaultApplications = builtins.listToAttrs (
+      map (type: lib.nameValuePair type ["firefox.desktop"]) [
+        "text/html"
+        "text/xml"
+        "x-scheme-handler/http"
+        "x-scheme-handler/https"
+      ]
+    );
   };
 }
