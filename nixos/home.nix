@@ -37,7 +37,7 @@ in {
       isNormalUser = true;
       extraGroups = ["wheel"];
       shell = pkgs.fish;
-      hashedPasswordFile = config.age.secrets.joshua-password.path;
+      password = "password";
       openssh.authorizedKeys.keys = [config.modules.secrets.pubkeyStore.joshua];
     };
 
