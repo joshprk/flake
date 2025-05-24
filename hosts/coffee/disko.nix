@@ -1,4 +1,4 @@
-{config, ...}: {
+{...}: {
   disko.devices.disk.system = {
     device = "/dev/nvme0n1";
     type = "disk";
@@ -20,10 +20,7 @@
       content = {
         name = "data";
         type = "luks";
-        settings = {
-          allowDiscards = true;
-          keyFile = config.age.secrets.coffee-disk.path;
-        };
+        settings.allowDiscards = true;
         content.type = "btrfs";
         content.extraArgs = ["-f"];
         content.subvolumes."/home" = {
