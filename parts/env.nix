@@ -9,6 +9,7 @@
         alejandra
         git
         statix
+        sops
       ];
     };
 
