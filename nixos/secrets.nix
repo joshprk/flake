@@ -1,30 +1,44 @@
 {
   config,
   lib,
+  pkgs,
   ...
-}: {
+}: let
+  cfg = config.modules.secrets;
+in {
   options.modules.secrets = {
+    hostPubkey = lib.mkOption {
+      type = with lib.types; nullOr str;
+      description = "The host pubkey obtained through `ssh-keyscan`.";
+      default = "/etc/ssh/ssh_host_ed25519_key.pub";
+      readOnly = true;
+    };
+
+    localStorageDir = {
+      type = lib.types.path;
+      description = "The local storage directory for rekeyed secrets.";
+      default = ./. + "/secrets/rekeyed/${config.networking.hostName}";
+      readOnly = true;
+    };
+
     pubkeyStore = lib.mkOption {
       type = with lib.types; attrsOf str;
       description = "A read-only table of named public SSH keys.";
       default = {
         root = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICOimZhc+sD7K1zHQgAX66KpB2L/daf6fxIix541Sb7I";
         joshua = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBYMjdyYJfwjRqHuyePy0xNRKYxeSuJ6e9I1g9F0eHsD";
+        coffee = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM7UAw64ySV7ZQRByyK+KVKtOZZ5K1uGCR/qzq88Okch";
       };
+      readOnly = true;
     };
   };
 
   config = {
-    sops = {
-      age = {
-        sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
-        keyFile = "/run/secret-keys/.systemkey";
-        generateKey = false;
-      };
-
-      defaultSopsFile = ./secrets/default.yaml;
+    age.rekey = {
+      inherit (cfg) hostPubkey localStorageDir;
+      agePlugins = with pkgs; [age-plugin-fido2-hmac];
+      masterIdentities = [../secrets/id.pub];
+      storageMode = "local";
     };
-
-    fileSystems."/etc/ssh".neededForBoot = true;
   };
 }
