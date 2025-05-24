@@ -33,7 +33,5 @@ in {
       kernelParams = ["quiet" "plymouth.use-simpledrm"];
       kernelPackages = cfg.package;
     };
-
-    services.irqbalance.enable = lib.mkDefault true;
   };
 }
