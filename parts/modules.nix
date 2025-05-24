@@ -16,6 +16,7 @@
       niri.homeModules.niri
       nixvim.homeManagerModules.nixvim
       sops.homeManagerModules.sops
+      stylix.homeModules.stylix
     ];
 
     overlays.default = with lib;
