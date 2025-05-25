@@ -105,6 +105,17 @@ in {
           "Mod+Ctrl+H".action = consume-or-expel-window-left;
           "Mod+Ctrl+L".action = consume-or-expel-window-right;
 
+          "Mod+W".action = focus-window-up;
+          "Mod+A".action = focus-column-left;
+          "Mod+S".action = focus-window-down;
+          "Mod+D".action = focus-column-right;
+          "Mod+Shift+W".action = move-window-up;
+          "Mod+Shift+A".action = move-column-left;
+          "Mod+Shift+S".action = move-window-down;
+          "Mod+Shift+D".action = move-column-right;
+          "Mod+Ctrl+A".action = consume-or-expel-window-left;
+          "Mod+Ctrl+D".action = consume-or-expel-window-right;
+
           "Mod+1".action = focus-workspace 1;
           "Mod+2".action = focus-workspace 2;
           "Mod+3".action = focus-workspace 3;
@@ -134,7 +145,6 @@ in {
           "Mod+Shift+F".action = fullscreen-window;
           "Mod+Ctrl+F".action = expand-column-to-available-width;
           "Mod+C".action = center-column;
-          "Mod+W".action = close-window;
           "Mod+T".action = toggle-window-floating;
           "Mod+Shift+T".action = switch-focus-between-floating-and-tiling;
 
