@@ -37,7 +37,6 @@ in {
 
     services.openssh = {
       inherit (cfg) enable package;
-
       settings = lib.mkMerge [
         cfg.settings
         (lib.mkIf cfg.secure {
