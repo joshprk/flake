@@ -29,7 +29,7 @@ in {
       authKeyFile = config.age.secrets.tskey.path;
     };
 
-    networking.networkmanager = {
+    networking.networkmanager = lib.mkIf config.modules.home.interactive {
       enable = true;
       wifi = {
         backend = "iwd";
@@ -37,6 +37,7 @@ in {
       };
     };
 
+    networking.useNetworkd = lib.mkIf (!config.modules.home.interactive) true;
     networking.nftables.enable = true;
   };
 }
