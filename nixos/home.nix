@@ -81,8 +81,11 @@ in {
       path = with pkgs; [bash];
     };
 
-    programs.dconf.enable = true;
-    services.dbus.implementation ="broker";
-    services.getty.autologinUser = lib.mkIf config.modules.niri.enable "joshua";
+    services.dbus = {
+      enable = true;
+      implementation ="broker";
+    };
+
+    services.getty.autologinUser = lib.mkIf cfg.interactive "joshua";
   };
 }

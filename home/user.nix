@@ -11,7 +11,6 @@
     ghostty.enable = true;
     nvim.enable = true;
     ripgrep.enable = true;
-    stylix.enable = true;
 
     git.config = {
       user.name = "Joshua Park";
