@@ -15,7 +15,6 @@
 
   users.users.root = {
     openssh.authorizedKeys.keys = [config.modules.secrets.pubkeyStore.root];
-    password = "recover";
   };
 
   zramSwap.enable = true;
