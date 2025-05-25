@@ -1,4 +1,4 @@
-{config, ...}: {
+{config, lib, pkgs, ...}: {
   imports = [
     ./disko.nix
     ./hardware-configuration.nix
@@ -11,6 +11,20 @@
     home.enable = true;
     openssh.enable = true;
     impermanence.enable = true;
+  };
+
+  containers = {
+    minecraft = {
+      config = {...}: {
+        services.minecraft-server = {
+          enable = true;
+          eula = true;
+        };
+
+        nixpkgs.pkgs = pkgs;
+        system.stateVersion = "25.11";
+      };
+    };
   };
 
   users.users.root = {
