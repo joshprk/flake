@@ -83,7 +83,7 @@ in {
 
     services.dbus = {
       enable = true;
-      implementation ="broker";
+      implementation = "broker";
     };
 
     services.getty.autologinUser = lib.mkIf cfg.interactive "joshua";

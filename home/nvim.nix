@@ -38,7 +38,7 @@ in {
         number = true;
         relativenumber = true;
         signcolumn = "number";
-        
+
         wrap = false;
         hidden = false;
         splitright = true;
@@ -200,7 +200,7 @@ in {
           ["FzfLua"]
           ++ (
             lib.optionals
-            config.programs.nixvim.plugins.noice.enable [ "Noice fzf" ]
+            config.programs.nixvim.plugins.noice.enable ["Noice fzf"]
           );
       };
 

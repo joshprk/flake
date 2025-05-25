@@ -24,15 +24,19 @@ in {
     programs.steam = {
       enable = true;
       package = let
-        overlay = prev: pkgs.buildFHSEnv (prev // {
-          extraBwrapArgs = prev.extraBwrapArgs ++ [
-            "--bind ${cfg.directory} $HOME"
-            "--chdir ${cfg.directory}"
-            "--dir ${cfg.directory}"
-          ];
-          chdirToPwd = false;
-          dieWithParent = true;
-        });
+        overlay = prev:
+          pkgs.buildFHSEnv (prev
+            // {
+              extraBwrapArgs =
+                prev.extraBwrapArgs
+                ++ [
+                  "--bind ${cfg.directory} $HOME"
+                  "--chdir ${cfg.directory}"
+                  "--dir ${cfg.directory}"
+                ];
+              chdirToPwd = false;
+              dieWithParent = true;
+            });
       in
         pkgs.steam.override {buildFHSEnv = overlay;};
       extraCompatPackages = with pkgs; [proton-ge-bin];
