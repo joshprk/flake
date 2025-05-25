@@ -17,6 +17,7 @@
         age-plugin-fido2-hmac
         alejandra
         git
+        sbctl
         statix
       ];
     };
