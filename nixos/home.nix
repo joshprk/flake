@@ -73,19 +73,18 @@ in {
       '';
     };
 
-    systemd.user.services.niri-init = lib.mkIf config.modules.niri.enable {
-      description = "Initialize niri on user session";
-      after = ["default.target"];
-      wantedBy = ["default.target"];
-      serviceConfig.ExecStart = "${config.programs.niri.package}/bin/niri-session";
-      path = with pkgs; [bash];
-    };
-
     services.dbus = {
       enable = true;
       implementation = "broker";
     };
 
-    services.getty.autologinUser = lib.mkIf cfg.interactive "joshua";
+    services.greetd = lib.mkIf (cfg.interactive && config.modules.niri.enable) {
+      enable = true;
+      settings = rec {
+        initial_session.command = "${config.modules.niri.package}/bin/niri-session";
+        initial_session.user = "joshua";
+        default_session = initial_session;
+      };
+    };
   };
 }
