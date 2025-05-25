@@ -31,6 +31,7 @@
         amdgpuBusId = "PCI:53:0:0";
       };
     };
+    steam.enable = true;
   };
 
   services.tlp.enable = true;

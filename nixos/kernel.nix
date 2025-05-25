@@ -24,9 +24,8 @@ in {
     modules.impermanence.extraDirectories = ["/var/lib/sbctl"];
 
     boot.loader = {
-      systemd-boot.enable = true;
       limine = {
-        enable = false;
+        enable = true;
         secureBoot.enable = cfg.secureBoot;
         enrollConfig = true;
         maxGenerations = 10;
