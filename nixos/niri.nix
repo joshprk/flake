@@ -40,26 +40,29 @@ in {
 
   config = lib.mkIf cfg.enable {
     # Sensible and minimal defaults for sodiboo/niri-flake
-    modules.home.interactive = lib.mkDefault true;
-    modules.networking.enable = lib.mkDefault true;
+    modules.home = {
+      enable = lib.mkDefault true;
+      interactive = lib.mkDefault true;
+    };
+
     programs.niri.enable = true;
 
     services.gnome.gnome-keyring.enable = lib.mkForce cfg.gnome-keyring;
-    security.polkit.enable = lib.mkForce cfg.polkit.enable;
-
-    systemd.user.services.niri-flake-polkit = {
-      enable = lib.mkForce cfg.polkit.enable;
-      serviceConfig.ExecStart = lib.mkForce cfg.polkit.command;
-    };
+    services.upower.enable = lib.mkDefault true;
 
     services.pipewire = {
       enable = true;
       pulse.enable = true;
     };
 
-    services.upower.enable = lib.mkDefault true;
-
+    security.polkit.enable = lib.mkForce cfg.polkit.enable;
     security.rtkit.enable = true;
+
+    systemd.user.services.niri-flake-polkit = {
+      enable = lib.mkForce cfg.polkit.enable;
+      serviceConfig.ExecStart = lib.mkForce cfg.polkit.command;
+    };
+
     networking.networkmanager.enable = lib.mkDefault true;
   };
 }

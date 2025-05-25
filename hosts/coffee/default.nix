@@ -8,16 +8,10 @@
   system.stateVersion = "25.11";
 
   modules = {
+    home.enable = true;
+    home.interactive = true;
     impermanence.enable = true;
     niri.enable = true;
-    home = {
-      enable = true;
-      interactive = true;
-    };
-    openssh = {
-      enable = true;
-      secure = true;
-    };
     nvidia = {
       enable = true;
       tuning = {
@@ -31,6 +25,7 @@
         amdgpuBusId = "PCI:53:0:0";
       };
     };
+    openssh.enable = true;
     steam.enable = true;
   };
 

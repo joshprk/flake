@@ -18,7 +18,7 @@ in {
   config = {
     environment.shellAliases = {
       update = "${pkgs.writeShellScript "update-command" ''
-        FLAKE="${config.modules.build.flakePath}"
+        FLAKE="${cfg.flakePath}"
         LAST_DRV="$(readlink /nix/var/nix/profiles/system --canonicalize)"
         nixos-rebuild switch --refresh --use-remote-sudo --flake $FLAKE
         NEW_DRV="$(readlink /nix/var/nix/profiles/system --canonicalize)"

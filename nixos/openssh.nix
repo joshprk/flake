@@ -25,7 +25,7 @@ in {
       default = pkgs.openssh;
     };
 
-    settings = lib.mkOption {
+    extraSettings = lib.mkOption {
       type = lib.types.attrs;
       description = "Configuration for `sshd_config(5)`.";
       default = {};
@@ -38,15 +38,11 @@ in {
     services.openssh = {
       inherit (cfg) enable package;
       settings = lib.mkMerge [
-        cfg.settings
-        (lib.mkIf cfg.secure {
-          PasswordAuthentication = false;
-        })
+        {PasswordAuthentication = false;}
+        cfg.extraSettings
       ];
     };
 
-    services.fail2ban = lib.mkIf cfg.secure {
-      enable = true;
-    };
+    services.fail2ban.enable = true;
   };
 }
