@@ -19,7 +19,7 @@ in {
       description = "A read-only table of named public SSH keys.";
       default = {
         root = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICOimZhc+sD7K1zHQgAX66KpB2L/daf6fxIix541Sb7I";
-        joshua = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBYMjdyYJfwjRqHuyePy0xNRKYxeSuJ6e9I1g9F0eHsD";
+        joshua = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHsWCW29WYEdf6qRcEm0R4pL84jIUoMyS4DruYdRrMpP";
         coffee = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM7UAw64ySV7ZQRByyK+KVKtOZZ5K1uGCR/qzq88Okch";
       };
       readOnly = true;
