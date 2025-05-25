@@ -13,17 +13,14 @@
     impermanence.enable = true;
   };
 
-  containers = {
-    minecraft = {
-      config = {...}: {
-        services.minecraft-server = {
-          enable = true;
-          eula = true;
-        };
-
-        nixpkgs.pkgs = pkgs;
-        system.stateVersion = "25.11";
+  containers.vaultwarden = {
+    autoStart = true;
+    config = {...}: {
+      services.vaultwarden = {
+        enable = true;
       };
+      nixpkgs.pkgs = pkgs;
+      system.stateVersion = "25.11";     
     };
   };
 

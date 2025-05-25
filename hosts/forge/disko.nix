@@ -35,11 +35,16 @@
     content.partitions.home = {
       name = "home";
       size = "100%";
-      content = {
-        type = "filesystem";
-        format = "btrfs";
-        mountpoint = "/home";
-        mountOptions = ["compress=zstd" "noatime"];
+      content.type = "btrfs";
+      content.subvolumes = {
+        "/home" = {
+          mountpoint = "/home";
+          mountOptions = ["compress=zstd" "noatime"];
+        };
+        "/containers" = {
+          mountpoint = "/var/lib/nixos-containers";
+          mountOptions = ["compress=zstd" "noatime"];
+        };
       };
     };
   };
