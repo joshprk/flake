@@ -10,7 +10,10 @@ in {
     hostPubkey = lib.mkOption {
       type = with lib.types; nullOr str;
       description = "The host pubkey obtained through `ssh-keyscan`.";
-      default = "/etc/ssh/ssh_host_ed25519_key.pub";
+      default = 
+        if builtins.hasAttr config.networking.hostName config.modules.secrets.pubkeyStore
+        then config.modules.secrets.pubkeyStore.${config.networking.hostName}
+        else "/etc/ssh/ssh_host_ed25519_key.pub";
       readOnly = true;
     };
 
