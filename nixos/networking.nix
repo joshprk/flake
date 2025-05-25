@@ -29,10 +29,6 @@ in {
       authKeyFile = config.age.secrets.tskey.path;
     };
 
-    services.resolved = {
-      enable = true;
-    };
-
     networking.networkmanager = {
       enable = true;
       wifi = {
