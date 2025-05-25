@@ -43,7 +43,7 @@ in {
       agePlugins = with pkgs; [age-plugin-fido2-hmac];
       masterIdentities = [../identity.pub];
       storageMode = "local";
-      localStorageDir = ./.. + "/secrets/rekeyed/${config.networking.hostName}";
+      localStorageDir = cfg.secretsPath + "/rekeyed/${config.networking.hostName}";
     };
 
     age.secrets =
