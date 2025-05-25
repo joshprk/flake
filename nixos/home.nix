@@ -82,6 +82,6 @@ in {
     };
 
     services.getty.autologinUser = lib.mkIf config.modules.niri.enable "joshua";
-    services.dbus.implementation = "broker";
+    services.dbus.implementation = lib.mkIf config.modules.home.interactive "broker";
   };
 }
