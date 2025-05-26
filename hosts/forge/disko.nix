@@ -19,8 +19,7 @@
       name = "nix";
       size = "100%";
       content = {
-        type = "filesystem";
-        format = "btrfs";
+        type = "btrfs";
         mountpoint = "/nix";
         mountOptions = ["compress=zstd" "noatime"];
       };
