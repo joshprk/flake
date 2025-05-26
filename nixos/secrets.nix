@@ -22,7 +22,7 @@ in {
       description = "A read-only table of named public SSH keys.";
       default = {
         root = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICOimZhc+sD7K1zHQgAX66KpB2L/daf6fxIix541Sb7I";
-        joshua = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHsWCW29WYEdf6qRcEm0R4pL84jIUoMyS4DruYdRrMpP";
+        joshua = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF92beeCMtKwyGHLUegSwcGR/Jro8nm11JUNCTxADu1o";
         alpine = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHc9NstrPV8eS9UYTfhhA2FmLBcCrJe2tAMT64263At5";
         coffee = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFVAxNp75ESefhc2xg7AIurxJsdm2B/Cy5cOcbFAaDhu";
         forge = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPj2fUvETXax9+BBM4poVr+t50IjqSGMcjchPmVw8UhN";
@@ -66,8 +66,5 @@ in {
     age.identityPaths = lib.mkIf config.modules.impermanence.enable [
       "/nix/persist/etc/ssh/ssh_host_ed25519_key"
     ];
-
-    # Any host without a pubkeyStore is considered in setup mode
-    users.users.root.password = lib.mkIf (cfg.hostPubkey == "/etc/ssh/ssh_host_ed25519_key.pub") "";
   };
 }
