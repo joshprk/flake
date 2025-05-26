@@ -10,6 +10,7 @@
   modules = {
     home.enable = true;
     home.interactive = true;
+    kernel.secureBoot = true;
     impermanence.enable = true;
     niri.enable = true;
     nvidia = {
