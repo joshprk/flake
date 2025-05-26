@@ -11,7 +11,7 @@
     };
 
   inputs = {
-    nixpkgs.url = "github:joshprk/nixpkgs?ref=limineineineineineine";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=master";
     nixpkgs-stable.url = "github:nixos/nixpkgs?ref=nixos-24.11";
 
     agenix = {
