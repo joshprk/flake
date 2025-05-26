@@ -27,12 +27,12 @@
     };
   };
 
-  disko.devices.disk.home = {
+  disko.devices.disk.data = {
     device = "/dev/sdb";
     type = "disk";
     content.type = "gpt";
 
-    content.partitions.home = {
+    content.partitions.data = {
       name = "home";
       size = "100%";
       content.type = "btrfs";
