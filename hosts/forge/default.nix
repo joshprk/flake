@@ -13,6 +13,35 @@
     impermanence.enable = true;
   };
 
+  services.nginx = let
+    cfg' = config.services.nginx;
+  in {
+    enable = true;
+    tailscaleAuth = {
+      enable = true;
+      user = "nginx";
+      group = "nginx";
+      virtualHosts = builtins.attrNames cfg'.virtualHosts;
+    };
+    virtualHosts."vault.joshprk.me" = {
+      forceSSL = true;
+      enableACME = false;
+      locations."/".extraConfig = ''
+        auth_request /auth;
+        proxy_pass https://192.168.100.1:8222;
+      '';
+      locations."/auth".extraConfig = ''
+        internal;
+        proxy_pass http://unix:${cfg'.tailscaleAuth.socketPath};
+        proxy_pass_request_body off;
+        proxy_set_header Host $http_host;
+        proxy set_header Remote-Addr $remote_addr;
+        proxy set_header Remote-Port $remote_port;
+        proxy set_header Original-URI $request_uri;
+      '';
+    };
+  };
+
   containers.vaultwarden = {
     autoStart = true;
     config = {...}: {
