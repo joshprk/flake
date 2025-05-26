@@ -21,7 +21,6 @@
       enable = true;
       user = "nginx";
       group = "nginx";
-      virtualHosts = builtins.attrNames cfg'.virtualHosts;
     };
     virtualHosts."vault.joshprk.me" = {
       forceSSL = true;
