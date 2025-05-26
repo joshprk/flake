@@ -27,6 +27,7 @@ in {
     services.tailscale = lib.mkIf cfg.addToTailnet {
       enable = true;
       authKeyFile = config.age.secrets.tskey.path;
+      extraUpFlags = ["--ssh"];
     };
 
     networking.networkmanager = lib.mkIf config.modules.home.interactive {

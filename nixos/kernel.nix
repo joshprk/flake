@@ -10,7 +10,10 @@ in {
     package = lib.mkOption {
       type = lib.types.raw;
       description = "Which package to use for the Linux kernel.";
-      default = pkgs.linuxPackages_latest;
+      default =
+        if config.modules.home.interactive
+        then pkgs.linuxPackages_zen
+        else pkgs.linuxPackages_latest;
     };
 
     secureBoot = lib.mkOption {
