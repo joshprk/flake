@@ -25,6 +25,7 @@ in {
         joshua = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHsWCW29WYEdf6qRcEm0R4pL84jIUoMyS4DruYdRrMpP";
         alpine = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHc9NstrPV8eS9UYTfhhA2FmLBcCrJe2tAMT64263At5";
         coffee = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFVAxNp75ESefhc2xg7AIurxJsdm2B/Cy5cOcbFAaDhu";
+        forge = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPj2fUvETXax9+BBM4poVr+t50IjqSGMcjchPmVw8UhN";
       };
       readOnly = true;
     };

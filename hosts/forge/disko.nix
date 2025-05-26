@@ -30,7 +30,6 @@
     device = "/dev/sdb";
     type = "disk";
     content.type = "gpt";
-
     content.partitions.data = {
       name = "home";
       size = "100%";
