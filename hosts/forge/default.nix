@@ -26,7 +26,6 @@
 
   users.users.root = {
     openssh.authorizedKeys.keys = [config.modules.secrets.pubkeyStore.root];
-    hashedPassword = "$y$j9T$LoFZELz8Ae4vHAFXY73wP1$Tla7Ir/1BsfNPjHSUc37.iLMKfG2dlkc3kg2u.IIeYA";
   };
 
   zramSwap.enable = true;
