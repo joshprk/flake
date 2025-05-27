@@ -23,7 +23,7 @@
       group = "nginx";
     };
     virtualHosts."vault.joshprk.me" = {
-      forceSSL = true;
+      forceSSL = false;
       enableACME = false;
       locations."/".extraConfig = ''
         auth_request /auth;
