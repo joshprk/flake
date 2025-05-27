@@ -15,7 +15,7 @@
 
   services.caddy = {
     enable = true;
-    virtualHosts."localhost".extraConfig = ''
+    virtualHosts."forge.joshprk.me".extraConfig = ''
       reverse_proxy ${config.containers.vaultwarden.hostAddress}:8222;
     '';
   };
