@@ -1,4 +1,9 @@
-{config, lib, pkgs, ...}: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   imports = [
     ./disko.nix
     ./hardware-configuration.nix
@@ -33,8 +38,17 @@
         };
       };
       nixpkgs.pkgs = pkgs;
-      system.stateVersion = "25.11";     
+      system.stateVersion = "25.11";
     };
+  };
+
+  services.dnsmasq = {
+    enable = true;
+    settings.address = ["/forge.joshprk.me/100.107.152.76"];
+  };
+
+  networking.firewall.interfaces."tailscale0" = {
+    allowedUDPPorts = [53];
   };
 
   users.users.root = {
