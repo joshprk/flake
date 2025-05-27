@@ -42,13 +42,8 @@
     };
   };
 
-  services.dnsmasq = {
-    enable = true;
-    settings.address = ["/forge.joshprk.me/100.107.152.76"];
-  };
-
   networking.firewall.interfaces."tailscale0" = {
-    allowedUDPPorts = [53];
+    allowedTCPPorts = [80 443];
   };
 
   users.users.root = {
