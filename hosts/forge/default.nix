@@ -13,49 +13,24 @@
     impermanence.enable = true;
   };
 
-  services.nginx = let
-    cfg' = config.services.nginx;
-  in {
+  services.caddy = {
     enable = true;
-    tailscaleAuth = {
-      enable = true;
-      user = "nginx";
-      group = "nginx";
-    };
-    virtualHosts."vault.joshprk.me" = {
-      forceSSL = false;
-      enableACME = false;
-      locations."/".extraConfig = ''
-        auth_request /auth;
-        auth_request_set $auth_user $upstream_http_tailscale_user;
-        auth_request_set $auth_name $upstream_http_tailscale_name;
-        auth_request_set $auth_login $upstream_http_tailscale_login;
-        auth_request_set $auth_tailnet $upstream_http_tailscale_tailnet;
-        auth_request_set $auth_profile_picture $upstream_http_tailscale_profile_picture;
-        proxy_set_header X-Webauth-User "$auth_user";
-        proxy_set_header X-Webauth-Name "$auth_name";
-        proxy_set_header X-Webauth-Login "$auth_login";
-        proxy_set_header X-Webauth-Tailnet "$auth_tailnet";
-        proxy_set_header X-Webauth-Profile-Picture "$auth_profile_picture";
-        proxy_pass http://192.168.100.1:8222;
-      '';
-      locations."/auth".extraConfig = ''
-        internal;
-        proxy_pass http://unix:${cfg'.tailscaleAuth.socketPath};
-        proxy_pass_request_body off;
-        proxy_set_header Host $http_host;
-        proxy set_header Remote-Addr $remote_addr;
-        proxy set_header Remote-Port $remote_port;
-        proxy set_header Original-URI $request_uri;
-      '';
-    };
+    virtualHosts."localhost".extraConfig = ''
+      reverse_proxy ${config.containers.vaultwarden.hostAddress}:8222;
+    '';
   };
 
   containers.vaultwarden = {
     autoStart = true;
+    privateNetwork = true;
+    hostAddress = "192.168.100.1";
     config = {...}: {
       services.vaultwarden = {
         enable = true;
+        settings = {
+          ROCKET_ADDRESS = "0.0.0.0";
+          ROCKET_PORT = 8222;
+        };
       };
       nixpkgs.pkgs = pkgs;
       system.stateVersion = "25.11";     
