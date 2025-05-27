@@ -27,7 +27,7 @@
       enableACME = false;
       locations."/".extraConfig = ''
         auth_request /auth;
-        proxy_pass https://192.168.100.1:8222;
+        proxy_pass http://192.168.100.1:8222;
       '';
       locations."/auth".extraConfig = ''
         internal;
