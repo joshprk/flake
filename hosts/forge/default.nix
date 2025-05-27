@@ -27,6 +27,16 @@
       enableACME = false;
       locations."/".extraConfig = ''
         auth_request /auth;
+        auth_request_set $auth_user $upstream_http_tailscale_user;
+        auth_request_set $auth_name $upstream_http_tailscale_name;
+        auth_request_set $auth_login $upstream_http_tailscale_login;
+        auth_request_set $auth_tailnet $upstream_http_tailscale_tailnet;
+        auth_request_set $auth_profile_picture $upstream_http_tailscale_profile_picture;
+        proxy_set_header X-Webauth-User "$auth_user";
+        proxy_set_header X-Webauth-Name "$auth_name";
+        proxy_set_header X-Webauth-Login "$auth_login";
+        proxy_set_header X-Webauth-Tailnet "$auth_tailnet";
+        proxy_set_header X-Webauth-Profile-Picture "$auth_profile_picture";
         proxy_pass http://192.168.100.1:8222;
       '';
       locations."/auth".extraConfig = ''
