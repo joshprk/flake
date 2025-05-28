@@ -257,7 +257,10 @@ in {
         enable = true;
         mockDevIcons = true;
         modules = {
+          ai = {n_lines = 500;};
+          diff = {style = "number";};
           icons = {};
+          surround = {};
         };
       };
 
