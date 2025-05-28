@@ -13,5 +13,11 @@
     impermanence.enable = true;
   };
 
+  # This is okay for Forge, but figure out a way to update when idle
+  system.autoUpgrade = {
+    enable = true;
+    flake = "github:joshprk/flake";
+  };
+
   zramSwap.enable = true;
 }
