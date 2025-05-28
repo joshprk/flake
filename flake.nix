@@ -11,8 +11,8 @@
     };
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=master";
-    nixpkgs-stable.url = "github:nixos/nixpkgs?ref=nixos-24.11";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs?ref=nixos-25.05";
 
     agenix = {
       url = "github:ryantm/agenix";
