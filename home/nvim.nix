@@ -38,15 +38,20 @@ in {
         number = true;
         relativenumber = true;
         signcolumn = "number";
+        ignorecase = true;
+        smartcase = true;
 
         wrap = false;
         hidden = false;
         splitright = true;
         splitbelow = true;
+        scrolloff = 10;
 
         swapfile = false;
         undofile = true;
         laststatus = 3;
+        confirm = true;
+        updatetime = 750;
       };
 
       globals = {
@@ -89,6 +94,16 @@ in {
           action = ''"+ygv'';
           key = "<C-c>";
           mode = ["v"];
+        }
+        {
+          action = "<Cmd>nohlsearch<CR>";
+          key = "<Esc>";
+          mode = ["n"];
+        }
+        {
+          action = "<C-\\><C-n>";
+          key = "<Esc><Esc>";
+          mode = ["t"];
         }
         {
           action = "<Cmd>tabnext<CR>";
