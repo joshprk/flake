@@ -51,7 +51,6 @@ in {
         undofile = true;
         laststatus = 3;
         confirm = true;
-        updatetime = 750;
       };
 
       globals = {
