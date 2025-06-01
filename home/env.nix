@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: let
   cfg = config.user.env;
@@ -55,6 +56,12 @@ in {
         XAUTHORITY = "$XDG_RUNTIME_DIR/Xauthority";
         XINITRC = "${xdg.configHome}/X11/xinitrc";
         XSERVERRC = "${xdg.configHome}/X11/xserverrc";
+      };
+
+      home.shellAliases = {
+        l = "${pkgs.lsr}/bin/lsr -Al";
+        ll = "${pkgs.lsr}/bin/lsr -l";
+        ls = "${pkgs.lsr}/bin/lsr";
       };
 
       home.file = {
