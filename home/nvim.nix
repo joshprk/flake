@@ -86,6 +86,11 @@ in {
           event = ["BufReadPost"];
           pattern = ["*"];
         }
+        {
+          command = "if exists(':rshada') | rshada | wshada | endif";
+          event = ["CursorHold" "TextYankPost" "FocusGained" "FocusLost"];
+          pattern = ["*"];
+        }
       ];
 
       keymaps = [
@@ -106,12 +111,12 @@ in {
         }
         {
           action = "<Cmd>tabnext<CR>";
-          key = "s";
+          key = "<Tab>";
           mode = ["n"];
         }
         {
           action = "<Cmd>tabprev<CR>";
-          key = "S";
+          key = "<S-Tab>";
           mode = ["n"];
         }
         {
@@ -119,6 +124,12 @@ in {
           key = "<Leader><Tab>";
           mode = ["n" "x" "o"];
           options.desc = " Open FzfLua";
+        }
+        {
+          action = "<Cmd>FzfLua buffers<CR>";
+          key = "<Leader><Space>";
+          mode = ["n" "x" "o"];
+          options.desc = " Buffers";
         }
         {
           action.__raw = ''function() require("flash").jump() end'';
@@ -131,6 +142,12 @@ in {
           key = "<Leader>F";
           mode = ["n" "x" "o"];
           options.desc = " Flash Treesitter";
+        }
+        {
+          action = "<Cmd>ToggleTerm<CR>";
+          key = "<Leader>.";
+          mode = ["n" "x" "o"];
+          options.desc = " Open Terminal";
         }
       ];
 
@@ -221,11 +238,11 @@ in {
       plugins.lsp = {
         enable = true;
         servers = {
+          astro.enable = true;
           clangd.enable = true;
           pyright.enable = true;
           nixd.enable = true;
           ts_ls.enable = true;
-          svelte.enable = true;
         };
       };
 
@@ -261,6 +278,11 @@ in {
           icons = {};
           surround = {};
         };
+      };
+
+      plugins.toggleterm = {
+        enable = true;
+        lazyLoad.settings.event = "DeferredUIEnter";
       };
 
       plugins.treesitter = {
