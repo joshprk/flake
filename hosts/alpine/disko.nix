@@ -11,7 +11,7 @@
         type = "filesystem";
         format = "vfat";
         mountpoint = "/boot";
-        mountOptions = ["umask=0077"];
+        mountOptions = ["umask=0077" "noatime"];
       };
     };
 
@@ -49,6 +49,6 @@
 
   disko.devices.nodev."/" = {
     fsType = "tmpfs";
-    mountOptions = ["size=50%" "defaults" "mode=755"];
+    mountOptions = ["size=50%" "defaults" "mode=755" "noatime"];
   };
 }
