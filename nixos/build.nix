@@ -3,6 +3,7 @@
   lib,
   pkgs,
   flake,
+  inputs,
   ...
 }: let
   cfg = config.modules.build;
@@ -45,6 +46,10 @@ in {
       experimental-features = ["nix-command" "flakes"];
       use-xdg-base-directories = true;
       trusted-users = ["@wheel"];
+    };
+
+    nix.registry = {
+      nixpkgs.flake = inputs.nixpkgs;
     };
 
     system.configurationRevision = flake.rev or flake.dirtyRev or "unknown-dirty";
