@@ -58,12 +58,6 @@ in {
         XSERVERRC = "${xdg.configHome}/X11/xserverrc";
       };
 
-      home.shellAliases = {
-        l = "${pkgs.lsr}/bin/lsr -Al";
-        ll = "${pkgs.lsr}/bin/lsr -l";
-        ls = "${pkgs.lsr}/bin/lsr";
-      };
-
       home.file = {
         "${sessionVariables.NPM_CONFIG_USERCONFIG}".text = ''
           prefix=${xdg.dataHome}/npm

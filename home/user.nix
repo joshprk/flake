@@ -1,4 +1,4 @@
-{...}: {
+{osConfig, ...}: {
   /*
   Temporary module.
   This is used to enable home modules for the single-user.
@@ -8,7 +8,7 @@
     env.enable = true;
     fish.enable = true;
     git.enable = true;
-    ghostty.enable = true;
+    ghostty.enable = osConfig.modules.home.interactive;
     nvim.enable = true;
     ripgrep.enable = true;
 
