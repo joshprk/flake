@@ -18,15 +18,23 @@ in {
 
   services.caddy = {
     enable = true;
-    virtualHosts."forge.joshprk.me".extraConfig = ''
-      handle_path /vault/* {
-        uri strip_prefix /vault
-        reverse_proxy 127.0.0.1:8222
-      }
-      handle_path / {
-        respond "Hi tailnet!"
+    package = pkgs.caddy.withPlugins {
+      plugins = ["github.com/caddy-dns/porkbun@v0.3.1"];
+      hash = "sha256-7TqepCX9F5AMAUJrH8wxdnrr3JMezhowyIPlfFYUQG8=";
+    };
+    globalConfig = ''
+      acme_dns porkbun {
+        api_key {env.PORKBUN_API_KEY}
+        api_secret_key {env.PORKBUN_SEC_KEY}
       }
     '';
+    virtualHosts."forge.joshprk.me".extraConfig = ''
+      respond "Hi tailnet!"
+    '';
+    virtualHosts."vault.joshprk.me".extraConfig = ''
+      reverse_proxy 127.0.0.1:8222
+    '';
+    environmentFile = config.age.secrets.caddy-env.path;
   };
 
   services.dnsmasq = {
