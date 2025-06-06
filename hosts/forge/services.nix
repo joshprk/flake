@@ -3,10 +3,13 @@
 in {
   containers.private = {
     autoStart = true;
-    privateNetwork = true;
     config = {
       services.vaultwarden = {
         enable = true;
+        config = {
+          ROCKET_ADDRESS = "127.0.0.1";
+          ROCKET_PORT = 8222;
+        };
       };
       nixpkgs = {inherit pkgs;};
     };
@@ -15,7 +18,13 @@ in {
   services.caddy = {
     enable = true;
     virtualHosts."forge.joshprk.me".extraConfig = ''
-      respond "Hi tailnet!"
+      handle_path /vault/* {
+        reverse_proxy 127.0.0.1:8222
+      }
+
+      handle_path / {
+        respond "Hi tailnet!"
+      }
     '';
   };
 
