@@ -7,6 +7,7 @@ in {
       services.vaultwarden = {
         enable = true;
         config = {
+          DOMAIN = "https://forge.joshprk.me/vault";
           ROCKET_ADDRESS = "127.0.0.1";
           ROCKET_PORT = 8222;
         };
@@ -19,9 +20,9 @@ in {
     enable = true;
     virtualHosts."forge.joshprk.me".extraConfig = ''
       handle_path /vault/* {
+        uri strip_prefix /vault
         reverse_proxy 127.0.0.1:8222
       }
-
       handle_path / {
         respond "Hi tailnet!"
       }
@@ -32,8 +33,13 @@ in {
     enable = true;
     resolveLocalQueries = false;
     settings = {
-      address = "/forge.joshprk.me/100.107.152.76";
-      server = ["1.1.1.1" "1.0.0.1"];
+      address = [
+        "/forge.joshprk.me/100.107.152.76"
+      ];
+      server = [
+        "1.1.1.1"
+        "1.0.0.1"
+      ];
       no-resolv = true;
     };
   };
