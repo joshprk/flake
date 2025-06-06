@@ -30,7 +30,10 @@ in {
       extraUpFlags = ["--ssh"];
     };
 
-    networking.firewall.checkReversePath = "loose";
+    networking.firewall = {
+      allowedUDPPorts = [config.services.tailscale.port];
+      checkReversePath = "loose";
+    };
 
     networking.networkmanager = lib.mkIf config.modules.home.interactive {
       enable = true;
