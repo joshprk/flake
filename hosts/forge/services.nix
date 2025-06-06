@@ -57,8 +57,11 @@ in {
       no-resolv = true;
     };
   };
-  
-  services.tailscale.extraUpFlags = ["--advertise-exit-node"];
+
+  services.tailscale = {
+    extraUpFlags = ["--advertise-exit-node"];
+    useRoutingFeatures = "server";
+  };
 
   networking.firewall.interfaces.${tsConfig.interfaceName} = {
     allowedTCPPorts = [80 443];
