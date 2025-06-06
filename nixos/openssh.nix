@@ -37,10 +37,17 @@ in {
 
     services.openssh = {
       inherit (cfg) enable package;
+      openFirewall = false;
       settings = lib.mkMerge [
         {PasswordAuthentication = false;}
         cfg.extraSettings
       ];
+    };
+
+    networking.firewall.interfaces = let
+      tsConfig = config.services.tailscale;
+    in lib.mkIf tsConfig.enable {
+      ${tsConfig.interfaceName}.allowedTCPPorts = config.services.openssh.ports;
     };
 
     services.fail2ban.enable = true;
