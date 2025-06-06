@@ -23,6 +23,8 @@ in {
     enable = true;
     settings = {
       address = "/forge.joshprk.me/100.107.152.76";
+      server = ["100.100.100.100"];
+      no-resolv = true;
     };
   };
 
