@@ -5,6 +5,7 @@
   ...
 }: let
   cfg = config.modules.openssh;
+  tsConfig = config.services.tailscale;
 in {
   options.modules.openssh = {
     enable = lib.mkOption {
@@ -37,16 +38,14 @@ in {
 
     services.openssh = {
       inherit (cfg) enable package;
-      openFirewall = false;
+      openFirewall = lib.mkIf tsConfig.enable false;
       settings = lib.mkMerge [
         {PasswordAuthentication = false;}
         cfg.extraSettings
       ];
     };
 
-    networking.firewall.interfaces = let
-      tsConfig = config.services.tailscale;
-    in lib.mkIf tsConfig.enable {
+    networking.firewall.interfaces = lib.mkIf tsConfig.enable {
       ${tsConfig.interfaceName}.allowedTCPPorts = config.services.openssh.ports;
     };
 
