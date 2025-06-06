@@ -38,7 +38,6 @@ in {
       };
     };
 
-    networking.useNetworkd = lib.mkIf (!config.modules.home.interactive) true;
     networking.nftables.enable = true;
   };
 }
