@@ -1,6 +1,7 @@
 {...}: {
   imports = [
     ./disko.nix
+    ./services.nix
     ./hardware-configuration.nix
   ];
 
