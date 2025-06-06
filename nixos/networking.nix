@@ -30,6 +30,8 @@ in {
       extraUpFlags = ["--ssh"];
     };
 
+    networking.firewall.checkReversePath = "loose";
+
     networking.networkmanager = lib.mkIf config.modules.home.interactive {
       enable = true;
       wifi = {
