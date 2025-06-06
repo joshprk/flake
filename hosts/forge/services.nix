@@ -43,6 +43,7 @@ in {
     settings = {
       address = [
         "/forge.joshprk.me/100.107.152.76"
+        "/vault.joshprk.me/100.107.152.76"
       ];
       server = [
         "1.1.1.1"
