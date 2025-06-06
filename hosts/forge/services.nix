@@ -1,4 +1,9 @@
-{config, lib, pkgs, ...}: let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   tsConfig = config.services.tailscale;
 in {
   containers.private = {
@@ -52,8 +57,8 @@ in {
       no-resolv = true;
     };
   };
-
-  services.tailscale.permitCertUid = "caddy";
+  
+  services.tailscale.extraUpFlags = ["--advertise-exit-node"];
 
   networking.firewall.interfaces.${tsConfig.interfaceName} = {
     allowedTCPPorts = [80 443];
