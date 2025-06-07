@@ -47,8 +47,8 @@ in {
     resolveLocalQueries = false;
     settings = {
       address = [
-        "/forge.joshprk.me/100.107.152.76"
-        "/vault.joshprk.me/100.107.152.76"
+        "/forge.joshprk.me/100.87.235.15"
+        "/vault.joshprk.me/100.87.235.15"
       ];
       server = [
         "1.1.1.1"
