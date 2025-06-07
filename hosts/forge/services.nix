@@ -9,6 +9,15 @@ in {
   # Internal services which are accessible only through private routes
   containers.private = {
     autoStart = true;
+
+    bindMounts = {
+      vault-env = {
+        hostPath = "/run/agenix/vault-env";
+        mountPoint = "/run/agenix/vault-env";
+        isReadOnly = true;
+      };
+    };
+
     config = {
       services.vaultwarden = {
         enable = true;
