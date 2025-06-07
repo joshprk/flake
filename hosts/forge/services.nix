@@ -12,6 +12,8 @@ in {
     config = {
       services.vaultwarden = {
         enable = true;
+        environmentFile = config.age.secrets.vault-env.path;
+
         config = {
           DOMAIN = "https://vault.joshprk.me";
           ROCKET_ADDRESS = "127.0.0.1";
