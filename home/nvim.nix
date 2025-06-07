@@ -185,38 +185,37 @@ in {
       plugins.bufferline = {
         enable = true;
         lazyLoad.settings.event = "VimEnter";
-        settings = let
-          style_preset = preset: {
-            __raw = ''require("bufferline").style_preset.${preset}'';
-          };
-        in {
-          options = {
-            mode = "tabs";
-            style_preset = [
-              (style_preset "minimal")
-              (style_preset "no_bold")
-              (style_preset "no_italic")
-            ];
-            get_element_icon = {
-              __raw = ''
-                function(element)
-                  local provider = require("nvim-web-devicons")
-                  local icon, hl = provider.get_icon_by_filetype(
-                    element.filetype,
-                    { default = true }
-                  )
-                  return " " .. icon, hl
-                end
-              '';
+
+        settings.options = {
+          style_preset = let
+            style_preset = preset: {
+              __raw = ''require("bufferline").style_preset.${preset}'';
             };
-            indicator.style = "underline";
-            show_buffer_close_icons = false;
-            show_close_icon = false;
-            separator_style = ["" ""];
-            tab_size = 6;
-            enforce_regular_tabs = false;
-            always_show_bufferline = true;
-          };
+          in [
+            (style_preset "minimal")
+            (style_preset "no_bold")
+            (style_preset "no_italic")
+          ];
+
+          get_element_icon.__raw = ''
+            function(element)
+              local provider = require("nvim-web-devicons")
+              local icon, hl = provider.get_icon_by_filetype(
+                element.filetype,
+                { default = true }
+              )
+              return " " .. icon, hl
+            end
+          '';
+
+          mode = "tabs";
+          indicator.style = "underline";
+          show_buffer_close_icons = false;
+          show_close_icon = false;
+          separator_style = ["" ""];
+          tab_size = 6;
+          enforce_regular_tabs = false;
+          always_show_bufferline = true;
         };
       };
 
@@ -249,10 +248,9 @@ in {
       plugins.lualine = {
         enable = true;
         lazyLoad.settings.event = "VimEnter";
-        settings = {
-          options = {
-            globalstatus = true;
-          };
+
+        settings.options = {
+          globalstatus = true;
         };
       };
 
@@ -263,6 +261,7 @@ in {
       plugins.noice = {
         enable = true;
         lazyLoad.settings.event = "DeferredUIEnter";
+
         settings.presets = {
           bottom_search = false;
           command_palette = true;
@@ -272,6 +271,7 @@ in {
       plugins.mini = {
         enable = true;
         mockDevIcons = true;
+
         modules = {
           ai = {n_lines = 500;};
           diff = {style = "number";};
@@ -288,6 +288,7 @@ in {
       plugins.treesitter = {
         enable = true;
         lazyLoad.settings.event = "DeferredUIEnter";
+
         settings = {
           folding = true;
           highlight.enable = true;
@@ -298,7 +299,10 @@ in {
       plugins.which-key = {
         enable = true;
         lazyLoad.settings.event = "DeferredUIEnter";
-        settings.preset = "helix";
+
+        settings = {
+          preset = "helix";
+        };
       };
 
       performance.byteCompileLua = {

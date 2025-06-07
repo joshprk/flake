@@ -18,6 +18,7 @@ in {
           ROCKET_PORT = 8222;
         };
       };
+
       nixpkgs = {inherit pkgs;};
     };
   };
@@ -37,16 +38,16 @@ in {
     '';
 
     # Ensure private routes block all external requests
-    virtualHosts =
-      builtins.mapAttrs (
-        _: v: v // {
-          extraConfig = ''
-            @denied not remote_ip private_ranges 100.64.0.0/10
-            abort @denied
-            ${v.extraConfig}
-          '';
-        }
-      ) {
+    virtualHosts = let
+      mkInternal = _: v: v // {
+        extraConfig = ''
+          @denied not remote_ip private_ranges 100.64.0.0/10
+          abort @denied
+          ${v.extraConfig}
+        '';
+      };
+    in
+      builtins.mapAttrs mkInternal {
         "forge.joshprk.me".extraConfig = ''
           respond "Hi tailnet!"
         '';

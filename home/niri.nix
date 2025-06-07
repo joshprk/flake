@@ -35,18 +35,22 @@ in {
         layout = {
           gaps = 12;
           always-center-single-column = true;
+
           border = {
             enable = true;
             width = 1;
           };
+
           focus-ring = {
             enable = true;
             width = 1;
           };
+
           shadow = {
             enable = true;
             draw-behind-window = true;
           };
+
           tab-indicator = {
             position = "left";
             corner-radius = 20.0;
@@ -64,6 +68,7 @@ in {
             enable = true;
             max-scroll-amount = "0%";
           };
+
           warp-mouse-to-focus = true;
         };
 
@@ -74,6 +79,7 @@ in {
               radius = 8.0;
             in
               lib.genAttrs corners (lib.const radius);
+
             clip-to-geometry = true;
             draw-border-with-background = true;
           }
@@ -173,7 +179,7 @@ in {
       portal.enable = true;
     };
 
-    # set certain software to default to not get locked out
+    # Enabled by default in order to prevent potential lock-out of session
     user.ghostty.enable = lib.mkDefault true;
   };
 }

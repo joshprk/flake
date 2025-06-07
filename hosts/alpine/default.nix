@@ -13,6 +13,7 @@
     kernel.secureBoot = true;
     impermanence.enable = true;
     niri.enable = true;
+
     nvidia = {
       enable = true;
       tuning = {
@@ -26,6 +27,7 @@
         amdgpuBusId = "PCI:13:0:0";
       };
     };
+
     openssh.enable = true;
     steam.enable = true;
   };

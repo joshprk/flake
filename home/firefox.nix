@@ -75,6 +75,7 @@ in {
     programs.firefox = {
       inherit (cfg) enable package;
       languagePacks = ["en-US"];
+
       policies = {
         AutofillAddressEnabled = false;
         AutofillCreditCardEnabled = false;
@@ -100,7 +101,10 @@ in {
         ExtensionSettings = cfg.addons;
         Preferences = cfg.preferences;
       };
-      profiles."${config.home.username}".isDefault = true;
+
+      profiles = {
+        "${config.home.username}".isDefault = true;
+      };
     };
 
     xdg.mimeApps.defaultApplications = builtins.listToAttrs (

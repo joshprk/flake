@@ -96,21 +96,25 @@ in {
   config = lib.mkIf cfg.enable {
     stylix = {
       inherit (cfg) enable image base16Scheme;
+      cursor = {inherit (cfg.cursor) name package size;};
+      iconTheme = cfg.iconTheme // {enable = true;};
+
       targets = {
         firefox.profileNames = [config.home.username];
         nixvim.enable = false;
       };
+
       fonts = {
         sansSerif = {inherit (cfg.font) name package;};
         monospace = {inherit (cfg.fontMono) name package;};
         serif = config.stylix.fonts.sansSerif;
         emoji = config.stylix.fonts.sansSerif;
       };
-      cursor = {inherit (cfg.cursor) name package size;};
-      iconTheme = cfg.iconTheme // {enable = true;};
     };
 
-    services.hyprpaper.enable = true;
+    services.hyprpaper = {
+      enable = true;
+    };
 
     home.file = {
       ".themes/adw-gtk3".enable = false;

@@ -50,7 +50,8 @@ in {
             attrs = builtins.attrNames config.containers;
             len = builtins.length attrs;
             cond = len > 0;
-          in lib.mkIf cond "/var/lib/nixos-containers")
+          in
+            lib.mkIf cond "/var/lib/nixos-containers")
         ]
         ++ cfg.extraDirectories;
       files = ["/etc/machine-id"] ++ cfg.extraFiles;

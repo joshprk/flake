@@ -33,6 +33,7 @@ in {
         gtk-single-instance = true;
         shell-integration-features = "sudo";
       };
+
       enableBashIntegration = lib.mkDefault config.programs.bash.enable;
       enableFishIntegration = lib.mkDefault config.programs.fish.enable;
       enableZshIntegration = lib.mkDefault config.programs.zsh.enable;
