@@ -15,32 +15,17 @@
       };
     };
 
-    content.partitions.nix = {
-      name = "nix";
-      size = "100%";
-      content = {
-        type = "btrfs";
-        mountpoint = "/nix";
-        mountOptions = ["compress=zstd" "noatime"];
-      };
-    };
-  };
-
-  disko.devices.disk.data = {
-    device = "/dev/sdb";
-    type = "disk";
-    content.type = "gpt";
     content.partitions.data = {
-      name = "home";
+      name = "data";
       size = "100%";
       content.type = "btrfs";
       content.subvolumes = {
-        "/home" = {
-          mountpoint = "/home";
+        "/nix" = {
+          mountpoint = "/nix";
           mountOptions = ["compress=zstd" "noatime"];
         };
-        "/containers" = {
-          mountpoint = "/var/lib/nixos-containers";
+        "/home" = {
+          mountpoint = "/home";
           mountOptions = ["compress=zstd" "noatime"];
         };
       };
@@ -49,6 +34,6 @@
 
   disko.devices.nodev."/" = {
     fsType = "tmpfs";
-    mountOptions = ["size=8G" "defaults" "mode=755" "noatime"];
+    mountOptions = ["size=50%" "defaults" "mode=755" "noatime"];
   };
 }
