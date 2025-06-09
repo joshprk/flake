@@ -15,6 +15,7 @@
 
     deploy = {
       enable = true;
+
       containers.internal = {
         autoStart = true;
         internal = true;
@@ -31,6 +32,16 @@
           reverse_proxy 127.0.0.1:8222
         '';
         config = ./containers/internal.nix;
+      };
+
+      containers.minecraft = {
+        autoStart = false;
+        internal = true;
+        openPorts = [
+          {port = 25565; protocol = "tcp";}
+          {port = 25565; protocol = "udp";}
+        ];
+        config = ./containers/minecraft.nix;
       };
     };
   };
