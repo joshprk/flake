@@ -7,13 +7,14 @@
   services.minecraft-server = {
     enable = true;
     package = pkgs.papermcServers.papermc-1_21_5;
-    declarative = true;
     eula = true;
+    declarative = true;
 
     serverProperties = {
-      white-list = true;
-      max-player = 10;
-    };
+      max-players = 10;
+      white-list = false;
+    }
+    ;
   };
 
   system.stateVersion = "25.11";
