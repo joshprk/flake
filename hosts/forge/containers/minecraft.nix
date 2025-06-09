@@ -4,10 +4,6 @@
   pkgs,
   ...
 }: {
-  services.cloudflared = {
-    enable = true;
-  };
-
   services.minecraft-server = {
     enable = true;
     package = pkgs.papermcServers.papermc-1_21_5;
