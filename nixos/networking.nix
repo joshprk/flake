@@ -17,6 +17,16 @@ in {
       description = "Whether to add this host to the Tailnet.";
       default = true;
     };
+
+    exitNode = lib.mkOption {
+      type = lib.types.bool;
+      description = "Whether to make this host a Tailnet exit node.";
+      default = false;
+      apply =
+        lib.throwIfNot
+        cfg.addToTailnet
+        "tailscale must be enabled for this node to be an exit node";
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -26,8 +36,11 @@ in {
 
     services.tailscale = lib.mkIf cfg.addToTailnet {
       enable = true;
+      useRoutingFeatures = lib.mkIf cfg.exitNode "server";
       authKeyFile = config.age.secrets.tskey.path;
-      extraUpFlags = ["--ssh"];
+      extraUpFlags =
+        ["--ssh"]
+        ++ lib.optional cfg.exitNode "--advertise-exit-node";
     };
 
     networking.firewall = {

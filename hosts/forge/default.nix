@@ -11,31 +11,24 @@
     home.enable = true;
     openssh.enable = true;
     impermanence.enable = true;
+    networking.exitNode = true;
 
     deploy = {
       enable = true;
       containers.internal = {
         autoStart = true;
         internal = true;
-        binds = [
-          "/run/agenix"
-        ];
-        forwardPorts = [
-          {containerPort = 80; hostPort = 80; protocol = "tcp";}
-          {containerPort = 443; hostPort = 443; protocol = "tcp";}
+        openPorts = [
+          {port = 80; protocol = "tcp";}
+          {port = 443; protocol = "tcp";}
+          {port = 53; protocol = "udp";}
         ];
         routes."forge.joshprk.me" = ''
           respond "Hello world!"
         '';
-        config = {};
+        config = ./containers/internal.nix;
       };
     };
-  };
-
-  # This is okay for Forge, but figure out a way to update when idle
-  system.autoUpgrade = {
-    enable = true;
-    flake = "github:joshprk/flake";
   };
 
   zramSwap.enable = true;
