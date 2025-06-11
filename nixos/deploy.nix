@@ -129,8 +129,16 @@ in {
 
     containers =
       lib.mapAttrs (_: cfg': {
-        inherit (cfg') autoStart config;
+        inherit (cfg') autoStart;
         bindMounts = cfg'.binds;
+        config = {
+          imports = [cfg'.config];
+          options.age.secrets = lib.mkOption {type = lib.types.attrs;};
+          config.age.secrets =
+            lib.filterAttrs
+            (_: v: builtins.hasAttr v.path cfg'.binds)
+            config.age.secrets;
+        };
       })
       cfg.containers;
 

@@ -1,4 +1,9 @@
-{...}: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   imports = [
     ./disko.nix
     ./hardware-configuration.nix
@@ -19,7 +24,11 @@
       containers.internal = {
         autoStart = true;
         internal = true;
-        binds = ["/run/agenix/vault-env"];
+        binds = [
+          config.age.secrets.restic-gdrive.path
+          config.age.secrets.restic-pass.path
+          config.age.secrets.vault-env.path
+        ];
         openPorts = [
           {port = 53; protocol = "udp";}
           {port = 80; protocol = "tcp";}
