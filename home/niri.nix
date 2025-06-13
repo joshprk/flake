@@ -80,6 +80,7 @@ in {
             in
               lib.genAttrs corners (lib.const radius);
 
+            opacity = 0.92;
             clip-to-geometry = true;
             draw-border-with-background = true;
           }
