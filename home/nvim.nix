@@ -45,7 +45,7 @@ in {
         hidden = false;
         splitright = true;
         splitbelow = true;
-        scrolloff = 10;
+        scrolloff = 5;
 
         swapfile = false;
         undofile = true;
@@ -223,6 +223,11 @@ in {
           enforce_regular_tabs = false;
           always_show_bufferline = true;
         };
+      };
+
+      plugins.dropbar = {
+        enable = true;
+        lazyLoad.settings.event = "DeferredUIEnter";
       };
 
       plugins.flash = {
