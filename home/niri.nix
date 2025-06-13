@@ -72,6 +72,10 @@ in {
           warp-mouse-to-focus = true;
         };
 
+        layer-rules = [
+          {opacity = 0.92;}
+        ];
+
         window-rules = [
           {
             geometry-corner-radius = let
@@ -80,7 +84,6 @@ in {
             in
               lib.genAttrs corners (lib.const radius);
 
-            opacity = 0.92;
             clip-to-geometry = true;
             draw-border-with-background = true;
           }
