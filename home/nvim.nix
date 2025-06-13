@@ -144,6 +144,12 @@ in {
           options.desc = " Flash Treesitter";
         }
         {
+          action.__raw = ''function() require("mini.files").open() end'';
+          key = "<C-e>";
+          mode = ["n" "x" "o"];
+          options.desc = "󰱼 Open Files";
+        }
+        {
           action = "<Cmd>ToggleTerm<CR>";
           key = "<Leader>.";
           mode = ["n" "x" "o"];
@@ -275,6 +281,7 @@ in {
         modules = {
           ai = {n_lines = 500;};
           diff = {style = "number";};
+          files = {};
           icons = {};
           surround = {};
         };
