@@ -17,6 +17,10 @@
 
     packages.install = pkgs.writeShellApplication {
       name = "install-system";
+      
+      runtimeInputs = with pkgs; [
+        git-credential-manager
+      ];
 
       text = ''
         read -p "Enter hostname: $(tput sgr0)" -r TARGET_HOST
@@ -54,8 +58,10 @@
           exit 1
         fi
 
-        nix run github:nix-community/nixos-facter -o "$HOSTPATH/facter.json"
+        nix run github:nix-community/nixos-facter -- -o "$HOSTPATH/facter.json"
         ${pkgs.age}/bin/age-keygen > "$SYSTEM_KEY"
+        chmod -R 000 "$STATE_DIR"
+        chown -R root "$STATE_DIR"
 
         grep "# public key: " "$SYSTEM_KEY" | \
           awk -F': ' '{print $2}' > "$HOSTPATH/keyring.pub"
@@ -63,10 +69,10 @@
         ${pkgs.agenix-rekey}/bin/agenix rekey -a
 
         git add .
-        git commit -m "chore: configure host `$TARGET_HOST`"
+        git commit -m "chore: configure host \`$TARGET_HOST\`"
         git push
 
-        nix run ${builtins.toPath inputs.disko} -- \
+        nix run path:${inputs.disko} -- \
           --mode destroy,format,mount \
           --flake "$TMPDIR"#"$TARGET_HOST"
 
