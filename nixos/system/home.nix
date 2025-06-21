@@ -7,11 +7,9 @@
 }: let
   cfg = config.modules.system.home;
 in {
-  options.modules.system.home = {
-    enable = lib.mkEnableOption "the home module";
-  };
+  options.modules.system.home = {};
 
-  config = lib.mkIf cfg.enable {
+  config = {
     programs.bash = {
       interactiveShellInit = ''
         [ -d "$XDG_STATE_HOME"/bash ] || mkdir -p "$XDG_STATE_HOME"/bash
@@ -29,6 +27,10 @@ in {
 
     users = {
       mutableUsers = false;
+
+      users.root = {
+        hashedPasswordFile = config.age.secrets.master.path;
+      };
     };
 
     home-manager = {
