@@ -8,7 +8,6 @@
 in {
   options.modules.system.network = {
     exitNode = lib.mkEnableOption "exit node networking";
-    wireless = lib.mkEnableOption "wireless network components";
   };
 
   config = {
@@ -29,7 +28,10 @@ in {
     services.resolved = {
       enable = lib.mkDefault true;
       dnsovertls = "true";
-      llmnr = "false";
+      extraConfig = ''
+        DNS=1.1.1.1 1.0.0.1
+        FallbackDNS=8.8.8.8 8.8.4.4
+      '';
     };
 
     networking = {
@@ -41,12 +43,8 @@ in {
         checkReversePath = "loose";
       };
 
-      networkmanager = lib.mkIf cfg.wireless {
-        enable = true;
-        wifi = {
-          backend = "iwd";
-          powersave = true;
-        };
+      wireless = {
+        iwd.enable = true;
       };
 
       nftables.enable = true;
@@ -55,7 +53,6 @@ in {
 
     systemd.network = {
       enable = config.networking.useNetworkd;
-      wait-online.enable = !cfg.wireless;
     };
   };
 }
