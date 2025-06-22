@@ -21,7 +21,7 @@ in {
 
     system.etc.overlay = {
       enable = true;
-      mutable = false;
+      mutable = true;
     };
 
     time = {

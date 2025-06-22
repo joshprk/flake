@@ -28,10 +28,6 @@ in {
     services.resolved = {
       enable = lib.mkDefault true;
       dnsovertls = "true";
-      extraConfig = ''
-        DNS=1.1.1.1 1.0.0.1
-        FallbackDNS=8.8.8.8 8.8.4.4
-      '';
     };
 
     networking = {
@@ -42,6 +38,13 @@ in {
           [config.services.tailscale.port];
         checkReversePath = "loose";
       };
+
+      nameservers = [
+        "1.1.1.1"
+        "1.0.0.1"
+        "8.8.8.8"
+        "8.8.4.4"
+      ];
 
       wireless = {
         iwd.enable = true;
