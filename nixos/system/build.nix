@@ -40,5 +40,9 @@ in {
 
       overlays = [flake.overlays.default];
     };
+
+    system = {
+      configurationRevision = flake.rev or flake.dirtyRev or "unknown-dirty";
+    };
   };
 }
