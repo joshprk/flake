@@ -17,33 +17,44 @@ in {
 
     services.tailscale = {
       enable = lib.mkDefault true;
+      openFirewall = true;
       useRoutingFeatures = lib.mkIf cfg.exitNode "server";
       extraUpFlags =
         (lib.optionals cfg.exitNode ["--advertise-exit-node"])
         ++ ["--ssh"];
-      # Add this when secrets are set up.
-      # authKeyFile = ...;
+      authKeyFile = config.age.secrets.tailscale.path;
     };
 
     services.resolved = {
       enable = lib.mkDefault true;
       dnsovertls = "true";
+      dnssec = "true";
+    };
+
+    systemd.network = {
+      enable = config.networking.useNetworkd;
+
+      networks = lib.mkIf config.networking.useDHCP {
+        "99-ethernet-default-dhcp" = {
+          dhcpV4Config.UseDNS = false;
+          dhcpV6Config.UseDNS = false;
+        };
+
+        "99-wireless-client-dhcp" = {
+          dhcpV4Config.UseDNS = false;
+          dhcpV6Config.UseDNS = false;
+        };
+      };
     };
 
     networking = {
       firewall = {
-        allowedUDPPorts =
-          lib.optionals
-          config.services.tailscale.enable
-          [config.services.tailscale.port];
         checkReversePath = "loose";
       };
 
       nameservers = [
         "1.1.1.1"
         "1.0.0.1"
-        "8.8.8.8"
-        "8.8.4.4"
       ];
 
       wireless = {
@@ -52,10 +63,6 @@ in {
 
       nftables.enable = true;
       useNetworkd = true;
-    };
-
-    systemd.network = {
-      enable = config.networking.useNetworkd;
     };
   };
 }
