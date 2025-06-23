@@ -11,8 +11,8 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    programs.alacritty = {
-      enable = true;
+    services.gnome.gnome-keyring = {
+      enable = false;
     };
 
     programs.niri = {

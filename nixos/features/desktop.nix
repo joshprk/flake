@@ -11,6 +11,10 @@ in {
   };
 
   config = lib.mkIf cfg.desktop {
+    environment.systemPackages = with pkgs; [
+      alacritty
+    ];
+
     modules.services = {
       niri.enable = true;
     };
@@ -20,6 +24,15 @@ in {
     };
 
     programs.fish = {
+      enable = true;
+    };
+
+    services.pipewire = {
+      enable = true;
+      pulse.enable = true;
+    };
+
+    security.rtkit = {
       enable = true;
     };
 
