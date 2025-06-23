@@ -9,4 +9,8 @@
   features = {
     desktop = true;
   };
+
+  modules.system = {
+    impermanence.enable = true;
+  };
 }
