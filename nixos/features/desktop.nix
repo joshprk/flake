@@ -21,7 +21,6 @@ in {
       hashedPasswordFile = config.age.secrets.password.path;
       hjem = {
         packages = with pkgs; [
-          ghostty
           firefox
           neovim
         ];
@@ -33,6 +32,10 @@ in {
             user.name = "Joshua Park";
             user.email = "git@joshprk.me";
           };
+        };
+
+        programs.ghostty = {
+          enable = true;
         };
       };
     };
