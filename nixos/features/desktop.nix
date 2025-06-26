@@ -23,6 +23,7 @@ in {
         packages = with pkgs; [
           alacritty
           firefox
+          neovim
         ];
 
         programs.git = {
