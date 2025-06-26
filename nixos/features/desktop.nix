@@ -21,7 +21,7 @@ in {
       hashedPasswordFile = config.age.secrets.password.path;
       hjem = {
         packages = with pkgs; [
-          alacritty
+          ghostty
           firefox
           neovim
         ];
