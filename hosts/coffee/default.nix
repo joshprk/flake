@@ -12,5 +12,6 @@
 
   modules.system = {
     impermanence.enable = true;
+    nvidia.enable = true;
   };
 }
