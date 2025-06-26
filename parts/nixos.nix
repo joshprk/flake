@@ -40,6 +40,7 @@
       hosts = ../hosts;
       nixos = ../nixos;
       secrets = ../secrets;
+      users = ../users;
     };
   };
 }

@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  flake,
   ...
 }: let
   cfg = config.features;
@@ -15,28 +16,12 @@ in {
       niri.enable = true;
     };
 
-    modules.system.home.joshua = {
-      isNormalUser = true;
-      extraGroups = ["wheel"];
-      hashedPasswordFile = config.age.secrets.password.path;
-      hjem = {
-        packages = with pkgs; [
-          firefox
-          neovim
-        ];
-
-        programs.git = {
-          enable = true;
-          settings = {
-            init.defaultBranch = "main";
-            user.name = "Joshua Park";
-            user.email = "git@joshprk.me";
-          };
-        };
-
-        programs.ghostty = {
-          enable = true;
-        };
+    modules.system = {
+      home.joshua = {
+        isNormalUser = true;
+        extraGroups = ["wheel"];
+        hashedPasswordFile = config.age.secrets.password.path;
+        hjem = import "${flake.paths.users}/joshua";
       };
     };
 
@@ -48,14 +33,14 @@ in {
       enable = true;
     };
 
-    services.greetd = {
+    services.greetd = let
+      session = {
+        command = "niri-session 2>/dev/null";
+        user = "joshua";
+      };
+    in {
       enable = true;
-      settings = let
-        session = {
-          command = "niri-session 2>/dev/null";
-          user = "joshua";
-        };
-      in {
+      settings = {
         initial_session = session;
         default_session = session;
       };
