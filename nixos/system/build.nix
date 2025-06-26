@@ -21,6 +21,11 @@ in {
   };
 
   config = {
+    programs.nh = {
+      enable = true;
+      flake = "git+${flake.paths.git}";
+    };
+
     nix = {
       channel = {
         enable = true;
@@ -45,6 +50,7 @@ in {
 
     system = {
       configurationRevision = flake.rev or flake.dirtyRev or "unknown-dirty";
+      disableInstallerTools = true;
     };
   };
 }

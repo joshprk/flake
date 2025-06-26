@@ -16,7 +16,21 @@ in {
 
   config = {
     environment = {
+      defaultPackages = lib.mkDefault [];
       enableAllTerminfo = true;
+    };
+
+    boot = {
+      enableContainers = false;
+    };
+
+    programs.command-not-found = {
+      enable = false;
+    };
+
+    system.etc.overlay = {
+      enable = true;
+      mutable = true;
     };
 
     time = {

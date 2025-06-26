@@ -5,7 +5,6 @@
 }: {
   imports = with inputs; [
     agenix-rekey.flakeModules.default
-    home-manager.flakeModules.default
   ];
 
   flake = with inputs; {
@@ -14,11 +13,9 @@
       agenix-rekey.nixosModules.default
       disko.nixosModules.default
       facter.nixosModules.facter
-      home-manager.nixosModules.home-manager
+      hjem.nixosModules.hjem
       impermanence.nixosModules.impermanence
     ];
-
-    homeModules.default.imports = [];
 
     overlays.default = with lib;
       final: prev:
