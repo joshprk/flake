@@ -10,6 +10,10 @@
     ripgrep
   ];
 
+  programs.fish = {
+    enable = true;
+  };
+
   programs.git = {
     enable = true;
     settings = {
@@ -21,5 +25,9 @@
 
   programs.ghostty = {
     enable = true;
+  };
+
+  environment.sessionVariables = {
+    EDITOR = "nvim";
   };
 }
