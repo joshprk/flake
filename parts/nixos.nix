@@ -34,7 +34,7 @@
     };
 
     paths = {
-      git = "https://github.com/joshprk/flake";
+      git = "https://github.com/joshprk/flake?ref=main";
       key = "/nix/state/key";
       home = ../home;
       hosts = ../hosts;
