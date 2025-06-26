@@ -44,6 +44,19 @@ in {
       enable = true;
     };
 
+    services.greetd = {
+      enable = true;
+      settings = let
+        session = {
+          command = "niri-session 2>/dev/null";
+          user = "joshua";
+        };
+      in {
+        initial_session = session;
+        default_session = session;
+      };
+    };
+
     users = {
       defaultUserShell = pkgs.fish;
     };
