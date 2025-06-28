@@ -10,6 +10,7 @@
     neovim
     ripgrep
     xwayland-satellite
+    waybar
   ];
 
   environment.sessionVariables = {
