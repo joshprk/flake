@@ -5,7 +5,6 @@
   ...
 }: {
   packages = with pkgs; [
-    firefox
     git
     ghostty
     neovim
