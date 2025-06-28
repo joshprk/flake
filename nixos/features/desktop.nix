@@ -45,6 +45,14 @@ in {
       };
     };
 
+    services.upower = {
+      enable = true;
+    };
+
+    security.rtkit = {
+      enable = true;
+    };
+
     users = {
       defaultUserShell = pkgs.fish;
     };
