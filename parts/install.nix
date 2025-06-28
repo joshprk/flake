@@ -86,12 +86,13 @@
 
         if test -e "/dev/tpmrm0"; then
           PASSWORD=$(systemd-ask-password "Enter passphrase to enroll to TPM")
+          export PASSWORD
           for device in /dev/disk/by-partlabel/*; do
             if [[ -b "$device" ]] && cryptsetup isLuks "$device" 2>/dev/null; then
               systemd-cryptenroll --tpm2-device=auto "$device" || true
             fi
           done
-          PASSWORD=
+          unset PASSWORD
         fi
       '';
     };
