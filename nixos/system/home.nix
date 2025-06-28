@@ -16,13 +16,14 @@ in {
   };
 
   options.modules.system.home = lib.mkOption {
-    type = with lib.types; attrsOf (submodule {
-      options.hjem = lib.mkOption {
-        type = lib.types.deferredModule;
-        description = "The hjem module for this user.";
-        default = {};
-      };
-    });
+    type = with lib.types;
+      attrsOf (submodule {
+        options.hjem = lib.mkOption {
+          type = lib.types.deferredModule;
+          description = "The hjem module for this user.";
+          default = {};
+        };
+      });
   };
 
   config = {

@@ -17,7 +17,7 @@
 
     packages.install = pkgs.writeShellApplication {
       name = "install-system";
-      
+
       runtimeInputs = with pkgs; [
         git-credential-manager
       ];
@@ -97,43 +97,43 @@
       '';
     };
 
-    packages.installer = (lib.nixosSystem {
-      inherit system;
-      modules = lib.singleton {
-        imports = with inputs; let
-          isoType = "installation-cd-minimal.nix";
-        in
-          ["${nixpkgs}/nixos/modules/installer/cd-dvd/${isoType}"];
+    packages.installer =
+      (lib.nixosSystem {
+        inherit system;
+        modules = lib.singleton {
+          imports = with inputs; let
+            isoType = "installation-cd-minimal.nix";
+          in ["${nixpkgs}/nixos/modules/installer/cd-dvd/${isoType}"];
 
-        environment.sessionVariables = {
-          GCM_CREDENTIAL_STORE = "cache";
-        };
-
-        environment.shellAliases = {
-          install = "sudo nix run git+${self.paths.git}#install";
-        };
-
-        programs.git = {
-          enable = true;
-          config = {
-            user.name = "Automaton";
-            user.email = "auto@joshprk.me";
-            credential.helper = "manager";
-            init.defaultBranch = "main";
+          environment.sessionVariables = {
+            GCM_CREDENTIAL_STORE = "cache";
           };
-        };
 
-        networking.wireless = {
-          enable = false;
-          iwd.enable = true;
-        };
+          environment.shellAliases = {
+            install = "sudo nix run git+${self.paths.git}#install";
+          };
 
-        nix.settings.extra-experimental-features = [
-          "nix-command"
-          "flakes"
-          "pipe-operators"
-        ];
-      };
-    }).config.system.build.isoImage;
+          programs.git = {
+            enable = true;
+            config = {
+              user.name = "Automaton";
+              user.email = "auto@joshprk.me";
+              credential.helper = "manager";
+              init.defaultBranch = "main";
+            };
+          };
+
+          networking.wireless = {
+            enable = false;
+            iwd.enable = true;
+          };
+
+          nix.settings.extra-experimental-features = [
+            "nix-command"
+            "flakes"
+            "pipe-operators"
+          ];
+        };
+      }).config.system.build.isoImage;
   };
 }

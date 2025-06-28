@@ -25,7 +25,7 @@
         content.type = "btrfs";
         content.extraArgs = ["-f"];
         content.mountpoint = "/nix";
-	content.mountOptions = ["noatime" "compress=zstd"];
+        content.mountOptions = ["noatime" "compress=zstd"];
       };
     };
   };
@@ -40,11 +40,11 @@
       content = {
         name = "home";
         type = "luks";
-	settings.allowDiscards = true;
-	content.type = "btrfs";
-	content.extraArgs = ["-f"];
-	content.mountpoint = "/home";
-	content.mountOptions = ["noatime" "compress=zstd"];
+        settings.allowDiscards = true;
+        content.type = "btrfs";
+        content.extraArgs = ["-f"];
+        content.mountpoint = "/home";
+        content.mountOptions = ["noatime" "compress=zstd"];
       };
     };
   };
