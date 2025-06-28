@@ -21,7 +21,6 @@ in {
         isNormalUser = true;
         extraGroups = ["wheel"];
         hashedPasswordFile = config.age.secrets.password.path;
-        hjem = import "${flake.paths.users}/joshua";
       };
     };
 
