@@ -10,6 +10,7 @@
     ghostty
     neovim
     ripgrep
+    xwayland-satellite
   ];
 
   environment.sessionVariables = {
