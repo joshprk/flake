@@ -32,6 +32,10 @@ in {
       enable = true;
     };
 
+    services.flatpak = {
+      enable = true;
+    };
+
     services.greetd = let
       session = {
         command = "niri-session 2>/dev/null";
