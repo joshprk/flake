@@ -4,6 +4,7 @@
   pkgs,
   options,
   flake,
+  inputs,
   ...
 }: let
   cfg = config.modules.system.home;
@@ -54,6 +55,7 @@ in {
 
     hjem = {
       extraModules = [flake.homeModules.default];
+      linker = inputs.hjem.packages.${pkgs.system}.smfh;
       users = lib.mapAttrs (_: v: v.hjem) cfg;
     };
 

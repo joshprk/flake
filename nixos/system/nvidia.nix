@@ -6,6 +6,17 @@
   ...
 }: let
   cfg = config.modules.system.nvidia;
+  tuneMem = cfg.maxMemClock != null;
+  tuneGpu = cfg.maxGpuClock != null;
+  smi = "/run/current-system/sw/bin/nvidia-smi";
+  tuneMemCmd =
+    if tuneMem
+    then "${smi} --lock-memory-clocks=0,${cfg.maxMemClock}"
+    else "";
+  tuneGpuCmd =
+    if tuneGpu
+    then "${smi} --lock-gpu-clocks=0,${cfg.maxGpuClock}"
+    else "";
 in {
   options.modules.system.nvidia = {
     enable = lib.mkEnableOption "the nvidia module";
@@ -14,8 +25,32 @@ in {
       type = lib.types.package;
       default = config.boot.kernelPackages.nvidiaPackages.beta;
       description = ''
-        Which NVIDIA driver package to use.
+        Which nvidia driver package to use.
       '';
+    };
+
+    maxGpuClock = lib.mkOption {
+      type = with lib.types; nullOr ints.positive;
+      description = ''
+        Maximum GPU clock in megahertz.
+      '';
+      apply = builtins.toString;
+      default = null;
+    };
+
+    maxMemClock = lib.mkOption {
+      type = with lib.types; nullOr ints.positive;
+      description = ''
+        Maximum memory clock in megahertz.
+      '';
+      apply = builtins.toString;
+      default = null;
+    };
+
+    prime = lib.mkOption {
+      type = with lib.types; nullOr raw;
+      default = null;
+      description = "Configuration for nvidia prime.";
     };
   };
 
@@ -25,11 +60,21 @@ in {
     };
 
     hardware.nvidia = {
-      inherit (cfg) package;
+      inherit (cfg) package prime;
       modesetting.enable = true;
       powerManagement.enable = true;
       nvidiaSettings = false;
+      nvidiaPersistenced = tuneMem || tuneGpu;
       open = true;
+    };
+
+    systemd.services.nvidia-tuning = lib.mkIf (tuneMem || tuneGpu) {
+      description = "Tunes nvidia gpu and memory clocks.";
+      wantedBy = ["multi-user.target"];
+      script = ''
+        ${tuneMemCmd}
+        ${tuneGpuCmd}
+      '';
     };
   };
 }
