@@ -12,6 +12,10 @@ in {
   };
 
   config = lib.mkIf cfg.desktop {
+    environment.systemPackages = with pkgs; [
+      catppuccin-cursors.mochaDark
+    ];
+
     modules.services = {
       niri.enable = true;
     };
@@ -63,6 +67,11 @@ in {
 
     users = {
       defaultUserShell = pkgs.fish;
+    };
+
+    xdg.icons = {
+      enable = true;
+      fallbackCursorThemes = ["catppuccin-mocha-dark-cursors"];
     };
   };
 }
