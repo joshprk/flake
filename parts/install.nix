@@ -50,7 +50,7 @@
         echo "$(tput bold)Authenticate GitHub to continue...$(tput sgr0)"
 
         ${lib.getExe pkgs.git-credential-manager} github login
-        git clone ${self.paths.git} "$TMPDIR"
+        git clone ${lib.head (lib.splitString "?ref=" self.paths.git)} "$TMPDIR"
 
         if ! test -d "$HOSTPATH"; then
           echo "Host configuration does not exist. No changes were made."
