@@ -11,11 +11,11 @@
   smi = "/run/current-system/sw/bin/nvidia-smi";
   tuneMemCmd =
     if tuneMem
-    then "${smi} --lock-memory-clocks=0,${cfg.maxMemClock}"
+    then "${smi} --lock-memory-clocks=0,${builtins.toString cfg.maxMemClock}"
     else "";
   tuneGpuCmd =
     if tuneGpu
-    then "${smi} --lock-gpu-clocks=0,${cfg.maxGpuClock}"
+    then "${smi} --lock-gpu-clocks=0,${builtins.toString cfg.maxGpuClock}"
     else "";
 in {
   options.modules.system.nvidia = {
@@ -34,7 +34,6 @@ in {
       description = ''
         Maximum GPU clock in megahertz.
       '';
-      apply = builtins.toString;
       default = null;
     };
 
@@ -43,13 +42,12 @@ in {
       description = ''
         Maximum memory clock in megahertz.
       '';
-      apply = builtins.toString;
       default = null;
     };
 
     prime = lib.mkOption {
-      type = with lib.types; nullOr raw;
-      default = null;
+      type = with lib.types; attrs;
+      default = {};
       description = "Configuration for nvidia prime.";
     };
   };
