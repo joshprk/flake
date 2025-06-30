@@ -45,6 +45,8 @@ in {
 
     systemd.services.flatpak-add-remotes = {
       wantedBy = ["multi-user.target"];
+      after = ["network-online.target" "nss-lookup.target"];
+      wants = ["network-online.target" "nss-lookup.target"];
       path = [config.services.flatpak.package];
       script =
         cfg.remotes
@@ -57,8 +59,8 @@ in {
 
     systemd.services.flatpak-install = {
       wantedBy = ["multi-user.target"];
-      after = ["network-online.target"];
-      wants = ["network-online.target"];
+      after = ["network-online.target" "nss-lookup.target"];
+      wants = ["network-online.target" "nss-lookup.target"];
       path = [config.services.flatpak.package];
       serviceConfig.IOSchedulingClass = "2";
       serviceConfig.IOSchedulingPriority = "6";
