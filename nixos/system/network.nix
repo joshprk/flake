@@ -33,7 +33,6 @@ in {
 
     systemd.network = {
       enable = config.networking.useNetworkd;
-
       networks = lib.mkIf config.networking.useDHCP {
         "99-ethernet-default-dhcp" = {
           dhcpV4Config.UseDNS = false;

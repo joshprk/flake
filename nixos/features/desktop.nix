@@ -12,11 +12,8 @@ in {
   };
 
   config = lib.mkIf cfg.desktop {
-    environment.systemPackages = with pkgs; [
-      catppuccin-cursors.mochaDark
-    ];
-
     modules.services = {
+      flatpak.enable = true;
       niri.enable = true;
     };
 
@@ -36,42 +33,8 @@ in {
       enable = true;
     };
 
-    services.flatpak = {
-      enable = true;
-    };
-
-    services.greetd = let
-      session = {
-        command = "niri-session 2>/dev/null";
-        user = "joshua";
-      };
-    in {
-      enable = true;
-      settings = {
-        initial_session = session;
-        default_session = session;
-      };
-    };
-
-    services.power-profiles-daemon = {
-      enable = true;
-    };
-
-    services.upower = {
-      enable = true;
-    };
-
-    security.rtkit = {
-      enable = true;
-    };
-
     users = {
       defaultUserShell = pkgs.fish;
-    };
-
-    xdg.icons = {
-      enable = true;
-      fallbackCursorThemes = ["catppuccin-mocha-dark-cursors"];
     };
   };
 }

@@ -11,12 +11,43 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    environment.systemPackages = with pkgs; [
+      catppuccin-cursors.mochaDark
+    ];
+
+    programs.niri = {
+      enable = true;
+    };
+
     services.gnome.gnome-keyring = {
       enable = false;
     };
 
-    programs.niri = {
-      enable = true;
+    services.pipewire = {
+      enable = lib.mkDefault true;
+      audio.enable = lib.mkDefault true;
+    };
+
+    services.power-profiles-daemon = {
+      enable = lib.mkDefault true;
+    };
+
+    services.udisks2 = {
+      enable = lib.mkDefault true;
+    };
+
+    services.upower = {
+      enable = lib.mkDefault true;
+    };
+
+    security = {
+      rtkit.enable = lib.mkDefault true;
+      polkit.enable = lib.mkDefault true;
+    };
+
+    xdg.icons = {
+      enable = lib.mkDefault true;
+      fallbackCursorThemes = ["catppuccin-mocha-dark-cursors"];
     };
   };
 }
