@@ -43,21 +43,7 @@ in {
       enable = true;
     };
 
-    systemd.services.flatpak-add-remotes = {
-      wantedBy = ["multi-user.target"];
-      after = ["network-online.target" "nss-lookup.target"];
-      wants = ["network-online.target" "nss-lookup.target"];
-      path = [config.services.flatpak.package];
-      script =
-        cfg.remotes
-        |> builtins.mapAttrs (n: v:
-          "flatpak remote-add --if-not-exists ${n} ${v}"
-        )
-        |> builtins.attrValues
-        |> lib.concatStringsSep "\n";
-    };
-
-    systemd.services.flatpak-install = {
+    systemd.services.flatpak-declare = {
       wantedBy = ["multi-user.target"];
       after = ["network-online.target" "nss-lookup.target"];
       wants = ["network-online.target" "nss-lookup.target"];
@@ -65,11 +51,20 @@ in {
       serviceConfig.IOSchedulingClass = "2";
       serviceConfig.IOSchedulingPriority = "6";
       script = let
+        remotesScript =
+          cfg.remotes
+          |> builtins.mapAttrs (n: v:
+            "flatpak remote-add --if-not-exists ${n} ${v}"
+          )
+          |> builtins.attrValues
+          |> lib.concatStringsSep "\n";
+
         installScript =
           cfg.apps
           |> map (v: "flatpak install ${v.remote} ${v.name}")
           |> lib.concatStringsSep "\n";
       in ''
+        ${remotesScript}
         ${installScript}
         flatpak remove --unused
       '';
