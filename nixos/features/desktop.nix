@@ -23,10 +23,10 @@ in {
         extraGroups = ["wheel"];
         hashedPasswordFile = config.age.secrets.password.path;
       };
+      kernel.package = pkgs.linuxPackages_zen;
     };
 
     modules.system = {
-      kernel.package = pkgs.linuxPackages_zen;
     };
 
     programs.fish = {
