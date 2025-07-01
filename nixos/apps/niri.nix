@@ -6,6 +6,11 @@
 }: let
   cfg = config.modules.apps.niri;
 in {
+  # This module is intended to produce a fully functional desktop environment.
+  #
+  # Along with the compositor, it should install all daemons which work through
+  # d-bus, such as audio, power management, and security daemons.
+  #
   options.modules.apps.niri = {
     enable = lib.mkEnableOption "the niri module";
   };

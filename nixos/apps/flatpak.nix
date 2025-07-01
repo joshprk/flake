@@ -6,6 +6,11 @@
 }: let
   cfg = config.modules.apps.flatpak;
 in {
+  # Configures system-wide flatpak settings every startup.
+  #
+  # This does not intend to declare the direct state of Flatpak, but instead
+  # attempts to declare a system that converges to the model state.
+  #
   options.modules.apps.flatpak = {
     enable = lib.mkEnableOption "the flatpak module";
 
@@ -43,11 +48,6 @@ in {
       enable = true;
     };
 
-    # Configures system-wide flatpak settings every startup.
-    #
-    # This does not intend to declare the direct state of Flatpak, but instead
-    # attempts to declare a system that converges to the model state.
-    #
     systemd.services.flatpak-declare = {
       wantedBy = ["multi-user.target"];
       after = ["network-online.target" "nss-lookup.target"];
@@ -58,10 +58,9 @@ in {
       script = let
         remotesScript =
           cfg.remotes
-          |> builtins.mapAttrs (n: v:
+          |> lib.mapAttrsToList (n: v:
             "flatpak remote-add --if-not-exists ${n} ${v}"
           )
-          |> builtins.attrValues
           |> lib.concatStringsSep "\n";
 
         installScript =
