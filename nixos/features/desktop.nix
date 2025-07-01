@@ -12,7 +12,7 @@ in {
   };
 
   config = lib.mkIf cfg.desktop {
-    modules.services = {
+    modules.apps = {
       flatpak.enable = true;
       niri.enable = true;
     };

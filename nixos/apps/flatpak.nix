@@ -4,9 +4,9 @@
   pkgs,
   ...
 }: let
-  cfg = config.modules.services.flatpak;
+  cfg = config.modules.apps.flatpak;
 in {
-  options.modules.services.flatpak = {
+  options.modules.apps.flatpak = {
     enable = lib.mkEnableOption "the flatpak module";
 
     remotes = lib.mkOption {

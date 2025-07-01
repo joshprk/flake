@@ -4,9 +4,9 @@
   pkgs,
   ...
 }: let
-  cfg = config.modules.services.niri;
+  cfg = config.modules.apps.niri;
 in {
-  options.modules.services.niri = {
+  options.modules.apps.niri = {
     enable = lib.mkEnableOption "the niri module";
   };
 
