@@ -43,6 +43,11 @@ in {
       enable = true;
     };
 
+    # Configures system-wide flatpak settings every startup.
+    #
+    # This does not intend to declare the direct state of Flatpak, but instead
+    # attempts to declare a system that converges to the model state.
+    #
     systemd.services.flatpak-declare = {
       wantedBy = ["multi-user.target"];
       after = ["network-online.target" "nss-lookup.target"];
