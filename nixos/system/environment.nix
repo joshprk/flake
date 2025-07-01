@@ -20,10 +20,6 @@ in {
       enableAllTerminfo = true;
     };
 
-    boot = {
-      enableContainers = false;
-    };
-
     programs.command-not-found = {
       enable = false;
     };
