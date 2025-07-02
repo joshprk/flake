@@ -29,6 +29,10 @@
     };
   };
 
+  files.".config/direnv/lib/hm-nix-direnv.sh" = {
+    source = "${pkgs.nix-direnv}/share/nix-direnv/direnvrc";
+  };
+
   dotfiles.".config/npm/npmrc".text = ''
     prefix=.config/npm
     cache=.cache/npm
