@@ -41,12 +41,12 @@
   '';
 
   environment.sessionVariables = {
-    CARGO_HOME = ".local/share/cargo";
-    GOPATH = ".local/share/go";
-    GOMODCACHE = ".cache/go/mod";
-    PYTHON_HISTORY = ".local/state/python_history";
-    NPM_CONFIG_USERCONFIG = ".config/npm/npmrc";
-    NODE_REPL_HISTORY = ".local/share/node_repl_history";
-    RUSTUP_HOME = ".local/share/rustup";
+    CARGO_HOME = "$HOME/.local/share/cargo";
+    GOPATH = "$HOME/.local/share/go";
+    GOMODCACHE = "$HOME/.cache/go/mod";
+    PYTHON_HISTORY = "$HOME/.local/state/python_history";
+    NPM_CONFIG_USERCONFIG = "$HOME/.config/npm/npmrc";
+    NODE_REPL_HISTORY = "$HOME/.local/share/node_repl_history";
+    RUSTUP_HOME = "$HOME/.local/share/rustup";
   };
 }
