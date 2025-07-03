@@ -54,5 +54,15 @@ in {
       enable = lib.mkDefault true;
       fallbackCursorThemes = ["catppuccin-mocha-dark-cursors"];
     };
+
+    xdg.portal = {
+      enable = true;
+      configPackages = [config.programs.niri.package];
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-gtk
+        xdg-desktop-portal-gnome
+      ];
+      config.common.default = ["gtk"];
+    };
   };
 }
