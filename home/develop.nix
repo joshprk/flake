@@ -34,10 +34,10 @@
   };
 
   dotfiles.".config/npm/npmrc".text = ''
-    prefix=.config/npm
-    cache=.cache/npm
-    init-module=.config/npm/config/npm-init.js
-    logs-dir=.local/state/npm/logs
+    prefix=${config.directory}/.config/npm
+    cache=${config.directory}/.cache/npm
+    init-module=${config.directory}/.config/npm/config/npm-init.js
+    logs-dir=${config.directory}/.local/state/npm/logs
   '';
 
   shell.init = ''
@@ -45,12 +45,12 @@
   '';
 
   environment.sessionVariables = {
-    CARGO_HOME = "$HOME/.local/share/cargo";
-    GOPATH = "$HOME/.local/share/go";
-    GOMODCACHE = "$HOME/.cache/go/mod";
-    PYTHON_HISTORY = "$HOME/.local/state/python_history";
-    NPM_CONFIG_USERCONFIG = "$HOME/.config/npm/npmrc";
-    NODE_REPL_HISTORY = "$HOME/.local/share/node_repl_history";
-    RUSTUP_HOME = "$HOME/.local/share/rustup";
+    CARGO_HOME = "${config.directory}/.local/share/cargo";
+    GOPATH = "${config.directory}/.local/share/go";
+    GOMODCACHE = "${config.directory}/.cache/go/mod";
+    PYTHON_HISTORY = "${config.directory}/.local/state/python_history";
+    NPM_CONFIG_USERCONFIG = "${config.directory}/.config/npm/npmrc";
+    NODE_REPL_HISTORY = "${config.directory}/.local/share/node_repl_history";
+    RUSTUP_HOME = "${config.directory}/.local/share/rustup";
   };
 }
