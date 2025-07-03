@@ -28,6 +28,13 @@ in {
   };
 
   config = {
+    # This is necessary to cleanup files from previous state properly. 
+    modules.system = {
+      impermanence.extraDirectories = lib.mkIf (config.hjem.linker != null) [
+        "/var/lib/hjem"
+      ];
+    };
+
     programs.bash = {
       interactiveShellInit = ''
         XDG_STATE_HOME="''${XDG_STATE_HOME:-$HOME/.local/state}"
@@ -51,6 +58,36 @@ in {
     services.userborn = {
       enable = true;
       passwordFilesLocation = "/var/lib/nixos";
+    };
+
+    systemd.user.services.hjem-services = let
+      userFiles =
+        config.hjem.users
+        |> lib.mapAttrs (_: v: with v;
+          v.files
+          |> builtins.attrNames
+          |> lib.filter (lib.hasPrefix ".config/systemd/user")
+        );
+      manifest =
+        userFiles
+        |> builtins.toJSON
+        |> builtins.toFile "user-service-manifest";
+    in {
+      after = ["nixos-activation.target"];
+      wantedBy = ["default.target"];
+      script = ''
+        MANIFEST_FILE=${manifest}
+        rm -rf $HOME/.config/systemd/user/*.wants
+        ${lib.getExe pkgs.jq} -r --arg user "$USER" '.[$user][]' "$MANIFEST_FILE" | while read unitpath; do
+          unit=$(basename "$unitpath")
+          if [ -f "$HOME/$unitpath" ]; then
+            systemctl --user enable "$unit" || true
+            echo "$USER: activated $unit"
+          else
+            echo "$USER: tried to activate $unit which does not exist"
+          fi
+        done
+      '';
     };
 
     hjem = {
