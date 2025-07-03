@@ -28,6 +28,13 @@ in {
   };
 
   config = {
+    # This is necessary to cleanup files from previous state properly.
+    modules.system = {
+      impermanence.extraDirectories = lib.mkIf (config.hjem.linker != null) [
+        "/var/lib/hjem"
+      ];
+    };
+
     programs.bash = {
       interactiveShellInit = ''
         XDG_STATE_HOME="''${XDG_STATE_HOME:-$HOME/.local/state}"
