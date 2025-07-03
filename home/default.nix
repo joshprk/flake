@@ -19,6 +19,11 @@
               default = null;
             };
 
+            source = lib.mkOption {
+              type = with lib.types; nullOr path;
+              default = null;
+            };
+
             text = lib.mkOption {
               type = with lib.types; nullOr str;
               default = null;
@@ -53,7 +58,12 @@
           with v;
             if text != null
             then {inherit text;}
-            else {source = generator value;}
+            else {
+              source =
+                if generator != null
+                then generator value
+                else source;
+            }
       )
       config.dotfiles;
   };

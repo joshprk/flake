@@ -8,7 +8,6 @@
     direnv
     git
     ripgrep
-    nix-direnv
   ];
 
   dotfiles.".config/git/config" = {
@@ -29,7 +28,7 @@
     };
   };
 
-  files.".config/direnv/lib/hm-nix-direnv.sh" = {
+  dotfiles.".config/direnv/lib/nix-direnv.sh" = {
     source = "${pkgs.nix-direnv}/share/nix-direnv/direnvrc";
   };
 
