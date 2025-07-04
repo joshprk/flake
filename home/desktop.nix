@@ -38,9 +38,9 @@
       center-focused-column "never"
 
       preset-column-widths {
-        proportion 0.33333
-        proportion 0.5
-        proportion 0.66667
+        proportion 0.3333333
+        proportion 0.5000000
+        proportion 0.6666666
       }
 
       default-column-width {
@@ -211,4 +211,305 @@
       modules-right = ["tray" "battery" "clock"];
     };
   };
+
+  dotfiles.".config/waybar/style.css".text = ''
+    /* Base Variables */
+    * {
+        font-family: "Inter", system-ui, sans-serif;
+        font-size: 13px;
+        font-weight: 400;
+        min-height: 0;
+        border: none;
+        border-radius: 0;
+    }
+
+    /* Main Window */
+    window#waybar {
+        background: rgba(24, 25, 28, 0.85);
+        color: #ffffff;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Module Base Classes */
+    .module {
+        padding: 4px 12px;
+        margin: 0;
+        background: transparent;
+        color: rgba(255, 255, 255, 0.9);
+        transition: all 0.2s ease;
+    }
+
+    .module:hover {
+        background: rgba(255, 255, 255, 0.05);
+        color: #ffffff;
+    }
+
+    .module-accent {
+        color: #0969da;
+    }
+
+    .module-warning {
+        color: #fb8500;
+    }
+
+    .module-critical {
+        color: #dc3545;
+    }
+
+    .module-success {
+        color: #28a745;
+    }
+
+    .module-separator {
+        border-right: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    /* Workspaces */
+    #workspaces {
+        background: transparent;
+        margin: 0;
+        padding: 0;
+    }
+
+    #workspaces button {
+        padding: 4px 10px;
+        margin: 0;
+        background: transparent;
+        color: rgba(255, 255, 255, 0.6);
+        border: none;
+        transition: all 0.2s ease;
+        font-weight: 500;
+    }
+
+    #workspaces button:hover {
+        background: rgba(255, 255, 255, 0.05);
+        color: rgba(255, 255, 255, 0.8);
+    }
+
+    #workspaces button.active {
+        background: rgba(9, 105, 218, 0.1);
+        color: #0969da;
+        border-bottom: 2px solid #0969da;
+    }
+
+    #workspaces button.urgent {
+        background: rgba(220, 53, 69, 0.1);
+        color: #dc3545;
+        border-bottom: 2px solid #dc3545;
+    }
+
+    /* Left Modules */
+    #custom-launcher {
+        padding: 4px 12px;
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    #custom-launcher:hover {
+        color: #0969da;
+    }
+
+    /* Center Modules */
+    #clock {
+        padding: 4px 18px;
+        color: #ffffff;
+        font-weight: 500;
+        font-size: 14px;
+    }
+
+    #clock:hover {
+        color: #0969da;
+    }
+
+    /* Right Modules */
+    #tray {
+        padding: 4px 8px;
+    }
+
+    #tray > .passive {
+        color: rgba(255, 255, 255, 0.6);
+    }
+
+    #tray > .active {
+        color: #ffffff;
+    }
+
+    #tray > .urgent {
+        color: #dc3545;
+    }
+
+    /* System Modules */
+    #cpu {
+        padding: 4px 10px;
+        color: rgba(255, 255, 255, 0.8);
+    }
+
+    #cpu.warning {
+        color: #fb8500;
+    }
+
+    #cpu.critical {
+        color: #dc3545;
+    }
+
+    #memory {
+        padding: 4px 10px;
+        color: rgba(255, 255, 255, 0.8);
+    }
+
+    #memory.warning {
+        color: #fb8500;
+    }
+
+    #memory.critical {
+        color: #dc3545;
+    }
+
+    #temperature {
+        padding: 4px 10px;
+        color: rgba(255, 255, 255, 0.8);
+    }
+
+    #temperature.critical {
+        color: #dc3545;
+    }
+
+    /* Battery */
+    #battery {
+        padding: 4px 10px;
+        color: rgba(255, 255, 255, 0.8);
+    }
+
+    #battery.charging {
+        color: #28a745;
+    }
+
+    #battery.warning:not(.charging) {
+        color: #fb8500;
+    }
+
+    #battery.critical:not(.charging) {
+        color: #dc3545;
+        animation: blink 1s linear infinite alternate;
+    }
+
+    @keyframes blink {
+        to { color: rgba(220, 53, 69, 0.5); }
+    }
+
+    /* Network */
+    #network {
+        padding: 4px 10px;
+        color: rgba(255, 255, 255, 0.8);
+    }
+
+    #network.disconnected {
+        color: #dc3545;
+    }
+
+    #network.wifi {
+        color: #0969da;
+    }
+
+    #network.ethernet {
+        color: #28a745;
+    }
+
+    /* Audio */
+    #pulseaudio {
+        padding: 4px 10px;
+        color: rgba(255, 255, 255, 0.8);
+    }
+
+    #pulseaudio.muted {
+        color: rgba(255, 255, 255, 0.4);
+    }
+
+    #pulseaudio:hover {
+        color: #0969da;
+    }
+
+    /* Backlight */
+    #backlight {
+        padding: 4px 10px;
+        color: rgba(255, 255, 255, 0.8);
+    }
+
+    #backlight:hover {
+        color: #0969da;
+    }
+
+    /* Custom Modules */
+    #custom-notification {
+        padding: 4px 10px;
+        color: rgba(255, 255, 255, 0.8);
+    }
+
+    #custom-notification.notification {
+        color: #0969da;
+    }
+
+    #custom-power {
+        padding: 4px 12px;
+        color: rgba(255, 255, 255, 0.8);
+        font-weight: 500;
+    }
+
+    #custom-power:hover {
+        color: #dc3545;
+    }
+
+    /* Tooltips */
+    tooltip {
+        border-radius: 6px;
+        background: rgba(24, 25, 28, 0.95);
+        color: #ffffff;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+
+    tooltip label {
+        color: #ffffff;
+    }
+
+    /* Module Grouping */
+    .modules-left {
+        margin-left: 0;
+    }
+
+    .modules-center {
+        margin: 0;
+    }
+
+    .modules-right {
+        margin-right: 0;
+    }
+
+    /* Separators between module groups */
+    .modules-left > *:last-child {
+        border-right: 1px solid rgba(255, 255, 255, 0.06);
+        margin-right: 8px;
+    }
+
+    .modules-center {
+        margin: 0 8px;
+    }
+
+    /* Hover Effects */
+    .module:hover {
+        background: rgba(255, 255, 255, 0.05);
+        transition: background 0.2s ease;
+    }
+
+    /* Focus/Active States */
+    .module:focus,
+    .module.active {
+        background: rgba(9, 105, 218, 0.1);
+        color: #0969da;
+    }
+  '';
 }
