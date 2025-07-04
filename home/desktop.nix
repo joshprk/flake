@@ -4,6 +4,10 @@
   pkgs,
   ...
 }: {
+  apps = [
+    {remote = "flathub"; name = "org.mozilla.firefox";}
+  ];
+
   packages = with pkgs; [
     ghostty
     hypridle

@@ -28,6 +28,14 @@ in {
   };
 
   config = {
+    modules.apps = {
+      flatpak.apps =
+        lib.foldl
+        (a: b: a ++ b.apps)
+        []
+        (builtins.attrValues config.hjem.users);
+    };
+
     # This is necessary to cleanup files from previous state properly.
     modules.system = {
       impermanence.extraDirectories = lib.mkIf (config.hjem.linker != null) [
@@ -61,7 +69,12 @@ in {
     };
 
     hjem = {
-      extraModules = [flake.homeModules.default];
+      extraModules = [
+        flake.homeModules.default
+        ({
+          options = {inherit (options.modules.apps.flatpak) apps;};
+        })
+      ];
       linker = inputs.hjem.packages.${pkgs.system}.smfh;
       users = lib.mapAttrs (_: v: v.hjem) cfg;
     };
