@@ -20,6 +20,7 @@
     vim.o.cursorline = true
     vim.o.number = true
     vim.o.relativenumber = true
+    vim.o.wrap = false
 
     vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
   '';

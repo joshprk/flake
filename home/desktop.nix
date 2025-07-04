@@ -7,6 +7,7 @@
   packages = with pkgs; [
     ghostty
     hypridle
+    hyprpaper
     xwayland-satellite
     waybar
   ];
@@ -18,6 +19,7 @@
     }
 
     spawn-at-startup "hypridle"
+    spawn-at-startup "hyprpaper"
     spawn-at-startup "waybar"
     spawn-at-startup "xwayland-satellite"
 
@@ -189,6 +191,16 @@
       timeout = 500
       on-timeout = niri msg action power-off-monitors
     }
+  '';
+
+  dotfiles.".config/hypr/hyprpaper.conf".text = let
+    wallpaper = pkgs.fetchurl {
+      url = "https://media.githubusercontent.com/media/pop-os/cosmic-wallpapers/189c2c63d31da84ebb161acfd21a503f98a1b4c7/original/orion_nebula_nasa_heic0601a.jpg";
+      hash = "sha256-dQD3AvBIjUqN8sWr63ypEHp8p5mOBEFyfLr3lGWwI4g=";
+    };
+  in ''
+    preload = ${wallpaper}
+    wallpaper = , ${wallpaper}
   '';
 
   dotfiles.".config/waybar/config" = {
