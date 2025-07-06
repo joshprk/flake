@@ -45,11 +45,6 @@ in {
       enable = lib.mkDefault true;
     };
 
-    security = {
-      rtkit.enable = lib.mkDefault true;
-      polkit.enable = lib.mkDefault true;
-    };
-
     xdg.icons = {
       enable = lib.mkDefault true;
       fallbackCursorThemes = ["catppuccin-mocha-dark-cursors"];
@@ -62,7 +57,19 @@ in {
         xdg-desktop-portal-gtk
         xdg-desktop-portal-gnome
       ];
-      config.common.default = ["gtk"];
+
+      config.common = {
+        default = [
+          "gtk"
+          "gnome"
+        ];
+        "org.freedesktop.impl.portal.Access" = ["gtk"];
+      };
+    };
+
+    security = {
+      rtkit.enable = lib.mkDefault true;
+      polkit.enable = lib.mkDefault true;
     };
   };
 }
