@@ -16,7 +16,7 @@
     waybar
   ];
 
-  dotfiles.".config/niri/config.kdl".text = ''
+  files.".config/niri/config.kdl".text = ''
     environment {
       DISPLAY ":0"
       ELECTRON_OZONE_PLATFORM_HINT "wayland"
@@ -190,14 +190,14 @@
     }
   '';
 
-  dotfiles.".config/hypr/hypridle.conf".text = ''
+  files.".config/hypr/hypridle.conf".text = ''
     listener {
       timeout = 500
       on-timeout = niri msg action power-off-monitors
     }
   '';
 
-  dotfiles.".config/hypr/hyprpaper.conf".text = let
+  files.".config/hypr/hyprpaper.conf".text = let
     wallpaper = pkgs.fetchurl {
       url = "https://media.githubusercontent.com/media/pop-os/cosmic-wallpapers/189c2c63d31da84ebb161acfd21a503f98a1b4c7/original/orion_nebula_nasa_heic0601a.jpg";
       hash = "sha256-dQD3AvBIjUqN8sWr63ypEHp8p5mOBEFyfLr3lGWwI4g=";
@@ -207,7 +207,7 @@
     wallpaper = , ${wallpaper}
   '';
 
-  dotfiles.".config/waybar/config" = {
+  files.".config/waybar/config" = {
     generator = (pkgs.formats.json {}).generate "waybar-config";
     value = {
       layer = "top";
@@ -216,7 +216,7 @@
     };
   };
 
-  dotfiles.".config/waybar/style.css".text = ''
+  files.".config/waybar/style.css".text = ''
     /* Base Variables */
     * {
         font-family: "Inter", system-ui, sans-serif;

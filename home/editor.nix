@@ -8,7 +8,7 @@
     neovim
   ];
 
-  dotfiles.".config/nvim/init.lua".text = ''
+  files.".config/nvim/init.lua".text = ''
     vim.o.cindent = true
     vim.o.expandtab = true
     vim.o.tabstop = 2

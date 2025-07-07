@@ -10,7 +10,7 @@
     ripgrep
   ];
 
-  dotfiles.".config/git/config" = {
+  files.".config/git/config" = {
     generator = (pkgs.formats.toml {}).generate "gitconfig";
     value = {
       init.defaultBranch = "main";
@@ -19,7 +19,7 @@
     };
   };
 
-  dotfiles.".config/direnv/direnv.toml" = {
+  files.".config/direnv/direnv.toml" = {
     generator = (pkgs.formats.toml {}).generate "direnv-config";
     value = {
       global.disable_stdin = true;
@@ -28,11 +28,11 @@
     };
   };
 
-  dotfiles.".config/direnv/lib/nix-direnv.sh" = {
+  files.".config/direnv/lib/nix-direnv.sh" = {
     source = "${pkgs.nix-direnv}/share/nix-direnv/direnvrc";
   };
 
-  dotfiles.".config/npm/npmrc".text = ''
+  files.".config/npm/npmrc".text = ''
     prefix=${config.directory}/.config/npm
     cache=${config.directory}/.cache/npm
     init-module=${config.directory}/.config/npm/config/npm-init.js
