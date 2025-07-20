@@ -36,6 +36,11 @@ in {
         checkReversePath = lib.mkDefault "loose";
       };
 
+      nameservers = [
+        "1.1.1.1"
+        "1.0.0.1"
+      ];
+
       wireless = {
         iwd.enable = lib.mkDefault true;
       };
