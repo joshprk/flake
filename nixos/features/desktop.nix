@@ -15,6 +15,14 @@ in {
       kernel.package = pkgs.linuxPackages_zen;
     };
 
+    services.displayManager = {
+      cosmic-greeter.enable = true;
+    };
+
+    services.desktopManager = {
+      cosmic.enable = true;
+    };
+
     programs.fish = {
       enable = true;
     };
