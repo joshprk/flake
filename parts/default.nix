@@ -9,9 +9,12 @@
     ./packages.nix
   ];
 
-  flake.flakeModules = rec {
-    flake = lib.modules.importApply ./flake-module.nix inputs;
-    default = flake;
+  flake = {
+    inherit (inputs.flake-parts) lib;
+    flakeModules = rec {
+      flake = lib.modules.importApply ./flake-module.nix inputs;
+      default = flake;
+    };
   };
 
   perSystem = {pkgs, ...}: {
