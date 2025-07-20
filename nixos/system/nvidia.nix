@@ -55,7 +55,7 @@ in {
       nvidiaPersistenced = cfg.maxGpuClock != null || cfg.maxMemClock != null;
       open = true;
     };
-    
+
     systemd.services.nvidia-tune-gpu = lib.mkIf (cfg.maxGpuClock != null) {
       description = "NVIDIA GPU clock tuning";
       wantedBy = ["multi-user.target"];

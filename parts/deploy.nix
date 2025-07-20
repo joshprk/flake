@@ -58,11 +58,12 @@ in {
 
     flake.nixosConfigurations = lib.pipe cfg.clusters [
       builtins.attrValues
-      (lib.concatMap (path: lib.pipe path [
-        builtins.readDir
-        builtins.attrNames
-        (map (file: "${path}/${file}"))
-      ]))
+      (lib.concatMap (path:
+        lib.pipe path [
+          builtins.readDir
+          builtins.attrNames
+          (map (file: "${path}/${file}"))
+        ]))
       (map (mod: rec {
         name = lib.pipe mod [
           builtins.baseNameOf
@@ -71,7 +72,12 @@ in {
         ];
         value = lib.nixosSystem {
           modules = cfg.modules ++ [mod];
-          specialArgs.var = cfg.var // {host = mod; hostName = name;};
+          specialArgs.var =
+            cfg.var
+            // {
+              host = mod;
+              hostName = name;
+            };
         };
       }))
       builtins.listToAttrs

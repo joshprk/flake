@@ -11,16 +11,13 @@ in {
   };
 
   config = lib.mkIf cfg.desktop {
+    modules.apps = {
+      flatpak.enable = true;
+      niri.enable = true;
+    };
+
     modules.system = {
       kernel.package = pkgs.linuxPackages_zen;
-    };
-
-    services.displayManager = {
-      cosmic-greeter.enable = true;
-    };
-
-    services.desktopManager = {
-      cosmic.enable = true;
     };
 
     programs.fish = {

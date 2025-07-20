@@ -1,6 +1,4 @@
-localInputs:
-
-{lib, ...}: {
+localInputs: {lib, ...}: {
   imports = [
     ./deploy.nix
   ];

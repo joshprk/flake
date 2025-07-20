@@ -4,6 +4,7 @@
       imports = [./parts];
       deploy = {
         clusters.hosts = ./hosts;
+        var.homeModules = [./home];
       };
     };
 

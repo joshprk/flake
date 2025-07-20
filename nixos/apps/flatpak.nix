@@ -23,17 +23,18 @@ in {
     };
 
     apps = lib.mkOption {
-      type = with lib.types; listOf (submodule {
-        options = {
-          remote = lib.mkOption {
-            type = str;
-          };
+      type = with lib.types;
+        listOf (submodule {
+          options = {
+            remote = lib.mkOption {
+              type = str;
+            };
 
-          name = lib.mkOption {
-            type = str;
+            name = lib.mkOption {
+              type = str;
+            };
           };
-        };
-      });
+        });
       description = "A list of applications which are automatically installed.";
       default = [];
     };
@@ -54,8 +55,8 @@ in {
       script = let
         remotesScript =
           cfg.remotes
-          |> lib.mapAttrsToList (n: v:
-            "flatpak remote-add --if-not-exists ${n} ${v}"
+          |> lib.mapAttrsToList (
+            n: v: "flatpak remote-add --if-not-exists ${n} ${v}"
           )
           |> lib.concatStringsSep "\n";
 
