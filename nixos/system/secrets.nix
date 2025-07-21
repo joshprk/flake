@@ -44,6 +44,7 @@ in {
           (builtins.readFile cfg.keyFile);
         generatedSecretsDir = cfg.secretsPath;
         localStorageDir = "${cfg.rekeyPath}/${config.networking.hostName}";
+        storageMode = "local";
       };
 
       secrets =

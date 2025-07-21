@@ -19,6 +19,7 @@ in {
       extraUpFlags =
         (lib.optionals cfg.exitNode ["--advertise-exit-node"])
         ++ ["--ssh"];
+      authKeyFile = config.age.secrets.tailscale.path;
     };
 
     services.resolved = {
