@@ -1,5 +1,6 @@
 localInputs: {config, lib, ...}: {
   imports = [
+    localInputs.agenix-rekey.flakeModule
     ./deploy.nix
   ];
 
