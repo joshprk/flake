@@ -32,7 +32,7 @@ in {
       users.joshua = {
         isNormalUser = true;
         extraGroups = ["wheel"];
-        password = "password";
+        hashedPasswordFile = config.age.secrets.password.path;
       };
       defaultUserShell = pkgs.fish;
     };

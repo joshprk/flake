@@ -11,7 +11,10 @@ localInputs: {config, lib, ...}: {
 
     perSystem = {config, pkgs, ...}: {
       devShells.default = pkgs.mkShellNoCC {
-        packages = [config.agenix-rekey.package];
+        packages = with pkgs; [
+          config.agenix-rekey.package
+          age-plugin-fido2-hmac
+        ];
       };
 
       agenix-rekey = {
