@@ -24,14 +24,6 @@
     pkgs,
     ...
   }: {
-    devShells.default = pkgs.mkShellNoCC {
-      packages = [config.agenix-rekey.package];
-    };
-
-    agenix-rekey = {
-      homeConfigurations = {};
-    };
-
     formatter = pkgs.alejandra;
   };
 }
