@@ -38,6 +38,10 @@ in {
       extra-experimental-features = lib.mkDefault cfg.features;
       auto-allocate-uids = lib.mkDefault true;
       use-xdg-base-directories = lib.mkDefault true;
+      extra-substituters = ["https://nix-community.cachix.org"];
+      extra-trusted-public-keys = [
+        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      ];
     };
 
     nixpkgs = {
