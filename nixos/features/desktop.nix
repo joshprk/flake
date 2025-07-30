@@ -25,11 +25,11 @@ in {
     };
 
     hjem = {
-      users.joshua = {};
+      users.josh = {};
     };
 
     users = {
-      users.joshua = {
+      users.josh = {
         isNormalUser = true;
         extraGroups = ["wheel"];
         hashedPasswordFile = config.age.secrets.password.path;
