@@ -1,4 +1,13 @@
-{python3Packages, ...}:
+{
+  disko,
+  facter,
+  git,
+  git-credential-manager,
+  nix,
+  python3Packages,
+  sops,
+  ...
+}:
 python3Packages.buildPythonApplication {
   pname = "deploy";
   version = "0.1.0";
@@ -9,5 +18,14 @@ python3Packages.buildPythonApplication {
 
   nativeBuildInputs = with python3Packages; [
     setuptools
+  ];
+
+  propagatedBuildInputs = with python3Packages; [
+    disko
+    facter
+    git
+    git-credential-manager
+    nix
+    sops
   ];
 }

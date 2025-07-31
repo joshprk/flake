@@ -1,5 +1,5 @@
 def main():
-    print("Hello from deploy!")
+    pass
 
 if __name__ == "__main__":
     main()
