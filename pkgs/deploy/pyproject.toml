@@ -5,7 +5,11 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "deploy"
 version = "0.1.0"
-dependencies = []
+dependencies = [
+  "gitpython",
+  "requests",
+  "rich",
+]
 
 [project.scripts]
 deploy = "main:main"

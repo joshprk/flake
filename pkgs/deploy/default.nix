@@ -23,10 +23,11 @@ python3Packages.buildPythonApplication {
   propagatedBuildInputs = [
     disko
     facter
-    git
     git-credential-manager
     nix
     sops
-    python3Packages.textual
+    python3Packages.gitpython
+    python3Packages.requests
+    python3Packages.rich
   ];
 }
