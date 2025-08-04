@@ -32,6 +32,7 @@
 
   hjem = {
     extraModules = var.homeModules;
+    linker = var.libInputs.hjem.packages.${pkgs.system}.smfh;
   };
 
   users = {

@@ -75,6 +75,7 @@ in {
           specialArgs.var =
             cfg.var
             // {
+              libInputs = localInputs;
               host = mod;
               hostName = name;
             };
