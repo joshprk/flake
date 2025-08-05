@@ -9,7 +9,6 @@
     hypridle
     hyprpaper
     xwayland-satellite
-    waybar
   ];
 
   files.".config/niri/config.kdl".text = ''
@@ -20,7 +19,6 @@
 
     spawn-at-startup "hypridle"
     spawn-at-startup "hyprpaper"
-    spawn-at-startup "waybar"
     spawn-at-startup "xwayland-satellite"
 
     screenshot-path "~/Pictures/screenshot-%Y-%m-%d-at-%H-%M.png"
@@ -59,6 +57,13 @@
         offset x=0 y=5
         color "#0007"
       }
+
+      background-color "transparent"
+    }
+
+    layer-rule {
+      match namespace="^hyprpaper$"
+      place-within-backdrop true
     }
 
     window-rule {
@@ -73,7 +78,7 @@
 
     binds {
       Mod+Shift+Slash { show-hotkey-overlay; }
-      Mod+Q { spawn "ghostty"; }
+      Mod+T { spawn "ghostty"; }
       XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"; }
       XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; }
       XF86AudioMute allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
@@ -195,321 +200,11 @@
 
   files.".config/hypr/hyprpaper.conf".text = let
     wallpaper = pkgs.fetchurl {
-      url = "https://media.githubusercontent.com/media/pop-os/cosmic-wallpapers/189c2c63d31da84ebb161acfd21a503f98a1b4c7/original/orion_nebula_nasa_heic0601a.jpg";
-      hash = "sha256-dQD3AvBIjUqN8sWr63ypEHp8p5mOBEFyfLr3lGWwI4g=";
+      url = "https://github.com/foxt/macOS-Wallpapers/blob/master/Mojave%20Night.jpg?raw=truehttps://github.com/foxt/macOS-Wallpapers/blob/master/Mojave%20Night.jpg?raw=true";
+      hash = "sha256-Zv7uvjSNACpI2Yck22bsA8gwVaju2Yght7y09xko9xw=";
     };
   in ''
     preload = ${wallpaper}
     wallpaper = , ${wallpaper}
-  '';
-
-  files.".config/waybar/config" = {
-    generator = (pkgs.formats.json {}).generate "waybar-config";
-    value = {
-      layer = "top";
-      modules-left = ["niri/workspaces"];
-      modules-right = ["tray" "battery" "clock"];
-    };
-  };
-
-  files.".config/waybar/style.css".text = ''
-    /* Base Variables */
-    * {
-        font-family: "Inter", system-ui, sans-serif;
-        font-size: 13px;
-        font-weight: 400;
-        min-height: 0;
-        border: none;
-        border-radius: 0;
-    }
-
-    /* Main Window */
-    window#waybar {
-        background: rgba(24, 25, 28, 0.85);
-        color: #ffffff;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
-    }
-
-    /* Module Base Classes */
-    .module {
-        padding: 4px 12px;
-        margin: 0;
-        background: transparent;
-        color: rgba(255, 255, 255, 0.9);
-        transition: all 0.2s ease;
-    }
-
-    .module:hover {
-        background: rgba(255, 255, 255, 0.05);
-        color: #ffffff;
-    }
-
-    .module-accent {
-        color: #0969da;
-    }
-
-    .module-warning {
-        color: #fb8500;
-    }
-
-    .module-critical {
-        color: #dc3545;
-    }
-
-    .module-success {
-        color: #28a745;
-    }
-
-    .module-separator {
-        border-right: 1px solid rgba(255, 255, 255, 0.06);
-    }
-
-    /* Workspaces */
-    #workspaces {
-        background: transparent;
-        margin: 0;
-        padding: 0;
-    }
-
-    #workspaces button {
-        padding: 4px 10px;
-        margin: 0;
-        background: transparent;
-        color: rgba(255, 255, 255, 0.6);
-        border: none;
-        transition: all 0.2s ease;
-        font-weight: 500;
-    }
-
-    #workspaces button:hover {
-        background: rgba(255, 255, 255, 0.05);
-        color: rgba(255, 255, 255, 0.8);
-    }
-
-    #workspaces button.active {
-        background: rgba(9, 105, 218, 0.1);
-        color: #0969da;
-        border-bottom: 2px solid #0969da;
-    }
-
-    #workspaces button.urgent {
-        background: rgba(220, 53, 69, 0.1);
-        color: #dc3545;
-        border-bottom: 2px solid #dc3545;
-    }
-
-    /* Left Modules */
-    #custom-launcher {
-        padding: 4px 12px;
-        color: rgba(255, 255, 255, 0.9);
-        font-size: 14px;
-        font-weight: 500;
-    }
-
-    #custom-launcher:hover {
-        color: #0969da;
-    }
-
-    /* Center Modules */
-    #clock {
-        padding: 4px 18px;
-        color: #ffffff;
-        font-weight: 500;
-        font-size: 14px;
-    }
-
-    #clock:hover {
-        color: #0969da;
-    }
-
-    /* Right Modules */
-    #tray {
-        padding: 4px 8px;
-    }
-
-    #tray > .passive {
-        color: rgba(255, 255, 255, 0.6);
-    }
-
-    #tray > .active {
-        color: #ffffff;
-    }
-
-    #tray > .urgent {
-        color: #dc3545;
-    }
-
-    /* System Modules */
-    #cpu {
-        padding: 4px 10px;
-        color: rgba(255, 255, 255, 0.8);
-    }
-
-    #cpu.warning {
-        color: #fb8500;
-    }
-
-    #cpu.critical {
-        color: #dc3545;
-    }
-
-    #memory {
-        padding: 4px 10px;
-        color: rgba(255, 255, 255, 0.8);
-    }
-
-    #memory.warning {
-        color: #fb8500;
-    }
-
-    #memory.critical {
-        color: #dc3545;
-    }
-
-    #temperature {
-        padding: 4px 10px;
-        color: rgba(255, 255, 255, 0.8);
-    }
-
-    #temperature.critical {
-        color: #dc3545;
-    }
-
-    /* Battery */
-    #battery {
-        padding: 4px 10px;
-        color: rgba(255, 255, 255, 0.8);
-    }
-
-    #battery.charging {
-        color: #28a745;
-    }
-
-    #battery.warning:not(.charging) {
-        color: #fb8500;
-    }
-
-    #battery.critical:not(.charging) {
-        color: #dc3545;
-        animation: blink 1s linear infinite alternate;
-    }
-
-    @keyframes blink {
-        to { color: rgba(220, 53, 69, 0.5); }
-    }
-
-    /* Network */
-    #network {
-        padding: 4px 10px;
-        color: rgba(255, 255, 255, 0.8);
-    }
-
-    #network.disconnected {
-        color: #dc3545;
-    }
-
-    #network.wifi {
-        color: #0969da;
-    }
-
-    #network.ethernet {
-        color: #28a745;
-    }
-
-    /* Audio */
-    #pulseaudio {
-        padding: 4px 10px;
-        color: rgba(255, 255, 255, 0.8);
-    }
-
-    #pulseaudio.muted {
-        color: rgba(255, 255, 255, 0.4);
-    }
-
-    #pulseaudio:hover {
-        color: #0969da;
-    }
-
-    /* Backlight */
-    #backlight {
-        padding: 4px 10px;
-        color: rgba(255, 255, 255, 0.8);
-    }
-
-    #backlight:hover {
-        color: #0969da;
-    }
-
-    /* Custom Modules */
-    #custom-notification {
-        padding: 4px 10px;
-        color: rgba(255, 255, 255, 0.8);
-    }
-
-    #custom-notification.notification {
-        color: #0969da;
-    }
-
-    #custom-power {
-        padding: 4px 12px;
-        color: rgba(255, 255, 255, 0.8);
-        font-weight: 500;
-    }
-
-    #custom-power:hover {
-        color: #dc3545;
-    }
-
-    /* Tooltips */
-    tooltip {
-        border-radius: 6px;
-        background: rgba(24, 25, 28, 0.95);
-        color: #ffffff;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-        padding: 8px 12px;
-        font-size: 12px;
-    }
-
-    tooltip label {
-        color: #ffffff;
-    }
-
-    /* Module Grouping */
-    .modules-left {
-        margin-left: 0;
-    }
-
-    .modules-center {
-        margin: 0;
-    }
-
-    .modules-right {
-        margin-right: 0;
-    }
-
-    /* Separators between module groups */
-    .modules-left > *:last-child {
-        border-right: 1px solid rgba(255, 255, 255, 0.06);
-        margin-right: 8px;
-    }
-
-    .modules-center {
-        margin: 0 8px;
-    }
-
-    /* Hover Effects */
-    .module:hover {
-        background: rgba(255, 255, 255, 0.05);
-        transition: background 0.2s ease;
-    }
-
-    /* Focus/Active States */
-    .module:focus,
-    .module.active {
-        background: rgba(9, 105, 218, 0.1);
-        color: #0969da;
-    }
   '';
 }
