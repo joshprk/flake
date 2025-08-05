@@ -29,6 +29,10 @@ in {
     };
 
     users = {
+      users.root = {
+        hashedPasswordFile = config.age.secrets.password.path;
+      };
+
       users.josh = {
         isNormalUser = true;
         extraGroups = ["wheel"];
