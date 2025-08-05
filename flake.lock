@@ -10,15 +10,15 @@
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1754213600,
-        "narHash": "sha256-UvXmMOCZrZqbs+BM2GV5ftclakM5uYENHd6kWPUJSQg=",
-        "owner": "moraxyc",
+        "lastModified": 1754337839,
+        "narHash": "sha256-fEc2/4YsJwtnLU7HCFMRckb0u9UNnDZmwGhXT5U5NTw=",
+        "owner": "ryantm",
         "repo": "agenix",
-        "rev": "941d98f15da9d2a8fd3c7d0970f655596fe8cb46",
+        "rev": "856df6f6922845abd4fd958ce21febc07ca2fa45",
         "type": "github"
       },
       "original": {
-        "owner": "moraxyc",
+        "owner": "ryantm",
         "repo": "agenix",
         "type": "github"
       }
