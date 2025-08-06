@@ -47,9 +47,12 @@
     CARGO_HOME = "${config.directory}/.local/share/cargo";
     GOPATH = "${config.directory}/.local/share/go";
     GOMODCACHE = "${config.directory}/.cache/go/mod";
+    KUBECACHEDIR = "${config.directory}/.cache/kube";
+    KUBECONFIG = "${config.directory}/.config/kube";
     PYTHON_HISTORY = "${config.directory}/.local/state/python_history";
     NPM_CONFIG_USERCONFIG = "${config.directory}/.config/npm/npmrc";
     NODE_REPL_HISTORY = "${config.directory}/.local/share/node_repl_history";
     RUSTUP_HOME = "${config.directory}/.local/share/rustup";
+    XDG_CONFIG_HOME = "${config.directory}/.config";
   };
 }
