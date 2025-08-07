@@ -191,6 +191,10 @@
     }
   '';
 
+  files.".config/ghostty/config".text = ''
+    font-size = 11
+  '';
+
   files.".config/hypr/hypridle.conf".text = ''
     listener {
       timeout = 500
