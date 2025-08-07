@@ -34,11 +34,19 @@
     layout {
       gaps 16
       center-focused-column "never"
+      always-center-single-column
+
+      struts {
+        left 0
+        right 0
+        top 0
+        bottom 0
+      }
 
       preset-column-widths {
-        proportion 0.3333333
-        proportion 0.5000000
-        proportion 0.6666666
+        proportion 0.33333
+        proportion 0.50000
+        proportion 0.66667
       }
 
       default-column-width {
