@@ -45,12 +45,12 @@ in {
     };
 
     nixpkgs = {
+      inherit (var) overlays;
       config = {
         inherit (config.nixpkgs) overlays;
         allowUnfree = lib.mkDefault true;
         cudaSupport = lib.mkDefault true;
       };
-      overlays = var.overlays;
     };
 
     system = {

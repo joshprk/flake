@@ -4,26 +4,59 @@
   pkgs,
   ...
 }: {
-  packages = with pkgs; [
-    neovim
-  ];
+  packages = lib.singleton (pkgs.makeNixvim {
+    withPython3 = false;
+    withRuby = false;
 
-  files.".config/nvim/init.lua".text = ''
-    vim.o.cindent = true
-    vim.o.expandtab = true
-    vim.o.tabstop = 2
-    vim.o.softtabstop = 2
-    vim.o.shiftwidth = 2
-    vim.o.swapfile = false
-    vim.o.undofile = true
+    opts = {
+      cindent = true;
+      expandtab = true;
+      tabstop = 2;
+      softtabstop = 2;
+      shiftwidth = 2;
+      swapfile = false;
+      undofile = true;
 
-    vim.o.cursorline = true
-    vim.o.number = true
-    vim.o.relativenumber = true
-    vim.o.wrap = false
+      cursorline = true;
+      number = true;
+      relativenumber = true;
+      signcolumn = "number";
+      wrap = false;
+    };
 
-    vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-  '';
+    lsp.servers = {
+      basedpyright = {
+        enable = true;
+      };
+
+      nil_ls = {
+        enable = true;
+      };
+    };
+
+    plugins.blink-cmp = {
+      enable = true;
+      settings = {
+        keymap.preset = "super-tab";
+      };
+    };
+
+    plugins.lspconfig = {
+      enable = true;
+    };
+
+    performance = {
+      byteCompileLua = {
+        enable = true;
+        configs = true;
+        initLua = true;
+        luaLib = true;
+        nvimRuntime = true;
+        plugins = true;
+      };
+      combinePlugins.enable = true;
+    };
+  });
 
   environment.sessionVariables = {
     EDITOR = "nvim";

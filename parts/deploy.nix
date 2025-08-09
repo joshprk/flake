@@ -56,6 +56,12 @@ in {
         impermanence.nixosModules.impermanence
       ];
 
+    deploy.var = {
+      overlays = lib.singleton (final: prev: {
+        inherit (localInputs.nixvim.legacyPackages.${prev.system}) makeNixvim;
+      });
+    };
+
     flake.nixosConfigurations = lib.pipe cfg.clusters [
       builtins.attrValues
       (lib.concatMap (path:

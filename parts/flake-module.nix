@@ -1,4 +1,8 @@
-localInputs: {config, lib, ...}: {
+localInputs: {
+  config,
+  lib,
+  ...
+}: {
   imports = [
     localInputs.agenix-rekey.flakeModule
     ./deploy.nix
@@ -9,7 +13,11 @@ localInputs: {config, lib, ...}: {
       inherit localInputs;
     };
 
-    perSystem = {config, pkgs, ...}: {
+    perSystem = {
+      config,
+      pkgs,
+      ...
+    }: {
       devShells.default = pkgs.mkShellNoCC {
         packages = with pkgs; [
           config.agenix-rekey.package
