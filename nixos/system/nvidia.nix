@@ -52,7 +52,6 @@ in {
       modesetting.enable = true;
       powerManagement.enable = true;
       nvidiaSettings = false;
-      nvidiaPersistenced = cfg.maxGpuClock != null || cfg.maxMemClock != null;
       open = true;
     };
 
