@@ -40,10 +40,10 @@
       always-center-single-column
 
       struts {
-        left 0
-        right 0
-        top 0
-        bottom 0
+        left 16
+        right 16
+        top 16
+        bottom 16
       }
 
       preset-column-widths {
@@ -56,10 +56,15 @@
         proportion 0.5;
       }
 
-      focus-ring {
+      border {
         width 1
-        active-color "#7fc8ff"
+        active-color "#505050"
         inactive-color "#505050"
+        urgent-color "#505050"
+      }
+
+      focus-ring {
+        off
       }
 
       shadow {
@@ -85,7 +90,8 @@
     }
 
     window-rule {
-      geometry-corner-radius 14
+      tiled-state true
+      geometry-corner-radius 12
       clip-to-geometry true
     }
 
