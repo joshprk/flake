@@ -21,16 +21,28 @@
       number = true;
       relativenumber = true;
       signcolumn = "number";
+      laststatus = 3;
       wrap = false;
     };
 
     lsp.servers = {
       basedpyright = {
         enable = true;
+        settings = {
+          python.pythonPath = ".venv/bin/python";
+        };
       };
 
-      nil_ls = {
+      nixd = {
         enable = true;
+      };
+    };
+
+    colorschemes.nord = {
+      enable = true;
+      settings = {
+        disable_background = true;
+        italic = false;
       };
     };
 
@@ -41,8 +53,17 @@
       };
     };
 
+    plugins.flash = {
+      enable = true;
+    };
+
     plugins.lspconfig = {
       enable = true;
+    };
+
+    plugins.mini-icons = {
+      enable = true;
+      mockDevIcons = true;
     };
 
     performance = {

@@ -211,6 +211,7 @@
   '';
 
   files.".config/ghostty/config".text = ''
+    theme = nord
     font-size = 11
   '';
 
