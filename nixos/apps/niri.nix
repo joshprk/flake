@@ -7,7 +7,7 @@
   cfg = config.modules.apps.niri;
 in {
   options.modules.apps.niri = {
-    enable = lib.mkEnableOption "the Cosmic module";
+    enable = lib.mkEnableOption "the niri module";
   };
 
   config = lib.mkIf cfg.enable {
@@ -17,6 +17,10 @@ in {
 
     programs.niri = {
       enable = true;
+    };
+
+    services.displayManager = {
+      sessionPackages = [config.programs.niri.package];
     };
 
     services.gnome.gnome-keyring = {
@@ -57,8 +61,8 @@ in {
     };
 
     security = {
-      rtkit.enable = lib.mkDefault true;
-      polkit.enable = lib.mkDefault true;
+      rtkit.enable = true;
+      polkit.enable = true;
     };
   };
 }
