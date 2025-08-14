@@ -39,6 +39,10 @@ in {
       enable = true;
     };
 
+    fonts.packages = with pkgs; [
+      nerd-fonts.lilex
+    ];
+
     xdg.icons = {
       enable = true;
       fallbackCursorThemes = ["catppuccin-mocha-dark-cursors"];
