@@ -211,8 +211,9 @@
   '';
 
   files.".config/ghostty/config".text = ''
-    theme = nord
+    font-family = Lilex Nerd Font
     font-size = 11
+    theme = nord
   '';
 
   files.".config/hypr/hypridle.conf".text = ''
