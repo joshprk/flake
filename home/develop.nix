@@ -32,6 +32,12 @@
     source = "${pkgs.nix-direnv}/share/nix-direnv/direnvrc";
   };
 
+  files.".config/nixpkgs/config.nix".text = ''
+    {
+      allowUnfree = true;
+    }
+  '';
+
   files.".config/npm/npmrc".text = ''
     prefix=${config.directory}/.config/npm
     cache=${config.directory}/.cache/npm
