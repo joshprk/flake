@@ -43,12 +43,12 @@ in {
       ];
 
       wireless = {
-        iwd.enable = lib.mkDefault true;
+        iwd.enable = true;
       };
 
-      nftables.enable = lib.mkDefault true;
-      hostName = lib.mkDefault var.hostName;
-      useNetworkd = lib.mkDefault true;
+      nftables.enable = true;
+      hostName = var.hostName;
+      useNetworkd = true;
     };
   };
 }
