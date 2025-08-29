@@ -81,6 +81,13 @@
       basedpyright = {
         enable = true;
         settings = {
+          analysis = {
+            typeCheckingMode = "basic";
+            autoImportCompletions = true;
+            autoSearchPaths = true;
+            useLibraryCodeForTypes = true;
+            diagnosticMode = "openFilesOnly";
+          };
           python.pythonPath = ".venv/bin/python";
         };
       };
