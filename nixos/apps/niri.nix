@@ -13,6 +13,7 @@ in {
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       catppuccin-cursors.mochaDark
+      nautilus
     ];
 
     programs.niri = {
@@ -25,6 +26,10 @@ in {
 
     services.gnome.gnome-keyring = {
       enable = false;
+    };
+
+    services.gvfs = {
+      enable = true;
     };
 
     services.power-profiles-daemon = {
@@ -55,13 +60,10 @@ in {
         xdg-desktop-portal-gtk
         xdg-desktop-portal-gnome
       ];
-      config.common = {
-        default = [
-          "gtk"
-          "gnome"
-        ];
-        "org.freedesktop.impl.portal.Access" = ["gtk"];
-      };
+      config.common.default = [
+        "gtk"
+        "gnome"
+      ];
       xdgOpenUsePortal = true;
     };
 
