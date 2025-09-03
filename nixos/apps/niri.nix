@@ -62,6 +62,7 @@ in {
         ];
         "org.freedesktop.impl.portal.Access" = ["gtk"];
       };
+      xdgOpenUsePortal = true;
     };
 
     security = {
