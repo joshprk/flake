@@ -8,6 +8,7 @@
     ./desktop.nix
     ./develop.nix
     ./editor.nix
+    ./gtk.nix
   ];
 
   options = {
