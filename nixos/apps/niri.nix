@@ -33,8 +33,10 @@ in {
     };
 
     services.logind = {
-      powerKeyLongPress = "poweroff";
-      powerKey = "suspend";
+      settings.Login = {
+        HandlePowerKeyLongPress = "poweroff";
+        HandlePowerKey = "suspend";
+      };
     };
 
     services.power-profiles-daemon = {
