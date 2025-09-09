@@ -32,6 +32,11 @@ in {
       enable = true;
     };
 
+    services.logind = {
+      powerKeyLongPress = "poweroff";
+      powerKey = "suspend";
+    };
+
     services.power-profiles-daemon = {
       enable = true;
     };

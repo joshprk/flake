@@ -13,13 +13,11 @@
 
   files.".config/niri/config.kdl".text = ''
     environment {
-      DISPLAY ":0"
       ELECTRON_OZONE_PLATFORM_HINT "wayland"
     }
 
     spawn-at-startup "hypridle"
     spawn-at-startup "hyprpaper"
-    spawn-at-startup "xwayland-satellite"
 
     screenshot-path "~/Pictures/screenshot-%Y-%m-%d-at-%H-%M.png"
 
@@ -72,7 +70,7 @@
         softness 30
         spread 5
         offset x=0 y=5
-        draw-behind-window true
+        draw-behind-window false
         color "#0007"
       }
 
@@ -93,6 +91,8 @@
       tiled-state true
       geometry-corner-radius 12
       clip-to-geometry true
+      draw-border-with-background false
+      opacity 0.95
     }
 
     binds {
@@ -210,11 +210,18 @@
     }
   '';
 
-  files.".config/ghostty/config".text = ''
-    font-family = Lilex Nerd Font
-    font-size = 11
-    theme = nord
-  '';
+  files.".config/ghostty/config" = {
+    generator = (pkgs.formats.keyValue {
+      listsAsDuplicateKeys = true;
+      mkKeyValue = lib.generators.mkKeyValueDefault {} " = ";
+    }).generate "ghostty-config";
+
+    value = {
+      font-family = "Lilex Nerd Font";
+      font-size = 11;
+      theme = "nord";
+    };
+  };
 
   files.".config/hypr/hypridle.conf".text = ''
     listener {
