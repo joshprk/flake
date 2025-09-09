@@ -215,11 +215,12 @@
       listsAsDuplicateKeys = true;
       mkKeyValue = lib.generators.mkKeyValueDefault {} " = ";
     }).generate "ghostty-config";
-
     value = {
       font-family = "Lilex Nerd Font";
       font-size = 11;
-      theme = "nord";
+      window-padding-color = "extend";
+      window-padding-x = 4;
+      window-padding-y = 4;
     };
   };
 
