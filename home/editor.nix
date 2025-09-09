@@ -37,6 +37,7 @@
     globals = {
       mapleader = " ";
       maplocalleader = " ";
+      updatetime = 750;
     };
 
     keymaps = [
@@ -44,6 +45,13 @@
         action.__raw = "function() require('mini.files').open() end";
         key = "<Leader><Tab>";
         mode = ["n" "x" "o"];
+        options.desc = "Mini Files";
+      }
+      {
+        action.__raw = "function() require('snacks').picker() end";
+        key = "<Leader><Space>";
+        mode = ["n" "x" "o"];
+        options.desc = "Snacks Picker";
       }
       {
         action = "<Cmd>nohlsearch<CR>";
@@ -88,20 +96,23 @@
             useLibraryCodeForTypes = true;
             diagnosticMode = "openFilesOnly";
           };
-          python.pythonPath = ".venv/bin/python";
         };
       };
 
-      nixd = {
-        enable = true;
-      };
+      nixd.enable = true;
+      ruff.enable = true;
     };
 
-    colorschemes.nord = {
+    colorschemes.catppuccin = {
       enable = true;
       settings = {
-        disable_background = true;
-        italic = false;
+        no_italic = true;
+        integrations.native_lsp.underlines = {
+          errors = ["undercurl"];
+          hints = ["undercurl"];
+          warnings = ["undercurl"];
+          information = ["undercurl"];
+        };
       };
     };
 
@@ -145,12 +156,26 @@
       };
     };
 
+    plugins.noice = {
+      enable = true;
+      settings = {
+        presets.command_palette = true;
+      };
+    };
+
     plugins.snacks = {
       enable = true;
       settings = {
         bigfile.enabled = true;
+        input.enabled = true;
         picker.enabled = true;
-        terminal.enabled = true;
+      };
+    };
+
+    plugins.which-key = {
+      enable = true;
+      settings = {
+        preset = "helix";
       };
     };
 
