@@ -34,10 +34,10 @@
   };
 
   files.".config/npm/npmrc".text = ''
-    prefix=${config.directory}/.config/npm
-    cache=${config.directory}/.cache/npm
-    init-module=${config.directory}/.config/npm/config/npm-init.js
-    logs-dir=${config.directory}/.local/state/npm/logs
+    prefix=${config.xdg.data.directory}/npm
+    cache=${config.xdg.cache.directory}/npm
+    init-module=${config.xdg.config.directory}/npm/config/npm-init.js
+    logs-dir=${config.xdg.state.directory}/npm/logs
   '';
 
   shell.init = ''
@@ -45,15 +45,15 @@
   '';
 
   environment.sessionVariables = {
-    CARGO_HOME = "${config.directory}/.local/share/cargo";
-    GOPATH = "${config.directory}/.local/share/go";
-    GOMODCACHE = "${config.directory}/.cache/go/mod";
-    KUBECACHEDIR = "${config.directory}/.cache/kube";
-    KUBECONFIG = "${config.directory}/.config/kube";
-    TALOSCONFIG = "${config.directory}/.config/talos/config";
-    PYTHON_HISTORY = "${config.directory}/.local/state/python_history";
-    NPM_CONFIG_USERCONFIG = "${config.directory}/.config/npm/npmrc";
-    NODE_REPL_HISTORY = "${config.directory}/.local/share/node_repl_history";
-    RUSTUP_HOME = "${config.directory}/.local/share/rustup";
+    CARGO_HOME = "${config.xdg.data.directory}/cargo";
+    GOPATH = "${config.xdg.data.directory}/go";
+    GOMODCACHE = "${config.xdg.cache.directory}/go/mod";
+    KUBECACHEDIR = "${config.xdg.cache.directory}/kube";
+    KUBECONFIG = "${config.xdg.config.directory}/kubeconfig";
+    TALOSCONFIG = "${config.xdg.config.directory}/talos/config";
+    PYTHON_HISTORY = "${config.xdg.state.directory}/python_history";
+    NPM_CONFIG_USERCONFIG = "${config.xdg.config.directory}/npm/npmrc";
+    NODE_REPL_HISTORY = "${config.xdg.data.directory}/node_repl_history";
+    RUSTUP_HOME = "${config.xdg.data.directory}/rustup";
   };
 }
