@@ -33,10 +33,6 @@ in {
       enable = true;
     };
 
-    services.displayManager = {
-      sessionPackages = [config.programs.niri.package];
-    };
-
     services.gnome.gnome-keyring = {
       enable = false;
     };
@@ -79,10 +75,6 @@ in {
       extraPortals = with pkgs; [
         xdg-desktop-portal-gtk
         xdg-desktop-portal-gnome
-      ];
-      config.common.default = [
-        "gtk"
-        "gnome"
       ];
       xdgOpenUsePortal = true;
     };
