@@ -8,6 +8,7 @@
     direnv
     fzf
     git
+    ghostty
     ripgrep
   ];
 
@@ -31,6 +32,21 @@
 
   files.".config/direnv/lib/nix-direnv.sh" = {
     source = "${pkgs.nix-direnv}/share/nix-direnv/direnvrc";
+  };
+
+  files.".config/ghostty/config" = {
+    generator = (pkgs.formats.keyValue {
+      listsAsDuplicateKeys = true;
+      mkKeyValue = lib.generators.mkKeyValueDefault {} " = ";
+    }).generate "ghostty-config";
+    value = {
+      font-family = "Lilex Nerd Font";
+      font-size = 11;
+      theme = "catppuccin-mocha";
+      window-padding-color = "extend";
+      window-padding-x = 4;
+      window-padding-y = 4;
+    };
   };
 
   files.".config/npm/npmrc".text = ''

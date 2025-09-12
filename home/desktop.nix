@@ -5,7 +5,6 @@
   ...
 }: {
   packages = with pkgs; [
-    ghostty
     hypridle
     hyprpaper
     xwayland-satellite
@@ -209,20 +208,6 @@
       Mod+Shift+P { power-off-monitors; }
     }
   '';
-
-  files.".config/ghostty/config" = {
-    generator = (pkgs.formats.keyValue {
-      listsAsDuplicateKeys = true;
-      mkKeyValue = lib.generators.mkKeyValueDefault {} " = ";
-    }).generate "ghostty-config";
-    value = {
-      font-family = "Lilex Nerd Font";
-      font-size = 11;
-      window-padding-color = "extend";
-      window-padding-x = 4;
-      window-padding-y = 4;
-    };
-  };
 
   files.".config/hypr/hypridle.conf".text = ''
     listener {
