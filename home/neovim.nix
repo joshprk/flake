@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: {
-  packages = lib.singleton (pkgs.makeNixvim {
+  packages = lib.singleton (pkgs.nixvim.makeNixvim {
     withPython3 = false;
     withRuby = false;
 

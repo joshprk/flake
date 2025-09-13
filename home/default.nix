@@ -4,11 +4,9 @@
   pkgs,
   ...
 }: {
-  imports = [
-    ./desktop.nix
-    ./develop.nix
-    ./editor.nix
-    ./gtk.nix
+  imports = lib.pipe ./. [
+    lib.filesystem.listFilesRecursive
+    (lib.filter (path: path != ./default.nix))
   ];
 
   options = {
