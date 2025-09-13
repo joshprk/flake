@@ -42,16 +42,46 @@
 
     keymaps = [
       {
-        action.__raw = "function() require('mini.files').open() end";
-        key = "<Leader><Tab>";
-        mode = ["n" "x" "o"];
-        options.desc = "Mini Files";
+        action.__raw = "function() require('snacks').picker.files() end";
+        key = "<Leader><Space>";
+        mode = ["n"];
+        options.desc = "Find Files";
       }
       {
-        action.__raw = "function() require('snacks').picker() end";
-        key = "<Leader><Space>";
-        mode = ["n" "x" "o"];
-        options.desc = "Snacks Picker";
+        action.__raw = "function() require('snacks').picker.buffers() end";
+        key = "<Leader>,";
+        mode = ["n"];
+        options.desc = "Buffers";
+      }
+      {
+        action.__raw = "function() require('snacks').picker.grep() end";
+        key = "<Leader>/";
+        mode = ["n"];
+        options.desc = "Grep";
+      }
+      {
+        action.__raw = "function() require('snacks').picker.command_history() end";
+        key = "<Leader>:";
+        mode = ["n"];
+        options.desc = "Command History";
+      }
+      {
+        action.__raw = "function() require('snacks').picker.notifications() end";
+        key = "<Leader>n";
+        mode = ["n"];
+        options.desc = "Notification History";
+      }
+      {
+        action = "<Cmd>CodeCompanionChat<CR>";
+        key = "<Leader>ai";
+        mode = ["n"];
+        options.desc = "CodeCompanion";
+      }
+      {
+        action = "<Cmd>WhichKey<CR>";
+        key = "<Leader>?";
+        mode = ["n"];
+        options.desc = "Buffer Keymaps";
       }
       {
         action = "<Cmd>nohlsearch<CR>";
@@ -107,11 +137,16 @@
       enable = true;
       settings = {
         no_italic = true;
-        integrations.native_lsp.underlines = {
-          errors = ["undercurl"];
-          hints = ["undercurl"];
-          warnings = ["undercurl"];
-          information = ["undercurl"];
+        integrations = {
+          native_lsp.underlines = {
+            errors = ["undercurl"];
+            hints = ["undercurl"];
+            warnings = ["undercurl"];
+            information = ["undercurl"];
+          };
+          noice = true;
+          snacks.enabled = true;
+          which_key = true;
         };
       };
     };
@@ -145,15 +180,9 @@
       enable = true;
     };
 
-    plugins.mini = {
+    plugins.mini-icons = {
       enable = true;
       mockDevIcons = true;
-      modules = {
-        files = {
-          mappings.close = "<Esc>";
-        };
-        icons = {};
-      };
     };
 
     plugins.noice = {
@@ -163,10 +192,19 @@
       };
     };
 
+    plugins.project-nvim = {
+      enable = true;
+    };
+
     plugins.snacks = {
       enable = true;
       settings = {
         bigfile.enabled = true;
+        indent = {
+          enabled = true;
+          animate.enabled = false;
+          scope.enabled = false;
+        };
         input.enabled = true;
         picker.enabled = true;
       };

@@ -6,6 +6,7 @@
 }: {
   packages = with pkgs; [
     direnv
+    fd
     fzf
     git
     ripgrep
