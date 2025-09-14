@@ -64,6 +64,7 @@ localInputs: {
 
       var.overlays = with localInputs; [
         nixvim.overlays.default
+        vicinae.overlays.default
       ];
     };
 
