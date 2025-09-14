@@ -7,6 +7,7 @@
   packages = with pkgs; [
     hypridle
     hyprpaper
+    vicinae
   ];
 
   files.".config/hypr/hypridle.conf".text = ''
