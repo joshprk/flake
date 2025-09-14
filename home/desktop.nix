@@ -36,4 +36,26 @@
     x-scheme-handler/unknown=org.mozilla.firefox.desktop
     application/pdf=org.mozilla.firefox.desktop
   '';
+
+  files.".config/vicinae/vicinae.json" = {
+    generator = (pkgs.formats.json {}).generate "vicinae-json";
+    value = {
+      faviconService = "twenty";
+      font = {
+        size = 10;
+      };
+      popToRootOnClose = true;
+      rootSearch = {
+        searchFiles = false;
+      };
+      theme = {
+        name = "vicinae-dark";
+      };
+      window = {
+        csd = false;
+        opacity = 0.95;
+        rounding = 10;
+      };
+    };
+  };
 }
