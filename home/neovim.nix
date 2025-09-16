@@ -72,6 +72,12 @@
         options.desc = "Notification History";
       }
       {
+        action.__raw = "function() require('snacks').explorer.open() end";
+        key = "<Leader>e";
+        mode = ["n"];
+        options.desc = "Explore Files";
+      }
+      {
         action = "<Cmd>CodeCompanionChat<CR>";
         key = "<Leader>ai";
         mode = ["n"];
@@ -200,6 +206,10 @@
       enable = true;
       settings = {
         bigfile.enabled = true;
+        explorer = {
+          enabled = true;
+          replace_netrw = true;
+        };
         indent = {
           enabled = true;
           animate.enabled = false;

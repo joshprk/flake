@@ -15,7 +15,7 @@
 
     spawn-at-startup "hypridle"
     spawn-at-startup "hyprpaper"
-    spawn-at-startup "vicinae server"
+    spawn-at-startup "${pkgs.vicinae}/bin/vicinae server"
 
     screenshot-path "~/Pictures/screenshot-%Y-%m-%d-at-%H-%M.png"
 

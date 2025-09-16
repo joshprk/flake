@@ -52,7 +52,7 @@
         name = "vicinae-dark";
       };
       window = {
-        csd = false;
+        csd = true;
         opacity = 0.95;
         rounding = 10;
       };
