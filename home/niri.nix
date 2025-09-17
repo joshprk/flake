@@ -15,7 +15,7 @@
 
     spawn-at-startup "hypridle"
     spawn-at-startup "hyprpaper"
-    spawn-at-startup "${pkgs.vicinae}/bin/vicinae server"
+    spawn-at-startup "vicinae" "server"
 
     screenshot-path "~/Pictures/screenshot-%Y-%m-%d-at-%H-%M.png"
 
@@ -95,7 +95,6 @@
 
     binds {
       Mod+Shift+Slash { show-hotkey-overlay; }
-      Mod+T { spawn "ghostty"; }
       Mod+Tab { spawn "vicinae"; }
       XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"; }
       XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; }
