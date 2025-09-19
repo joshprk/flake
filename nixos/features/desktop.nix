@@ -20,6 +20,12 @@ in {
       kernel.package = pkgs.linuxPackages_zen;
     };
 
+    environment.shellAliases = {
+      l = "ls -alh --group-directories-first";
+      ll = "ls -l --group-directories-first";
+      ls = "ls --color=tty --group-directories-first";
+    };
+
     programs.fish = {
       enable = true;
     };
