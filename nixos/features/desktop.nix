@@ -41,7 +41,9 @@ in {
 
       users.josh = {
         isNormalUser = true;
-        extraGroups = ["wheel"];
+        extraGroups =
+          ["wheel"]
+          ++ lib.optionals config.modules.apps.podman.enable ["podman"];
         hashedPasswordFile = config.age.secrets.password.path;
       };
       defaultUserShell = pkgs.fish;
