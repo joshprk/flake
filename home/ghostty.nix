@@ -16,7 +16,7 @@
     value = {
       font-family = "Lilex Nerd Font";
       font-size = 11;
-      theme = "catppuccin-mocha";
+      theme = "Catppuccin Mocha";
       window-padding-color = "extend";
       window-padding-x = 4;
       window-padding-y = 4;
