@@ -28,6 +28,7 @@
 
       warp-mouse-to-focus mode="center-xy"
       focus-follows-mouse max-scroll-amount="0%"
+      disable-power-key-handling
     }
 
     layout {
