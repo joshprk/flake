@@ -14,8 +14,10 @@
       mkKeyValue = lib.generators.mkKeyValueDefault {} " = ";
     }).generate "ghostty-config";
     value = {
+      auto-update = "off";
       font-family = "Lilex Nerd Font";
       font-size = 11;
+      quit-after-last-window-closed = true;
       theme = "Catppuccin Mocha";
       window-padding-color = "extend";
       window-padding-x = 4;
