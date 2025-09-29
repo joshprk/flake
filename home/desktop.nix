@@ -5,17 +5,9 @@
   ...
 }: {
   packages = with pkgs; [
-    hypridle
     hyprpaper
     vicinae
   ];
-
-  files.".config/hypr/hypridle.conf".text = ''
-    listener {
-      timeout = 500
-      on-timeout = niri msg action power-off-monitors
-    }
-  '';
 
   files.".config/hypr/hyprpaper.conf".text = let
     wallpaper = pkgs.fetchurl {
