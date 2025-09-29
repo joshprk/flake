@@ -10,10 +10,6 @@
     desktop = true;
   };
 
-  modules.apps = {
-    podman.enable = true;
-  };
-
   modules.system = {
     nvidia.enable = true;
     nvidia.maxMemClock = 10001;

@@ -8,7 +8,7 @@
     adwaita-icon-theme
   ];
 
-  files.".config/gtk-2.0/gtkrc" ={
+  files.".config/gtk-2.0/gtkrc" = {
     generator = (pkgs.formats.keyValue {}).generate "gtk-2.0-rc";
     value = {
       gtk-theme-name = "Adwaita-dark";

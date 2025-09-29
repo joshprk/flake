@@ -12,6 +12,7 @@ in {
 
   config = lib.mkIf cfg.desktop {
     modules.apps = {
+      docker.enable = true;
       flatpak.enable = true;
       niri.enable = true;
     };
@@ -41,9 +42,7 @@ in {
 
       users.josh = {
         isNormalUser = true;
-        extraGroups =
-          ["wheel"]
-          ++ lib.optionals config.modules.apps.podman.enable ["podman"];
+        extraGroups = ["wheel"] ++ lib.optionals config.modules.apps.docker.enable ["docker"];
         hashedPasswordFile = config.age.secrets.password.path;
       };
       defaultUserShell = pkgs.fish;

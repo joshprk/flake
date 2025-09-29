@@ -4,17 +4,15 @@
   pkgs,
   ...
 }: let
-  cfg = config.modules.apps.podman;
+  cfg = config.modules.apps.docker;
 in {
-  options.modules.apps.podman = {
+  options.modules.apps.docker = {
     enable = lib.mkEnableOption "the podman module";
   };
 
   config = lib.mkIf cfg.enable {
-    virtualisation.podman = {
+    virtualisation.docker = {
       enable = true;
-      dockerCompat = true;
-      dockerSocket.enable = true;
     };
   };
 }

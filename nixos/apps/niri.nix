@@ -17,16 +17,18 @@ in {
     ];
 
     programs.dconf.profiles.user = {
-      databases = [{
-        lockAll = true;
-        settings = {
-          "org/gnome/desktop/interface" = {
-            color-scheme = "prefer-dark";
-            clock-format = "12h";
-            clock-show-weekday = true;
+      databases = [
+        {
+          lockAll = true;
+          settings = {
+            "org/gnome/desktop/interface" = {
+              color-scheme = "prefer-dark";
+              clock-format = "12h";
+              clock-show-weekday = true;
+            };
           };
-        };
-      }];
+        }
+      ];
     };
 
     programs.niri = {
