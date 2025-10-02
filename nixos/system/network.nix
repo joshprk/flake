@@ -15,6 +15,7 @@ in {
     services.tailscale = {
       enable = lib.mkDefault true;
       openFirewall = lib.mkDefault true;
+      disableUpstreamLogging = true;
       useRoutingFeatures = lib.mkIf cfg.exitNode (lib.mkDefault "server");
       extraUpFlags =
         (lib.optionals cfg.exitNode ["--advertise-exit-node"])
@@ -23,9 +24,9 @@ in {
     };
 
     services.resolved = {
-      enable = lib.mkDefault true;
-      dnsovertls = lib.mkDefault "true";
-      dnssec = lib.mkDefault "true";
+      enable = true;
+      dnsovertls = "true";
+      dnssec = "allow-downgrade";
     };
 
     systemd.network = {
