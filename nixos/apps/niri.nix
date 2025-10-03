@@ -50,6 +50,28 @@ in {
       };
     };
 
+    services.pipewire = {
+      enable = true;
+      pulse.enable = true;
+      wireplumber.enable = true;
+      wireplumber.extraConfig = {
+        "koss-sbc-workaround" = {
+          "monitor.bluez.rules" = [
+            {
+              matches = [
+                {
+                  "device.description" = "KOSS";
+                }
+              ];
+              actions.update-props = {
+                "bluez5.codecs" = "[ sbc ]";
+              };
+            }
+          ];
+        };
+      };
+    };
+
     services.power-profiles-daemon = {
       enable = true;
     };
