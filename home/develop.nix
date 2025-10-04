@@ -9,6 +9,7 @@
     fd
     fzf
     git
+    rclone
     ripgrep
   ];
 
