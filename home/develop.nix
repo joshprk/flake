@@ -60,7 +60,6 @@
     function uwebdav
       if mountpoint -q "${drive}"
         fusermount -u "${drive}"
-        rm -rf "${drive}"
       end
     end
 
