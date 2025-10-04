@@ -42,8 +42,36 @@
     logs-dir=${config.xdg.state.directory}/npm/logs
   '';
 
-  shell.init = ''
+  shell.init = let
+    drive = "$HOME/Drive";
+  in ''
     ${lib.getExe pkgs.direnv} hook fish | source
+
+    function webdav
+      if not mountpoint -q "${drive}"
+        mkdir -p "${drive}"
+        ${pkgs.rclone}/bin/rclone mount remote:/ "${drive}" --daemon
+      else
+        echo "error: webdav is already mounted"
+        return 1
+      end
+    end
+
+    function uwebdav
+      if mountpoint -q "${drive}"
+        fusermount -u "${drive}"
+        rm -rf "${drive}"
+      end
+    end
+
+    function today
+      if mountpoint -q "${drive}"
+        "$EDITOR" "${drive}/notes/$(date +%F).md"
+      else
+        echo "error: mount webdav before opening notes"
+        return 1
+      end
+    end
   '';
 
   environment.sessionVariables = {
