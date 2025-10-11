@@ -9,7 +9,8 @@
     };
 
   inputs = {
-    nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
+    nixpkgs.url = "github:joshprk/nixpkgs/fix/grpc-tools";
+    # nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
 
     agenix = {
       url = "github:ryantm/agenix";
