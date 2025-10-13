@@ -85,7 +85,7 @@ in {
     };
 
     fonts.packages = with pkgs; [
-      nerd-fonts.lilex
+      nerd-fonts.commit-mono
     ];
 
     xdg.icons = {
