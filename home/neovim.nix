@@ -41,6 +41,7 @@
     };
 
     keymaps = [
+      # Snacks.picker shortcuts
       {
         action.__raw = "function() require('snacks').picker.files() end";
         key = "<Leader><Space>";
@@ -72,6 +73,26 @@
         options.desc = "Notification History";
       }
       {
+        action.__raw = "function() require('snacks').picker.git_files() end";
+        key = "<Leader>fg";
+        mode = ["n"];
+        options.desc = "Find files (git-files)";
+      }
+      {
+        action.__raw = "function() require('snacks').picker.projects() end";
+        key = "<Leader>fp";
+        mode = ["n"];
+        options.desc = "Projects";
+      }
+      # AI plugins
+      {
+        action.__raw = ''function() require('codecompanion').toggle() end'';
+        key = "<Leader>aa";
+        mode = ["n" "v"];
+        options.desc = "Toggle (CodeCompanion)";
+      }
+      # Miscellaneous plugins
+      {
         action = "<Cmd>WhichKey<CR>";
         key = "<Leader>?";
         mode = ["n"];
@@ -88,6 +109,12 @@
         action = "<C-\\><C-n>";
         key = "<Esc><Esc>";
         mode = ["t"];
+      }
+      # Save using <ctrl> s
+      {
+        action = "<Cmd>write<CR>";
+        key = "<C-s>";
+        mode = ["n" "i" "x" "s"];
       }
       # Better indenting
       {
@@ -155,6 +182,21 @@
       }
     ];
 
+    autoCmd = [
+      # Notify user on file saved
+      {
+        callback.__raw = "function() vim.notify('File saved') end";
+        event = "BufWritePost";
+        pattern = "*";
+      }
+      # Restore cursor position for new buffers
+      {
+        command = ''silent! normal! g`"zv'';
+        event = "BufReadPost";
+        pattern = "*";
+      }
+    ];
+
     lsp.servers = {
       basedpyright = {
         enable = true;
@@ -200,6 +242,33 @@
       };
     };
 
+    plugins.codecompanion = {
+      enable = true;
+      settings = {
+        strategies = {
+          chat.adapter = "openrouter";
+          inline.adapter = "openrouter";
+          cmd.adapter = "openrouter";
+        };
+        adapters.http.openrouter.__raw = ''
+          function()
+            return require('codecompanion.adapters').extend('openai_compatible', {
+              env = {
+                url = "https://openrouter.ai/api",
+                api_key = "OPENROUTER_API_KEY",
+                chat_url = "/v1/chat/completions",
+              },
+              schema = {
+                model = {
+                  default = "openai/gpt-oss-20b:free",
+                },
+              },
+            })
+          end
+        '';
+      };
+    };
+
     plugins.flash = {
       enable = true;
     };
@@ -218,16 +287,13 @@
       enable = true;
     };
 
+    diagnostic.settings = {
+      signs.text = ["󰅙" "" "󰋼" "󰌵"];
+    };
+
     plugins.mini-icons = {
       enable = true;
       mockDevIcons = true;
-      luaConfig.post = ''
-        local symbols = {Error = "󰅙", Info = "󰋼", Hint = "󰌵", Warn = ""}
-        for name, icon in pairs(symbols) do
-          local hl = "DiagnosticSign" .. name
-          vim.fn.sign_define(hl, {text = icon, numhl = hl, texthl = hl})
-        end
-      '';
     };
 
     plugins.mini-pairs = {
@@ -239,6 +305,10 @@
       settings = {
         presets.command_palette = true;
       };
+    };
+
+    plugins.project-nvim = {
+      enable = true;
     };
 
     plugins.snacks = {
