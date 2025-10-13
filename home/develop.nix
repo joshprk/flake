@@ -50,7 +50,9 @@
     function webdav
       if not mountpoint -q "${drive}"
         mkdir -p "${drive}"
-        ${pkgs.rclone}/bin/rclone mount remote:/ "${drive}" --daemon
+        ${pkgs.rclone}/bin/rclone mount remote:/ "${drive}" \
+          --vfs-cache-mode full \
+          --daemon
       else
         echo "error: webdav is already mounted"
         return 1
