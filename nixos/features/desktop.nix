@@ -31,8 +31,15 @@ in {
       enable = true;
     };
 
+    # TODO: Figure out a framework to handle per-user secrets
+    age.secrets.openrouter = {
+      owner = "josh";
+    };
+
     hjem = {
-      users.josh = {};
+      users.josh = {
+        shell.init = "export OPENROUTER_API_KEY=$(cat ${config.age.secrets.openrouter.path})";
+      };
     };
 
     users = {
