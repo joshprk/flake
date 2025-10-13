@@ -62,12 +62,13 @@ in {
 
         installScript =
           cfg.apps
-          |> map (v: "flatpak install ${v.remote} ${v.name}")
+          |> map (v: "flatpak install ${v.remote} ${v.name} --assumeyes")
           |> lib.concatStringsSep "\n";
       in ''
         ${remotesScript}
         ${installScript}
-        flatpak remove --unused
+        flatpak update --assumeyes
+        flatpak remove --unused --assumeyes
       '';
     };
   };
