@@ -20,7 +20,7 @@
       confirm = true;
       ignorecase = true;
       smartcase = true;
-      scrolloff = 5;
+      scrolloff = 10;
 
       cursorline = true;
       number = true;
@@ -72,27 +72,35 @@
         options.desc = "Notification History";
       }
       {
-        action = "<Cmd>CodeCompanionChat<CR>";
-        key = "<Leader>ai";
-        mode = ["n"];
-        options.desc = "CodeCompanion";
-      }
-      {
         action = "<Cmd>WhichKey<CR>";
         key = "<Leader>?";
         mode = ["n"];
         options.desc = "Buffer Keymaps";
       }
+      # Clear hlsearch on escape
       {
         action = "<Cmd>nohlsearch<CR>";
         key = "<Esc>";
         mode = ["n"];
       }
+      # Exit terminal mode on escape
       {
         action = "<C-\\><C-n>";
         key = "<Esc><Esc>";
         mode = ["t"];
       }
+      # Better indenting
+      {
+        action = "<gv";
+        key = "<";
+        mode = ["v"];
+      }
+      {
+        action = ">gv";
+        key = ">";
+        mode = ["v"];
+      }
+      # Move to window using <ctrl> hjkl
       {
         action = "<C-w><C-h>";
         key = "<C-h>";
@@ -111,6 +119,38 @@
       {
         action = "<C-w><C-k>";
         key = "<C-k>";
+        mode = ["n"];
+      }
+      # Resize splits using <ctrl> arrow keys
+      {
+        action = "<Cmd>resize +2<Cr>";
+        key = "<C-Up>";
+        mode = ["n"];
+      }
+      {
+        action = "<Cmd>resize -2<Cr>";
+        key = "<C-Down>";
+        mode = ["n"];
+      }
+      {
+        action = "<Cmd>vertical resize +2<Cr>";
+        key = "<C-Left>";
+        mode = ["n"];
+      }
+      {
+        action = "<Cmd>vertical resize -2<Cr>";
+        key = "<C-Right>";
+        mode = ["n"];
+      }
+      # Move tabs with <Shift> hl
+      {
+        action = "gT";
+        key = "<S-h>";
+        mode = ["n"];
+      }
+      {
+        action = "gt";
+        key = "<S-l>";
         mode = ["n"];
       }
     ];
@@ -137,13 +177,15 @@
       enable = true;
       settings = {
         no_italic = true;
-        integrations = {
-          native_lsp.underlines = {
+        lsp_styles = {
+          underlines = {
             errors = ["undercurl"];
             hints = ["undercurl"];
             warnings = ["undercurl"];
             information = ["undercurl"];
           };
+        };
+        integrations = {
           noice = true;
           snacks.enabled = true;
           which_key = true;
@@ -156,10 +198,6 @@
       settings = {
         keymap.preset = "super-tab";
       };
-    };
-
-    plugins.codecompanion = {
-      enable = true;
     };
 
     plugins.flash = {
@@ -183,6 +221,17 @@
     plugins.mini-icons = {
       enable = true;
       mockDevIcons = true;
+      luaConfig.post = ''
+        local symbols = {Error = "󰅙", Info = "󰋼", Hint = "󰌵", Warn = ""}
+        for name, icon in pairs(symbols) do
+          local hl = "DiagnosticSign" .. name
+          vim.fn.sign_define(hl, {text = icon, numhl = hl, texthl = hl})
+        end
+      '';
+    };
+
+    plugins.mini-pairs = {
+      enable = true;
     };
 
     plugins.noice = {
@@ -190,10 +239,6 @@
       settings = {
         presets.command_palette = true;
       };
-    };
-
-    plugins.project-nvim = {
-      enable = true;
     };
 
     plugins.snacks = {
