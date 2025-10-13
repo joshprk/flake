@@ -54,22 +54,6 @@ in {
       enable = true;
       pulse.enable = true;
       wireplumber.enable = true;
-      wireplumber.extraConfig = {
-        "koss-sbc-workaround" = {
-          "monitor.bluez.rules" = [
-            {
-              matches = [
-                {
-                  "device.description" = "KOSS";
-                }
-              ];
-              actions.update-props = {
-                "bluez5.codecs" = "[ sbc ]";
-              };
-            }
-          ];
-        };
-      };
     };
 
     services.power-profiles-daemon = {
@@ -85,7 +69,7 @@ in {
     };
 
     fonts.packages = with pkgs; [
-      nerd-fonts.commit-mono
+      nerd-fonts.jetbrains-mono
     ];
 
     xdg.icons = {
