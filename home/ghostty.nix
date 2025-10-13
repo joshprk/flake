@@ -15,8 +15,8 @@
     }).generate "ghostty-config";
     value = {
       auto-update = "off";
-      font-family = "Commit Mono Nerd Font";
-      font-size = 11;
+      font-family = "JetBrainsMono Nerd Font";
+      font-size = 10.5;
       quit-after-last-window-closed = true;
       theme = "Catppuccin Mocha";
       window-padding-color = "extend";
