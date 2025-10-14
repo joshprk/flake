@@ -13,8 +13,6 @@
       ELECTRON_OZONE_PLATFORM_HINT "wayland"
     }
 
-    spawn-at-startup "hypridle"
-    spawn-at-startup "hyprpaper"
     spawn-at-startup "vicinae" "server"
 
     screenshot-path "~/Pictures/screenshot-%Y-%m-%d-at-%H-%M.png"

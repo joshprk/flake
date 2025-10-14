@@ -38,7 +38,9 @@ in {
 
     hjem = {
       users.josh = {
-        shell.init = "export OPENROUTER_API_KEY=$(cat ${config.age.secrets.openrouter.path})";
+        programs.fish.shellInit = ''
+          export OPENROUTER_API_KEY=$(cat ${config.age.secrets.openrouter.path})
+        '';
       };
     };
 
