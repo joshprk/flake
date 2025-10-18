@@ -11,111 +11,147 @@
       withRuby = false;
 
       opts = {
+        # Text editing options
+        clipboard = "unnamedplus";
         cindent = true;
         breakindent = true;
+        ignorecase = true;
+        smartcase = true;
         expandtab = true;
         tabstop = 2;
         softtabstop = 2;
         shiftwidth = 2;
+        scrolloff = 10;
+        sidescrolloff = 8;
+        wrap = false;
+
+        # Persistence options
         swapfile = false;
         undofile = true;
         confirm = true;
-        ignorecase = true;
-        smartcase = true;
-        scrolloff = 10;
 
+        # UI options
         cursorline = true;
         number = true;
         relativenumber = true;
         signcolumn = "number";
-        laststatus = 3;
-        wrap = false;
-
         switchbuf = "newtab";
         splitright = true;
         splitbelow = true;
+        laststatus = 3;
+        updatetime = 750;
       };
 
       globals = {
         mapleader = " ";
         maplocalleader = " ";
-        updatetime = 750;
       };
 
       keymaps = [
         # Snacks.picker shortcuts
         {
           action.__raw = "function() require('snacks').picker.files() end";
-          key = "<Leader><Space>";
+          key = "<leader><space>";
           mode = ["n"];
           options.desc = "Find Files";
         }
         {
           action.__raw = "function() require('snacks').picker.buffers() end";
-          key = "<Leader>,";
+          key = "<leader>,";
           mode = ["n"];
           options.desc = "Buffers";
         }
         {
           action.__raw = "function() require('snacks').picker.grep() end";
-          key = "<Leader>/";
+          key = "<leader>/";
           mode = ["n"];
           options.desc = "Grep";
         }
         {
           action.__raw = "function() require('snacks').picker.command_history() end";
-          key = "<Leader>:";
+          key = "<leader>:";
           mode = ["n"];
           options.desc = "Command History";
         }
         {
           action.__raw = "function() require('snacks').picker.notifications() end";
-          key = "<Leader>n";
+          key = "<leader>n";
           mode = ["n"];
           options.desc = "Notification History";
         }
         {
           action.__raw = "function() require('snacks').picker.git_files() end";
-          key = "<Leader>fg";
+          key = "<leader>fg";
           mode = ["n"];
           options.desc = "Find files (git-files)";
         }
         {
           action.__raw = "function() require('snacks').picker.projects() end";
-          key = "<Leader>fp";
+          key = "<leader>fp";
           mode = ["n"];
           options.desc = "Projects";
         }
         # AI plugins
         {
           action.__raw = ''function() require('codecompanion').toggle() end'';
-          key = "<Leader>aa";
+          key = "<leader>aa";
           mode = ["n" "v"];
           options.desc = "Toggle (CodeCompanion)";
         }
         # Miscellaneous plugins
         {
-          action = "<Cmd>WhichKey<CR>";
-          key = "<Leader>?";
+          action = "<cmd>WhichKey<cr>";
+          key = "<leader>?";
           mode = ["n"];
-          options.desc = "Buffer Keymaps";
+          options.desc = "Keymaps";
+        }
+        # Tab helpers
+        {
+          action = "<cmd>tablast<cr>";
+          key = "<leader><tab>l";
+          mode = ["n"];
+          options.desc = "Last Tab";
+        }
+        {
+          action = "<cmd>tabonly<cr>";
+          key = "<leader><tab>o";
+          mode = ["n"];
+          options.desc = "Close Other Tabs";
+        }
+        {
+          action = "<cmd>tabfirst<cr>";
+          key = "<leader><tab>f";
+          mode = ["n"];
+          options.desc = "First Tab";
+        }
+        {
+          action = "<cmd>tabnew<cr>";
+          key = "<leader><tab><tab>";
+          mode = ["n"];
+          options.desc = "New Tab";
+        }
+        {
+          action = "<cmd>tabclose<cr>";
+          key = "<leader><tab>d";
+          mode = ["n"];
+          options.desc = "Close Tab";
         }
         # Clear hlsearch on escape
         {
-          action = "<Cmd>nohlsearch<CR>";
+          action = "<cmd>nohlsearch<cr>";
           key = "<Esc>";
           mode = ["n"];
         }
         # Exit terminal mode on escape
         {
-          action = "<C-\\><C-n>";
+          action = "<c-\\><c-n>";
           key = "<Esc><Esc>";
           mode = ["t"];
         }
         # Save using <ctrl> s
         {
-          action = "<Cmd>write<CR>";
-          key = "<C-s>";
+          action = "<cmd>write<cr>";
+          key = "<c-s>";
           mode = ["n" "i" "x" "s"];
         }
         # Better indenting
@@ -131,44 +167,44 @@
         }
         # Move to window using <ctrl> hjkl
         {
-          action = "<C-w><C-h>";
-          key = "<C-h>";
+          action = "<c-w><c-h>";
+          key = "<c-h>";
           mode = ["n"];
         }
         {
-          action = "<C-w><C-l>";
-          key = "<C-l>";
+          action = "<c-w><c-l>";
+          key = "<c-l>";
           mode = ["n"];
         }
         {
-          action = "<C-w><C-j>";
-          key = "<C-j>";
+          action = "<c-w><c-j>";
+          key = "<c-j>";
           mode = ["n"];
         }
         {
-          action = "<C-w><C-k>";
-          key = "<C-k>";
+          action = "<c-w><c-k>";
+          key = "<c-k>";
           mode = ["n"];
         }
         # Resize splits using <ctrl> arrow keys
         {
-          action = "<Cmd>resize +2<Cr>";
-          key = "<C-Up>";
+          action = "<cmd>resize +2<cr>";
+          key = "<c-Up>";
           mode = ["n"];
         }
         {
-          action = "<Cmd>resize -2<Cr>";
-          key = "<C-Down>";
+          action = "<cmd>resize -2<cr>";
+          key = "<c-Down>";
           mode = ["n"];
         }
         {
-          action = "<Cmd>vertical resize +2<Cr>";
-          key = "<C-Left>";
+          action = "<cmd>vertical resize +2<cr>";
+          key = "<c-Left>";
           mode = ["n"];
         }
         {
-          action = "<Cmd>vertical resize -2<Cr>";
-          key = "<C-Right>";
+          action = "<cmd>vertical resize -2<cr>";
+          key = "<c-Right>";
           mode = ["n"];
         }
         # Move tabs with <Shift> hl
@@ -195,6 +231,30 @@
         {
           command = ''silent! normal! g`"zv'';
           event = "BufReadPost";
+          pattern = "*";
+        }
+        # Resize splits if window size changes
+        {
+          callback.__raw = ''
+            function()
+              local current_tab = vim.fn.tabpagenr()
+              vim.cmd('tabdo wincmd =')
+              vim.cmd('tabnext ' .. current_tab)
+            end
+          '';
+          event = "VimResized";
+          pattern = "*";
+        }
+        # Ensure intermediary directories exist before file write
+        {
+          callback.__raw = ''
+            function(event)
+              if event.match:match('^%w%w+:[\\/][\\/]') then return end
+              local file = vim.uv.fs_realpath(event.match) or event.match
+              vim.fn.mkdir(vim.fn.fnamemodify(file, ':p:h'), 'p')
+            end
+          '';
+          event = "BufWritePre";
           pattern = "*";
         }
       ];
