@@ -213,6 +213,7 @@
 
       nixd.enable = true;
       ruff.enable = true;
+      terraform_lsp.enable = true;
     };
 
     colorschemes.catppuccin = {
