@@ -23,5 +23,22 @@ in {
       generator = (pkgs.formats.json {}).generate "vicinae-config";
       value = cfg.settings;
     };
+
+    systemd.services.vicinae = {
+      description = "vicinae";
+      wantedBy = ["graphical-session.target"];
+      after = ["graphical-session.target"];
+      partOf = ["graphical-session.target"];
+      bindsTo = ["graphical-session.target"];
+
+      serviceConfig = {
+        EnvironmentFile = pkgs.writeText "vicinae-env" "USE_LAYER_SHELL=1";
+        Type = "simple";
+        ExecStart = "${lib.getExe' cfg.package "vicinae"} server";
+        Restart = "always";
+        RestartSec = 5;
+        KillMode = "process";
+      };
+    };
   };
 }
