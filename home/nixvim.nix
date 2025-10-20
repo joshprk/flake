@@ -120,7 +120,7 @@
         }
         {
           action = "<cmd>tabfirst<cr>";
-          key = "<leader><tab>f";
+          key = "<leader><tab>h";
           mode = ["n"];
           options.desc = "First Tab";
         }
@@ -139,13 +139,13 @@
         # Clear hlsearch on escape
         {
           action = "<cmd>nohlsearch<cr>";
-          key = "<Esc>";
+          key = "<esc>";
           mode = ["n"];
         }
         # Exit terminal mode on escape
         {
           action = "<c-\\><c-n>";
-          key = "<Esc><Esc>";
+          key = "<esc><esc>";
           mode = ["t"];
         }
         # Save using <ctrl> s
@@ -188,34 +188,49 @@
         }
         # Resize splits using <ctrl> arrow keys
         {
-          action = "<cmd>resize +2<cr>";
-          key = "<c-Up>";
+          action = "<cmd>resize -2<cr>";
+          key = "<c-up>";
           mode = ["n"];
         }
         {
-          action = "<cmd>resize -2<cr>";
-          key = "<c-Down>";
+          action = "<cmd>resize +2<cr>";
+          key = "<c-down>";
           mode = ["n"];
         }
         {
           action = "<cmd>vertical resize +2<cr>";
-          key = "<c-Left>";
+          key = "<c-left>";
           mode = ["n"];
         }
         {
           action = "<cmd>vertical resize -2<cr>";
-          key = "<c-Right>";
+          key = "<c-right>";
           mode = ["n"];
         }
         # Move tabs with <Shift> hl
         {
-          action = "gT";
-          key = "<S-h>";
+          action.__raw = ''
+            function()
+              local current = vim.fn.tabpagenr()
+              if current > 1 then
+                vim.cmd("tabprevious")
+              end
+            end
+          '';
+          key = "<s-h>";
           mode = ["n"];
         }
         {
-          action = "gt";
-          key = "<S-l>";
+          action.__raw = ''
+            function()
+              local current = vim.fn.tabpagenr()
+              local total = vim.fn.tabpagenr("$")
+              if current < total then
+                vim.cmd("tabnext")
+              end
+            end
+          '';
+          key = "<s-l>";
           mode = ["n"];
         }
       ];
