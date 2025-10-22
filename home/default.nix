@@ -73,8 +73,8 @@
     enable = true;
     settings = {
       auto-update = "off";
-      font-family = "JetBrainsMono Nerd Font";
-      font-size = 10;
+      font-family = "Iosevka Nerd Font";
+      font-size = 11;
       quit-after-last-window-closed = true;
       theme = "Catppuccin Mocha";
       window-padding-color = "extend";
