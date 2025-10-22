@@ -334,6 +334,15 @@
       plugins.codecompanion = {
         enable = true;
         settings = {
+          display.chat = {
+            action_palette = {
+              provider = "snacks";
+            };
+            window = {
+              layout = "vertical";
+              sticky = true;
+            };
+          };
           strategies = {
             chat.adapter = "openrouter";
             inline.adapter = "openrouter";
