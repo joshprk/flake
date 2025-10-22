@@ -193,24 +193,24 @@
           key = "<c-k>";
           mode = ["n"];
         }
-        # Resize splits using <ctrl> arrow keys
+        # Resize splits using <ctrl> keys
         {
-          action = "<cmd>resize -2<cr>";
+          action.__raw = "require('smart-splits').resize_up";
           key = "<c-up>";
           mode = ["n"];
         }
         {
-          action = "<cmd>resize +2<cr>";
+          action.__raw = "require('smart-splits').resize_down";
           key = "<c-down>";
           mode = ["n"];
         }
         {
-          action = "<cmd>vertical resize +2<cr>";
+          action.__raw = "require('smart-splits').resize_left";
           key = "<c-left>";
           mode = ["n"];
         }
         {
-          action = "<cmd>vertical resize -2<cr>";
+          action.__raw = "require('smart-splits').resize_right";
           key = "<c-right>";
           mode = ["n"];
         }
@@ -253,18 +253,6 @@
         {
           command = ''silent! normal! g`"zv'';
           event = "BufReadPost";
-          pattern = "*";
-        }
-        # Resize splits if window size changes
-        {
-          callback.__raw = ''
-            function()
-              local current_tab = vim.fn.tabpagenr()
-              vim.cmd('tabdo wincmd =')
-              vim.cmd('tabnext ' .. current_tab)
-            end
-          '';
-          event = "VimResized";
           pattern = "*";
         }
         # Ensure intermediary directories exist before file write
@@ -406,6 +394,10 @@
       };
 
       plugins.project-nvim = {
+        enable = true;
+      };
+
+      plugins.smart-splits = {
         enable = true;
       };
 
