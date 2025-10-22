@@ -295,6 +295,10 @@
           };
         };
 
+        rust_analyzer = {
+          enable = true;
+        };
+
         nixd.enable = true;
         ruff.enable = true;
         terraform_lsp.enable = true;
