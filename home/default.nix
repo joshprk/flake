@@ -74,7 +74,7 @@
     settings = {
       auto-update = "off";
       font-family = "JetBrainsMono Nerd Font";
-      font-size = 10.5;
+      font-size = 10;
       quit-after-last-window-closed = true;
       theme = "Catppuccin Mocha";
       window-padding-color = "extend";
