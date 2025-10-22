@@ -53,7 +53,7 @@
           action.__raw = "function() require('snacks').picker.files() end";
           key = "<leader><space>";
           mode = ["n"];
-          options.desc = "Find Files";
+          options.desc = "Find files";
         }
         {
           action.__raw = "function() require('snacks').picker.buffers() end";
@@ -71,13 +71,13 @@
           action.__raw = "function() require('snacks').picker.command_history() end";
           key = "<leader>:";
           mode = ["n"];
-          options.desc = "Command History";
+          options.desc = "Command history";
         }
         {
           action.__raw = "function() require('snacks').picker.notifications() end";
           key = "<leader>n";
           mode = ["n"];
-          options.desc = "Notification History";
+          options.desc = "Notification history";
         }
         {
           action.__raw = "function() require('snacks').picker.git_files() end";
@@ -110,31 +110,38 @@
           action = "<cmd>tablast<cr>";
           key = "<leader><tab>l";
           mode = ["n"];
-          options.desc = "Last Tab";
+          options.desc = "Last tab";
         }
         {
           action = "<cmd>tabonly<cr>";
           key = "<leader><tab>o";
           mode = ["n"];
-          options.desc = "Close Other Tabs";
+          options.desc = "Close other tabs";
         }
         {
           action = "<cmd>tabfirst<cr>";
           key = "<leader><tab>h";
           mode = ["n"];
-          options.desc = "First Tab";
+          options.desc = "First tab";
         }
         {
           action = "<cmd>tabnew<cr>";
           key = "<leader><tab><tab>";
           mode = ["n"];
-          options.desc = "New Tab";
+          options.desc = "New tab";
         }
         {
           action = "<cmd>tabclose<cr>";
           key = "<leader><tab>d";
           mode = ["n"];
-          options.desc = "Close Tab";
+          options.desc = "Close tab";
+        }
+        # Toggle wrap
+        {
+          action = "<cmd>set wrap!<cr>";
+          key = "<leader>w";
+          mode = ["n"];
+          options.desc = "Toggle wrap";
         }
         # Clear hlsearch on escape
         {
