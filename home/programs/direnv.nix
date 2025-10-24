@@ -7,19 +7,25 @@
   cfg = config.programs.direnv;
 in {
   options.programs.direnv = {
-    enable = lib.mkEnableOption "the direnv program";
     package = lib.mkPackageOption pkgs "direnv" {};
     nix-direnv.enable = lib.mkEnableOption "the nix-direnv plugin";
     nix-direnv.package = lib.mkPackageOption pkgs "nix-direnv" {};
 
     settings = lib.mkOption {
       type = lib.types.attrs;
-      default = {};
+      readOnly = true;
+      default = {
+        global.disable_stdin = true;
+        global.hide_env_diff = true;
+        global.warn_timeout = "0ms";
+      };
     };
   };
 
-  config = lib.mkIf cfg.enable {
-    packages = [cfg.package];
+  config = {
+    packages = [
+      cfg.package
+    ];
 
     programs.fish.shellInit = ''
       ${lib.getExe cfg.package} hook fish | source

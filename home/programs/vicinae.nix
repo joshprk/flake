@@ -7,17 +7,36 @@
   cfg = config.programs.vicinae;
 in {
   options.programs.vicinae = {
-    enable = lib.mkEnableOption "the vicinae shell";
     package = lib.mkPackageOption pkgs "vicinae" {};
     
     settings = lib.mkOption {
       type = lib.types.attrs;
-      default = {};
+      readOnly = true;
+      default = {
+        faviconService = "twenty";
+        font = {
+          size = 10;
+        };
+        popToRootOnClose = true;
+        rootSearch = {
+          searchFiles = false;
+        };
+        theme = {
+          name = "vicinae-dark";
+        };
+        window = {
+          csd = true;
+          opacity = 0.95;
+          rounding = 10;
+        };
+      };
     };
   };
 
-  config = lib.mkIf cfg.enable {
-    packages = [cfg.package];
+  config = {
+    packages = [
+      cfg.package
+    ];
 
     xdg.config.files."vicinae/vicinae.json" = {
       generator = (pkgs.formats.json {}).generate "vicinae-config";

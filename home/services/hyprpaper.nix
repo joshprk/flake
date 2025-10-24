@@ -7,11 +7,11 @@
   cfg = config.services.hyprpaper;
 in {
   options.services.hyprpaper = {
-    enable = lib.mkEnableOption "the hyprpaper service";
     package = lib.mkPackageOption pkgs "hyprpaper" {};
 
     wallpaper = lib.mkOption {
       type = lib.types.package;
+      readOnly = true;
       default = pkgs.fetchurl {
         url = "https://github.com/foxt/macOS-Wallpapers/blob/master/Mojave%20Night.jpg?raw=true";
         hash = "sha256-Zv7uvjSNACpI2Yck22bsA8gwVaju2Yght7y09xko9xw=";
@@ -19,7 +19,7 @@ in {
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = {
     packages = [
       cfg.package
     ];

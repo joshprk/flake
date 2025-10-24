@@ -7,17 +7,28 @@
   cfg = config.programs.ghostty;
 in {
   options.programs.ghostty = {
-    enable = lib.mkEnableOption "the ghostty program";
     package = lib.mkPackageOption pkgs "ghostty" {};
 
     settings = lib.mkOption {
       type = lib.types.attrs;
-      default = {};
+      readOnly = true;
+      default = {
+        auto-update = "off";
+        font-family = "Iosevka Nerd Font";
+        font-size = 11;
+        quit-after-last-window-closed = true;
+        theme = "Catppuccin Mocha";
+        window-padding-color = "extend";
+        window-padding-x = 4;
+        window-padding-y = 4;
+      };
     };
   };
 
-  config = lib.mkIf cfg.enable {
-    packages = [cfg.package];
+  config = {
+    packages = [
+      cfg.package
+    ];
 
     xdg.config.files."ghostty/config" = {
       generator = (pkgs.formats.keyValue {

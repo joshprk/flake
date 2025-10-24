@@ -7,17 +7,47 @@
   cfg = config.programs.fish;
 in {
   options.programs.fish = {
-    enable = lib.mkEnableOption "the fish shell";
     package = lib.mkPackageOption pkgs "fish" {};
-    
+
     shellInit = lib.mkOption {
       type = lib.types.lines;
-      default = "";
+      default = let
+        drive = "$HOME/Drive";
+      in ''
+        function webdav
+          if not mountpoint -q "${drive}"
+            mkdir -p "${drive}"
+            ${pkgs.rclone}/bin/rclone mount remote:/ "${drive}" \
+              --vfs-cache-mode full \
+              --daemon
+          else
+            echo "error: webdav is already mounted"
+            return 1
+          end
+        end
+
+        function uwebdav
+          if mountpoint -q "${drive}"
+            fusermount -u "${drive}"
+          end
+        end
+
+        function today
+          if mountpoint -q "${drive}"
+            "$EDITOR" "${drive}/notes/$(date +%F).md"
+          else
+            echo "error: mount webdav before opening notes"
+            return 1
+          end
+        end
+      '';
     };
   };
 
-  config = lib.mkIf cfg.enable {
-    packages = [cfg.package];
+  config = {
+    packages = [
+      cfg.package
+    ];
 
     xdg.config.files."fish/config.fish".text = ''
       if not test -n "$__HJEM_ENV_INIT"

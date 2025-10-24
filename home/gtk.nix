@@ -7,15 +7,17 @@
   cfg = config.gtk;
 in {
   options.gtk = {
-    enable = lib.mkEnableOption "the gtk module";
-
     settings = lib.mkOption {
       type = lib.types.attrs;
-      default = {};
+      readOnly = true;
+      default = {
+        gtk-theme-name = "Adwaita-dark";
+        gtk-application-prefer-dark-theme = true;
+      };
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = {
     packages = with pkgs; [
       adwaita-icon-theme
     ];
