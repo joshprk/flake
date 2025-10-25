@@ -8,7 +8,7 @@
 in {
   options.programs.vicinae = {
     package = lib.mkPackageOption pkgs "vicinae" {};
-    
+
     settings = lib.mkOption {
       type = lib.types.attrs;
       readOnly = true;
