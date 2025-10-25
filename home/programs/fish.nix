@@ -11,36 +11,7 @@ in {
 
     shellInit = lib.mkOption {
       type = lib.types.lines;
-      default = let
-        drive = "$HOME/Drive";
-      in ''
-        function webdav
-          if not mountpoint -q "${drive}"
-            mkdir -p "${drive}"
-            ${pkgs.rclone}/bin/rclone mount remote:/ "${drive}" \
-              --vfs-cache-mode full \
-              --daemon
-          else
-            echo "error: webdav is already mounted"
-            return 1
-          end
-        end
-
-        function uwebdav
-          if mountpoint -q "${drive}"
-            fusermount -u "${drive}"
-          end
-        end
-
-        function today
-          if mountpoint -q "${drive}"
-            "$EDITOR" "${drive}/notes/$(date +%F).md"
-          else
-            echo "error: mount webdav before opening notes"
-            return 1
-          end
-        end
-      '';
+      default = "";
     };
   };
 
