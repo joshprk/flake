@@ -25,12 +25,12 @@
 
   files.".config/mimeapps.list".text = ''
     [Default Applications]
-    text/html=org.mozilla.firefox.desktop
-    x-scheme-handler/http=org.mozilla.firefox.desktop
-    x-scheme-handler/https=org.mozilla.firefox.desktop
-    x-scheme-handler/about=org.mozilla.firefox.desktop
-    x-scheme-handler/unknown=org.mozilla.firefox.desktop
-    application/pdf=org.mozilla.firefox.desktop
+    text/html=app.zen_browser.zen.desktop
+    x-scheme-handler/http=app.zen_browser.zen.desktop
+    x-scheme-handler/https=app.zen_browser.zen.desktop
+    x-scheme-handler/about=app.zen_browser.zen.desktop
+    x-scheme-handler/unknown=app.zen_browser.zen.desktop
+    application/pdf=app.zen_browser.zen.desktop
   '';
 
   environment.sessionVariables = {

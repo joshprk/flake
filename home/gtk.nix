@@ -22,22 +22,32 @@ in {
       adwaita-icon-theme
     ];
 
-    files.".config/gtk-2.0/gtkrc" = {
+    xdg.config.files."gtk-2.0/gtkrc" = {
       generator = (pkgs.formats.keyValue {}).generate "gtk-2.0-rc";
       value = cfg.settings;
     };
 
-    files.".config/gtk-3.0/settings.ini" = {
+    xdg.config.files."gtk-3.0/gtk.css".text = ''
+      headerbar entry,
+      headerbar spinbutton,
+      headerbar button,
+      headerbar separator {
+          margin-top: 2px; /* same as headerbar side padding for nicer proportions */
+          margin-bottom: 2px;
+      }
+    '';
+
+    xdg.config.files."gtk-3.0/settings.ini" = {
       generator = (pkgs.formats.ini {}).generate "gtk-3.0-settings";
-      value.Settings = config.files.".config/gtk-2.0/gtkrc".value;
+      value.Settings = config.xdg.config.files."gtk-2.0/gtkrc".value;
     };
 
-    files.".config/gtk-4.0/settings.ini" = {
+    xdg.config.files."gtk-4.0/settings.ini" = {
       generator = (pkgs.formats.ini {}).generate "gtk-4.0-settings";
-      value.Settings = config.files.".config/gtk-2.0/gtkrc".value;
+      value.Settings = config.xdg.config.files."gtk-2.0/gtkrc".value;
     };
 
-    files.".config/gtk-3.0/bookmarks".text = ''
+    xdg.config.files."gtk-3.0/bookmarks".text = ''
       file://${config.directory}/Documents Documents
       file://${config.directory}/Downloads Downloads
     '';
