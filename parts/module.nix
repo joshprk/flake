@@ -101,17 +101,20 @@ localInputs: {
     perSystem = {
       config,
       pkgs,
+      system,
       ...
     }: {
+      _module.args.pkgs = import inputs.nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      };
+
       devShells.default = pkgs.mkShellNoCC {
         packages = with pkgs; [
           config.agenix-rekey.package
           age-plugin-fido2-hmac
+          (terraform.withPlugins (p: with p; [oracle_oci hashicorp_tls]))
         ];
-      };
-
-      agenix-rekey = {
-        homeConfigurations = {};
       };
     };
 
