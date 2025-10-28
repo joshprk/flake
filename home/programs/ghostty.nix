@@ -14,7 +14,7 @@ in {
       readOnly = true;
       default = {
         auto-update = "off";
-        font-family = "Iosevka Nerd Font";
+        font-family = "JetBrainsMono Nerd Font";
         font-size = 11;
         quit-after-last-window-closed = true;
         theme = "Catppuccin Mocha";
