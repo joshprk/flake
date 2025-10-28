@@ -37,4 +37,9 @@
       };
     };
   };
+
+  disko.devices.nodev."/" = {
+    fstype = "tmpfs";
+    mountoptions = ["noatime" "size=50%" "defaults" "mode=755"];
+  };
 }
