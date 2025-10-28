@@ -27,16 +27,6 @@ in {
       value = cfg.settings;
     };
 
-    xdg.config.files."gtk-3.0/gtk.css".text = ''
-      headerbar entry,
-      headerbar spinbutton,
-      headerbar button,
-      headerbar separator {
-          margin-top: 2px; /* same as headerbar side padding for nicer proportions */
-          margin-bottom: 2px;
-      }
-    '';
-
     xdg.config.files."gtk-3.0/settings.ini" = {
       generator = (pkgs.formats.ini {}).generate "gtk-3.0-settings";
       value.Settings = config.xdg.config.files."gtk-2.0/gtkrc".value;
