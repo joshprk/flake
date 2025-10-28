@@ -315,6 +315,15 @@ in {
         };
       };
 
+      diagnostic.settings = {
+        signs.text = [
+          "󰅙"
+          ""
+          "󰋼"
+          "󰌵"
+        ];
+      };
+
       plugins.blink-cmp = {
         enable = true;
         settings = {
@@ -374,10 +383,6 @@ in {
 
       plugins.lspconfig = {
         enable = true;
-      };
-
-      diagnostic.settings = {
-        signs.text = ["󰅙" "" "󰋼" "󰌵"];
       };
 
       plugins.mini-icons = {
