@@ -16,24 +16,20 @@
       };
     };
 
-    content.partitions.nix = {
+    content.partitions.data = {
+      name = "data";
       size = "100%";
-      content = {
-        name = "data";
-        type = "luks";
-        settings.allowDiscards = true;
-        content.type = "btrfs";
-        content.extraArgs = ["-f"];
+      content.type = "btrfs";
+      content.extraArgs = ["-f"];
 
-        content.subvolumes."/home" = {
-          mountOptions = ["noatime" "compress=zstd"];
-          mountpoint = "/home";
-        };
+      content.subvolumes."/home" = {
+        mountOptions = ["noatime" "compress=zstd"];
+        mountpoint = "/home";
+      };
 
-        content.subvolumes."/nix" = {
-          mountOptions = ["noatime" "compress=zstd"];
-          mountpoint = "/nix";
-        };
+      content.subvolumes."/nix" = {
+        mountOptions = ["noatime" "compress=zstd"];
+        mountpoint = "/nix";
       };
     };
   };
