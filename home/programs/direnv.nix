@@ -8,7 +8,6 @@
 in {
   options.programs.direnv = {
     package = lib.mkPackageOption pkgs "direnv" {};
-    nix-direnv.enable = lib.mkEnableOption "the nix-direnv plugin";
     nix-direnv.package = lib.mkPackageOption pkgs "nix-direnv" {};
 
     settings = lib.mkOption {
@@ -36,7 +35,7 @@ in {
       value = cfg.settings;
     };
 
-    xdg.config.files."direnv/lib/nix-direnv.sh" = lib.mkIf cfg.nix-direnv.enable {
+    xdg.config.files."direnv/lib/nix-direnv.sh" = {
       source = "${cfg.nix-direnv.package}/share/nix-direnv/direnvrc";
     };
   };
