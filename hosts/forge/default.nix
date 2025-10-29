@@ -1,4 +1,9 @@
-{...}: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   imports = [
     ./disko.nix
   ];
@@ -16,7 +21,10 @@
     ];
   };
 
-  hjem.users.root = {};
+  hjem = {
+    extraModules = lib.mkForce [];
+    linker = lib.mkForce null;
+  };
 
   features = {};
 }
