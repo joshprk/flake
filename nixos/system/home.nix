@@ -30,6 +30,7 @@
     passwordFilesLocation = lib.mkDefault "/var/lib/nixos";
   };
 
+  # Avoids building homeModules and smfh error if there are no users anyways
   hjem = {
     extraModules = var.homeModules;
     linker = var.libInputs.hjem.packages.${pkgs.system}.smfh;
