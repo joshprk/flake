@@ -4,5 +4,5 @@
     port = 8080;
   };
 
-  system.stateVerison = "25.11";
+  system.stateVersion = "25.11";
 }
