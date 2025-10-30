@@ -55,5 +55,9 @@ in {
       };
       defaultUserShell = pkgs.fish;
     };
+
+    xdg.portal = {
+      enable = true;
+    };
   };
 }
