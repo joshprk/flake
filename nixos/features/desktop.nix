@@ -16,6 +16,7 @@ in {
     };
 
     modules.apps = {
+      flatpak.enable = true;
       niri.enable = true;
     };
 

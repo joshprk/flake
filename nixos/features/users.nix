@@ -13,7 +13,6 @@ in {
   config = lib.mkIf cfg.users {
     modules.apps = {
       docker.enable = true;
-      flatpak.enable = true;
     };
 
     modules.system = {
@@ -54,10 +53,6 @@ in {
         hashedPasswordFile = config.age.secrets.password.path;
       };
       defaultUserShell = pkgs.fish;
-    };
-
-    xdg.portal = {
-      enable = true;
     };
   };
 }
