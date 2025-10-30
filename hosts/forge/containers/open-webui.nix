@@ -6,6 +6,7 @@
 
   nixpkgs.config = {
     allowUnfree = true;
+    allowUnsupportedSystem = true;
   };
 
   system.stateVersion = "25.11";
