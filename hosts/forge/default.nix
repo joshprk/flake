@@ -11,6 +11,11 @@
   networking.hostName = "forge";
   system.stateVersion = "25.11";
 
+  modules.system = {
+    network.exitNode = true;
+    network.disableResolvedStub = true;
+  };
+
   services.openssh = {
     enable = true;
   };
@@ -41,6 +46,4 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGeVLsuetKBY7566XGnq3lmvVf9Lgs/ACu5Y1lXadaAw"
     ];
   };
-
-  features = {};
 }
