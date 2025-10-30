@@ -9,6 +9,7 @@
 in {
   options.modules.system.network = {
     exitNode = lib.mkEnableOption "exit node networking";
+    disableResolvedStub = lib.mkEnableOption "the resolved stub resolver disabler";
   };
 
   config = {
@@ -27,6 +28,9 @@ in {
       enable = true;
       dnsovertls = "true";
       dnssec = "allow-downgrade";
+      extraConfig = lib.mkIf cfg.disableResolvedStub ''
+        DNSStubListener=no
+      '';
     };
 
     systemd.network = {
