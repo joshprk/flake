@@ -36,15 +36,6 @@
         isReadOnly = true;
       };
     };
-
-    open-webui = {
-      autoStart = true;
-      privateNetwork = true;
-      config = import ./containers/open-webui.nix;
-      forwardPorts = [
-        {containerPort = 8080; hostPort = 8081; protocol = "tcp";}
-      ];
-    };
   };
 
   hjem = {
