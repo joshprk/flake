@@ -11,6 +11,10 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    hardware.nvidia-container-toolkit = lib.mkIf config.modules.system.nvidia.enable {
+      enable = true;
+    };
+
     virtualisation.docker = {
       enable = true;
     };
