@@ -43,6 +43,10 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    environment.systemPackages = with pkgs; [
+      lact
+    ];
+
     services.xserver = {
       videoDrivers = ["nvidia"];
     };
@@ -56,19 +60,12 @@ in {
     };
 
     systemd.services.nvidia-tune-gpu = lib.mkIf (cfg.maxGpuClock != null) {
-      description = "NVIDIA GPU clock tuning";
+      description = "lactd";
+      after = ["multi-user.target"];
       wantedBy = ["multi-user.target"];
-      script = ''
-        /run/current-system/sw/bin/nvidia-smi -lgc 0,${cfg.maxGpuClock}
-      '';
-    };
-
-    systemd.services.nvidia-tune-mem = lib.mkIf (cfg.maxMemClock != null) {
-      description = "NVIDIA memory clock tuning";
-      wantedBy = ["mutli-user.target"];
-      script = ''
-        /run/crurent-system/sw/bin/nvidia-smi -lmc 0,${cfg.maxMemClock}
-      '';
+      serviceConfig = {
+        ExecStart = "${pkgs.lact}/bin/lact daemon";
+      };
     };
   };
 }
