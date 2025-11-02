@@ -15,7 +15,7 @@ in {
       default = {
         auto-update = "off";
         font-family = "JetBrainsMono Nerd Font";
-        font-size = 11;
+        font-size = 10;
         gtk-titlebar-style = "tabs";
         quit-after-last-window-closed = true;
         theme = "Catppuccin Mocha";
