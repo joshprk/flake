@@ -13,6 +13,8 @@
       ELECTRON_OZONE_PLATFORM_HINT "wayland"
     }
 
+    prefer-no-csd
+
     spawn-at-startup "vicinae" "server"
 
     screenshot-path "~/Pictures/screenshot-%Y-%m-%d-at-%H-%M.png"
