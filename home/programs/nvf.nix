@@ -41,10 +41,23 @@ in {
         enable = true;
       };
 
-      vim.theme = {
-        enable = true;
-        name = "catppuccin";
-        style = "mocha";
+      vim.extraPlugins.catppuccin = {
+        package = pkgs.vimPlugins.catppuccin-nvim;
+        setup = ''
+          require("catppuccin").setup {
+            flavour = "mocha",
+            term_colors = true,
+            no_italic = true,
+            integrations = {
+              gitsigns = true,
+              telescope = true,
+              noice = true,
+              notify = true,
+              which_key = true,
+            },
+          }
+          vim.cmd.colorscheme "catppuccin"
+        '';
       };
 
       vim.keymaps = [
