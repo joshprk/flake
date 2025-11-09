@@ -1,0 +1,132 @@
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.programs.nvf;
+in {
+  options.programs.nvf = lib.mkOption {
+    type = lib.types.attrs;
+    readOnly = true;
+    default = {
+      vim.lsp = {
+        enable = true;
+        trouble.enable = true;
+      };
+
+      vim.languages = {
+        python.enable = true;
+        nix.enable = true;
+        markdown.enable = true;
+      };
+
+      vim.options = {
+        cursorline = true;
+        cursorlineopt = "both";
+        expandtab = true;
+        signcolumn = "no";
+        shiftwidth = 2;
+        tabstop = 2;
+        laststatus = 3;
+      };
+
+      vim.hideSearchHighlight = true;
+
+      vim.clipboard = {
+        enable = true;
+      };
+
+      vim.undoFile = {
+        enable = true;
+      };
+
+      vim.theme = {
+        enable = true;
+        name = "catppuccin";
+        style = "mocha";
+      };
+
+      vim.keymaps = [
+        {
+          key = "<esc><esc>";
+          mode = ["t"];
+          silent = true;
+          action = "<C-\\><C-n>";
+        }
+      ];
+
+      vim.autocomplete = {
+        blink-cmp.enable = true;
+      };
+
+      vim.autopairs.nvim-autopairs = {
+        enable = true;
+      };
+
+      vim.binds = {
+        whichKey.enable = true;
+        whichKey.setupOpts.preset = "helix";
+      };
+
+      vim.git = {
+        enable = true;
+        gitsigns.setupOpts = {
+          signcolumn = false;
+          numhl = true;
+        };
+      };
+
+      vim.notify = {
+        nvim-notify.enable = true;
+      };
+
+      vim.projects = {
+        project-nvim.enable = true;
+      };
+
+      vim.snippets = {
+        luasnip.enable = true;
+      };
+
+      vim.telescope = {
+        enable = true;
+      };
+
+      vim.terminal = {
+        toggleterm.enable = true;
+      };
+
+      vim.treesitter = {
+        enable = true;
+      };
+
+      vim.ui = {
+        noice.enable = true;
+      };
+
+      vim.utility = {
+        direnv.enable = true;
+        smart-splits.enable = true;
+        motion.flash-nvim.enable = true;
+      };
+
+      vim.visuals = {
+        highlight-undo.enable = true;
+        indent-blankline.enable = true;
+        nvim-web-devicons.enable = true;
+      };
+    };
+  };
+
+  config = {
+    packages = [
+      (pkgs.nvf cfg)
+    ];
+
+    environment.sessionVariables = {
+      EDITOR = "nvim";
+      VISUAL = "nvim";
+    };
+  };
+}

@@ -63,7 +63,13 @@ localInputs: {
         ];
 
       var.overlays = with localInputs; [
-        nixvim.overlays.default
+        # Custom github:notashelf/nvf overlay
+        (final: prev: {
+          nvf = config: (localInputs.nvf.lib.neovimConfiguration {
+            pkgs = prev;
+            modules = [config];
+          }).neovim;
+        })
         vicinae.overlays.default
       ];
     };
