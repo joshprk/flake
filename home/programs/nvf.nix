@@ -19,6 +19,7 @@ in {
         python.enable = true;
         nix.enable = true;
         markdown.enable = true;
+        rust.enable = true;
       };
 
       vim.options = {
