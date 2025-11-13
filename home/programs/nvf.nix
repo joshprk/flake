@@ -36,6 +36,7 @@ in {
 
       vim.clipboard = {
         enable = true;
+        registers = "unnamedplus";
       };
 
       vim.undoFile = {
@@ -68,6 +69,16 @@ in {
           silent = true;
           action = "<C-\\><C-n>";
         }
+        {
+          key = "<";
+          mode = ["x"];
+          action = "<gv";
+        }
+        {
+          key = ">";
+          mode = ["x"];
+          action = ">gv";
+        }
       ];
 
       vim.autocomplete = {
@@ -97,6 +108,7 @@ in {
 
       vim.projects = {
         project-nvim.enable = true;
+        project-nvim.setupOpts.manual_mode = false;
       };
 
       vim.snippets = {
