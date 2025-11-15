@@ -12,6 +12,7 @@
   packages = with pkgs; [
     fd
     fzf
+    gh
     rclone
     ripgrep
   ];
