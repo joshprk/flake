@@ -25,16 +25,21 @@
 
   files.".config/mimeapps.list".text = ''
     [Default Applications]
-    text/xml=app.zen_browser.zen.desktop
-    text/html=app.zen_browser.zen.desktop
-    x-scheme-handler/http=app.zen_browser.zen.desktop
-    x-scheme-handler/https=app.zen_browser.zen.desktop
-    x-scheme-handler/about=app.zen_browser.zen.desktop
-    x-scheme-handler/unknown=app.zen_browser.zen.desktop
-    application/xhtml+xml=app.zen_browser.zen.desktop
-    application/x-xpinstall=app.zen_browser.zen.desktop
-    application/pdf=app.zen_browser.zen.desktop
-    application/json=app.zen_browser.zen.desktop
+    x-scheme-handler/http=userapp-Zen-3D4JE3.desktop
+    x-scheme-handler/https=userapp-Zen-3D4JE3.desktop
+    x-scheme-handler/chrome=userapp-Zen-3D4JE3.desktop
+    text/html=userapp-Zen-3D4JE3.desktop
+    application/x-extension-htm=userapp-Zen-3D4JE3.desktop
+    application/x-extension-html=userapp-Zen-3D4JE3.desktop
+    application/x-extension-shtml=userapp-Zen-3D4JE3.desktop
+    application/xhtml+xml=userapp-Zen-3D4JE3.desktop
+    application/x-extension-xhtml=userapp-Zen-3D4JE3.desktop
+    application/x-extension-xht=userapp-Zen-3D4JE3.desktop
+
+    [Added Associations]
+    x-scheme-handler/http=userapp-Zen-3D4JE3.desktop;
+    x-scheme-handler/https=userapp-Zen-3D4JE3.desktop;
+    x-scheme-handler/chrome=userapp-Zen-3D4JE3.desktop;
   '';
 
   environment.sessionVariables = {
