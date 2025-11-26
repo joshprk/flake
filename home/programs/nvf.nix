@@ -26,6 +26,8 @@ in {
         cursorline = true;
         cursorlineopt = "both";
         expandtab = true;
+        scrolloff = 7;
+        sidescrolloff = 3;
         signcolumn = "no";
         shiftwidth = 2;
         tabstop = 2;
@@ -80,6 +82,11 @@ in {
           mode = ["x"];
           action = ">gv";
         }
+        {
+          key = "<leader>w";
+          mode = ["n" "x" "o"];
+          action = "<cmd>set wrap!<cr>";
+        }
       ];
 
       vim.autocomplete = {
@@ -93,6 +100,12 @@ in {
       vim.binds = {
         whichKey.enable = true;
         whichKey.setupOpts.preset = "helix";
+      };
+
+      vim.filetree = {
+        nvimTree.enable = true;
+        nvimTree.openOnSetup = false;
+        nvimTree.mappings.toggle = "<leader>tt";
       };
 
       vim.git = {
