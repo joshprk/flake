@@ -27,11 +27,11 @@ in {
         cursorlineopt = "both";
         expandtab = true;
         scrolloff = 7;
-        sidescrolloff = 3;
         signcolumn = "no";
         shiftwidth = 2;
         tabstop = 2;
         laststatus = 3;
+        wrap = false;
       };
 
       vim.hideSearchHighlight = true;
