@@ -17,7 +17,7 @@ in {
 
     modules.apps = {
       flatpak.enable = true;
-      niri.enable = true;
+      hyprland.enable = true;
     };
 
     zramSwap.enable = true;
