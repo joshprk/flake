@@ -119,6 +119,7 @@
     bind = $mainMod, TAB, exec, $menu
     bind = $mainMod, P, pseudo,
     bind = $mainMod, T, togglesplit,
+    bind = $mainMod, F, fullscreen,
 
     # Move focus with mainMod + directional keys
     bind = $mainMod, h, movefocus, l
