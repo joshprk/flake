@@ -32,15 +32,15 @@
     }
 
     layout {
-      gaps 16
+      gaps 12
       center-focused-column "never"
       always-center-single-column
 
       struts {
-        left 16
-        right 16
-        top 16
-        bottom 16
+        left 12
+        right 12
+        top 12
+        bottom 12
       }
 
       preset-column-widths {

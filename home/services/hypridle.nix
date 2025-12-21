@@ -18,8 +18,9 @@ in {
     xdg.config.files."hypr/hypridle.conf".text = ''
       listener {
         timeout = 900
-        on-timeout = ${lib.getExe' pkgs.hyprland "hyprctl"} dispatch dpms off
-        on-resume = ${lib.getExe' pkgs.hyprland "hyprctl"} dispatch dpms on
+        # on-timeout = ${lib.getExe' pkgs.hyprland "hyprctl"} dispatch dpms off
+        # on-resume = ${lib.getExe' pkgs.hyprland "hyprctl"} dispatch dpms on
+        on-timeout = ${lib.getExe pkgs.niri} msg action turn-monitors-off
       }
     '';
 
