@@ -15,6 +15,7 @@
     gh
     rclone
     ripgrep
+    opencode
   ];
 
   files.".config/npm/npmrc".text = ''
@@ -44,12 +45,14 @@
   '';
 
   environment.sessionVariables = {
+    BUN_INSTALL="${config.xdg.data.directory}/bun";
     CARGO_HOME = "${config.xdg.data.directory}/cargo";
     GOPATH = "${config.xdg.data.directory}/go";
     GOMODCACHE = "${config.xdg.cache.directory}/go/mod";
     KUBECACHEDIR = "${config.xdg.cache.directory}/kube";
     KUBECONFIG = "${config.xdg.config.directory}/kubeconfig";
     TALOSCONFIG = "${config.xdg.config.directory}/talos/config";
+    PSQL_HISTORY = "${config.xdg.state.directory}/psql_history";
     PYTHON_HISTORY = "${config.xdg.state.directory}/python_history";
     NPM_CONFIG_USERCONFIG = "${config.xdg.config.directory}/npm/npmrc";
     NODE_REPL_HISTORY = "${config.xdg.data.directory}/node_repl_history";
