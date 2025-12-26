@@ -18,7 +18,7 @@ in {
     xdg.config.files."hypr/hypridle.conf".text = ''
       listener {
         timeout = 900
-        on-timeout = ${lib.getExe pkgs.niri} msg action turn-monitors-off
+        on-timeout = ${lib.getExe pkgs.niri} msg action power-monitors-off
       }
     '';
 
