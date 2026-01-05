@@ -10,7 +10,6 @@
 
   inputs = {
     nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
-    # nixpkgs.url = "github:joshprk/nixpkgs";
 
     agenix = {
       url = "github:ryantm/agenix";
