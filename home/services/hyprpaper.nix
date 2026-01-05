@@ -25,8 +25,10 @@ in {
     ];
 
     xdg.config.files."hypr/hyprpaper.conf".text = ''
-      preload = ${cfg.wallpaper}
-      wallpaper = , ${cfg.wallpaper}
+      wallpaper {
+        monitor =
+        path = ${cfg.wallpaper}
+      }
     '';
 
     systemd.services.hyprpaper = {
