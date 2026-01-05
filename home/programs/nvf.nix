@@ -137,10 +137,6 @@ in {
         toggleterm.enable = true;
       };
 
-      vim.treesitter = {
-        enable = true;
-      };
-
       vim.ui = {
         noice.enable = true;
       };
