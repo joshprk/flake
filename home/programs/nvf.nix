@@ -120,11 +120,6 @@ in {
         nvim-notify.enable = true;
       };
 
-      vim.projects = {
-        project-nvim.enable = true;
-        project-nvim.setupOpts.manual_mode = false;
-      };
-
       vim.snippets = {
         luasnip.enable = true;
       };
