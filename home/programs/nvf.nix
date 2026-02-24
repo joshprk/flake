@@ -47,23 +47,32 @@ in {
         enable = true;
       };
 
-      vim.extraPlugins.catppuccin = {
-        package = pkgs.vimPlugins.catppuccin-nvim;
-        setup = ''
-          require("catppuccin").setup {
-            flavour = "mocha",
-            term_colors = true,
-            no_italic = true,
-            integrations = {
-              gitsigns = true,
-              telescope = true,
-              noice = true,
-              notify = true,
-              which_key = true,
-            },
-          }
-          vim.cmd.colorscheme "catppuccin"
-        '';
+      vim.extraPlugins = {
+        amp = {
+          package = pkgs.vimPlugins.amp-nvim;
+          setup = ''
+            require("amp").setup({ auto_start = true, log_level = "info" })
+          '';
+        };
+
+        catppuccin = {
+          package = pkgs.vimPlugins.catppuccin-nvim;
+          setup = ''
+            require("catppuccin").setup {
+              flavour = "mocha",
+              term_colors = true,
+              no_italic = true,
+              integrations = {
+                gitsigns = true,
+                telescope = true,
+                noice = true,
+                notify = true,
+                which_key = true,
+              },
+            }
+            vim.cmd.colorscheme "catppuccin"
+          '';
+        };
       };
 
       vim.keymaps = [
