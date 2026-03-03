@@ -26,8 +26,10 @@ in {
 
     services.resolved = {
       enable = true;
-      dnsovertls = "true";
-      dnssec = "allow-downgrade";
+      settings.Resolve = {
+        DNSSEC = true;
+        DNSOverTLS = true;
+      };
       extraConfig = lib.mkIf cfg.disableResolvedStub ''
         DNSStubListener=no
       '';
