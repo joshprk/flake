@@ -13,21 +13,18 @@ in {
       type = lib.types.attrs;
       readOnly = true;
       default = {
-        faviconService = "twenty";
-        font = {
+        favicon_service = "twenty";
+        font.normal = {
           size = 10;
         };
-        popToRootOnClose = true;
-        rootSearch = {
-          searchFiles = false;
+        pop_to_root_on_close = true;
+        telemetry = {
+          system_info = false;
         };
         theme = {
-          name = "vicinae-dark";
-        };
-        window = {
-          csd = true;
-          opacity = 0.95;
-          rounding = 10;
+          dark = {
+            name = "vicinae-dark";
+          };
         };
       };
     };
@@ -38,7 +35,7 @@ in {
       cfg.package
     ];
 
-    xdg.config.files."vicinae/vicinae.json" = {
+    xdg.config.files."vicinae/settings.json" = {
       generator = (pkgs.formats.json {}).generate "vicinae-config";
       value = cfg.settings;
     };
