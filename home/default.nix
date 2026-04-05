@@ -16,7 +16,6 @@
     gh
     rclone
     ripgrep
-    opencode
   ];
 
   files.".config/npm/npmrc".text = ''
