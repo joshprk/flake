@@ -11,7 +11,6 @@
 
   packages = with pkgs; [
     amp-cli
-    fd
     fzf
     gh
     rclone
