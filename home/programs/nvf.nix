@@ -112,12 +112,6 @@ in {
         whichKey.setupOpts.preset = "helix";
       };
 
-      vim.filetree = {
-        nvimTree.enable = true;
-        nvimTree.openOnSetup = false;
-        nvimTree.mappings.toggle = "<leader>tt";
-      };
-
       vim.git = {
         enable = true;
         gitsigns.setupOpts = {
@@ -150,6 +144,11 @@ in {
         direnv.enable = true;
         smart-splits.enable = true;
         motion.flash-nvim.enable = true;
+
+        oil-nvim = {
+          enable = true;
+          gitStatus.enable = true;
+        };
       };
 
       vim.visuals = {
