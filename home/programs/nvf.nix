@@ -97,6 +97,11 @@ in {
           mode = ["n" "x" "o"];
           action = "<cmd>set wrap!<cr>";
         }
+        {
+          key = "<leader><tab>";
+          mode = ["n" "x" "o"];
+          action = "<cmd>Oil<cr>";
+        }
       ];
 
       vim.autocomplete = {
@@ -132,12 +137,20 @@ in {
         enable = true;
       };
 
-      vim.terminal = {
-        toggleterm.enable = true;
-      };
-
       vim.ui = {
         noice.enable = true;
+      };
+
+      vim.navigation = {
+        harpoon = {
+          enable = true;
+          mappings = {
+            file1 = "<C-1>";
+            file2 = "<C-2>";
+            file3 = "<C-3>";
+            file4 = "<C-4>";
+          };
+        };
       };
 
       vim.utility = {
