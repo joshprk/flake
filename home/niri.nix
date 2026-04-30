@@ -92,6 +92,10 @@
       clip-to-geometry true
       draw-border-with-background false
       opacity 0.95
+
+      background-effect {
+        xray true
+      }
     }
 
     binds {
