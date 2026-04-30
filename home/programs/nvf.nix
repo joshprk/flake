@@ -20,7 +20,7 @@ in {
         nix.enable = true;
         markdown.enable = true;
         rust.enable = true;
-        ts.enable = true;
+        typescript.enable = true;
       };
 
       vim.options = {
