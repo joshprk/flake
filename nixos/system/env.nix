@@ -21,7 +21,7 @@ in {
     };
 
     programs.command-not-found = {
-      enable = lib.mkDefault false;
+      enable = false;
     };
 
     system.etc.overlay = {
