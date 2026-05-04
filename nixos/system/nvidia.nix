@@ -43,9 +43,9 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [
-      lact
-    ];
+    services.lact = {
+      enable = true;
+    };
 
     services.xserver = {
       videoDrivers = ["nvidia"];
@@ -57,15 +57,6 @@ in {
       powerManagement.enable = true;
       nvidiaSettings = false;
       open = true;
-    };
-
-    systemd.services.nvidia-tune-gpu = lib.mkIf (cfg.maxGpuClock != null) {
-      description = "lactd";
-      after = ["multi-user.target"];
-      wantedBy = ["multi-user.target"];
-      serviceConfig = {
-        ExecStart = "${pkgs.lact}/bin/lact daemon";
-      };
     };
   };
 }
