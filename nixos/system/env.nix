@@ -18,6 +18,9 @@ in {
     environment = {
       defaultPackages = lib.mkDefault [];
       enableAllTerminfo = lib.mkDefault true;
+      sessionVariables = {
+        TZ = cfg.timeZone;
+      };
     };
 
     programs.command-not-found = {
