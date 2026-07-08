@@ -55,7 +55,7 @@ in {
       config = {
         inherit (config.nixpkgs) overlays;
         allowUnfree = lib.mkDefault true;
-        cudaSupport = lib.mkDefault true;
+        cudaSupport = lib.mkDefault config.modules.system.nvidia.enable;
       };
     };
 
