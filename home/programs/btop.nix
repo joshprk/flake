@@ -28,13 +28,18 @@ in {
       generator = (pkgs.formats.keyValue {
         listsAsDuplicateKeys = true;
         mkKeyValue = lib.generators.mkKeyValueDefault {
-          mkValueString = v: with builtins;
-            if isBool v then
-              (if v then "True" else "False")
-            else if isString v then
-              ''"${v}"''
-            else
-              toString v;
+          mkValueString = v:
+            with builtins;
+              if isBool v
+              then
+                (
+                  if v
+                  then "True"
+                  else "False"
+                )
+              else if isString v
+              then ''"${v}"''
+              else toString v;
         } " = ";
       }).generate "btop-config";
       value = cfg.settings;

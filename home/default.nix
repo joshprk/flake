@@ -44,7 +44,7 @@
   '';
 
   environment.sessionVariables = {
-    BUN_INSTALL="${config.xdg.data.directory}/bun";
+    BUN_INSTALL = "${config.xdg.data.directory}/bun";
     CARGO_HOME = "${config.xdg.data.directory}/cargo";
     GOPATH = "${config.xdg.data.directory}/go";
     GOMODCACHE = "${config.xdg.cache.directory}/go/mod";
