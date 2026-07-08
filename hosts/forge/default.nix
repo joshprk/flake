@@ -20,12 +20,6 @@
     network.disableResolvedStub = true;
   };
 
-  services.resolved = {
-    extraConfig = ''
-      DNSStubListener=no
-    '';
-  };
-
   containers = {
     nginx = {
       autoStart = true;
