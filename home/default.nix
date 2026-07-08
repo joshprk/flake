@@ -10,7 +10,8 @@
   ];
 
   packages = with pkgs; [
-    amp-cli
+    llm-agents.amp
+    llm-agents.claude-code
     fzf
     gh
     rclone
