@@ -10,12 +10,12 @@
   ];
 
   packages = with pkgs; [
-    llm-agents.amp
     llm-agents.claude-code
     fzf
     gh
     rclone
     ripgrep
+    tree
   ];
 
   files.".config/npm/npmrc".text = ''
