@@ -17,6 +17,7 @@
 
   modules.system = {
     network.exitNode = true;
+    kernel.package = lib.mkForce pkgs.linuxPackages_latest;
   };
 
   containers = {
