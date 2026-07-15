@@ -19,6 +19,10 @@
 
     screenshot-path "~/Pictures/screenshot-%Y-%m-%d-at-%H-%M.png"
 
+    hotkey-overlay {
+      skip-at-startup
+    }
+
     input {
       touchpad {
         tap
