@@ -72,7 +72,6 @@ localInputs: {
             }).neovim;
         })
         llm-agents.overlays.default
-        vicinae.overlays.default
       ];
     };
 
