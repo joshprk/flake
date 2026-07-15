@@ -17,7 +17,6 @@
 
   modules.system = {
     network.exitNode = true;
-    network.disableResolvedStub = true;
   };
 
   containers = {
