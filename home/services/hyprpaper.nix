@@ -39,7 +39,7 @@ in {
       serviceConfig = {
         ExecStart = "${lib.getExe cfg.package}";
         Restart = "always";
-        RestartSec = "10";
+        RestartSec = 5;
       };
     };
   };
