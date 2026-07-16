@@ -33,7 +33,7 @@ in {
 
       background {
         monitor =
-        path = ${config.services.hyprpaper.wallpaper}
+        path = ${config.wallpaper}
       }
 
       input-field {

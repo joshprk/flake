@@ -8,15 +8,6 @@
 in {
   options.services.hyprpaper = {
     package = lib.mkPackageOption pkgs "hyprpaper" {};
-
-    wallpaper = lib.mkOption {
-      type = lib.types.package;
-      readOnly = true;
-      default = pkgs.fetchurl {
-        url = "https://github.com/foxt/macOS-Wallpapers/blob/master/Mojave%20Night.jpg?raw=true";
-        hash = "sha256-Zv7uvjSNACpI2Yck22bsA8gwVaju2Yght7y09xko9xw=";
-      };
-    };
   };
 
   config = {
@@ -27,7 +18,7 @@ in {
     xdg.config.files."hypr/hyprpaper.conf".text = ''
       wallpaper {
         monitor =
-        path = ${cfg.wallpaper}
+        path = ${config.wallpaper}
       }
     '';
 
