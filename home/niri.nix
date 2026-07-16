@@ -106,6 +106,7 @@
       Mod+Shift+Slash { show-hotkey-overlay; }
       Mod+Tab { spawn "vicinae" "toggle"; }
       Mod+T { spawn "ghostty"; }
+      Mod+Alt+L { spawn "hyprlock"; }
       XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"; }
       XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; }
       XF86AudioMute allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
