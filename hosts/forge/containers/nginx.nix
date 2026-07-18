@@ -25,7 +25,7 @@
     defaults.email = "certs@joshprk.me";
     certs."forge.joshprk.me" = {
       domain = "*.joshprk.me";
-      dnsProvider = "porkbun";
+      dnsProvider = "cloudflare";
       environmentFile = "/.acme";
       dnsPropagationCheck = false;
     };
