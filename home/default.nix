@@ -11,6 +11,7 @@
 
   packages = with pkgs; [
     llm-agents.claude-code
+    llm-agents.codex
     fzf
     gh
     rclone

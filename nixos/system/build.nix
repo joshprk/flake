@@ -38,16 +38,13 @@ in {
       extra-experimental-features = lib.mkDefault cfg.features;
       auto-allocate-uids = lib.mkDefault true;
       use-xdg-base-directories = lib.mkDefault true;
-      trusted-users = [
-        "@wheel"
-      ];
-      trusted-substituters = [
+      extra-trusted-substituters = [
         "https://nix-community.cachix.org"
-        "https://cache.nixos-cuda.org"
+        "https://cache.numtide.com"
       ];
-      trusted-public-keys = [
+      extra-trusted-public-keys = [
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-        "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
+        "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
       ];
     };
 
