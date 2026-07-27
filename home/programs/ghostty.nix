@@ -16,11 +16,13 @@ in {
         auto-update = "off";
         font-family = "JetBrainsMono Nerd Font";
         font-size = 9;
+        gtk-tabs-location = "hidden";
         quit-after-last-window-closed = true;
         theme = "Catppuccin Mocha";
         window-padding-color = "extend";
         window-padding-x = 4;
         window-padding-y = 4;
+        keybind = ["ctrl+shift+space=toggle_tab_overview"];
       };
     };
   };
