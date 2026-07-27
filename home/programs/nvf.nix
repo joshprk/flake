@@ -21,6 +21,7 @@ in {
         markdown.enable = true;
         rust.enable = true;
         typescript.enable = true;
+        tsx.enable = true;
       };
 
       vim.options = {
