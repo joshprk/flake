@@ -57,7 +57,6 @@ localInputs: {
           agenix.nixosModules.age
           agenix-rekey.nixosModules.agenix-rekey
           disko.nixosModules.disko
-          facter.nixosModules.facter
           hjem.nixosModules.hjem
           impermanence.nixosModules.impermanence
         ];

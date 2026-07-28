@@ -27,7 +27,8 @@ in {
       enable = lib.mkDefault true;
     };
 
-    facter = {
+    hardware.facter = {
+      enable = true;
       reportPath =
         if builtins.pathExists "${var.host}/facter.json"
         then "${var.host}/facter.json"
