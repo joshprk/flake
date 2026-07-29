@@ -1,0 +1,34 @@
+{...}: {
+  services.tailscale = {
+    enable = true;
+    openFirewall = true;
+    disableUpstreamLogging = true;
+    extraUpFlags = ["--ssh"];
+  };
+
+  services.resolved = {
+    enable = true;
+    settings.Resolve = {
+      DNSOverTLS = true;
+      DNSSEC = true;
+    };
+  };
+
+  systemd.network = {
+    enable = true;
+  };
+
+  networking = {
+    firewall = {
+      enable = true;
+      checkReversePath = "loose";
+    };
+    nameservers = [
+      "1.1.1.1"
+      "1.0.0.1"
+    ];
+    useNetworkd = true;
+    nftables.enable = true;
+    wireless.iwd.enable = true;
+  };
+}
