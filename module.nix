@@ -19,6 +19,16 @@
       };
     });
 
+  flake.overlays = {
+    shared-nvf = final: prev: {
+      nvf = cfg:
+        (inputs.nvf.lib.neovimConfiguration {
+          pkgs = prev;
+          modules = [cfg];
+        }).neovim;
+    };
+  };
+
   perSystem = {pkgs, ...}: let
     mkSystem = cfg: lib.nixosSystem {modules = [cfg];};
     mkImage = cfg: (mkSystem cfg).config.system.build.isoImage;

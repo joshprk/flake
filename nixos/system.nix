@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  flakeInputs,
   hostSpec,
   ...
 }: {
@@ -60,9 +61,13 @@
     use-xdg-base-directories = true;
   };
 
-  nixpkgs.config = {
-    allowUnfree = true;
-    cudaSupport = config.hardware.nvidia.enabled;
+  nixpkgs = {
+    config = {
+      inherit (config.nixpkgs) overlays;
+      allowUnfree = true;
+      cudaSupport = config.hardware.nvidia.enabled;
+    };
+    overlays = builtins.attrValues flakeInputs.self.overlays;
   };
 
   system = {
