@@ -20,8 +20,14 @@
       enable = true;
     };
 
+    programs.niri = {
+      enable = true;
+      useNautilus = true;
+    };
+
     services = {
       flatpak.enable = true;
+      gnome.gnome-keyring.enable = true;
       pipewire = {
         enable = true;
         pulse.enable = true;
@@ -46,9 +52,7 @@
 
     xdg.portal = {
       enable = true;
-      extraPortals = with pkgs; [xdg-desktop-portal-gtk];
       xdgOpenUsePortal = true;
-      config.common.default = ["gtk"];
     };
   };
 }
