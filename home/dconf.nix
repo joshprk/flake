@@ -6,7 +6,7 @@
 }: let
   compileDconfDb = dir:
     pkgs.runCommand "dconf-db" {
-      nativeBuildInputs = [ (lib.getBin pkgs.dconf) ];
+      nativeBuildInputs = [(lib.getBin pkgs.dconf)];
     } "dconf compile $out ${dir}";
   createKeyFile = cfg: pkgs.writeTextDir "keyfile" (lib.generators.toDconfINI cfg);
 in {
