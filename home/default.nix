@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   imports = [
     ./dconf.nix
+    ./nvf.nix
   ];
 
   packages = with pkgs; [
