@@ -75,14 +75,25 @@
 
           echo "install: enrolling $luks_part to tpm"
 
-          if echo -n "$password" | systemd-cryptenroll \
+          if systemd-cryptenroll \
             --tpm2-device=auto \
             --tpm2-pcrs=0,2,7,12 \
-            --unlock-key-file=/dev/stdin \
+            --unlock-key-file=<(printf '%s' "$password") \
             "$luks_part"; then
             echo "install: successfully enrolled $luks_part"
           else
             echo "install: failed to enroll $luks_part" >&2
+          fi
+
+          echo "install: enrolling recovery key for $luks_part"
+
+          if systemd-cryptenroll \
+            --unlock-key-file=<(printf '%s' "$password") \
+            --recovery-key \
+            "$luks_part"; then
+            echo "install: successfully enrolled recovery key for $luks_part"
+          else
+            echo "install: failed to enroll recovery key for $luks_part" >&2
           fi
         fi
       done
