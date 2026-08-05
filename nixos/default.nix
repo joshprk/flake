@@ -7,6 +7,7 @@
     ./features/nvidia.nix
     ./home.nix
     ./network.nix
+    ./secrets.nix
     ./system.nix
   ];
 }

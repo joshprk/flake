@@ -1,6 +1,7 @@
 {...}: {
   networking.hostName = "coffee";
   system.stateVersion = "26.11";
+  secrets.hostPubkey = null;
 
   features = {
     desktop = true;
