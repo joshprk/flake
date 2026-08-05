@@ -94,5 +94,55 @@
 
       echo "install: completed installation"
     '';
+
+    packages.secrets = pkgs.writers.writeBashBin "flake-secrets-editor" {} ''
+      set -euo pipefail
+
+      identity=/nix/id.key
+      root=$(git rev-parse --show-toplevel)
+      secretsFile="$root/secrets.age"
+
+      if [[ ! -f "$identity" ]]; then
+        echo "secrets: no identity file found" >&2
+        exit 1
+      fi
+
+      if ! recipients_json=$(nix eval --json "$root#nixosConfigurations" --apply '
+        cfgs:
+        builtins.filter (k: k != null)
+        (map (n: cfgs.''${n}.config.secrets.hostPubkey) (builtins.attrNames cfgs))
+      '); then
+        echo "secrets: failed to evaluate nixosConfigurations" >&2
+        exit 1
+      fi
+
+      mapfile -t recipients < <(echo "$recipients_json" | ${lib.getExe pkgs.jq} -r '.[]')
+
+      if [[ ''${#recipients[@]} -eq 0 ]]; then
+        echo "secrets: no host declares secrets.hostPubkey" >&2
+        exit 1
+      fi
+
+      tmp=$(mktemp --suffix .nix)
+      trap 'shred -u "$tmp"' EXIT
+
+      if [[ -f "$secretsFile" ]]; then
+        ${lib.getExe pkgs.age} -d -i "$identity" "$secretsFile" > "$tmp"
+      else
+        echo '{ }' > "$tmp"
+      fi
+
+      ''${EDITOR:-vi} "$tmp"
+
+      nix eval --json --file "$tmp" > /dev/null
+
+      recipientArgs=()
+      for r in "''${recipients[@]}"; do
+        recipientArgs+=(-r "$r")
+      done
+
+      ${lib.getExe pkgs.age} -e "''${recipientArgs[@]}" -o "$secretsFile.new" "$tmp"
+      mv "$secretsFile.new" "$secretsFile"
+    '';
   };
 }
