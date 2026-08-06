@@ -5,8 +5,11 @@
   ];
 
   packages = with pkgs; [
+    fish
     git
   ];
+
+  xdg.config.files."fish/config.fish".text = "";
 
   xdg.config.files."git/config" = {
     generator = (pkgs.formats.toml {}).generate "gitconfig";
