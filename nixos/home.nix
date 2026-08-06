@@ -26,5 +26,6 @@
     enable = true;
     settings.appid = "pam://nixos";
     settings.origin = "pam://nixos";
+    settings.cue = true;
   };
 }
