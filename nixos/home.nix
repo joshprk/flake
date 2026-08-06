@@ -1,4 +1,12 @@
-{homeModule, ...}: {
+{
+  pkgs,
+  homeModule,
+  ...
+}: {
+  programs.fish = {
+    enable = true;
+  };
+
   services.dbus = {
     implementation = "broker";
   };
@@ -18,6 +26,7 @@
     mutableUsers = false;
     users.josh = {
       isNormalUser = true;
+      shell = pkgs.fish;
       extraGroups = ["wheel"];
     };
   };
