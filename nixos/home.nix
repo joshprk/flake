@@ -33,8 +33,10 @@
 
   security.pam.u2f = {
     enable = true;
-    settings.appid = "pam://nixos";
-    settings.origin = "pam://nixos";
-    settings.cue = true;
+    settings = {
+      appid = "pam://nixos";
+      origin = "pam://nixos";
+      cue = true;
+    };
   };
 }
