@@ -1,5 +1,4 @@
 {
-  config,
   lib,
   inputs,
   ...
@@ -7,42 +6,24 @@
   flake.nixosConfigurations =
     ./hosts
     |> builtins.readDir
-    |> lib.mapAttrs' (n: v: rec {
+    |> lib.mapAttrs' (n: _v: rec {
       name = lib.removeSuffix ".nix" n;
       value = lib.nixosSystem {
-        specialArgs = {
-          flakeInputs = inputs;
-          homeModule = ./home;
-          hostSpec = ./specs/${name}.json;
-        };
+        specialArgs.flakeInputs = inputs;
+        specialArgs.homeModule = ./home;
+        specialArgs.hostSpec = ./specs/${name}.json;
         modules = [./nixos ./hosts/${n}];
       };
     });
 
-  flake.overlays = {
-    shared-nvf = final: prev: {
-      nvf = cfg:
-        (inputs.nvf.lib.neovimConfiguration {
-          pkgs = prev;
-          modules = [cfg];
-        }).neovim;
-    };
-  };
-
-  perSystem = {pkgs, ...}: let
-    mkSystem = cfg: lib.nixosSystem {modules = [cfg];};
-    mkImage = cfg: (mkSystem cfg).config.system.build.isoImage;
-  in {
-    packages.image = mkImage ({modulesPath, ...}: {
-      imports = ["${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix"];
-      networking.networkmanager.enable = true;
-      nixpkgs.hostPlatform = pkgs.stdenv.hostPlatform.system;
-      nix.settings.experimental-features = [
-        "flakes"
-        "nix-command"
-        "pipe-operators"
-      ];
-    });
+  perSystem = {pkgs, ...}: {
+    packages.image = let
+      nixos = pkgs.nixos ({modulesPath, ...}: {
+        imports = ["${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix"];
+        nix.settings.experimental-features = ["flakes" "nix-command" "pipe-operators"];
+      });
+    in
+      nixos.config.system.build.isoImage;
 
     packages.install = pkgs.writers.writeBashBin "flake-install" {} ''
       set -euo pipefail

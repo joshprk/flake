@@ -1,18 +1,21 @@
 {
   outputs = inputs:
     inputs.flake-parts.lib.mkFlake {inherit inputs;} {
-      imports = [./module.nix];
+      imports = [
+        inputs.treefmt.flakeModule
+        ./module.nix
+      ];
 
-      perSystem = {pkgs, ...}: {
-        formatter = pkgs.alejandra;
+      perSystem.treefmt.programs = {
+        alejandra.enable = true;
+        deadnix.enable = true;
+        statix.enable = true;
       };
 
       systems = inputs.nixpkgs.lib.systems.flakeExposed;
     };
 
   inputs = {
-    nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
-
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -33,9 +36,18 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixpkgs = {
+      url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
+    };
+
     nvf = {
       url = "github:notashelf/nvf";
-      inputs.nixpkgs.url = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    treefmt = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 }

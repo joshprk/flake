@@ -9,20 +9,16 @@
   };
 
   config = lib.mkIf config.features.desktop {
-    boot.kernelPackages = pkgs.linuxPackages_zen;
+    boot.kernelPackages = lib.mkForce pkgs.linuxPackages_zen;
 
     fonts = {
       enableDefaultPackages = true;
       fontconfig.enable = true;
     };
 
-    programs.dconf = {
-      enable = true;
-    };
-
-    programs.niri = {
-      enable = true;
-      useNautilus = true;
+    programs = {
+      dconf.enable = true;
+      niri.enable = true;
     };
 
     services = {
@@ -42,12 +38,9 @@
       };
     };
 
-    security.rtkit = {
-      enable = true;
-    };
-
-    security.polkit = {
-      enable = true;
+    security = {
+      rtkit.enable = true;
+      polkit.enable = true;
     };
 
     xdg.portal = {

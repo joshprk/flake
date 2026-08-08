@@ -2,12 +2,11 @@
   config,
   lib,
   pkgs,
-  flakeInputs,
   hostSpec,
   ...
 }: {
   environment = {
-    defaultPackages = lib.mkDefault [];
+    defaultPackages = [];
     persistence."/nix/persist" = {
       enable = true;
       hideMounts = true;
@@ -18,7 +17,7 @@
 
   boot = {
     consoleLogLevel = 0;
-    kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_latest;
     kernelParams = ["quiet" "udev.log_level=3"];
     initrd = {
       systemd.enable = true;
@@ -37,12 +36,9 @@
     plymouth.enable = true;
   };
 
-  programs.command-not-found = {
-    enable = false;
-  };
-
-  programs.nh = {
-    enable = true;
+  programs = {
+    command-not-found.enable = false;
+    nh.enable = true;
   };
 
   hardware.facter = {
@@ -51,23 +47,15 @@
   };
 
   nix.settings = {
-    experimental-features = [
-      "auto-allocate-uids"
-      "flakes"
-      "nix-command"
-      "pipe-operators"
-    ];
+    experimental-features = ["auto-allocate-uids" "flakes" "nix-command" "pipe-operators"];
     auto-allocate-uids = true;
     use-xdg-base-directories = true;
   };
 
-  nixpkgs = {
-    config = {
-      inherit (config.nixpkgs) overlays;
-      allowUnfree = true;
-      cudaSupport = config.hardware.nvidia.enabled;
-    };
-    overlays = builtins.attrValues flakeInputs.self.overlays;
+  nixpkgs.config = {
+    inherit (config.nixpkgs) overlays;
+    allowUnfree = true;
+    cudaSupport = config.hardware.nvidia.enabled;
   };
 
   system = {
@@ -78,5 +66,7 @@
     };
   };
 
-  time.timeZone = "America/New_York";
+  time = {
+    timeZone = "America/New_York";
+  };
 }

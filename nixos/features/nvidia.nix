@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: {
   options.features = {
@@ -8,14 +9,17 @@
   };
 
   config = lib.mkIf config.features.nvidia {
-    services.xserver.videoDrivers = ["nvidia"];
+    services.xserver = {
+      excludePackages = with pkgs; [xterm];
+      videoDrivers = ["nvidia"];
+    };
 
     hardware.nvidia = {
       branch = "bleeding_edge";
-      open = true;
       modesetting.enable = true;
-      powerManagement.enable = true;
       nvidiaSettings = false;
+      open = true;
+      powerManagement.enable = true;
     };
   };
 }

@@ -3,16 +3,13 @@
   homeModule,
   ...
 }: {
-  programs.fish = {
-    enable = true;
+  programs = {
+    fish.enable = true;
   };
 
-  services.dbus = {
-    implementation = "broker";
-  };
-
-  services.userborn = {
-    enable = true;
+  services = {
+    dbus.implementation = "broker";
+    userborn.enable = true;
   };
 
   hjem = {

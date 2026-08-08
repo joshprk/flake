@@ -9,4 +9,14 @@
     ./network.nix
     ./system.nix
   ];
+
+  nixpkgs.overlays = with flakeInputs; let
+    nvfWithPkgs = pkgs: mod:
+      (nvf.lib.neovimConfiguration {
+        inherit pkgs;
+        modules = [mod];
+      }).neovim;
+  in [
+    (final: _: {nvf = nvfWithPkgs final.pkgs;})
+  ];
 }
