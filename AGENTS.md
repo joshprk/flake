@@ -26,8 +26,8 @@ Use targeted searches for exact options and open only the matching documentation
 
 ## Code style
 
-- Prefer dotted for simple, single options (i.e. `zramSwap.enable = true;`).
-- Prefer nested sets when configuring related options (i.e. hardware.nvidia = {...}).
+- Prefer dotted assignments for simple nested options (i.e. `zramSwap.enable = true;`).
+- Prefer nested sets when configuring many related options (i.e. hardware.nvidia = {...}).
 - Keep options grouped under top-level namespaces (i.e. `boot`, `services`, `programs`).
 - Use comments concisely and sparingly for temporary, security-related, or non-obvious decisions.
 
