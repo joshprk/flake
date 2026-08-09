@@ -8,4 +8,5 @@
   };
 in {
   packages = [nvf];
+  environment.sessionVariables.EDITOR = "nvim";
 }
