@@ -3,6 +3,7 @@
     disko.nixosModules.disko
     hjem.nixosModules.hjem
     impermanence.nixosModules.impermanence
+    nix-flatpak.nixosModules.nix-flatpak
     ./features/desktop.nix
     ./features/nvidia.nix
     ./home.nix

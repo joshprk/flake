@@ -27,7 +27,12 @@
     };
 
     services = {
-      flatpak.enable = true;
+      flatpak = {
+        enable = true;
+        packages = ["app.zen_browser.zen"];
+        update.auto.enable = true;
+        update.auto.onCalendar = "daily";
+      };
       gnome.gnome-keyring.enable = true;
       pipewire = {
         enable = true;
