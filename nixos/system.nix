@@ -66,7 +66,5 @@
     };
   };
 
-  time = {
-    timeZone = "America/New_York";
-  };
+  time.timeZone = "America/New_York";
 }

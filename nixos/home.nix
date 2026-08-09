@@ -3,9 +3,7 @@
   homeModule,
   ...
 }: {
-  programs = {
-    fish.enable = true;
-  };
+  programs.fish.enable = true;
 
   services = {
     dbus.implementation = "broker";

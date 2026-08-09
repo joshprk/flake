@@ -51,7 +51,5 @@
     mountOptions = ["noatime" "size=50%" "defaults" "mode=755"];
   };
 
-  zramSwap = {
-    enable = true;
-  };
+  zramSwap.enable = true;
 }

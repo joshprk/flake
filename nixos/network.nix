@@ -15,10 +15,6 @@ _: {
     };
   };
 
-  systemd.network = {
-    enable = true;
-  };
-
   networking = {
     firewall = {
       enable = true;
@@ -29,4 +25,6 @@ _: {
     nftables.enable = true;
     wireless.iwd.enable = true;
   };
+
+  systemd.network.enable = true;
 }
