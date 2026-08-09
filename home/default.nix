@@ -21,7 +21,7 @@
       (n: v: "set -gx ${lib.escapeShellArg n} ${lib.escapeShellArg (toString v)}")
       config.environment.sessionVariables;
     "git/config" = {
-      generator = (pkgs.formats.toml {}).generate "gitconfig";
+      generator = (pkgs.formats.gitIni {}).generate "gitconfig";
       value = {
         init.defaultBranch = "main";
         user.name = "Joshua Park";
