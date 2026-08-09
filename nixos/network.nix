@@ -20,12 +20,11 @@ _: {
       enable = true;
       checkReversePath = "loose";
     };
-    nameservers = ["1.1.1.1" "1.0.0.1"];
-    useNetworkd = true;
-    networkmanager.wifi.backend = "iwd";
+    networkmanager = {
+      enable = true;
+      dns = "systemd-resolved";
+      wifi.backend = "iwd";
+    };
     nftables.enable = true;
-    wireless.iwd.enable = true;
   };
-
-  systemd.network.enable = true;
 }
