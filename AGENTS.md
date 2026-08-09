@@ -15,7 +15,7 @@ these systems.
 
 ## Upstream dependencies
 
-Prefer searching rather than retrieving full documentation.
+Use targeted searches for exact options and open only the matching documentation section.
 
 - `hjem` provides tools to create symlinked dotfiles for user homes
   docs: https://hjem.feel-co.org/options.html
