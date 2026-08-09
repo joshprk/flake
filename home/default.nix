@@ -27,7 +27,7 @@
         user.email = "git@joshprk.me";
       };
     };
-    "niri/config.kdl".source = ./niri.kdl;
-    "Yubico/u2f_keys".source = ./u2f_keys;
+    "niri/config.kdl".source = ./files/niri.kdl;
+    "Yubico/u2f_keys".source = ./files/u2f_keys;
   };
 }
