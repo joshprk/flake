@@ -53,7 +53,6 @@
   };
 
   nixpkgs.config = {
-    inherit (config.nixpkgs) overlays;
     allowUnfree = true;
     cudaSupport = config.hardware.nvidia.enabled;
   };
