@@ -6,6 +6,7 @@
 }: {
   imports = [
     ./dconf.nix
+    ./noctalia.nix
     ./nvf.nix
   ];
 
