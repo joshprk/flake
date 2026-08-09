@@ -18,7 +18,7 @@ in {
     partOf = [systemdTarget];
     after = [systemdTarget];
     wantedBy = [systemdTarget];
-    enableDefaultPath = true;
+    enableDefaultPath = false;
     restartTriggers = [
       config.xdg.config.files."noctalia/config.toml".source
       pkgs.noctalia
