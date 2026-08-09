@@ -16,16 +16,13 @@ _: {
   };
 
   networking = {
-    firewall = {
-      enable = true;
-      checkReversePath = "loose";
-    };
+    dhcpcd.enable = false;
+    firewall.enable = true;
     networkmanager = {
       enable = true;
       dns = "systemd-resolved";
       wifi.backend = "iwd";
     };
-    dhcpcd.enable = false;
     nftables.enable = true;
     usePredictableInterfaceNames = false;
   };
