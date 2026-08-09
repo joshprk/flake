@@ -25,6 +25,9 @@ _: {
       dns = "systemd-resolved";
       wifi.backend = "iwd";
     };
+    dhcpcd.enable = false;
     nftables.enable = true;
+    useDHCP = false;
+    usePredictableInterfaceNames = false;
   };
 }
