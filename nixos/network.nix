@@ -27,7 +27,6 @@ _: {
     };
     dhcpcd.enable = false;
     nftables.enable = true;
-    useDHCP = false;
     usePredictableInterfaceNames = false;
   };
 }
