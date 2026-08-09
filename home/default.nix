@@ -6,7 +6,6 @@
 }: {
   imports = [
     ./dconf.nix
-    ./noctalia.nix
     ./nvf.nix
   ];
 
@@ -34,6 +33,10 @@
         listsAsDuplicateKeys = true;
         mkKeyValue = lib.generators.mkKeyValueDefault {} " = ";
       }).generate "ghostty-config";
+      value = {};
+    };
+    "noctalia/config.toml" = {
+      generator = (pkgs.formats.toml {}).generate "noctalia-config";
       value = {};
     };
     "niri/config.kdl".source = ./files/niri.kdl;

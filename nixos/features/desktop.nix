@@ -19,6 +19,11 @@
     programs = {
       dconf.enable = true;
       niri.enable = true;
+      noctalia = {
+        enable = true;
+        systemd.enable = true;
+        recommendedServices.enable = true;
+      };
     };
 
     services = {

@@ -22,6 +22,7 @@ _: {
     };
     nameservers = ["1.1.1.1" "1.0.0.1"];
     useNetworkd = true;
+    networkmanager.wifi.backend = "iwd";
     nftables.enable = true;
     wireless.iwd.enable = true;
   };
