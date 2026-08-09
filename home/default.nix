@@ -13,6 +13,7 @@
   packages = with pkgs; [
     fish
     git
+    ghostty
   ];
 
   xdg.config.files = {
@@ -27,6 +28,13 @@
         user.name = "Joshua Park";
         user.email = "git@joshprk.me";
       };
+    };
+    "ghostty/config" = {
+      generator = (pkgs.formats.keyValue {
+        listsAsDuplicateKeys = true;
+        mkKeyValue = lib.generators.mkKeyValueDefault {} " = ";
+      }).generate "ghostty-config";
+      value = {};
     };
     "niri/config.kdl".source = ./files/niri.kdl;
     "Yubico/u2f_keys".source = ./files/u2f_keys;
