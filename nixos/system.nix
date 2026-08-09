@@ -62,7 +62,7 @@
     disableInstallerTools = true;
     etc.overlay = {
       enable = true;
-      mutable = true;
+      mutable = false;
     };
   };
 
