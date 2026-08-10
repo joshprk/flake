@@ -43,7 +43,11 @@
         listsAsDuplicateKeys = true;
         mkKeyValue = lib.generators.mkKeyValueDefault {} " = ";
       }).generate "ghostty-config";
-      value = {};
+      value = {
+        font-family = "IBM Plex Mono";
+        font-size = 9;
+        theme = "noctalia";
+      };
     };
     "noctalia/config.toml" = {
       generator = (pkgs.formats.toml {}).generate "noctalia-config";
