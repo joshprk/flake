@@ -38,6 +38,6 @@ Use targeted searches for exact options and open only the matching documentation
 Before submitting code changes:
 
 ```
-nix fmt
-nix flake check
+# Request permission to avoid sandbox errors
+nix fmt && nix flake check
 ```
