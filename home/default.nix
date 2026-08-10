@@ -12,7 +12,6 @@
   packages = with pkgs; [
     fish
     git
-    ghostty
   ];
 
   xdg.config.files = {
