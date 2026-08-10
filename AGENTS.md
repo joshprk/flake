@@ -21,6 +21,8 @@ Use targeted searches for exact options and open only the matching documentation
   docs: https://hjem.feel-co.org/options.html
 - `noctalia` is a native Wayland desktop shell
   docs: https://docs.noctalia.dev/noctalia/
+- `niri` is a scrollable-tiling Wayland compositor
+  docs: https://niri-wm.github.io/niri/
 - `nvf` allows the building a Neovim configuration using Nix options
   docs: https://nvf.notashelf.dev/options.html
 - `treefmt` is a formatting multiplexer

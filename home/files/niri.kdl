@@ -26,21 +26,18 @@ layout {
   always-center-single-column
 
   struts {
-    left 12
-    right 12
-    top 12
-    bottom 12
+    left 8
+    right 8
+    top 8
+    bottom 8
   }
 
   default-column-width {
-    proportion 0.5;
+    proportion 0.5
   }
 
   border {
-    width 1
-    active-color "#505050"
-    inactive-color "#505050"
-    urgent-color "#505050"
+    off
   }
 
   focus-ring {
@@ -60,7 +57,7 @@ layout {
 }
 
 layer-rule {
-  match namespace="^noctalia-backdrop"
+  match namespace="^noctalia-wallpaper$"
   place-within-backdrop true
 }
 
