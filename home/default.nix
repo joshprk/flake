@@ -10,6 +10,7 @@
 
   packages = with pkgs; [
     llm-agents.codex
+    direnv
     fish
     git
     ripgrep
@@ -26,10 +27,24 @@
   };
 
   xdg.config.files = {
+    "direnv/direnv.toml" = {
+      generator = (pkgs.formats.toml {}).generate "direnv-config";
+      value = {
+        global.disable_stdin = true;
+        global.hide_env_diff = true;
+        global.warn_timeout = "0ms";
+      };
+    };
+    "direnv/lib/nix-direnv.sh".source = "${pkgs.nix-direnv}/share/nix-direnv/direnvrc";
     "fish/conf.d/10-environment.fish".text =
       lib.concatMapAttrsStringSep "\n"
       (n: v: "set -gx ${lib.escapeShellArg n} ${lib.escapeShellArg (toString v)}")
       config.environment.sessionVariables;
+    "fish/config.fish".text = ''
+      if status is-interactive
+        ${lib.getExe pkgs.direnv} hook fish | source
+      end
+    '';
     "git/config" = {
       generator = (pkgs.formats.gitIni {}).generate "gitconfig";
       value = {
