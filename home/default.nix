@@ -12,6 +12,7 @@
     llm-agents.codex
     fish
     git
+    ripgrep
     (nvf {
       vim.options.expandtab = true;
       vim.options.shiftwidth = 2;
