@@ -1,3 +1,6 @@
 .direnv/
 .env
 .envrc
+
+.agents/
+.codex/
