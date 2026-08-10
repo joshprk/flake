@@ -10,9 +10,12 @@
   ];
 
   packages = with pkgs; [
+    llm-agents.codex
     fish
     git
   ];
+
+  environment.sessionVariables.CODEX_HOME = "${config.xdg.data.directory}/codex";
 
   xdg.config.files = {
     "fish/conf.d/10-environment.fish".text =
