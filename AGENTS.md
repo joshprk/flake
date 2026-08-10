@@ -26,6 +26,9 @@ Use targeted searches for exact options and open only the matching documentation
 - `treefmt` is a formatting multiplexer
   docs: https://flake.parts/options/treefmt-nix.html
 
+To search available packages, use the command: `nh search <QUERY>`. For NixOS options, use the
+command `nh search options <QUERY>`.
+
 ## Code style
 
 - Prefer dotted assignments for simple nested options (i.e. `zramSwap.enable = true;`).
