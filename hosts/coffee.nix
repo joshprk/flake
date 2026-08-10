@@ -35,12 +35,12 @@
         settings.allowDiscards = true;
         content.type = "btrfs";
         content.subvolumes.home = {
-          mountOptions = ["noatime" "compress=zstd"];
           mountpoint = "/home";
+          mountOptions = ["noatime" "compress=zstd"];
         };
         content.subvolumes.nix = {
-          mountOptions = ["noatime" "compress=zstd"];
           mountpoint = "/nix";
+          mountOptions = ["noatime" "compress=zstd"];
         };
       };
     };

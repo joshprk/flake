@@ -17,7 +17,6 @@
     device = "/dev/nvme0n1";
     type = "disk";
     content.type = "gpt";
-
     content.partitions.boot = {
       name = "boot";
       size = "512M";
@@ -29,7 +28,6 @@
         mountOptions = ["noatime" "umask=0077"];
       };
     };
-
     content.partitions.nix = {
       size = "100%";
       content = {
