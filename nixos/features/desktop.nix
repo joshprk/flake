@@ -9,6 +9,11 @@
   };
 
   config = lib.mkIf config.features.desktop {
+    environment.systemPackages = with pkgs; [
+      ghostty
+      nautilus
+    ];
+
     boot.kernelPackages = lib.mkForce pkgs.linuxPackages_zen;
 
     fonts = {
@@ -18,7 +23,10 @@
 
     programs = {
       dconf.enable = true;
-      niri.enable = true;
+      niri = {
+        enable = true;
+        useNautilus = true;
+      };
       noctalia = {
         enable = true;
         systemd.enable = true;
