@@ -6,16 +6,23 @@
 }: {
   imports = [
     ./dconf.nix
-    ./nvf.nix
   ];
 
   packages = with pkgs; [
     llm-agents.codex
     fish
     git
+    (nvf {
+      vim.options.expandtab = true;
+      vim.options.shiftwidth = 2;
+      vim.options.tabstop = 2;
+    })
   ];
 
-  environment.sessionVariables.CODEX_HOME = "${config.xdg.data.directory}/codex";
+  environment.sessionVariables = {
+    CODEX_HOME = "${config.xdg.data.directory}/codex";
+    EDITOR = "nvim";
+  };
 
   xdg.config.files = {
     "fish/conf.d/10-environment.fish".text =
