@@ -27,7 +27,7 @@ Use targeted searches for exact options and open only the matching documentation
   docs: https://flake.parts/options/treefmt-nix.html
 
 To search available packages, use the command: `nh search <QUERY>`. For NixOS options, use the
-command `nh search options <QUERY>`.
+command `nh search options <QUERY>`. You must request permission to avoid sandbox errors.
 
 ## Code style
 
