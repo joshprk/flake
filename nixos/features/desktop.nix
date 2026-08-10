@@ -9,17 +9,14 @@
   };
 
   config = lib.mkIf config.features.desktop {
+    features.typography = true;
+
     environment.systemPackages = with pkgs; [
       ghostty
       nautilus
     ];
 
     boot.kernelPackages = lib.mkForce pkgs.linuxPackages_zen;
-
-    fonts = {
-      enableDefaultPackages = true;
-      fontconfig.enable = true;
-    };
 
     programs = {
       dconf.enable = true;

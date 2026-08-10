@@ -6,6 +6,7 @@
     nix-flatpak.nixosModules.nix-flatpak
     ./features/desktop.nix
     ./features/nvidia.nix
+    ./features/typography.nix
     ./home.nix
     ./network.nix
     ./system.nix
