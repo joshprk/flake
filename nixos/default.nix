@@ -19,7 +19,6 @@
         modules = [mod];
       }).neovim;
   in [
-    llm-agents.overlays.shared-nixpkgs
     (final: _: {nvf = nvfWithPkgs final.pkgs;})
   ];
 }

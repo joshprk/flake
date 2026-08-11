@@ -9,6 +9,7 @@
   ];
 
   packages = with pkgs; [
+    codex
     direnv
     fish
     git
