@@ -12,6 +12,7 @@
     features.typography = true;
 
     environment.systemPackages = with pkgs; [
+      adwaita-icon-theme
       catppuccin-cursors.mochaDark
       ghostty
       nautilus
