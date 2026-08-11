@@ -14,6 +14,7 @@
     environment.systemPackages = with pkgs; [
       ghostty
       nautilus
+      catppuccin-cursors.mochaDark
     ];
 
     boot.kernelPackages = lib.mkForce pkgs.linuxPackages_zen;
