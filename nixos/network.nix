@@ -4,7 +4,8 @@ _: {
       enable = true;
       openFirewall = true;
       disableUpstreamLogging = true;
-      extraUpFlags = ["--ssh"];
+      extraDaemonFlags = ["--encrypt-state"];
+      extraSetFlags = ["--accept-dns" "--ssh"];
     };
     resolved = {
       enable = true;
