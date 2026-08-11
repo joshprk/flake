@@ -8,6 +8,11 @@ hotkey-overlay {
   skip-at-startup
 }
 
+cursor {
+  xcursor-theme "catppuccin-mocha-dark-cursors"
+  xcursor-size 24
+}
+
 input {
   touchpad {
     tap
