@@ -9,7 +9,6 @@
   ];
 
   packages = with pkgs; [
-    llm-agents.codex
     direnv
     fish
     git
