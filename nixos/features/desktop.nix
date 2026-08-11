@@ -12,9 +12,10 @@
     features.typography = true;
 
     environment.systemPackages = with pkgs; [
+      catppuccin-cursors.mochaDark
       ghostty
       nautilus
-      catppuccin-cursors.mochaDark
+      xwayland-satellite
     ];
 
     boot.kernelPackages = lib.mkForce pkgs.linuxPackages_zen;
