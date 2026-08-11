@@ -60,9 +60,9 @@
       polkit.enable = true;
     };
 
-    xdg.portal = {
-      enable = true;
-      xdgOpenUsePortal = true;
+    xdg = {
+      icons.fallbackCursorThemes = ["catppuccin-mocha-dark-cursors"];
+      portal.xdgOpenUsePortal = true;
     };
   };
 }
