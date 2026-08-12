@@ -11,7 +11,7 @@ these systems.
 - `nixos/`: contains common nixos modules
 - `nixos/features`: contains opt-in nixos modules
 - `specs/`: contains hardware specifications of hosts
-- `home/`: contains reusable hjem modules
+- `home/`: contains personal configuration
 
 ## Upstream dependencies
 
