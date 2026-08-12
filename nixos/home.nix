@@ -10,10 +10,7 @@
     userborn.enable = true;
   };
 
-  hjem = {
-    extraModules = [homeModule];
-    users.josh = {};
-  };
+  hjem.users.josh = import homeModule;
 
   users = {
     # Temporarily set until secrets integration
