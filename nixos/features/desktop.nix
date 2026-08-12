@@ -9,7 +9,10 @@
   };
 
   config = lib.mkIf config.features.desktop {
-    features.typography = true;
+    features = {
+      containers = true;
+      typography = true;
+    };
 
     environment.systemPackages = with pkgs; [
       adwaita-icon-theme

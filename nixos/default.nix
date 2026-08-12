@@ -4,6 +4,7 @@
     hjem.nixosModules.hjem
     impermanence.nixosModules.impermanence
     nix-flatpak.nixosModules.nix-flatpak
+    ./features/containers.nix
     ./features/desktop.nix
     ./features/nvidia.nix
     ./features/typography.nix
