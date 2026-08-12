@@ -35,6 +35,10 @@
     };
 
     services = {
+      displayManager.noctalia-greeter = {
+        enable = true;
+        cursorTheme.name = "catppuccin-mocha-dark-cursors";
+      };
       flatpak = {
         enable = true;
         packages = ["app.zen_browser.zen"];
@@ -50,10 +54,7 @@
       power-profiles-daemon.enable = true;
       udisks2.enable = true;
       upower.enable = true;
-      xserver = {
-        enable = true;
-        displayManager.startx.enable = true;
-      };
+      xserver.enable = true;
     };
 
     security = {
