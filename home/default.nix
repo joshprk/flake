@@ -1,124 +1,51 @@
 {
   config,
-  lib,
   pkgs,
   ...
 }: {
   imports = [
-    ./dconf.nix
+    ./modules/dconf.nix
+    ./direnv.nix
+    ./fish.nix
+    ./ghostty.nix
+    ./git.nix
+    ./noctalia.nix
+    ./nvf.nix
   ];
 
   packages = with pkgs; [
     codex
-    direnv
-    fish
-    git
     ripgrep
-    (nvf {
-      vim.options.expandtab = true;
-      vim.options.shiftwidth = 2;
-      vim.options.tabstop = 2;
-    })
   ];
 
   environment.sessionVariables = {
+    BUN_INSTALL = "${config.xdg.data.directory}/bun";
+    BUN_INSTALL_CACHE_DIR = "${config.xdg.cache.directory}/bun";
+    CARGO_HOME = "${config.xdg.data.directory}/cargo";
     CODEX_HOME = "${config.xdg.data.directory}/codex";
-    EDITOR = "nvim";
+    GOPATH = "${config.xdg.data.directory}/go";
+    GOMODCACHE = "${config.xdg.cache.directory}/go/mod";
+    KUBECACHEDIR = "${config.xdg.cache.directory}/kube";
+    KUBECONFIG = "${config.xdg.config.directory}/kubeconfig";
+    TALOSCONFIG = "${config.xdg.config.directory}/talos/config";
+    PSQL_HISTORY = "${config.xdg.state.directory}/psql_history";
+    PYTHON_HISTORY = "${config.xdg.state.directory}/python_history";
+    NPM_CONFIG_USERCONFIG = "${config.xdg.config.directory}/npm/npmrc";
+    NODE_REPL_HISTORY = "${config.xdg.data.directory}/node_repl_history";
+    REDISCLI_HISTFILE = "${config.xdg.data.directory}/redis/rediscli_history";
+    REDISCLI_RCFILE = "${config.xdg.config.directory}/redis/redisclirc";
+    RUFF_CACHE_DIR = "${config.xdg.cache.directory}/ruff";
+    RUSTUP_HOME = "${config.xdg.data.directory}/rustup";
   };
 
   xdg.config.files = {
-    "direnv/direnv.toml" = {
-      generator = (pkgs.formats.toml {}).generate "direnv-config";
-      value = {
-        global.disable_stdin = true;
-        global.hide_env_diff = true;
-        global.warn_timeout = "0ms";
-      };
-    };
-    "direnv/lib/nix-direnv.sh".source = "${pkgs.nix-direnv}/share/nix-direnv/direnvrc";
-    "fish/conf.d/10-environment.fish".text =
-      lib.concatMapAttrsStringSep "\n"
-      (n: v: "set -gx ${lib.escapeShellArg n} ${lib.escapeShellArg (toString v)}")
-      config.environment.sessionVariables;
-    "fish/config.fish".text = ''
-      if status is-interactive
-        ${lib.getExe pkgs.direnv} hook fish | source
-      end
-    '';
-    "git/config" = {
-      generator = (pkgs.formats.gitIni {}).generate "gitconfig";
-      value = {
-        init.defaultBranch = "main";
-        user.name = "Joshua Park";
-        user.email = "git@joshprk.me";
-      };
-    };
-    "ghostty/config" = {
-      generator = (pkgs.formats.keyValue {
-        listsAsDuplicateKeys = true;
-        mkKeyValue = lib.generators.mkKeyValueDefault {} " = ";
-      }).generate "ghostty-config";
-      value = {
-        font-family = "IBM Plex Mono";
-        font-size = 9;
-        theme = "noctalia";
-      };
-    };
-    "noctalia/config.toml" = {
-      generator = (pkgs.formats.toml {}).generate "noctalia-config";
-      value = {
-        # Allows pam_u2f authentication
-        bar.default.background_opacity = 0.5;
-        bar.default.center = [];
-        bar.default.end = [
-          "tray"
-          "media"
-          "bluetooth"
-          "notifications"
-          "clipboard"
-          "network"
-          "volume"
-          "brightness"
-          "battery"
-          "session"
-          "clock"
-        ];
-        bar.default.margin_ends = 0;
-        bar.default.radius = 0;
-        bar.default.start = ["control-center" "launcher" "workspaces"];
-        bar.default.widget_spacing = 12;
-        idle.behavior."screen-off" = {
-          action = "screen_off";
-          enabled = true;
-          timeout = 660.0;
-        };
-        lockscreen.allow_empty_password = true;
-        shell.button_borders = false;
-        shell.card_borders = false;
-        shell.corner_radius_scale = 0.5;
-        shell.input_borders = false;
-        shell.panel.transparency_mode = "glass";
-        shell.polkit_agent = true;
-        shell.popup_borders = false;
-        shell.setup_wizard_enabled = false;
-        theme.community_palette = "Paradise";
-        theme.source = "community";
-        theme.templates.builtin_ids = ["gtk3" "gtk4" "ghostty" "niri"];
-        wallpaper.default.path = pkgs.fetchurl {
-          url = "https://github.com/foxt/macOS-Wallpapers/blob/master/Mojave%20Night.jpg?raw=true";
-          hash = "sha256-Zv7uvjSNACpI2Yck22bsA8gwVaju2Yght7y09xko9xw=";
-        };
-        widget.battery.show_label = false;
-        widget.bluetooth.hide_when_no_connected_device = true;
-        widget.brightness.show_label = false;
-        widget.clock.format = "{:%a %b %-d %-I:%M %p}";
-        widget.media.album_art_only = true;
-        widget.media.hide_when_no_media = true;
-        widget.network.show_label = false;
-        widget.volume.show_label = false;
-      };
-    };
     "niri/config.kdl".source = ./files/niri.kdl;
+    "npm/npmrc".text = ''
+      prefix=${config.xdg.data.directory}/npm
+      cache=${config.xdg.cache.directory}/npm
+      init-module=${config.xdg.config.directory}/npm/config/npm-init.js
+      logs-dir=${config.xdg.state.directory}/npm/logs
+    '';
     "Yubico/u2f_keys".source = ./files/u2f_keys;
   };
 }
