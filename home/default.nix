@@ -16,6 +16,7 @@
   packages = with pkgs; [
     codex
     ripgrep
+    wl-clipboard
   ];
 
   environment.sessionVariables = {
