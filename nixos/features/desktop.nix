@@ -65,6 +65,8 @@
       polkit.enable = true;
     };
 
+    time.timeZone = "America/New_York";
+
     xdg = {
       icons.fallbackCursorThemes = ["catppuccin-mocha-dark-cursors"];
       portal.xdgOpenUsePortal = true;
