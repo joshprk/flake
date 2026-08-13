@@ -13,12 +13,11 @@
     amdgpuBusId = "PCI:13:0:0";
   };
 
-  disko.devices.disk.system = {
+  disko.devices.disk.disk0 = {
     device = "/dev/nvme0n1";
     type = "disk";
     content.type = "gpt";
     content.partitions.boot = {
-      name = "boot";
       size = "512M";
       type = "EF00";
       content = {
@@ -28,35 +27,21 @@
         mountOptions = ["noatime" "umask=0077"];
       };
     };
-    content.partitions.nix = {
+    content.partitions.system = {
       size = "100%";
       content = {
-        name = "nix";
+        name = "system";
         type = "luks";
         settings.allowDiscards = true;
         content.type = "btrfs";
-        content.extraArgs = ["-f"];
-        content.mountpoint = "/nix";
-        content.mountOptions = ["noatime" "compress=zstd"];
-      };
-    };
-  };
-
-  disko.devices.disk.data = {
-    device = "/dev/nvme1n1";
-    type = "disk";
-    content.type = "gpt";
-
-    content.partitions.home = {
-      size = "100%";
-      content = {
-        name = "home";
-        type = "luks";
-        settings.allowDiscards = true;
-        content.type = "btrfs";
-        content.extraArgs = ["-f"];
-        content.mountpoint = "/home";
-        content.mountOptions = ["noatime" "compress=zstd"];
+        content.subvolumes.home = {
+          mountpoint = "/home";
+          mountOptions = ["noatime" "compress=zstd"];
+        };
+        content.subvolumes.nix = {
+          mountpoint = "/nix";
+          mountOptions = ["noatime" "compress=zstd"];
+        };
       };
     };
   };
