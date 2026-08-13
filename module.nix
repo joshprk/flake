@@ -16,7 +16,11 @@
       };
     });
 
-  perSystem = {pkgs, ...}: {
+  perSystem = {
+    pkgs,
+    system,
+    ...
+  }: {
     packages.image = let
       nixos = pkgs.nixos ({modulesPath, ...}: {
         imports = ["${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix"];
@@ -43,7 +47,7 @@
 
       echo "install: running disko"
 
-      disko \
+      ${lib.getExe inputs.disko.packages.${system}.default} \
         --mode destroy,format,mount \
         --yes-wipe-all-disks \
         --flake "$flake" \
