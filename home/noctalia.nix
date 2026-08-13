@@ -27,6 +27,7 @@
         enabled = true;
         timeout = 660.0;
       };
+      location.auto_locate = true;
       lockscreen.allow_empty_password = true;
       shell.button_borders = false;
       shell.card_borders = false;
