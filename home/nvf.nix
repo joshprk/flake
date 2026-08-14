@@ -7,6 +7,10 @@
         enable = true;
         setupOpts.preset = "helix";
       };
+      git.gitsigns = {
+        enable = true;
+        setupOpts.numhl = true;
+      };
       hideSearchHighlight = true;
       languages = {
         python.enable = true;
