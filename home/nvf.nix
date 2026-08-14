@@ -30,6 +30,12 @@
         wrap = false;
       };
       telescope.enable = true;
+      theme = {
+        enable = true;
+        name = "catppuccin";
+        style = "mocha";
+        transparent = true;
+      };
       utility = {
         direnv.enable = true;
         motion.flash-nvim.enable = true;
