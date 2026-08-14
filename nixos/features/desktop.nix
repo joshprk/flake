@@ -26,6 +26,7 @@
 
     programs = {
       dconf.enable = true;
+      gamemode.enable = true;
       niri = {
         enable = true;
         useNautilus = true;
