@@ -41,7 +41,10 @@
       displayManager.noctalia-greeter = {
         enable = true;
         cursorTheme.name = "catppuccin-mocha-dark-cursors";
-        settings.shell.greeter_sync.auto_sync = true;
+        settings = {
+          auth.allow_empty_password = true;
+          shell.greeter_sync.auto_sync = true;
+        };
       };
       flatpak = {
         enable = true;
