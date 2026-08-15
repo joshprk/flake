@@ -15,7 +15,6 @@
         "volume"
         "brightness"
         "battery"
-        "session"
         "clock"
       ];
       bar.default.margin_ends = 0;
