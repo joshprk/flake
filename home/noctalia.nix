@@ -21,10 +21,16 @@
       bar.default.radius = 0;
       bar.default.start = ["control-center" "launcher" "workspaces"];
       bar.default.widget_spacing = 12;
+      idle.behavior_order = ["screen-off" "idle-behavior"];
+      idle.behavior."idle-behavior" = {
+        action = "lock_and_suspend";
+        enabled = true;
+        timeout = 900.0;
+      };
       idle.behavior."screen-off" = {
         action = "screen_off";
         enabled = true;
-        timeout = 660.0;
+        timeout = 600.0;
       };
       location.auto_locate = true;
       lockscreen.allow_empty_password = true;
