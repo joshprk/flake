@@ -24,7 +24,7 @@
     BUN_INSTALL = "${config.xdg.data.directory}/bun";
     BUN_INSTALL_CACHE_DIR = "${config.xdg.cache.directory}/bun";
     CARGO_HOME = "${config.xdg.data.directory}/cargo";
-    CODEX_HOME = "${config.xdg.state.directory}/codex";
+    CODEX_HOME = "${config.xdg.data.directory}/codex";
     GOPATH = "${config.xdg.data.directory}/go";
     GOMODCACHE = "${config.xdg.cache.directory}/go/mod";
     KUBECACHEDIR = "${config.xdg.cache.directory}/kube";
