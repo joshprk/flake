@@ -1,5 +1,6 @@
 environment {
   ELECTRON_OZONE_PLATFORM_HINT "wayland"
+  XCURSOR_SIZE "24"
 }
 
 hotkey-overlay {
