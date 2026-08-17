@@ -1,15 +1,10 @@
-environment {
-  ELECTRON_OZONE_PLATFORM_HINT "wayland"
-  XCURSOR_SIZE "24"
+cursor {
+  xcursor-size 24
+  xcursor-theme "catppuccin-mocha-dark-cursors"
 }
 
 hotkey-overlay {
   skip-at-startup
-}
-
-cursor {
-  xcursor-size 24
-  xcursor-theme "catppuccin-mocha-dark-cursors"
 }
 
 input {

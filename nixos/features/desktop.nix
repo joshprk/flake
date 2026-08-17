@@ -3,7 +3,9 @@
   lib,
   pkgs,
   ...
-}: {
+}: let
+  cursorTheme = "catppuccin-mocha-dark-cursors";
+in {
   options.features = {
     desktop = lib.mkEnableOption "the desktop feature";
   };
@@ -15,7 +17,14 @@
     };
 
     environment = {
-      etc.timezone.text = config.time.timeZone;
+      etc = {
+        "niri/config.kdl".source = ../files/niri.kdl;
+        "timezone".text = config.time.timeZone;
+      };
+      sessionVariables = {
+        ELECTRON_OZONE_PLATFORM_HINT = "auto";
+        XCURSOR_SIZE = 24;
+      };
       systemPackages = with pkgs; [
         adwaita-icon-theme
         catppuccin-cursors.mochaDark
@@ -43,7 +52,7 @@
     services = {
       displayManager.noctalia-greeter = {
         enable = true;
-        cursorTheme.name = "catppuccin-mocha-dark-cursors";
+        cursorTheme.name = cursorTheme;
         settings = {
           auth.allow_empty_password = true;
           shell.greeter_sync.auto_sync = true;
@@ -77,7 +86,7 @@
     time.timeZone = "America/New_York";
 
     xdg = {
-      icons.fallbackCursorThemes = ["catppuccin-mocha-dark-cursors"];
+      icons.fallbackCursorThemes = [cursorTheme];
       portal.xdgOpenUsePortal = true;
     };
   };

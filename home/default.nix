@@ -41,7 +41,6 @@
   };
 
   xdg.config.files = {
-    "niri/config.kdl".source = ./files/niri.kdl;
     "npm/npmrc".text = ''
       prefix=${config.xdg.data.directory}/npm
       cache=${config.xdg.cache.directory}/npm
