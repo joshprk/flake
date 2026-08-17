@@ -12,6 +12,13 @@
         setupOpts.numhl = true;
       };
       hideSearchHighlight = true;
+      keymaps = [
+        {
+          key = "-";
+          mode = "n";
+          action = "<cmd>Oil<cr>";
+        }
+      ];
       languages = {
         python.enable = true;
         nix.enable = true;
