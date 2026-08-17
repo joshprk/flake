@@ -44,7 +44,7 @@
       shell.setup_wizard_enabled = false;
       theme.community_palette = "Paradise";
       theme.source = "community";
-      theme.templates.builtin_ids = ["gtk3" "gtk4" "ghostty" "niri"];
+      theme.templates.builtin_ids = ["gtk3" "gtk4" "ghostty"];
       wallpaper.default.path = pkgs.fetchurl {
         url = "https://github.com/foxt/macOS-Wallpapers/blob/master/Mojave%20Night.jpg?raw=true";
         hash = "sha256-Zv7uvjSNACpI2Yck22bsA8gwVaju2Yght7y09xko9xw=";
