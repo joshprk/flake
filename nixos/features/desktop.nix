@@ -14,13 +14,16 @@
       typography = true;
     };
 
-    environment.systemPackages = with pkgs; [
-      adwaita-icon-theme
-      catppuccin-cursors.mochaDark
-      ghostty
-      nautilus
-      xwayland-satellite
-    ];
+    environment = {
+      etc.timezone.text = config.time.timeZone;
+      systemPackages = with pkgs; [
+        adwaita-icon-theme
+        catppuccin-cursors.mochaDark
+        ghostty
+        nautilus
+        xwayland-satellite
+      ];
+    };
 
     boot.kernelPackages = lib.mkForce pkgs.linuxPackages_zen;
 
