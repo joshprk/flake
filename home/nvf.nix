@@ -27,6 +27,7 @@
         typescript.enable = true;
         tsx.enable = true;
       };
+      lsp.enable = true;
       options = {
         expandtab = true;
         laststatus = 3;

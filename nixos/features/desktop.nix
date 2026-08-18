@@ -53,10 +53,7 @@ in {
       displayManager.noctalia-greeter = {
         enable = true;
         cursorTheme.name = cursorTheme;
-        settings = {
-          auth.allow_empty_password = true;
-          shell.greeter_sync.auto_sync = true;
-        };
+        settings.auth.allow_empty_password = true;
       };
       flatpak = {
         enable = true;
