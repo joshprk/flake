@@ -9,8 +9,8 @@
 
   hardware.nvidia.prime = {
     offload.enable = true;
-    nvidiaBusId = "PCI:1:0:0";
-    amdgpuBusId = "PCI:13:0:0";
+    nvidiaBusId = "PCI:1@0:0:0";
+    amdgpuBusId = "PCI:113@0:0:0";
   };
 
   disko.devices.disk.disk0 = {
