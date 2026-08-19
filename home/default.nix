@@ -41,6 +41,36 @@
   };
 
   xdg.config.files = {
+    "hypr/hyprland.conf".text = ''
+      monitor=,preferred,auto,1
+
+      $terminal = ghostty
+      $mainMod = SUPER
+
+      input {
+        follow_mouse = 1
+      }
+
+      general {
+        gaps_in = 12
+        gaps_out = 12
+        border_size = 0
+        layout = dwindle
+      }
+
+      decoration {
+        rounding = 12
+      }
+
+      misc {
+        disable_hyprland_logo = true
+        disable_splash_rendering = true
+      }
+
+      bind = $mainMod, Return, exec, $terminal
+      bind = $mainMod, Q, killactive
+      bind = $mainMod SHIFT, E, exit
+    '';
     "npm/npmrc".text = ''
       prefix=${config.xdg.data.directory}/npm
       cache=${config.xdg.cache.directory}/npm

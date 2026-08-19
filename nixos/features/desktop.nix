@@ -18,7 +18,6 @@ in {
 
     environment = {
       etc = {
-        "niri/config.kdl".source = ../files/niri.kdl;
         "timezone".text = config.time.timeZone;
       };
       sessionVariables = {
@@ -30,7 +29,6 @@ in {
         catppuccin-cursors.mochaDark
         ghostty
         nautilus
-        xwayland-satellite
       ];
     };
 
@@ -39,9 +37,9 @@ in {
 
     programs = {
       dconf.enable = true;
-      niri = {
+      hyprland = {
         enable = true;
-        useNautilus = true;
+        xwayland.enable = true;
       };
       noctalia = {
         enable = true;
