@@ -34,8 +34,6 @@ in {
       ];
     };
 
-    boot.kernelPackages = lib.mkForce pkgs.linuxPackages_zen;
-
     programs = {
       dconf.enable = true;
       niri = {
