@@ -34,7 +34,8 @@ in {
       ];
     };
 
-    boot.kernelPackages = lib.mkForce pkgs.linuxPackages_zen;
+    # Temporarily disabled due to faulty 7.1 kernel commits
+    # boot.kernelPackages = lib.mkForce pkgs.linuxPackages_zen;
 
     programs = {
       dconf.enable = true;
