@@ -19,6 +19,8 @@ Use targeted searches for exact options and open only the matching documentation
 
 - `hjem` provides tools to create symlinked dotfiles for user homes
   docs: https://hjem.feel-co.org/options.html
+- `hyprland` is a tiling Wayland compositor
+  docs: https://wiki.hypr.land/
 - `noctalia` is a native Wayland desktop shell
   docs: https://docs.noctalia.dev/noctalia/
 - `niri` is a scrollable-tiling Wayland compositor
