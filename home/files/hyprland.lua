@@ -98,7 +98,7 @@ local function register_animations()
   hl.animation({ leaf = "layersOut", enabled = true, speed = 1.3, bezier = "md3_accel", style = "popin 90%" })
   hl.animation({ leaf = "layers", enabled = true, speed = 1.5, bezier = "md3_standard" })
   hl.animation({ leaf = "workspaces", enabled = true, speed = 1.5, bezier = "flow", style = "slidevert" })
-  hl.animation({ leaf = "specialWorkspace", enabled = true, speed = 2.5, bezier = "water" })
+  hl.animation({ leaf = "specialWorkspace", enabled = true, speed = 2.5, bezier = "water", style = "slidevert" })
   hl.animation({ leaf = "border", enabled = true, speed = 2.9, bezier = "water" })
   hl.animation({ leaf = "borderangle", enabled = true, speed = 3.5, bezier = "flow" })
 end
