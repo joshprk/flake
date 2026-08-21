@@ -37,7 +37,6 @@ end
 
 local function register_binds()
   hl.bind(mod("RETURN"), hl.dsp.exec_cmd(TERMINAL))
-  hl.bind(mod("D"), hl.dsp.workspace.toggle_special("scratchpad"))
 
   hl.bind(mod("Comma"), noctalia_ipc("settings-toggle"))
   hl.bind(mod("Space"), noctalia_ipc("panel-toggle launcher"))
@@ -71,6 +70,9 @@ local function register_binds()
     hl.bind(mod(workspace), hl.dsp.focus({ workspace = workspace }))
     hl.bind(mod("CTRL + " .. workspace), hl.dsp.window.move({ workspace = workspace }))
   end
+
+  hl.bind(mod("D"), hl.dsp.workspace.toggle_special("scratchpad"))
+  hl.bind(mod("CTRL + D"), hl.dsp.window.move({ workspace = "special:scratchpad" }))
 end
 
 local function register_animations()
