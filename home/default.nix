@@ -41,6 +41,7 @@
   };
 
   xdg.config.files = {
+    "hypr/hyprland.lua".source = ./files/hyprland.lua;
     "npm/npmrc".text = ''
       prefix=${config.xdg.data.directory}/npm
       cache=${config.xdg.cache.directory}/npm

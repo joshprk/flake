@@ -13,6 +13,7 @@ in {
   config = lib.mkIf config.features.desktop {
     features = {
       containers = true;
+      hyprland = true;
       typography = true;
     };
 
@@ -51,7 +52,10 @@ in {
       displayManager.noctalia-greeter = {
         enable = true;
         cursorTheme.name = cursorTheme;
-        settings.auth.allow_empty_password = true;
+        settings = {
+          auth.allow_empty_password = true;
+          session.default = "niri";
+        };
       };
       flatpak = {
         enable = true;

@@ -6,6 +6,7 @@
     nix-flatpak.nixosModules.nix-flatpak
     ./features/containers.nix
     ./features/desktop.nix
+    ./features/hyprland.nix
     ./features/nvidia.nix
     ./features/typography.nix
     ./home.nix
