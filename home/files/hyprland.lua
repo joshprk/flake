@@ -134,6 +134,12 @@ local function configure()
     },
   })
 
+  hl.layer_rule({
+    name = "xray-all-layers",
+    match = { namespace = ".*" },
+    xray = true,
+  })
+
   hl.window_rule({
     name = "picture-in-picture",
     match = { class = "app.zen_browser.zen", title = "^Picture-in-Picture$" },
