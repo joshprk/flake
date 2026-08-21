@@ -54,7 +54,7 @@ in {
         cursorTheme.name = cursorTheme;
         settings = {
           auth.allow_empty_password = true;
-          session.default = "niri";
+          session.default = "hyprland";
         };
       };
       flatpak = {
