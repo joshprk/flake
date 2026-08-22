@@ -47,7 +47,10 @@
       utility = {
         direnv.enable = true;
         motion.flash-nvim.enable = true;
-        oil-nvim.enable = true;
+        oil-nvim = {
+          enable = true;
+          gitStatus.enable = true;
+        };
       };
       undoFile.enable = true;
       visuals = {
