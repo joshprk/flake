@@ -1,6 +1,7 @@
 local MAIN_MOD <const> = "SUPER"
 local NOCTALIA <const> = "noctalia"
 local TERMINAL <const> = "ghostty"
+local SPLIT_RATIOS <const> = { 0.666, 1.0, 1.334 }
 
 local VIM_DIRECTIONS <const> = {
   { "left", "l" },
@@ -27,12 +28,22 @@ local NOCTALIA_BINDS <const> = {
   XF86MonBrightnessDown = "brightness-down",
 }
 
+local split_ratio_index = 2
+
 local function noctalia_ipc(command)
   return hl.dsp.exec_cmd(NOCTALIA .. " msg " .. command)
 end
 
 local function mod(key)
   return MAIN_MOD .. " + " .. key
+end
+
+local function cycle_split_ratio(offset)
+  return function()
+    split_ratio_index = (split_ratio_index - 1 + offset) % #SPLIT_RATIOS + 1
+    local ratio = SPLIT_RATIOS[split_ratio_index]
+    hl.dispatch(hl.dsp.layout("splitratio " .. ratio .. " exact"))
+  end
 end
 
 local function register_binds()
@@ -50,6 +61,9 @@ local function register_binds()
 
   hl.bind(mod("V"), hl.dsp.window.float({ action = "toggle" }))
   hl.bind(mod("P"), hl.dsp.window.pseudo())
+  hl.bind(mod("T"), hl.dsp.layout("togglesplit"))
+  hl.bind(mod("R"), cycle_split_ratio(1))
+  hl.bind(mod("CTRL + R"), cycle_split_ratio(-1))
 
   hl.bind(mod("mouse:272"), hl.dsp.window.drag(), { mouse = true })
   hl.bind(mod("mouse:273"), hl.dsp.window.resize(), { mouse = true })
@@ -110,6 +124,9 @@ local function configure()
       gaps_out = 20,
       border_size = 0,
       layout = "dwindle",
+    },
+    dwindle = {
+      preserve_split = true,
     },
     decoration = {
       rounding = 12,
