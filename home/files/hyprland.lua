@@ -124,6 +124,7 @@ local function configure()
       gaps_out = 20,
       border_size = 0,
       layout = "dwindle",
+      no_focus_fallback = true,
     },
     dwindle = {
       preserve_split = true,
