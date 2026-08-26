@@ -18,6 +18,7 @@
     ripgrep
     tree
     wl-clipboard
+    zmx
   ];
 
   environment.sessionVariables = {
