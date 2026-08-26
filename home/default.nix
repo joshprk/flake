@@ -15,6 +15,7 @@
 
   packages = with pkgs; [
     codex
+    gh
     ripgrep
     tree
     wl-clipboard
