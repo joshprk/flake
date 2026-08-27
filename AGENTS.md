@@ -9,7 +9,7 @@ these systems.
 
 - `hosts/`: contains host-specific settings
 - `nixos/`: contains common nixos modules
-- `nixos/features`: contains opt-in nixos modules
+- `nixos/features/`: contains opt-in nixos modules
 - `specs/`: contains hardware specifications of hosts
 - `home/`: contains personal configuration
 
@@ -18,17 +18,17 @@ these systems.
 Use targeted searches for exact options and open only the matching documentation section.
 
 - `hjem` provides tools to create symlinked dotfiles for user homes
-  docs: https://hjem.feel-co.org/options.html
+    * docs: https://hjem.feel-co.org/options.html
 - `hyprland` is a tiling Wayland compositor
-  docs: https://wiki.hypr.land/
+    * docs: https://wiki.hypr.land/
 - `noctalia` is a native Wayland desktop shell
-  docs: https://docs.noctalia.dev/noctalia/
+    * docs: https://docs.noctalia.dev/noctalia/
 - `niri` is a scrollable-tiling Wayland compositor
-  docs: https://niri-wm.github.io/niri/
+    * docs: https://niri-wm.github.io/niri/
 - `nvf` allows the building a Neovim configuration using Nix options
-  docs: https://nvf.notashelf.dev/options.html
+    * docs: https://nvf.notashelf.dev/options.html
 - `treefmt` is a formatting multiplexer
-  docs: https://flake.parts/options/treefmt-nix.html
+    * docs: https://flake.parts/options/treefmt-nix.html
 
 To search available packages, use the command: `nh search <QUERY>`. For NixOS options, use the
 command `nh search options <QUERY>`. You must request permission to avoid sandbox errors.
