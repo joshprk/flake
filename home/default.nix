@@ -45,6 +45,7 @@
 
   xdg.config.files = {
     "hypr/hyprland.lua".source = ./files/hyprland.lua;
+    "niri/config.kdl".source = ./files/niri.kdl;
     "npm/npmrc".text = ''
       prefix=${config.xdg.data.directory}/npm
       cache=${config.xdg.cache.directory}/npm

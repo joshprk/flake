@@ -8,8 +8,6 @@
   };
 
   config = lib.mkIf config.features.niri {
-    environment.etc."niri/config.kdl".source = ../files/niri.kdl;
-
     programs.niri = {
       enable = true;
       useNautilus = true;
