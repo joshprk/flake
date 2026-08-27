@@ -23,7 +23,6 @@ in {
         adwaita-icon-theme
         catppuccin-cursors.mochaDark
         ghostty
-        nautilus
         xwayland-satellite
       ];
     };
