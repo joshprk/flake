@@ -10,7 +10,7 @@
 
   config = lib.mkIf config.features.containers {
     environment = {
-      sessionVariables.PODMAN_COMPOSE_WARNING_LOGS = false;
+      sessionVariables.PODMAN_COMPOSE_WARNING_LOGS = "false";
       systemPackages = with pkgs; [docker-compose];
     };
 
