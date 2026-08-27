@@ -6,9 +6,7 @@
 }: let
   cursorTheme = "catppuccin-mocha-dark-cursors";
 in {
-  options.features = {
-    desktop = lib.mkEnableOption "the desktop feature";
-  };
+  options.features.desktop = lib.mkEnableOption "the desktop feature";
 
   config = lib.mkIf config.features.desktop {
     features = {

@@ -4,9 +4,7 @@
   pkgs,
   ...
 }: {
-  options.features = {
-    containers = lib.mkEnableOption "the containers feature";
-  };
+  options.features.containers = lib.mkEnableOption "the containers feature";
 
   config = lib.mkIf config.features.containers {
     environment = {

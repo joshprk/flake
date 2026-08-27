@@ -4,9 +4,7 @@
   pkgs,
   ...
 }: {
-  options.features = {
-    nvidia = lib.mkEnableOption "the nvidia feature";
-  };
+  options.features.nvidia = lib.mkEnableOption "the nvidia feature";
 
   config = lib.mkIf config.features.nvidia {
     services.xserver = {

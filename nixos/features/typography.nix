@@ -4,9 +4,7 @@
   pkgs,
   ...
 }: {
-  options.features = {
-    typography = lib.mkEnableOption "the typography feature";
-  };
+  options.features.typography = lib.mkEnableOption "the typography feature";
 
   config = lib.mkIf config.features.typography {
     fonts = {
