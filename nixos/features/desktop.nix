@@ -14,18 +14,13 @@ in {
     features = {
       containers = true;
       hyprland = true;
+      niri = true;
       typography = true;
     };
 
     environment = {
-      etc = {
-        "niri/config.kdl".source = ../files/niri.kdl;
-        "timezone".text = config.time.timeZone;
-      };
-      sessionVariables = {
-        ELECTRON_OZONE_PLATFORM_HINT = "auto";
-        XCURSOR_SIZE = 24;
-      };
+      etc."timezone".text = config.time.timeZone;
+      sessionVariables.XCURSOR_SIZE = 24;
       systemPackages = with pkgs; [
         adwaita-icon-theme
         catppuccin-cursors.mochaDark
@@ -37,10 +32,6 @@ in {
 
     programs = {
       dconf.enable = true;
-      niri = {
-        enable = true;
-        useNautilus = true;
-      };
       noctalia = {
         enable = true;
         systemd.enable = true;
