@@ -22,5 +22,6 @@
       }).neovim;
   in [
     (final: _: {nvf = nvfWithPkgs final.pkgs;})
+    hyprland.overlays.hyprland-packages
   ];
 }

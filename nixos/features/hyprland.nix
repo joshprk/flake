@@ -8,9 +8,6 @@
   };
 
   config = lib.mkIf config.features.hyprland {
-    programs.hyprland = {
-      enable = true;
-      withUWSM = true;
-    };
+    programs.hyprland.enable = true;
   };
 }
