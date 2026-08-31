@@ -115,6 +115,13 @@ local function register_animations()
 end
 
 local function configure()
+  hl.monitor({
+    output = "",
+    mode = "preferred",
+    position = "auto",
+    scale = 1,
+  })
+
   hl.config({
     general = {
       gaps_in = 12,
