@@ -42,34 +42,33 @@ local BINDS <const> = {
 
 local M <const> = {}
 
-function M.curves()
-  hl.curve("water", { type = "bezier", points = { {0.22, 0.9}, {0.36, 1.0} } })
-  hl.curve("flow", { type = "bezier", points = { {0.25, 0.1}, {0.25, 1.0} } })
-  hl.curve("ripple", { type = "bezier", points = { {0.33, 0.0}, {0.2, 1.0} } })
-  hl.curve("stream", { type = "bezier", points = { {0.4, 0.0}, {0.4, 1.0} } })
-  hl.curve("cascade", { type = "bezier", points = { {0.19, 1.0}, {0.22, 1.0} } })
-  hl.curve("md3_standard", { type = "bezier", points = { {0.2, 0.0}, {0.0, 1.0} } })
-  hl.curve("md3_accel", { type = "bezier", points = { {0.3, 0.0}, {0.8, 0.15} } })
-  hl.curve("overshot", { type = "bezier", points = { {0.05, 0.9}, {0.1, 1.05} } })
-end
-
 function M.animations()
-  hl.animation({ leaf = "windows", enabled = true, speed = 3.0, bezier = "water" })
-  hl.animation({ leaf = "windowsIn", enabled = true, speed = 2.5, bezier = "cascade", style = "slide" })
-  hl.animation({ leaf = "windowsOut", enabled = true, speed = 2.4, bezier = "stream", style = "slide" })
-  hl.animation({ leaf = "windowsMove", enabled = true, speed = 1.6, bezier = "flow" })
-  hl.animation({ leaf = "fade", enabled = true, speed = 2.4, bezier = "water" })
-  hl.animation({ leaf = "fadeIn", enabled = true, speed = 2.0, bezier = "cascade" })
-  hl.animation({ leaf = "fadeOut", enabled = true, speed = 1.8, bezier = "ripple" })
-  hl.animation({ leaf = "fadeDim", enabled = true, speed = 2.0, bezier = "water" })
-  hl.animation({ leaf = "fadeSwitch", enabled = true, speed = 1.4, bezier = "flow" })
-  hl.animation({ leaf = "layersIn", enabled = true, speed = 1.5, bezier = "overshot", style = "popin 80%" })
-  hl.animation({ leaf = "layersOut", enabled = true, speed = 1.3, bezier = "md3_accel", style = "popin 90%" })
-  hl.animation({ leaf = "layers", enabled = true, speed = 1.5, bezier = "md3_standard" })
-  hl.animation({ leaf = "workspaces", enabled = true, speed = 1.5, bezier = "flow", style = "slidevert" })
-  hl.animation({ leaf = "specialWorkspace", enabled = true, speed = 2.5, bezier = "water", style = "slidevert" })
-  hl.animation({ leaf = "border", enabled = true, speed = 2.9, bezier = "water" })
-  hl.animation({ leaf = "borderangle", enabled = true, speed = 3.5, bezier = "flow" })
+  hl.curve("linear", { type = "bezier", points = { {0, 0}, {1, 1} } })
+  hl.curve("md3_standard", { type = "bezier", points = { {0.2, 0}, {0, 1} } })
+  hl.curve("md3_decel", { type = "bezier", points = { {0.05, 0.7}, {0.1, 1} } })
+  hl.curve("md3_accel", { type = "bezier", points = { {0.3, 0}, {0.8, 0.15} } })
+  hl.curve("overshot", { type = "bezier", points = { {0.05, 0.9}, {0.1, 1.1} } })
+  hl.curve("crazyshot", { type = "bezier", points = { {0.1, 1.5}, {0.76, 0.92} } })
+  hl.curve("hyprnostretch", { type = "bezier", points = { {0.05, 0.9}, {0.1, 1.0} } })
+  hl.curve("menu_decel", { type = "bezier", points = { {0.1, 1}, {0, 1} } })
+  hl.curve("menu_accel", { type = "bezier", points = { {0.38, 0.04}, {1, 0.07} } })
+  hl.curve("easeInOutCirc", { type = "bezier", points = { {0.85, 0}, {0.15, 1} } })
+  hl.curve("easeOutCirc", { type = "bezier", points = { {0, 0.55}, {0.45, 1} } })
+  hl.curve("easeOutExpo", { type = "bezier", points = { {0.16, 1}, {0.3, 1} } })
+  hl.curve("softAcDecel", { type = "bezier", points = { {0.26, 0.26}, {0.15, 1} } })
+  hl.curve("md2", { type = "bezier", points = { {0.4, 0}, {0.2, 1} } }) -- use with .2s duration
+
+  hl.animation({ leaf = "windows", enabled = true, speed = 3, bezier = "md3_decel", style = "popin 60%" })
+  hl.animation({ leaf = "windowsIn", enabled = true, speed = 3, bezier = "md3_decel", style = "popin 60%" })
+  hl.animation({ leaf = "windowsOut", enabled = true, speed = 3, bezier = "md3_accel", style = "popin 60%" })
+  hl.animation({ leaf = "border", enabled = true, speed = 10, bezier = "default" })
+  hl.animation({ leaf = "fade", enabled = true, speed = 3, bezier = "md3_decel" })
+  hl.animation({ leaf = "layersIn", enabled = true, speed = 3, bezier = "menu_decel", style = "slide" })
+  hl.animation({ leaf = "layersOut", enabled = true, speed = 1.6, bezier = "menu_accel" })
+  hl.animation({ leaf = "fadeLayersIn", enabled = true, speed = 2, bezier = "menu_decel" })
+  hl.animation({ leaf = "fadeLayersOut", enabled = true, speed = 4.5, bezier = "menu_accel" })
+  hl.animation({ leaf = "workspaces", enabled = true, speed = 7, bezier = "menu_decel", style = "slide" })
+  hl.animation({ leaf = "specialWorkspace", enabled = true, speed = 3, bezier = "md3_decel", style = "slidevert" })
 end
 
 function M.monitors()
@@ -154,7 +153,7 @@ function M.fixes()
   hl.window_rule({
     name = "zen-unmaximized",
     match = { class = "app.zen_browser.zen" },
-    maximize = false,
+    fullscreen_state = "0 0",
   })
 
   hl.window_rule({
@@ -173,7 +172,6 @@ function M.fixes()
 end
 
 function M:setup()
-  self.curves()
   self.animations()
   self.monitors()
   self.hl_binds()
