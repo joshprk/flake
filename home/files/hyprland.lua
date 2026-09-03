@@ -122,6 +122,12 @@ function M.hl_config()
 end
 
 function M.fixes()
+  hl.layer_rule({
+    name = "xray-all-layers",
+    match = { namespace = ".*" },
+    xray = true,
+  })
+
   hl.window_rule({
     name = "zen-unmaximized",
     match = { class = "app.zen_browser.zen" },
