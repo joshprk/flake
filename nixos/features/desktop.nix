@@ -12,7 +12,6 @@ in {
     features = {
       containers = true;
       hyprland = true;
-      niri = true;
       typography = true;
     };
 

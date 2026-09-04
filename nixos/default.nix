@@ -7,7 +7,6 @@
     ./features/containers.nix
     ./features/desktop.nix
     ./features/hyprland.nix
-    ./features/niri.nix
     ./features/nvidia.nix
     ./features/typography.nix
     ./home.nix
