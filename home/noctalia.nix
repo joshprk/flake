@@ -3,7 +3,7 @@
     generator = (pkgs.formats.toml {}).generate "noctalia-config";
     value = {
       # Allows pam_u2f authentication
-      bar.default.background_opacity = 0.5;
+      bar.default.background_opacity = 0.0;
       bar.default.center = [];
       bar.default.end = [
         "tray"
@@ -38,7 +38,11 @@
       shell.card_borders = false;
       shell.corner_radius_scale = 0.5;
       shell.input_borders = false;
-      shell.panel.transparency_mode = "glass";
+      shell.panel = {
+        control_center_placement = "floating";
+        control_center_position = "top_right";
+        transparency_mode = "glass";
+      };
       shell.polkit_agent = true;
       shell.popup_borders = false;
       shell.setup_wizard_enabled = false;
