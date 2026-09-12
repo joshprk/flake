@@ -13,7 +13,7 @@ local BINDS <const> = {
 
   { mod("Comma"), noctalia("settings-toggle") },
   { mod("Space"), noctalia("panel-toggle launcher") },
-  { mod("S"), noctalia("panel-toggle control-center") },
+  { mod("C"), noctalia("panel-toggle control-center") },
   { mod("Tab"), noctalia("window-switcher") },
   { mod("CTRL + Q"), noctalia("session lock") },
   { mod("SHIFT + Q"), noctalia("panel-toggle session") },
