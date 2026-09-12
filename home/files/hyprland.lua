@@ -18,7 +18,8 @@ local BINDS <const> = {
   { mod("CTRL + Q"), noctalia("session lock") },
   { mod("SHIFT + Q"), noctalia("panel-toggle session") },
 
-  { mod("F"), hl.dsp.window.fullscreen() },
+  { mod("F"), hl.dsp.window.fullscreen({ mode = "maximized" }) },
+  { mod("CTRL + F"), hl.dsp.window.fullscreen({ mode = "fullscreen" }) },
   { mod("Q"), hl.dsp.window.close() },
   { mod("V"), hl.dsp.window.float({ action = "toggle" }) },
   { mod("P"), hl.dsp.window.pseudo() },
