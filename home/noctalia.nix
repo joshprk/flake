@@ -2,7 +2,6 @@
   xdg.config.files."noctalia/config.toml" = {
     generator = (pkgs.formats.toml {}).generate "noctalia-config";
     value = {
-      # Allows pam_u2f authentication
       bar.default.background_opacity = 0.0;
       bar.default.center = [];
       bar.default.end = [
@@ -33,15 +32,16 @@
         timeout = 600.0;
       };
       location.auto_locate = true;
+      # Allows pam_u2f authentication
       lockscreen.allow_empty_password = true;
       shell.button_borders = false;
       shell.card_borders = false;
-      shell.corner_radius_scale = 0.5;
+      shell.corner_radius_scale = 2.0;
       shell.input_borders = false;
       shell.panel = {
         control_center_placement = "floating";
         control_center_position = "top_right";
-        transparency_mode = "glass";
+        transparency_mode = "solid";
       };
       shell.polkit_agent = true;
       shell.popup_borders = false;
