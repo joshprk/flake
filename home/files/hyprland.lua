@@ -15,6 +15,8 @@ local BINDS <const> = {
   { mod("Space"), noctalia("panel-toggle launcher") },
   { mod("C"), noctalia("panel-toggle control-center") },
   { mod("Tab"), noctalia("window-switcher") },
+  { mod("S"), hl.dsp.workspace.toggle_special("scratchpad") },
+  { mod("CTRL + S"), hl.dsp.window.move({ workspace = "special:scratchpad" }) },
   { mod("CTRL + Q"), noctalia("session lock") },
   { mod("SHIFT + Q"), noctalia("panel-toggle session") },
 
