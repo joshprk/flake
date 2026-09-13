@@ -11,10 +11,5 @@
       lib.concatMapAttrsStringSep "\n"
       (n: v: "set -gx ${lib.escapeShellArg n} ${lib.escapeShellArg (toString v)}")
       config.environment.sessionVariables;
-    "fish/config.fish".text = ''
-      if status is-interactive
-        ${lib.getExe pkgs.direnv} hook fish | source
-      end
-    '';
   };
 }

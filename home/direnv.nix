@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  lib,
+  pkgs,
+  ...
+}: {
   packages = with pkgs; [direnv];
 
   xdg.config.files = {
@@ -11,5 +15,10 @@
       };
     };
     "direnv/lib/nix-direnv.sh".source = "${pkgs.nix-direnv}/share/nix-direnv/direnvrc";
+    "fish/config.fish".text = ''
+      if status is-interactive
+        ${lib.getExe pkgs.direnv} hook fish | source
+      end
+    '';
   };
 }
