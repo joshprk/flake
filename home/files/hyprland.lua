@@ -158,6 +158,7 @@ function M.fixes()
     },
     no_anim = true,
     ignore_alpha = 0.5,
+    xray = false,
   })
 end
 
