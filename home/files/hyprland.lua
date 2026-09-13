@@ -10,6 +10,7 @@ end
 
 local BINDS <const> = {
   { mod("RETURN"), hl.dsp.exec_cmd(TERMINAL) },
+  { "Print", noctalia("screenshot-region") },
 
   { mod("Comma"), noctalia("settings-toggle") },
   { mod("Space"), noctalia("panel-toggle launcher") },
