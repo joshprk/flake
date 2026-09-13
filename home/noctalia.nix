@@ -46,6 +46,10 @@
       };
       shell.polkit_agent = true;
       shell.popup_borders = false;
+      shell.screen_corners = {
+        enabled = true;
+        size = 8;
+      };
       shell.setup_wizard_enabled = false;
       theme.community_palette = "Paradise";
       theme.source = "community";
