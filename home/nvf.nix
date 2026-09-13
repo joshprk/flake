@@ -7,9 +7,13 @@
         enable = true;
         setupOpts.preset = "helix";
       };
+      enableLuaLoader = true;
       git.gitsigns = {
         enable = true;
-        setupOpts.numhl = true;
+        setupOpts = {
+          numhl = true;
+          attach_to_untracked = true;
+        };
       };
       hideSearchHighlight = true;
       keymaps = [
@@ -20,6 +24,7 @@
         }
       ];
       languages = {
+        enableTreesitter = true;
         python.enable = true;
         nix.enable = true;
         markdown.enable = true;
@@ -29,6 +34,7 @@
       };
       lsp.enable = true;
       options = {
+        confirm = true;
         expandtab = true;
         laststatus = 3;
         scrolloff = 7;
@@ -36,6 +42,13 @@
         signcolumn = "no";
         tabstop = 2;
         wrap = false;
+      };
+      projects.project-nvim = {
+        enable = true;
+        setupOpts = {
+          manual_mode = false;
+          scope_chdir = "tab";
+        };
       };
       telescope.enable = true;
       theme = {
@@ -46,7 +59,6 @@
       };
       utility = {
         direnv.enable = true;
-        motion.flash-nvim.enable = true;
         oil-nvim = {
           enable = true;
           gitStatus.enable = true;
@@ -54,8 +66,10 @@
       };
       undoFile.enable = true;
       visuals = {
-        highlight-undo.enable = true;
-        indent-blankline.enable = true;
+        indent-blankline = {
+          enable = true;
+          setupOpts.scope.enabled = false;
+        };
         nvim-web-devicons.enable = true;
       };
     };
