@@ -11,16 +11,17 @@
     ./git.nix
     ./noctalia.nix
     ./nvf.nix
+    ./zmx.nix
   ];
 
   packages = with pkgs; [
     codex
+    fzf
     gh
     jq
     ripgrep
     tree
     wl-clipboard
-    zmx
   ];
 
   environment.sessionVariables = {
