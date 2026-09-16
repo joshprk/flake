@@ -66,6 +66,8 @@ in {
       xserver.enable = true;
     };
 
+    systemd.user.services.noctalia.environment.XDG_SESSION_TYPE = "wayland";
+
     security = {
       rtkit.enable = true;
       polkit.enable = true;
