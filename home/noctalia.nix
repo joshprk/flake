@@ -19,7 +19,7 @@
       bar.default.margin_ends = 0;
       bar.default.radius = 0;
       bar.default.start = ["control-center" "launcher" "workspaces"];
-      bar.default.widget_spacing = 12;
+      bar.default.widget_spacing = 20;
       idle.behavior_order = ["screen-off" "idle-behavior"];
       idle.behavior."idle-behavior" = {
         action = "lock_and_suspend";
