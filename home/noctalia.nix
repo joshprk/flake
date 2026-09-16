@@ -18,7 +18,7 @@
       ];
       bar.default.margin_ends = 0;
       bar.default.radius = 0;
-      bar.default.start = ["control-center" "launcher" "workspaces"];
+      bar.default.start = ["control-center" "launcher"];
       bar.default.widget_spacing = 20;
       idle.behavior_order = ["screen-off" "idle-behavior"];
       idle.behavior."idle-behavior" = {
@@ -61,6 +61,7 @@
       widget.battery.show_label = false;
       widget.bluetooth.hide_when_no_connected_device = true;
       widget.brightness.show_label = false;
+      widget.control-center.interactive = false;
       widget.clock.format = "{:%a %b %-d %-I:%M %p}";
       widget.media.album_art_only = true;
       widget.media.hide_when_no_media = true;
