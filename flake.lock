@@ -105,6 +105,26 @@
         "type": "github"
       }
     },
+    "helium": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1789214328,
+        "narHash": "sha256-ldHrGfwWiL8DwnP07DsqgGpppIPdXg/rF/FjDEXMNvI=",
+        "owner": "oxcl",
+        "repo": "nix-flake-helium-browser",
+        "rev": "7d7117d1154f9837913ae6216a25ebed96536478",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oxcl",
+        "repo": "nix-flake-helium-browser",
+        "type": "github"
+      }
+    },
     "hjem": {
       "inputs": {
         "nixpkgs": [
@@ -579,6 +599,7 @@
       "inputs": {
         "disko": "disko",
         "flake-parts": "flake-parts",
+        "helium": "helium",
         "hjem": "hjem",
         "hyprland": "hyprland",
         "impermanence": "impermanence",
