@@ -47,13 +47,7 @@ in {
           session.default = "hyprland";
         };
       };
-      flatpak = {
-        enable = true;
-        update.auto = {
-          enable = true;
-          onCalendar = "daily";
-        };
-      };
+      flatpak.enable = true;
       gnome.gnome-keyring.enable = true;
       pipewire = {
         enable = true;
@@ -66,7 +60,20 @@ in {
       xserver.enable = true;
     };
 
-    systemd.user.services.noctalia.environment.XDG_SESSION_TYPE = "wayland";
+    systemd = {
+      services.flatpak-update = {
+        description = "Update Flatpak applications";
+        startAt = "daily";
+        serviceConfig = {
+          Type = "oneshot";
+          ExecStart = "${lib.getExe pkgs.flatpak} update --system --noninteractive -y";
+          Restart = "on-failure";
+          RestartSec = "60s";
+        };
+      };
+      timers.flatpak-update.timerConfig.Persistent = true;
+      user.services.noctalia.environment.XDG_SESSION_TYPE = "wayland";
+    };
 
     security = {
       rtkit.enable = true;
