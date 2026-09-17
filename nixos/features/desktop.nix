@@ -30,6 +30,7 @@ in {
 
     programs = {
       dconf.enable = true;
+      helium.enable = true;
       noctalia = {
         enable = true;
         systemd.enable = true;
@@ -48,7 +49,6 @@ in {
       };
       flatpak = {
         enable = true;
-        packages = ["app.zen_browser.zen"];
         update.auto = {
           enable = true;
           onCalendar = "daily";
