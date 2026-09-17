@@ -18,7 +18,7 @@
       ];
       bar.default.margin_ends = 0;
       bar.default.radius = 0;
-      bar.default.start = ["control-center" "launcher"];
+      bar.default.start = ["control-center" "launcher" "active_window"];
       bar.default.widget_spacing = 20;
       idle.behavior_order = ["screen-off" "idle-behavior"];
       idle.behavior."idle-behavior" = {
