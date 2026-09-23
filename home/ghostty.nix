@@ -12,7 +12,7 @@
       auto-update = "off";
       font-family = "IBM Plex Mono";
       font-size = 9;
-      theme = "noctalia";
+      theme = "GitHub Dark High Contrast";
       window-padding-color = "extend";
     };
   };
