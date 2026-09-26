@@ -16,6 +16,10 @@
     };
 
   inputs = {
+    nixpkgs = {
+      url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
+    };
+
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -41,11 +45,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixpkgs = {
-      url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
+    nix-flatpak = {
+      url = "github:gmodena/nix-flatpak";
     };
-
-    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=v0.7.0";
 
     nvf = {
       url = "github:notashelf/nvf";
