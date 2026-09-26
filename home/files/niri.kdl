@@ -90,7 +90,7 @@ window-rule {
 
 window-rule {
   tiled-state true
-  geometry-corner-radius 20
+  geometry-corner-radius 16
   clip-to-geometry true
   draw-border-with-background false
   opacity 0.95
@@ -110,7 +110,7 @@ binds {
   // Desktop binds
   Mod+Comma repeat=false { spawn "noctalia" "msg" "settings-toggle"; }
   Mod+Space repeat=false { spawn "noctalia" "msg" "panel-toggle" "launcher"; }
-  Mod+C repeat=false { spawn "noctalia" "msg" "panel-toggle" "control-center"; }
+  Mod+S repeat=false { spawn "noctalia" "msg" "panel-toggle" "control-center"; }
 
   // Session binds
   Mod+Ctrl+Q repeat=false { spawn "noctalia" "msg" "session" "lock"; }
@@ -230,7 +230,7 @@ binds {
   Mod+Shift+F { expand-column-to-available-width; }
 
   // Center columns
-  Mod+Alt+C { center-column; }
+  Mod+C { center-column; }
   Mod+Ctrl+C { center-visible-columns; }
 
   // Toggle column tab display
