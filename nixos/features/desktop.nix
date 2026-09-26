@@ -3,9 +3,7 @@
   lib,
   pkgs,
   ...
-}: let
-  cursorTheme = "catppuccin-mocha-dark-cursors";
-in {
+}: {
   options.features.desktop = lib.mkEnableOption "the desktop feature";
 
   config = lib.mkIf config.features.desktop {
@@ -17,7 +15,6 @@ in {
 
     environment = {
       etc."timezone".text = config.time.timeZone;
-      sessionVariables.XCURSOR_SIZE = 24;
       systemPackages = with pkgs; [
         adwaita-icon-theme
         catppuccin-cursors.mochaDark
@@ -40,11 +37,11 @@ in {
     services = {
       displayManager.noctalia-greeter = {
         enable = true;
-        cursorTheme.name = cursorTheme;
-        settings = {
-          auth.allow_empty_password = true;
-          session.default = "niri";
+        cursorTheme = {
+          name = "catppuccin-mocha-dark-cursors";
+          package = pkgs.catppuccin-cursors.mochaDark;
         };
+        settings.auth.allow_empty_password = true;
       };
       flatpak = {
         enable = true;
@@ -66,8 +63,6 @@ in {
       xserver.enable = true;
     };
 
-    systemd.user.services.noctalia.environment.XDG_SESSION_TYPE = "wayland";
-
     security = {
       rtkit.enable = true;
       polkit = {
@@ -78,9 +73,6 @@ in {
 
     time.timeZone = "America/New_York";
 
-    xdg = {
-      icons.fallbackCursorThemes = [cursorTheme];
-      portal.xdgOpenUsePortal = true;
-    };
+    xdg.portal.xdgOpenUsePortal = true;
   };
 }
