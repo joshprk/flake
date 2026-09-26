@@ -1,9 +1,9 @@
 {flakeInputs, ...}: {
   imports = with flakeInputs; [
     disko.nixosModules.disko
-    helium.nixosModules.default
     hjem.nixosModules.hjem
     impermanence.nixosModules.impermanence
+    nix-flatpak.nixosModules.nix-flatpak
     ./features/containers.nix
     ./features/desktop.nix
     ./features/hyprland.nix

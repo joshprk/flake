@@ -105,26 +105,6 @@
         "type": "github"
       }
     },
-    "helium": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1790255647,
-        "narHash": "sha256-VGsihdN8HxpBeNHB2AK/G5PJP2fFMLBCTy0c1ti0fIg=",
-        "owner": "oxcl",
-        "repo": "nix-flake-helium-browser",
-        "rev": "5334f268b6cec49c58f69093b8f3198d3516e566",
-        "type": "github"
-      },
-      "original": {
-        "owner": "oxcl",
-        "repo": "nix-flake-helium-browser",
-        "type": "github"
-      }
-    },
     "hjem": {
       "inputs": {
         "nixpkgs": [
@@ -523,6 +503,22 @@
         "type": "github"
       }
     },
+    "nix-flatpak": {
+      "locked": {
+        "lastModified": 1767983141,
+        "narHash": "sha256-7ZCulYUD9RmJIDULTRkGLSW1faMpDlPKcbWJLYHoXcs=",
+        "owner": "gmodena",
+        "repo": "nix-flatpak",
+        "rev": "440818969ac2cbd77bfe025e884d0aa528991374",
+        "type": "github"
+      },
+      "original": {
+        "owner": "gmodena",
+        "ref": "v0.7.0",
+        "repo": "nix-flatpak",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1790185690,
@@ -584,10 +580,10 @@
       "inputs": {
         "disko": "disko",
         "flake-parts": "flake-parts",
-        "helium": "helium",
         "hjem": "hjem",
         "hyprland": "hyprland",
         "impermanence": "impermanence",
+        "nix-flatpak": "nix-flatpak",
         "nixpkgs": "nixpkgs",
         "nvf": "nvf",
         "treefmt": "treefmt"

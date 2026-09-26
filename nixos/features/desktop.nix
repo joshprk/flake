@@ -30,7 +30,6 @@ in {
 
     programs = {
       dconf.enable = true;
-      helium.enable = true;
       noctalia = {
         enable = true;
         systemd.enable = true;
@@ -47,7 +46,14 @@ in {
           session.default = "hyprland";
         };
       };
-      flatpak.enable = true;
+      flatpak = {
+        enable = true;
+        packages = ["app.zen_browser.zen"];
+        update.auto = {
+          enable = true;
+          onCalendar = "daily";
+        };
+      };
       gnome.gnome-keyring.enable = true;
       pipewire = {
         enable = true;
@@ -60,20 +66,7 @@ in {
       xserver.enable = true;
     };
 
-    systemd = {
-      services.flatpak-update = {
-        description = "Update Flatpak applications";
-        startAt = "daily";
-        serviceConfig = {
-          Type = "oneshot";
-          ExecStart = "${lib.getExe pkgs.flatpak} update --system --noninteractive -y";
-          Restart = "on-failure";
-          RestartSec = "60s";
-        };
-      };
-      timers.flatpak-update.timerConfig.Persistent = true;
-      user.services.noctalia.environment.XDG_SESSION_TYPE = "wayland";
-    };
+    systemd.user.services.noctalia.environment.XDG_SESSION_TYPE = "wayland";
 
     security = {
       rtkit.enable = true;
