@@ -1,3 +1,5 @@
+prefer-no-csd
+
 cursor {
   xcursor-theme "catppuccin-mocha-dark-cursors"
 }
