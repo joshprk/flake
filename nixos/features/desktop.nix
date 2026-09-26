@@ -11,7 +11,7 @@ in {
   config = lib.mkIf config.features.desktop {
     features = {
       containers = true;
-      hyprland = true;
+      niri = true;
       typography = true;
     };
 
@@ -43,7 +43,7 @@ in {
         cursorTheme.name = cursorTheme;
         settings = {
           auth.allow_empty_password = true;
-          session.default = "hyprland";
+          session.default = "niri";
         };
       };
       flatpak = {
