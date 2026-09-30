@@ -3,7 +3,9 @@
   lib,
   pkgs,
   ...
-}: {
+}: let
+  cursorTheme = "catppuccin-mocha-dark-cursors";
+in {
   options.features.desktop = lib.mkEnableOption "the desktop feature";
 
   config = lib.mkIf config.features.desktop {
@@ -38,7 +40,7 @@
       displayManager.noctalia-greeter = {
         enable = true;
         cursorTheme = {
-          name = "catppuccin-mocha-dark-cursors";
+          name = cursorTheme;
           package = pkgs.catppuccin-cursors.mochaDark;
         };
         settings.auth.allow_empty_password = true;
@@ -73,6 +75,9 @@
 
     time.timeZone = "America/New_York";
 
-    xdg.portal.xdgOpenUsePortal = true;
+    xdg = {
+      icons.fallbackCursorThemes = [cursorTheme];
+      portal.xdgOpenUsePortal = true;
+    };
   };
 }
