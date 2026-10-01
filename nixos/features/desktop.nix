@@ -17,6 +17,7 @@ in {
 
     environment = {
       etc."timezone".text = config.time.timeZone;
+      sessionVariables.XDG_CURSOR_SIZE = 24;
       systemPackages = with pkgs; [
         adwaita-icon-theme
         catppuccin-cursors.mochaDark
