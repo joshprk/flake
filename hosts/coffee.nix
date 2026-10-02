@@ -1,5 +1,13 @@
-{
-  networking.hostName = "coffee";
+{pkgs, ...}: {
+  environment.systemPackages = with pkgs; [gnome-boxes];
+
+  networking = {
+    hostName = "coffee";
+    firewall.interfaces.virbr0 = {
+      allowedTCPPorts = [53];
+      allowedUDPPorts = [53 67];
+    };
+  };
   system.stateVersion = "26.11";
 
   features = {
@@ -12,6 +20,8 @@
     nvidiaBusId = "PCI:1:0:0";
     amdgpuBusId = "PCI:53:0:0";
   };
+
+  virtualisation.libvirtd.enable = true;
 
   disko.devices.disk.disk0 = {
     device = "/dev/nvme0n1";
