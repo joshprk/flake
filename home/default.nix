@@ -15,6 +15,7 @@
   ];
 
   packages = with pkgs; [
+    claude-code
     codex
     fzf
     gh
