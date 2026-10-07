@@ -20,6 +20,7 @@
     fzf
     gh
     jq
+    openssl
     ripgrep
     tree
     wl-clipboard
