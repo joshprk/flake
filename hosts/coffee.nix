@@ -5,7 +5,6 @@
   features = {
     desktop = true;
     nvidia = true;
-    virt = true;
   };
 
   hardware.nvidia.prime = {
