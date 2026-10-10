@@ -27,7 +27,6 @@
         enableTreesitter = true;
         python.enable = true;
         nix.enable = true;
-        markdown.enable = true;
         rust.enable = true;
         typescript.enable = true;
         tsx.enable = true;
