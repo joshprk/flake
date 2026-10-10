@@ -11,7 +11,6 @@
     ./git.nix
     ./noctalia.nix
     ./nvf.nix
-    ./zmx.nix
   ];
 
   packages = with pkgs; [
