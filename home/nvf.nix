@@ -25,7 +25,10 @@
       ];
       languages = {
         enableTreesitter = true;
-        python.enable = true;
+        python = {
+          enable = true;
+          lsp.servers = ["pyrefly"];
+        };
         nix.enable = true;
         rust.enable = true;
         typescript.enable = true;
