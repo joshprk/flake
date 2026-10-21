@@ -38,6 +38,8 @@
       shell.card_borders = false;
       shell.corner_radius_scale = 2.0;
       shell.input_borders = false;
+      shell.launcher.categories = false;
+      shell.launcher.layout = "simple";
       shell.panel = {
         borders = false;
         control_center_placement = "floating";
