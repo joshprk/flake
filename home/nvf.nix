@@ -31,8 +31,14 @@
         };
         nix.enable = true;
         rust.enable = true;
-        typescript.enable = true;
-        tsx.enable = true;
+        typescript = {
+          enable = true;
+          lsp.servers = ["typescript-go"];
+        };
+        tsx = {
+          enable = true;
+          lsp.servers = ["typescript-go"];
+        };
       };
       lsp = {
         enable = true;
