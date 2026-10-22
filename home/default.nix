@@ -30,7 +30,7 @@
     BUN_INSTALL = "${config.xdg.data.directory}/bun";
     BUN_INSTALL_CACHE_DIR = "${config.xdg.cache.directory}/bun";
     CARGO_HOME = "${config.xdg.data.directory}/cargo";
-    CLAUDE_CONFIG_DIR="${config.xdg.config.directory}/claude";
+    CLAUDE_CONFIG_DIR = "${config.xdg.config.directory}/claude";
     CODEX_HOME = "${config.xdg.data.directory}/codex";
     GH_TELEMETRY = "false";
     GOPATH = "${config.xdg.data.directory}/go";

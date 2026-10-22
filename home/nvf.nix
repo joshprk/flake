@@ -34,7 +34,10 @@
         typescript.enable = true;
         tsx.enable = true;
       };
-      lsp.enable = true;
+      lsp = {
+        enable = true;
+        formatOnSave = true;
+      };
       options = {
         confirm = true;
         expandtab = true;
