@@ -1,4 +1,5 @@
-{pkgs, ...}: let
+{ pkgs, ... }:
+let
   nvfWithConfig = pkgs.nvf {
     vim = {
       autocomplete.blink-cmp.enable = true;
@@ -27,22 +28,21 @@
         enableTreesitter = true;
         python = {
           enable = true;
-          lsp.servers = ["pyrefly"];
+          lsp.servers = [ "pyrefly" ];
         };
         nix.enable = true;
         rust.enable = true;
         typescript = {
           enable = true;
-          lsp.servers = ["typescript-go"];
+          lsp.servers = [ "typescript-go" ];
         };
         tsx = {
           enable = true;
-          lsp.servers = ["typescript-go"];
+          lsp.servers = [ "typescript-go" ];
         };
       };
       lsp = {
         enable = true;
-        formatOnSave = true;
       };
       options = {
         confirm = true;
@@ -62,6 +62,7 @@
         };
       };
       telescope.enable = true;
+      terminal.toggleterm.enable = true;
       theme = {
         enable = true;
         name = "catppuccin";
@@ -85,7 +86,8 @@
       };
     };
   };
-in {
-  packages = [nvfWithConfig];
+in
+{
+  packages = [ nvfWithConfig ];
   environment.sessionVariables.EDITOR = "nvim";
 }
