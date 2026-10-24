@@ -51,14 +51,6 @@ layer-rule {
   }
 }
 
-layer-rule {
-  match namespace="noctalia-window-switcher"
-  background-effect {
-    blur true
-    xray false
-  }
-}
-
 window-rule {
   match app-id=r#"app.zen_browser.zen$"# title="^Picture-in-Picture$"
   open-floating true
@@ -76,10 +68,6 @@ window-rule {
   geometry-corner-radius 16
   clip-to-geometry true
   draw-border-with-background false
-
-  background-effect {
-    blur true
-  }
 }
 
 debug {
