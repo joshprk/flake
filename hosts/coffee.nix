@@ -28,7 +28,7 @@
       };
     };
     content.partitions.system = {
-      size = "100%";
+      size = "200G";
       content = {
         name = "system";
         type = "luks";
