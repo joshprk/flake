@@ -19,10 +19,6 @@
     consoleLogLevel = 0;
     kernelPackages = pkgs.linuxPackages_latest;
     kernelParams = ["quiet" "udev.log_level=3"];
-    initrd = {
-      systemd.enable = true;
-      verbose = false;
-    };
     loader.limine = {
       enable = true;
       enrollConfig = true;
