@@ -31,6 +31,7 @@
     CARGO_HOME = "${config.xdg.data.directory}/cargo";
     CLAUDE_CONFIG_DIR = "${config.xdg.config.directory}/claude";
     CODEX_HOME = "${config.xdg.data.directory}/codex";
+    DO_NOT_TRACK = "1";
     GH_TELEMETRY = "false";
     GOPATH = "${config.xdg.data.directory}/go";
     GOMODCACHE = "${config.xdg.cache.directory}/go/mod";
