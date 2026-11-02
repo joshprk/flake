@@ -22,7 +22,7 @@
       bar.default.widget_spacing = 20;
       idle.behavior_order = ["screen-off" "idle-behavior"];
       idle.behavior."idle-behavior" = {
-        action = "lock_and_suspend";
+        action = "lock";
         enabled = true;
         timeout = 900.0;
       };
