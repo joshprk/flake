@@ -15,7 +15,6 @@
 
   packages = with pkgs; [
     amp-cli
-    claude-code
     codex
     fzf
     gh
