@@ -25,6 +25,7 @@
       ];
       languages = {
         enableTreesitter = true;
+        astro.enable = true;
         python = {
           enable = true;
           lsp.servers = ["pyrefly"];
