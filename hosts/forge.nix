@@ -2,6 +2,8 @@
   networking.hostName = "forge";
   system.stateVersion = "26.11";
 
+  environment.enableAllTerminfo = true;
+
   services.openssh = {
     enable = true;
     openFirewall = true;
