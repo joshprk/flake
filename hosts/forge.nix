@@ -18,8 +18,8 @@
   };
 
   security.pam = {
-    sshAgentAuth.enable = true;
-    services.sudo.sshAgentAuth = true;
+    rssh.enable = true;
+    services.sudo.rssh = true;
   };
 
   disko.devices.disk.system = {
