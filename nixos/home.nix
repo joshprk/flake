@@ -13,13 +13,13 @@
   hjem.users.josh = import homeModule;
 
   users = {
-    # Temporarily set until secrets integration
     allowNoPasswordLogin = true;
     mutableUsers = false;
     users.josh = {
       isNormalUser = true;
       shell = pkgs.fish;
       extraGroups = ["wheel"];
+      openssh.authorizedKeys.keys = [(builtins.readFile ../id_mldsa44_ed25519.pub)];
     };
   };
 
