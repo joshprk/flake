@@ -16,9 +16,7 @@
   };
 
   boot = {
-    consoleLogLevel = 0;
     kernelPackages = pkgs.linuxPackages_latest;
-    kernelParams = ["quiet" "udev.log_level=3"];
     loader.limine = {
       enable = true;
       enrollConfig = true;
@@ -29,7 +27,6 @@
         autoEnrollKeys.enable = true;
       };
     };
-    plymouth.enable = true;
   };
 
   programs = {
