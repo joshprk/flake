@@ -9,6 +9,7 @@
     ./features/niri.nix
     ./features/nvidia.nix
     ./features/secureboot.nix
+    ./features/server.nix
     ./features/typography.nix
     ./features/virt.nix
     ./home.nix

@@ -2,7 +2,7 @@
   networking.hostName = "forge";
   system.stateVersion = "26.11";
 
-  environment.enableAllTerminfo = true;
+  features.server = true;
 
   services.resolved.settings.Resolve = {
     DNS = [
@@ -11,16 +11,6 @@
     ];
     Domains = ["~."];
   };
-
-  services = {
-    fail2ban.enable = true;
-    openssh = {
-      enable = true;
-      openFirewall = true;
-    };
-  };
-
-  security.sudo.wheelNeedsPassword = false;
 
   disko.devices.disk.system = {
     device = "/dev/sda";
