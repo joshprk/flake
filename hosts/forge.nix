@@ -12,15 +12,15 @@
     Domains = ["~."];
   };
 
-  services.openssh = {
-    enable = true;
-    openFirewall = true;
+  services = {
+    fail2ban.enable = true;
+    openssh = {
+      enable = true;
+      openFirewall = true;
+    };
   };
 
-  security.pam = {
-    rssh.enable = true;
-    services.sudo.rssh = true;
-  };
+  security.sudo.wheelNeedsPassword = false;
 
   disko.devices.disk.system = {
     device = "/dev/sda";
