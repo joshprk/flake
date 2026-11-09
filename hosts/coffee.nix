@@ -5,6 +5,7 @@
   features = {
     desktop = true;
     nvidia = true;
+    secureboot = true;
   };
 
   hardware.nvidia.prime = {

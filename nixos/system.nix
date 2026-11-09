@@ -21,11 +21,6 @@
       enable = true;
       enrollConfig = true;
       maxGenerations = 5;
-      secureBoot = {
-        enable = true;
-        autoGenerateKeys = true;
-        autoEnrollKeys.enable = true;
-      };
     };
   };
 

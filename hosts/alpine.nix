@@ -5,6 +5,7 @@
   features = {
     desktop = true;
     nvidia = true;
+    secureboot = true;
   };
 
   services.lact = {
