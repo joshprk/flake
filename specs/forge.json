@@ -1756,10 +1756,9 @@
         "sysfs_bus_id": "0:0:0:1",
         "sysfs_device_link": "/devices/pci0000:00/0000:00:05.7/0000:18:00.0/virtio2/host0/target0:0:0/0:0:0:1",
         "unix_device_names": [
-          "/dev/disk/by-id/scsi-360f20b5ff7044297be612aec358ba9da",
-          "/dev/disk/by-id/wwn-0x60f20b5ff7044297be612aec358ba9da",
+          "/dev/disk/by-id/scsi-3604bc13bf7304dfc8cd8103ef1e218a5",
+          "/dev/disk/by-id/wwn-0x604bc13bf7304dfc8cd8103ef1e218a5",
           "/dev/disk/by-path/pci-0000:18:00.0-scsi-0:0:0:1",
-          "/dev/oracleoci/oraclevda",
           "/dev/sda"
         ],
         "unix_device_name2": "/dev/sg0",
@@ -1780,8 +1779,12 @@
           }
         ],
         "driver": "virtio_scsi",
+        "driver_module": "virtio_scsi",
         "drivers": [
           "sd",
+          "virtio_scsi"
+        ],
+        "driver_modules": [
           "virtio_scsi"
         ]
       }
@@ -1878,7 +1881,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 7.0.0-1013-oracle xhci-hcd",
+          "name": "Linux 6.18.36 xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -1888,11 +1891,11 @@
         },
         "revision": {
           "hex": "0000",
-          "name": "7.00",
+          "name": "6.18",
           "value": 0
         },
         "serial": "0000:00:02.0",
-        "model": "Linux 7.0.0-1013-oracle xhci-hcd xHCI Host Controller",
+        "model": "Linux 6.18.36 xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:02.0/usb1/1-0:1.0",
         "sysfs_bus_id": "1-0:1.0",
         "resources": [
@@ -1940,7 +1943,7 @@
         "driver_modules": [
           "usbcore"
         ],
-        "module_alias": "usb:v1D6Bp0002d0700dc09dsc00dp01ic09isc00ip00in00"
+        "module_alias": "usb:v1D6Bp0002d0618dc09dsc00dp01ic09isc00ip00in00"
       },
       {
         "index": 45,
@@ -1965,7 +1968,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 7.0.0-1013-oracle xhci-hcd",
+          "name": "Linux 6.18.36 xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -1975,11 +1978,11 @@
         },
         "revision": {
           "hex": "0000",
-          "name": "7.00",
+          "name": "6.18",
           "value": 0
         },
         "serial": "0000:00:02.0",
-        "model": "Linux 7.0.0-1013-oracle xhci-hcd xHCI Host Controller",
+        "model": "Linux 6.18.36 xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:02.0/usb2/2-0:1.0",
         "sysfs_bus_id": "2-0:1.0",
         "detail": {
@@ -2017,7 +2020,7 @@
         "driver_modules": [
           "usbcore"
         ],
-        "module_alias": "usb:v1D6Bp0003d0700dc09dsc00dp03ic09isc00ip00in00"
+        "module_alias": "usb:v1D6Bp0003d0618dc09dsc00dp03ic09isc00ip00in00"
       }
     ],
     "keyboard": [
@@ -2775,7 +2778,11 @@
         "sysfs_id": "/devices/pci0000:00/0000:00:05.7/0000:18:00.0/virtio2",
         "sysfs_bus_id": "virtio2",
         "driver": "virtio_scsi",
+        "driver_module": "virtio_scsi",
         "drivers": [
+          "virtio_scsi"
+        ],
+        "driver_modules": [
           "virtio_scsi"
         ],
         "module_alias": "virtio:d00000008v0000108E"
@@ -2809,21 +2816,6 @@
         "driver_modules": [
           "virtio_gpu"
         ],
-        "driver_info": {
-          "type": "module",
-          "db_entry_0": [
-            "virtio_gpu"
-          ],
-          "active": true,
-          "modprobe": true,
-          "names": [
-            "virtio_gpu"
-          ],
-          "module_args": [
-            ""
-          ],
-          "conf": ""
-        },
         "module_alias": "virtio:d00000010v0000108E"
       }
     ],
