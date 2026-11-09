@@ -2,6 +2,11 @@
   networking.hostName = "forge";
   system.stateVersion = "26.11";
 
+  services.openssh = {
+    enable = true;
+    openFirewall = true;
+  };
+
   disko.devices.disk.system = {
     device = "/dev/sda";
     type = "disk";
