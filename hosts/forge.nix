@@ -4,9 +4,22 @@
 
   environment.enableAllTerminfo = true;
 
+  services.resolved.settings.Resolve = {
+    DNS = [
+      "1.1.1.1#one.one.one.one"
+      "9.9.9.9#dns.quad9.net"
+    ];
+    Domains = ["~."];
+  };
+
   services.openssh = {
     enable = true;
     openFirewall = true;
+  };
+
+  security.pam = {
+    sshAgentAuth.enable = true;
+    services.sudo.sshAgentAuth = true;
   };
 
   disko.devices.disk.system = {
