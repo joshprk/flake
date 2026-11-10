@@ -11,7 +11,6 @@
     ./features/secure-boot.nix
     ./features/server.nix
     ./features/typography.nix
-    ./features/virt.nix
     ./home.nix
     ./network.nix
     ./system.nix
