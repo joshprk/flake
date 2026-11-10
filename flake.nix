@@ -16,9 +16,8 @@
     };
 
   inputs = {
-    nixpkgs = {
-      url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst";
-    };
+    # nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst";
+    nixpkgs.url = "github:nixos/nixpkgs";
 
     disko = {
       url = "github:nix-community/disko";
