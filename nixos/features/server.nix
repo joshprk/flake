@@ -24,7 +24,10 @@
         enable = true;
         openFirewall = true;
       };
-      tailscale.extraSetFlags = ["--advertise-exit-node"];
+      tailscale = {
+        useRoutingFeatures = "server";
+        extraSetFlags = ["--advertise-exit-node"];
+      };
     };
   };
 }
