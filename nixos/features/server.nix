@@ -24,6 +24,7 @@
         enable = true;
         openFirewall = true;
       };
+      tailscale.extraSetFlags = ["--advertise-exit-node"];
     };
   };
 }

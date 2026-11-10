@@ -11,5 +11,7 @@
       autoGenerateKeys = true;
       autoEnrollKeys.enable = true;
     };
+
+    services.tailscale.extraDaemonFlags = ["--encrypt-state"];
   };
 }

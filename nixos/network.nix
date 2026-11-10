@@ -1,14 +1,9 @@
 {
-  config,
-  lib,
-  ...
-}: {
   services = {
     tailscale = {
       enable = true;
       openFirewall = true;
       disableUpstreamLogging = true;
-      extraDaemonFlags = lib.mkIf config.features.secureBoot ["--encrypt-state"];
       extraSetFlags = ["--accept-dns" "--ssh"];
     };
     resolved = {
