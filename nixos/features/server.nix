@@ -29,5 +29,10 @@
         extraSetFlags = ["--advertise-exit-node"];
       };
     };
+
+    system.autoUpgrade = {
+      enable = true;
+      flake = "github:joshprk/flake";
+    };
   };
 }
