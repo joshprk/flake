@@ -2,7 +2,10 @@
   networking.hostName = "forge";
   system.stateVersion = "26.11";
 
-  features.server = true;
+  features = {
+    containers = true;
+    server = true;
+  };
 
   services.resolved.settings.Resolve = {
     DNS = [
