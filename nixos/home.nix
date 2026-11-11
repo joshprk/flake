@@ -15,11 +15,13 @@
   users = {
     allowNoPasswordLogin = true;
     mutableUsers = false;
-    users.josh = {
-      isNormalUser = true;
-      shell = pkgs.fish;
-      extraGroups = ["wheel"];
-      openssh.authorizedKeys.keys = [(builtins.readFile ../id_mldsa44_ed25519.pub)];
+    users = {
+      josh = {
+        isNormalUser = true;
+        shell = pkgs.fish;
+        extraGroups = ["wheel"];
+      };
+      root.openssh.authorizedKeys.keyFiles = [../id_mldsa44_ed25519.pub];
     };
   };
 
