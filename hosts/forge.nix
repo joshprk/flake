@@ -7,7 +7,7 @@
     server = true;
   };
 
-  pods.hello-world = true;
+  pods.amp-orbs = true;
 
   services.resolved.settings.Resolve = {
     DNS = ["1.1.1.1#one.one.one.one" "9.9.9.9#dns.quad9.net"];

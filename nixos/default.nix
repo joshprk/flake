@@ -11,7 +11,7 @@
     ./features/secure-boot.nix
     ./features/server.nix
     ./features/typography.nix
-    ./pods/hello-world.nix
+    ./pods/amp-orbs/module.nix
     ./home.nix
     ./network.nix
     ./system.nix
