@@ -10,7 +10,7 @@
       enable = true;
       settings.Resolve = {
         DNSOverTLS = true;
-        DNSSEC = true;
+        DNSSEC = "opportunistic";
       };
     };
   };
