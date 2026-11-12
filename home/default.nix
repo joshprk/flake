@@ -5,6 +5,7 @@
 }: {
   imports = [
     ./modules/dconf.nix
+    ./btop.nix
     ./direnv.nix
     ./fish.nix
     ./ghostty.nix
@@ -15,13 +16,13 @@
 
   packages = with pkgs; [
     amp-cli
+    btop
     codex
     fzf
     gh
     jq
     openssl
     ripgrep
-    tree
     wl-clipboard
   ];
 
