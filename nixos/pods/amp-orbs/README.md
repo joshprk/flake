@@ -34,8 +34,12 @@ Restarting or replacing the controller stops nested processes; saved disks remai
 
 The outer container uses `--privileged` and must be trusted with host-root
 authority. Inner orbs are not privileged and do not receive the provider token.
-The dispatch overrides the upstream Podman image's shared network and IPC
-defaults with bridge networking and a private IPC namespace for each orb.
+The outer controller's default Podman network is `10.89.0.0/16`, while nested
+Podman uses its own default `10.88.0.0/16` network. Keeping those subnets
+distinct prevents the nested bridge from claiming the controller's gateway and
+cutting it off from Amp. The dispatch overrides the upstream Podman image's
+shared network and IPC defaults with bridge networking and a private IPC namespace
+for each orb.
 Services in different orbs can bind the same localhost port without competing.
 Orbs still share a bridge: this is localhost isolation, not a firewall between
 orbs. The upstream image disables cgroups; there are no per-orb CPU, memory,

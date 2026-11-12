@@ -6,13 +6,7 @@
       disableUpstreamLogging = true;
       extraSetFlags = ["--accept-dns" "--ssh"];
     };
-    resolved = {
-      enable = true;
-      settings.Resolve = {
-        DNSOverTLS = true;
-        DNSSEC = "opportunistic";
-      };
-    };
+    resolved.enable = true;
   };
 
   networking = {
