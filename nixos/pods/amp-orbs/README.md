@@ -2,7 +2,7 @@
 
 `pods.amp-orbs = true` runs Amp and a nested Podman engine in one OCI container.
 No host socket, dedicated user, or KVM is needed. The dispatch is Amp's Docker
-example using Podman and ARM64. The outer container provides 1 GiB of shared
+example using Podman and ARM64. Each orb provides 1 GiB of private shared
 memory for browser workloads.
 
 Create `/nix/secrets/amp-orbs` as a root-owned, mode `0600` environment file:
@@ -34,7 +34,14 @@ Restarting or replacing the controller stops nested processes; saved disks remai
 
 The outer container uses `--privileged` and must be trusted with host-root
 authority. Inner orbs are not privileged and do not receive the provider token.
-The upstream Podman image supplies its own defaults, including disabled cgroups
-and sharing the outer container's network and IPC namespaces. Services in
-different orbs can therefore compete for ports. There are no per-orb CPU,
-memory, or disk quotas. Private-network egress is not blocked.
+The dispatch overrides the upstream Podman image's shared network and IPC
+defaults with bridge networking and a private IPC namespace for each orb.
+Services in different orbs can bind the same localhost port without competing.
+Orbs still share a bridge: this is localhost isolation, not a firewall between
+orbs. The upstream image disables cgroups; there are no per-orb CPU, memory,
+or disk quotas. Private-network egress is not blocked.
+
+Existing containers retain their original namespaces when started again. After
+deploying this change, save any needed work and recreate those orbs through Amp
+to pick up isolation; pause/resume alone is not sufficient. Do not delete the
+storage volume to migrate them.
