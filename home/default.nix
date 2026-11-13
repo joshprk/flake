@@ -17,6 +17,7 @@
   packages = with pkgs; [
     amp-cli
     btop
+    claude-code
     codex
     fzf
     gh
