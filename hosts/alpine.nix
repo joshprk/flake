@@ -8,10 +8,6 @@
     secureBoot = true;
   };
 
-  services.lact = {
-    enable = true;
-  };
-
   hardware.nvidia.prime = {
     offload.enable = true;
     nvidiaBusId = "PCI:1@0:0:0";
